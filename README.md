@@ -1,4 +1,4 @@
-# League Skeleton
+#  Bookwhen
 
 [![Latest Version](https://img.shields.io/github/release/thephpleague/skeleton.svg?style=flat-square)](https://github.com/thephpleague/skeleton/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
@@ -8,22 +8,43 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/league/skeleton.svg?style=flat-square)](https://packagist.org/packages/league/skeleton)
 
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+SDK kit for bookwhen using version 2.0 or greater.
+
 
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require league/skeleton
+$ composer require inshore/booknow
 ```
 
 ## Usage
 
 ``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+
+
+
+$token = xxxx;
+
+$client = new Client($token)
+
+//For finding all available events
+
+$client->getEvents();
+
+//For finding a specific event
+
+$client->getSingleEvent(event_id);
+
+//For purchasing tickets
+
+$client->ticket();
+
+//For viewing details of specific ticket
+
+$client->ticket(ticket_id);
+
 ```
 
 ## Testing
@@ -34,13 +55,13 @@ $ phpunit
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/thephpleague/:package_name/blob/master/CONTRIBUTING.md) for details.
+Please see https://github.com/inshore-packages/bookwhen for details.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](https://github.com/thephpleague/:package_name/contributors)
+- Daniel Mullin
+- Brandon Lubbehusen
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+

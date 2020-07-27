@@ -1,0 +1,40 @@
+{
+    "name": "inshoire-packages/bookwhen",
+    "description": ":tbc",
+    "keywords": [
+        "inshore",
+	"bookwhen",
+	"api",
+        "package"
+    ],
+    "homepage": "https://github.com/inshore-packages/bookwhen",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Mullin",
+            "email": "email@danielmullin.com"
+        }
+    ],
+    "require": {
+        "php" : ">=7.2",
+	"guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "inShore\\BookWhen\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "inShore\\BookWhen\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}i

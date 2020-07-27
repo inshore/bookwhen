@@ -35,15 +35,52 @@ $client->getEvents();
 
 //For finding a specific event
 
-$client->getSingleEvent(event_id);
+$eventId = xxxx;
 
-//For purchasing tickets
+$client->getEvents($eventId);
 
-$client->ticket();
+//Location of event
+
+$client->locations();
+
+//Returns location of given location ID
+
+$locationId = xxxx;
+
+$client->locations($locationId)
+
+//Fetch attachments for the given parameters
+
+$client->attachments();
+
+// Retrieve single attachment
+
+$attachmentId = xxxx;
+
+$client->attachments($attachmentId);
+
+//For listing tickets
+
+$client->tickets();
 
 //For viewing details of specific ticket
 
-$client->ticket(ticket_id);
+$ticketId = xxxx;
+
+$client->tickets($ticketId);
+
+//Class pass
+
+$client->classPasses;
+
+//Retrieve single class pass
+
+$classPassId = xxxx;
+
+$client->classPasses($classPassId)
+
+
+
 
 ```
 

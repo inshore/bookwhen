@@ -1,8 +1,9 @@
 <?php
 
-namespace InShore\BookWhen;
+namespace InShore\BookWhen\Client;
 
 use InShore\BookWhen\Exceptions\BookWhenException;
+use InShore\BookWhen\Interfaces\ClientInterface;
 
 /**
  * Class Diffbot
@@ -11,7 +12,7 @@ use InShore\BookWhen\Exceptions\BookWhenException;
  *
  * @package Swader\Diffbot
  */
-class Client
+class Client implements ClientInterface
 {
     /** @var string The API access token */
     private static $token = null;

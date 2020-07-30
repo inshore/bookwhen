@@ -1,8 +1,25 @@
 <?php
 
-namespace InShore\BookWhen;
+require 'vendor/autoload.php';
 
 use InShore\BookWhen\Exceptions\BookWhenException;
+use GuzzleHttp\Client;
+
+
+// require 'vendor/autoload.php';
+ 
+// use GuzzleHttp\Client;
+ 
+// $client = new Client([
+//     'base_uri' => 'http://www.google.com',
+// ]);
+ 
+// $response = $client->request('GET', 'search', [
+//     'query' => ['q' => 'curl']
+// ]);
+ 
+// echo $response->getBody();
+ 
 
 /**
  * Class Diffbot
@@ -11,7 +28,7 @@ use InShore\BookWhen\Exceptions\BookWhenException;
  *
  * @package Swader\Diffbot
  */
-class Client
+class BookNowClient
 {
     /** @var string The API access token */
     private static $token = null;
@@ -58,6 +75,11 @@ class Client
         }
         return true;
     }
-    
- 
+
+    public function getEvents()
+    {
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', '/v2/events');
+        
+    }
 }

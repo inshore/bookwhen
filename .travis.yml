@@ -7,10 +7,10 @@ php:
 
 before_script:
   - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source --dev
+  - travis_retry composer install --no-interaction --prefer-source
 
 script:
-  - phpunit --coverage-clover=coverage.clover
+  - phpunit
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

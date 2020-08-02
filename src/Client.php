@@ -1,8 +1,14 @@
 <?php
+declare(strict_types = 1);
 
-namespace InShore\BookWhen;
+namespace InShore\BookWhen\Client;
 
-use InShore\BookWhen\Exceptions\BookWhenException;
+require 'vendor/autoload.php';
+
+use GuzzleHttp\Client;
+use InShore\BookWhen\Exception;
+use InShore\BookWhen\Interfaces\ClientInterface;
+use InShore\BookWhen\Validator\Validator;
 
 /**
  * Class Diffbot
@@ -11,13 +17,22 @@ use InShore\BookWhen\Exceptions\BookWhenException;
  *
  * @package Swader\Diffbot
  */
-class Client
+class Client implements ClientInterface
 {
+    
+    
     /** @var string The API access token */
     private static $token = null;
-    
+
     /** @var string The instance token, settable once per new instance */
     private $instanceToken;
+
+    private $baseUri;
+    
+    private $Validator;
+    
+    private $Client;
+    
     
     /**
      * @param string|null $token The API access token, as obtained on diffbot.com/dev
@@ -25,16 +40,126 @@ class Client
      */
     public function __construct($token = null)
     {
+        
+        $this->Validator = new Validator();
+       
+        $this->Client = new Client(['base_uri' => 'https://api.bookwhen.com']);
+        
         if ($token === null) {
             if (self::$token === null) {
                 $msg = 'No token provided, and none is globally set. ';
                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-                throw new DiffbotException($msg);
+                throw new Exception($msg);
             }
         } else {
-            self::validateToken($token);
-            $this->instanceToken = $token;
+            $this->validator->validToken($token);
+            self::$token = $token;
         }
+    }
+
+    protected function reqauest() {
+        
+    }
+    
+    /**
+     * @todo
+     */
+    public function getAttachment() {
+        
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
+     */
+    public function getAttachments() {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPass()
+     */
+    public function getClassPass($classPassId) {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
+     */
+    public function getClassPasses() {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
+     */
+    public function getEvent($eventId) {
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', "/v2/events/$eventId", [
+            'auth' => ['username', 'password'],
+        ]);
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
+     */
+    public function getEvents($eventId)
+    {
+        $return = $this->Client->request(
+            'GET', "/v2/events/$eventId", 
+            [
+                'auth' => [self::$token, 'password'],
+            ]
+         );
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocation()
+     */
+    public function getLocation($locationId) {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
+     */
+    public function getLocations() {
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', "/v2/locations/$locationId", [
+            'auth' => ['username', 'password'],
+        ]);
+    } 
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
+     */
+    public function getTicket() {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
+     */
+    public function getTickets() {
+        
     }
     
     /**
@@ -47,7 +172,7 @@ class Client
         self::validateToken($token);
         self::$token = $token;
     }
-    
+
     private static function validateToken($token)
     {
         if (!is_string($token)) {
@@ -59,5 +184,6 @@ class Client
         return true;
     }
     
- 
 }
+
+// EOF!

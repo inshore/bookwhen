@@ -77,7 +77,7 @@ $client->classPasses;
 
 $classPassId = xxxx;
 
-$client->classPasses($classPassId)
+$client->classPasses($classPassId);
 
 
 

@@ -6,7 +6,7 @@ namespace InShore\BookWhen;
 
 use GuzzleHttp\Client as GuzzleClient;
 use InShore\BookWhen\Exception;
-use InShore\BookWhen\ClientInterface;
+use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
 
 /**
@@ -59,6 +59,7 @@ class Client implements ClientInterface
         } else {
             $this->validator->validToken($token);
             self::$token = $token;
+            $this->instanceToken = self::$token;
         }
     }
 
@@ -147,12 +148,12 @@ class Client implements ClientInterface
         // validate
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
         } catch (Exception $e) {
             // @todo
         }
         
-        return $return;
+        return $Response->getBody();
     }
     
     /**

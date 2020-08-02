@@ -78,7 +78,7 @@ class Client implements ClientInterface
     /**
      * @todo
      */
-    public function getAttachment() {
+    public function getAttachment($attachmentId) {
         
     }
 
@@ -181,7 +181,7 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
      */
-    public function getTicket() {
+    public function getTicket($ticketId) {
         
     }
     

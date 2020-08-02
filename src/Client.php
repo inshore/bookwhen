@@ -6,8 +6,9 @@ namespace InShore\BookWhen\Client;
 require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
-use InShore\BookWhen\Exceptions\BookWhenException;
+use InShore\BookWhen\Exception;
 use InShore\BookWhen\Interfaces\ClientInterface;
+use InShore\BookWhen\Validator\Validator;
 
 /**
  * Class Diffbot
@@ -28,6 +29,10 @@ class Client implements ClientInterface
 
     private $baseUri;
     
+    private $Validator;
+    
+    private $Client;
+    
     
     /**
      * @param string|null $token The API access token, as obtained on diffbot.com/dev
@@ -35,15 +40,20 @@ class Client implements ClientInterface
      */
     public function __construct($token = null)
     {
+        
+        $this->Validator = new Validator();
+       
+        $this->Client = new Client(['base_uri' => 'https://api.bookwhen.com']);
+        
         if ($token === null) {
             if (self::$token === null) {
                 $msg = 'No token provided, and none is globally set. ';
                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-                throw new DiffbotException($msg);
+                throw new Exception($msg);
             }
         } else {
-            self::validateToken($token);
-            $this->instanceToken = $token;
+            $this->validator->validToken($token);
+            self::$token = $token;
         }
     }
 
@@ -91,7 +101,10 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
      */
     public function getEvent($eventId) {
-        
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', "/v2/events/$eventId", [
+            'auth' => ['username', 'password'],
+        ]);
     }
     
     /**
@@ -101,10 +114,12 @@ class Client implements ClientInterface
      */
     public function getEvents($eventId)
     {
-        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
-        $response = $client->request('GET', "/v2/events/$eventId", [
-            'auth' => ['username', 'password'],
-        ]);
+        $return = $this->Client->request(
+            'GET', "/v2/events/$eventId", 
+            [
+                'auth' => [self::$token, 'password'],
+            ]
+         );
         
     }
     

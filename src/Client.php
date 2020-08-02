@@ -1,22 +1,14 @@
 <?php
+declare(strict_types = 1);
+
+namespace InShore\BookWhen\Client;
 
 require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
-
-// require 'vendor/autoload.php';
-
-// use GuzzleHttp\Client;
-
-// $client = new Client([
-//     'base_uri' => 'http://www.google.com',
-// ]);
-
-// $response = $client->request('GET', 'search', [
-//     'query' => ['q' => 'curl']
-// ]);
-
-// echo $response->getBody();
+use InShore\BookWhen\Exception;
+use InShore\BookWhen\Interfaces\ClientInterface;
+use InShore\BookWhen\Validator\Validator;
 
 /**
  * Class Diffbot
@@ -25,32 +17,151 @@ use GuzzleHttp\Client;
  *
  * @package Swader\Diffbot
  */
-class BookNowClient
+class Client implements ClientInterface
 {
+    
+    
     /** @var string The API access token */
     private static $token = null;
 
     /** @var string The instance token, settable once per new instance */
     private $instanceToken;
 
+    private $baseUri;
+    
+    private $Validator;
+    
+    private $Client;
+    
+    
     /**
      * @param string|null $token The API access token, as obtained on diffbot.com/dev
      * @throws DiffbotException When no token is provided
      */
     public function __construct($token = null)
     {
+        
+        $this->Validator = new Validator();
+       
+        $this->Client = new Client(['base_uri' => 'https://api.bookwhen.com']);
+        
         if ($token === null) {
             if (self::$token === null) {
                 $msg = 'No token provided, and none is globally set. ';
                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-                throw new DiffbotException($msg);
+                throw new Exception($msg);
             }
         } else {
-            self::validateToken($token);
-            $this->instanceToken = $token;
+            $this->validator->validToken($token);
+            self::$token = $token;
         }
     }
 
+    protected function reqauest() {
+        
+    }
+    
+    /**
+     * @todo
+     */
+    public function getAttachment() {
+        
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
+     */
+    public function getAttachments() {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPass()
+     */
+    public function getClassPass($classPassId) {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
+     */
+    public function getClassPasses() {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
+     */
+    public function getEvent($eventId) {
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', "/v2/events/$eventId", [
+            'auth' => ['username', 'password'],
+        ]);
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
+     */
+    public function getEvents($eventId)
+    {
+        $return = $this->Client->request(
+            'GET', "/v2/events/$eventId", 
+            [
+                'auth' => [self::$token, 'password'],
+            ]
+         );
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocation()
+     */
+    public function getLocation($locationId) {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
+     */
+    public function getLocations() {
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', "/v2/locations/$locationId", [
+            'auth' => ['username', 'password'],
+        ]);
+    } 
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
+     */
+    public function getTicket() {
+        
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
+     */
+    public function getTickets() {
+        
+    }
+    
     /**
      * Sets the token for all future new instances
      * @param $token string The API access token, as obtained on diffbot.com/dev
@@ -72,22 +183,7 @@ class BookNowClient
         }
         return true;
     }
-
-    public function getEvents($eventId)
-    {
-        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
-        $response = $client->request('GET', "/v2/events/$eventId", [
-            'auth' => ['username', 'password'],
-        ]);
-
-    }
-
-    public function locations($locationId) 
-    {
-        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
-        $response = $client->request('GET', "/v2/locations/$locationId", [
-            'auth' => ['username', 'password'],
-        ]);
-    }
     
 }
+
+// EOF!

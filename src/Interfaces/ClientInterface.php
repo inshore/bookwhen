@@ -55,7 +55,7 @@ interface ClientInterface
     /**
      * ?? return Events Object
      */
-    public function geTicket($locationId);
+    public function getTicket($locationId);
     
     /**
      * ?? return Events Object

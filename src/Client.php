@@ -1,14 +1,14 @@
 <?php
 declare(strict_types = 1);
 
-namespace InShore\BookWhen\Client;
+namespace InShore\BookWhen;
 
 require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 use InShore\BookWhen\Exception;
-use InShore\BookWhen\Interfaces\ClientInterface;
-use InShore\BookWhen\Validator\Validator;
+use InShore\BookWhen\ClientInterface;
+use InShore\BookWhen\Validator;
 
 /**
  * Class Diffbot

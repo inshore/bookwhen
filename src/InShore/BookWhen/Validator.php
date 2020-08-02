@@ -1,7 +1,7 @@
 <?php
-namespace InShore\BookWhen\Validator;
+namespace InShore\BookWhen;
 
-use InShore\BookWhen\Interfaces\ValidatorInterface;
+use InShore\BookWhen\ValidatorInterface;
 
 class Validator implements ValidatorInterface
 {

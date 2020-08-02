@@ -1,6 +1,6 @@
 <?php
 
-namespace InShore\BookWhen;
+namespace InShore\BookWhen\Interfaces;
 
 interface ValidatorInterface
 {

@@ -1,11 +1,10 @@
 <?php
+
 declare(strict_types = 1);
 
 namespace InShore\BookWhen;
 
-require 'vendor/autoload.php';
-
-use GuzzleHttp\Client;
+use GuzzleHttp\Client as GuzzleClient;
 use InShore\BookWhen\Exception;
 use InShore\BookWhen\ClientInterface;
 use InShore\BookWhen\Validator;
@@ -27,11 +26,15 @@ class Client implements ClientInterface
     /** @var string The instance token, settable once per new instance */
     private $instanceToken;
 
-    private $baseUri;
+    private $apiBaseUri;
+    
+    private $apiResource;
+    
+    private $apiVersion;
     
     private $Validator;
     
-    private $Client;
+    private $Guzzle;
     
     
     /**
@@ -41,9 +44,11 @@ class Client implements ClientInterface
     public function __construct($token = null)
     {
         
+        $this->apiVersion = 'v2';
+        
         $this->Validator = new Validator();
        
-        $this->Client = new Client(['base_uri' => 'https://api.bookwhen.com']);
+        $this->Guzzle = new GuzzleClient(['base_uri' => 'https://api.bookwhen.com']);
         
         if ($token === null) {
             if (self::$token === null) {
@@ -57,8 +62,17 @@ class Client implements ClientInterface
         }
     }
 
-    protected function reqauest() {
-        
+    /**
+     * 
+     */
+    protected function request() {
+        try {
+            return $this->Guzzle->request('GET', $this->apiResource , [
+                'auth' => [$this->instanceToken],
+            ]);
+        } catch (Exception $e) {
+            // @todo;
+        }
     }
     
     /**
@@ -74,7 +88,10 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
      */
     public function getAttachments() {
+        $this->apiResource = $this->apiVersion . '/attachments';
         
+        // @todo prepocess response onto nice model objects.
+        return $this->request();
     }
     
     /**
@@ -92,7 +109,10 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
      */
     public function getClassPasses() {
+        $this->apiResource = $this->apiVersion . '/???';
         
+        // @todo prepocess response onto nice model objects.
+        return $this->request();
     }
     
     /**
@@ -101,10 +121,17 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
      */
     public function getEvent($eventId) {
-        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
-        $response = $client->request('GET', "/v2/events/$eventId", [
-            'auth' => ['username', 'password'],
-        ]);
+        
+        $return = null;
+        // validate
+      
+        try {
+            $return = $this->request();
+        } catch (Exception $e) {
+            // @todo
+        }
+        
+        return $return;
     }
     
     /**
@@ -112,15 +139,20 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
      */
-    public function getEvents($eventId)
-    {
-        $return = $this->Client->request(
-            'GET', "/v2/events/$eventId", 
-            [
-                'auth' => [self::$token, 'password'],
-            ]
-         );
+    public function getEvents($from = null, $to = null, $includeLocation = false, $includeTickets = false) {
+        $this->apiResource = $this->apiVersion . '/events';
         
+        // @todo prepocess response onto nice model objects.
+        $return = null;
+        // validate
+        
+        try {
+            $return = $this->request();
+        } catch (Exception $e) {
+            // @todo
+        }
+        
+        return $return;
     }
     
     /**

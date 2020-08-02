@@ -1,8 +1,22 @@
 <?php
 
-namespace InShore\BookWhen;
+require 'vendor/autoload.php';
 
-use InShore\BookWhen\Exceptions\BookWhenException;
+use GuzzleHttp\Client;
+
+// require 'vendor/autoload.php';
+
+// use GuzzleHttp\Client;
+
+// $client = new Client([
+//     'base_uri' => 'http://www.google.com',
+// ]);
+
+// $response = $client->request('GET', 'search', [
+//     'query' => ['q' => 'curl']
+// ]);
+
+// echo $response->getBody();
 
 /**
  * Class Diffbot
@@ -11,14 +25,14 @@ use InShore\BookWhen\Exceptions\BookWhenException;
  *
  * @package Swader\Diffbot
  */
-class Client
+class BookNowClient
 {
     /** @var string The API access token */
     private static $token = null;
-    
+
     /** @var string The instance token, settable once per new instance */
     private $instanceToken;
-    
+
     /**
      * @param string|null $token The API access token, as obtained on diffbot.com/dev
      * @throws DiffbotException When no token is provided
@@ -36,7 +50,7 @@ class Client
             $this->instanceToken = $token;
         }
     }
-    
+
     /**
      * Sets the token for all future new instances
      * @param $token string The API access token, as obtained on diffbot.com/dev
@@ -47,7 +61,7 @@ class Client
         self::validateToken($token);
         self::$token = $token;
     }
-    
+
     private static function validateToken($token)
     {
         if (!is_string($token)) {
@@ -58,6 +72,22 @@ class Client
         }
         return true;
     }
+
+    public function getEvents($eventId)
+    {
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', "/v2/events/$eventId", [
+            'auth' => ['username', 'password'],
+        ]);
+
+    }
+
+    public function locations($locationId) 
+    {
+        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
+        $response = $client->request('GET', "/v2/locations/$locationId", [
+            'auth' => ['username', 'password'],
+        ]);
+    }
     
- 
 }

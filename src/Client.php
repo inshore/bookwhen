@@ -53,20 +53,18 @@ class Client implements ClientInterface
             'base_uri' => 'https://api.bookwhen.com/'
         ]);
         
-//         if ($token === null) {
-//             if (self::$token === null) {
-//                 $msg = 'No token provided, and none is globally set. ';
-//                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-//                 throw new Exception($msg);
-//             }
-//         } else {
-//             if($this->Validator->validToken($token)) {
-//                 self::$token = $token;
-//                 $this->instanceToken = (string) self::$token;
-//             }
-//         }
-
-        $this->instanceToken = $token;
+        if ($token === null) {
+            if (self::$token === null) {
+                $msg = 'No token provided, and none is globally set. ';
+                $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+                throw new Exception($msg);
+            }
+        } else {
+            if($this->Validator->validToken($token)) {
+                self::$token = $token;
+                $this->instanceToken = self::$token;
+            }
+        }
     }
 
     /**

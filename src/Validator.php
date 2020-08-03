@@ -20,8 +20,8 @@ class Validator implements ValidatorInterface
     }
     
     public function validFrom($from, $to) {
-        $fromDate = new DateTime($from);
-        $toDate = new DateTime($to);
+        $fromDate = new \DateTime($from);
+        $toDate = new \DateTime($to);
         if(!$this->validDate($from)) {
             return false;
           }
@@ -33,7 +33,7 @@ class Validator implements ValidatorInterface
           }
           // compare if actual to date is greater than from
           if($fromDate < $toDate) {
-              return false;
+              return true;
           }
         
     }

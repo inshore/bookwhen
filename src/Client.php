@@ -191,12 +191,13 @@ class Client implements ClientInterface
         
         $return = [];
         
-        foreach ($body->data as $data) {
-            $Event = new Event($data);
-            array_push($return, $Event);
+        foreach ($body->data as $event) {
+            // Add additional properties here.
+            $event->soldOut = (bool) ($event->attendee_count >= attendee_limit);
+            array_push($return, $event);
         }
         
-        return $return;
+        return $body;
     }
     
     /**

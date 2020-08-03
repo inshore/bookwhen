@@ -6,6 +6,7 @@ namespace InShore\BookWhen;
 
 use InShore\BookWhen\Exception;
 use InShore\BookWhen\Interfaces\ValidatorInterface;
+use Respect\Validation\Validator as v;
 
 class Validator implements ValidatorInterface
 {
@@ -26,8 +27,12 @@ class Validator implements ValidatorInterface
         
     }
     
+    public function validTag($tag) {
+        return v::alnum()->validate($tag);
+    }
+    
     public function validToken($token) {
-        
+        return v::alnum()->validate($token);
     }
 }
 

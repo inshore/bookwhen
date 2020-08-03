@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace InShore\BookWhen;
 
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Request;
 use InShore\BookWhen\Exceptions\Exception;
 use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
@@ -34,7 +35,7 @@ class Client implements ClientInterface
     
     private $Validator;
     
-    private $Guzzle;
+    private $GuzzleClient;
     
     
     /**
@@ -48,19 +49,24 @@ class Client implements ClientInterface
         
         $this->Validator = new Validator();
        
-        $this->Guzzle = new GuzzleClient(['base_uri' => 'https://api.bookwhen.com']);
+        $this->GuzzleClient = new GuzzleClient([
+            'base_uri' => 'https://api.bookwhen.com/'
+        ]);
         
-        if ($token === null) {
-            if (self::$token === null) {
-                $msg = 'No token provided, and none is globally set. ';
-                $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-                throw new Exception($msg);
-            }
-        } else {
-            $this->validator->validToken($token);
-            self::$token = $token;
-            $this->instanceToken = self::$token;
-        }
+//         if ($token === null) {
+//             if (self::$token === null) {
+//                 $msg = 'No token provided, and none is globally set. ';
+//                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+//                 throw new Exception($msg);
+//             }
+//         } else {
+//             if($this->Validator->validToken($token)) {
+//                 self::$token = $token;
+//                 $this->instanceToken = (string) self::$token;
+//             }
+//         }
+
+        $this->instanceToken = $token;
     }
 
     /**
@@ -68,9 +74,11 @@ class Client implements ClientInterface
      */
     protected function request() {
         try {
-            return $this->Guzzle->request('GET', $this->apiResource , [
-                'auth' => [$this->instanceToken],
-            ]);
+            $headers = [
+                'Authorization' => 'Basic '.base64_encode($this->instanceToken.':'),
+            ];
+            $request = new Request('GET', $this->apiResource, $headers);
+            return $this->GuzzleClient->send($request);
         } catch (Exception $e) {
             // @todo;
         }
@@ -146,10 +154,14 @@ class Client implements ClientInterface
         
         // Validate $tags.
         if (!empty($tags)) {
-            $tags = array_unique($tags);
-            foreach ($tags as $tag) {
-                if (!empty($tag) && !$this->Validator->validTag($tag)) {
-                    throw \Exception::class;
+            if(!is_array($tags)) {
+               // @todo throw \Exception::class;
+            } else { 
+                $tags = array_unique($tags);
+                foreach ($tags as $tag) {
+                    if (!empty($tag) && !$this->Validator->validTag($tag)) {
+                        throw \Exception::class;
+                    }
                 }
             }
         }
@@ -160,13 +172,13 @@ class Client implements ClientInterface
         }
         
         // Validate $to;
+        if(!empty($to) && !$this->Validator->validFrom($from, $to)) {
+            throw \Exception::class;
+        }
         
         // Validate $includeLocation;
         
         // Validate $includeTickets;
-        
-        
-        
         
         // @todo prepocess response onto nice model objects.
         $return = null;
@@ -177,7 +189,7 @@ class Client implements ClientInterface
             // @todo
         }
         
-        return $Response->getBody();
+        return json_decode($Response->getBody()->getContents(), true);
     }
     
     /**
@@ -220,12 +232,12 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/tickets';
         
         try {
-            $Response = $this->request();
+            $Response->json();
         } catch (Exception $e) {
             // @todo
         }
         
-        return $Response->getBody();
+        return $Response->json();
     }
     /**
      * Sets the token for all future new instances

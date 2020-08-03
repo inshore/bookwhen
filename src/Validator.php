@@ -28,7 +28,7 @@ class Validator implements ValidatorInterface
     }
     
     public function validTag($tag) {
-        return v::alnum()->validate($tag);
+        return v::stringType()->notEmpty()->alnum()->validate($tag);
     }
     
     public function validToken($token) {

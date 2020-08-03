@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace InShore\BookWhen;
 
 use GuzzleHttp\Client as GuzzleClient;
-use InShore\BookWhen\Exception;
+use InShore\BookWhen\Exceptions\Exception;
 use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
 
@@ -14,7 +14,7 @@ use InShore\BookWhen\Validator;
  *
  * The main class for API consumption
  *
- * @package Swader\Diffbot
+ * @package inshore-packages\bookwhen
  */
 class Client implements ClientInterface
 {
@@ -140,12 +140,36 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
      */
-    public function getEvents($from = null, $to = null, $includeLocation = false, $includeTickets = false) {
+    public function getEvents($tags = [], $from = null, $to = null, $includeLocation = false, $includeTickets = false) {
+        // API resource.
         $this->apiResource = $this->apiVersion . '/events';
+        
+        // Validate $tags.
+        if (!empty($tags)) {
+            $tags = array_unique($tags);
+            foreach ($tags as $tag) {
+                if (!empty($tag) && !$this->Validator->validTag($tag)) {
+                    throw \Exception::class;
+                }
+            }
+        }
+        
+        // Validate $from;
+        if(!empty($from) && !$this->Validator->validFrom($from, $to)) {
+            throw \Exception::class;
+        }
+        
+        // Validate $to;
+        
+        // Validate $includeLocation;
+        
+        // Validate $includeTickets;
+        
+        
+        
         
         // @todo prepocess response onto nice model objects.
         $return = null;
-        // validate
         
         try {
             $Response = $this->request();
@@ -186,15 +210,23 @@ class Client implements ClientInterface
         
     }
     
+
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
      */
     public function getTickets() {
+        $this->apiResource = $this->apiVersion . '/tickets';
         
+        try {
+            $Response = $this->request();
+        } catch (Exception $e) {
+            // @todo
+        }
+        
+        return $Response->getBody();
     }
-    
     /**
      * Sets the token for all future new instances
      * @param $token string The API access token, as obtained on diffbot.com/dev

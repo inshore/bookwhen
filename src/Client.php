@@ -5,8 +5,9 @@ declare(strict_types = 1);
 namespace InShore\BookWhen;
 
 use GuzzleHttp\Client as GuzzleClient;
-use InShore\BookWhen\Exception;
-use InShore\BookWhen\ClientInterface;
+use GuzzleHttp\Psr7\Request;
+use InShore\BookWhen\Exceptions\Exception;
+use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
 
 /**
@@ -14,7 +15,7 @@ use InShore\BookWhen\Validator;
  *
  * The main class for API consumption
  *
- * @package Swader\Diffbot
+ * @package inshore-packages\bookwhen
  */
 class Client implements ClientInterface
 {
@@ -34,7 +35,7 @@ class Client implements ClientInterface
     
     private $Validator;
     
-    private $Guzzle;
+    private $GuzzleClient;
     
     
     /**
@@ -48,7 +49,9 @@ class Client implements ClientInterface
         
         $this->Validator = new Validator();
        
-        $this->Guzzle = new GuzzleClient(['base_uri' => 'https://api.bookwhen.com']);
+        $this->GuzzleClient = new GuzzleClient([
+            'base_uri' => 'https://api.bookwhen.com/'
+        ]);
         
         if ($token === null) {
             if (self::$token === null) {
@@ -57,8 +60,10 @@ class Client implements ClientInterface
                 throw new Exception($msg);
             }
         } else {
-            $this->validator->validToken($token);
-            self::$token = $token;
+            if($this->Validator->validToken($token)) {
+                self::$token = $token;
+                $this->instanceToken = self::$token;
+            }
         }
     }
 
@@ -67,9 +72,11 @@ class Client implements ClientInterface
      */
     protected function request() {
         try {
-            return $this->Guzzle->request('GET', $this->apiResource , [
-                'auth' => [$this->instanceToken],
-            ]);
+            $headers = [
+                'Authorization' => 'Basic '.base64_encode($this->instanceToken.':'),
+            ];
+            $request = new Request('GET', $this->apiResource, $headers);
+            return $this->GuzzleClient->send($request);
         } catch (Exception $e) {
             // @todo;
         }
@@ -139,20 +146,48 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
      */
-    public function getEvents($from = null, $to = null, $includeLocation = false, $includeTickets = false) {
+    public function getEvents($tags = [], $from = null, $to = null, $includeLocation = false, $includeTickets = false) {
+        // API resource.
         $this->apiResource = $this->apiVersion . '/events';
+        
+        // Validate $tags.
+        if (!empty($tags)) {
+            if(!is_array($tags)) {
+               // @todo throw \Exception::class;
+            } else { 
+                $tags = array_unique($tags);
+                foreach ($tags as $tag) {
+                    if (!empty($tag) && !$this->Validator->validTag($tag)) {
+                        throw \Exception::class;
+                    }
+                }
+            }
+        }
+        
+        // Validate $from;
+        if(!empty($from) && !$this->Validator->validFrom($from, $to)) {
+            throw \Exception::class;
+        }
+        
+        // Validate $to;
+        if(!empty($to) && !$this->Validator->validFrom($from, $to)) {
+            throw \Exception::class;
+        }
+        
+        // Validate $includeLocation;
+        
+        // Validate $includeTickets;
         
         // @todo prepocess response onto nice model objects.
         $return = null;
-        // validate
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
         } catch (Exception $e) {
             // @todo
         }
         
-        return $return;
+        return json_decode($Response->getBody()->getContents(), true);
     }
     
     /**
@@ -185,15 +220,23 @@ class Client implements ClientInterface
         
     }
     
+
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
      */
     public function getTickets() {
+        $this->apiResource = $this->apiVersion . '/tickets';
         
+        try {
+            $Response->json();
+        } catch (Exception $e) {
+            // @todo
+        }
+        
+        return $Response->json();
     }
-    
     /**
      * Sets the token for all future new instances
      * @param $token string The API access token, as obtained on diffbot.com/dev

@@ -16,7 +16,7 @@ class Validator implements ValidatorInterface
     }
     
     public function validDate($date) {
-        return v::date('Ymd')->validate($date);
+        return v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date);
     }
     
     public function validFrom($from, $to) {

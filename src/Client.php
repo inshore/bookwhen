@@ -187,17 +187,17 @@ class Client implements ClientInterface
             // @todo
         }
         
-        $body = json_decode($Response->getBody()->getContents(), true);
+        $body = json_decode($Response->getBody()->getContents());
         
         $return = [];
         
         foreach ($body->data as $event) {
             // Add additional properties here.
-            $event->soldOut = (bool) ($event->attendee_count >= attendee_limit);
+            $event->soldOut = (bool) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
             array_push($return, $event);
         }
         
-        return $body;
+        return $return;
     }
     
     /**

@@ -24,21 +24,43 @@ class Validator implements ValidatorInterface
         $toDate = new \DateTime($to);
         if(!$this->validDate($from)) {
             return false;
-          }
-          if(empty($to)) {
+        }
+        // need this?
+        if(empty($to)) {
             return true;
-          }
-          if(!$this->validDate($to)) {
+        }
+        if(!$this->validDate($to)) {
             return false;
-          }
-          // compare if actual to date is greater than from
-          if($fromDate < $toDate) {
-              return true;
-          }
+        }
+        // compare if actual to date is greater than from
+        if($fromDate < $toDate) {
+            return true;
+        }
         
     }
     
     public function validTo($from, $to) {
+        $fromDate = new \DateTime($from);
+        $toDate = new \DateTime($to);
+        $todayDate = date('Ymd');
+        if(!$this->validDate($to)) {
+            return false;
+        }
+        if(empty($from)) {
+            return false;
+        }
+        if(!$this->validFrom($from)) {
+            return false;
+        }
+        if($toDate < $fromDate) {
+            return false;
+        }
+
+        //do we want this?
+        if($toDate < $todayDate) {
+            return false;
+        }
+        
         
     }
     

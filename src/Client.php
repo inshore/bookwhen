@@ -166,7 +166,6 @@ class Client implements ClientInterface
         
         // Validate $from;
         if(!empty($from) && !$this->Validator->validFrom($from, $to)) {
-            throw \Exception::class;
         }
         
         // Validate $to;

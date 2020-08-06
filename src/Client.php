@@ -130,7 +130,9 @@ class Client implements ClientInterface
     public function getEvent($eventId) {
         
         $return = null;
-        // validate
+        // if(!empty($eventId && !$this->Valdator->validId($eventId))) {
+        //     throw \Exception::class;
+        // }
       
         try {
             $return = $this->request();
@@ -166,6 +168,7 @@ class Client implements ClientInterface
         
         // Validate $from;
         if(!empty($from) && !$this->Validator->validFrom($from, $to)) {
+            throw \Exception::class;
         }
         
         // Validate $to;
@@ -204,10 +207,18 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
      */
     public function getLocations() {
-        $client = new GuzzleHttp\Client(['base_uri' => 'https://api.bookwhen.com']);
-        $response = $client->request('GET', "/v2/locations/$locationId", [
-            'auth' => ['username', 'password'],
-        ]);
+        $this->apiResource = $this->apiVersion . '/locations';
+
+        try {
+            $Response = $this->request();
+        } catch (Exception $e) {
+            
+            // @todo
+        }
+
+        return json_decode($Response->getBody()->getContents(), true);
+
+
     } 
     
     /**

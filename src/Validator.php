@@ -71,6 +71,27 @@ class Validator implements ValidatorInterface
     public function validToken($token) {
         return v::alnum()->validate($token);
     }
+
+    public function validId($Id, $type = null) {
+        $exploded = explode('-', $Id);
+
+        if(count($exploded) !== 3) {
+            return false;
+        }
+        if($exploded[0] !== 'ev') {
+            return false;
+        }
+        //syntax
+        if(!v::alnum($exploded[1]) || strlen($exploded[1] !== 4)) {
+            return false;
+        } 
+        return $this->validDate($exploded[2]);
+        
+
+
+// not empty, php explode to break up the id, count the array and make sure theres three parts,
+//test first part is ev, second part 4 char alphnanum, third part valid date time
+    }
 }
 
 // EOF!

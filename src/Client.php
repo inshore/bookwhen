@@ -11,7 +11,7 @@ use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
 
 /**
- * Class Diffbot
+ * Class Client
  *
  * The main class for API consumption
  *
@@ -19,7 +19,6 @@ use InShore\BookWhen\Validator;
  */
 class Client implements ClientInterface
 {
-    
     
     /** @var string The API access token */
     private static $token = null;
@@ -36,7 +35,6 @@ class Client implements ClientInterface
     private $Validator;
     
     private $GuzzleClient;
-    
     
     /**
      * @param string|null $token The API access token, as obtained on diffbot.com/dev
@@ -86,7 +84,20 @@ class Client implements ClientInterface
      * @todo
      */
     public function getAttachment($attachmentId) {
+        $this->apiResource = $this->apiVersion . '/attachmetns';
         
+        $return = null;
+        // if(!empty($eventId && !$this->Valdator->validId($attachmentId))) {
+        //     throw \Exception::class;
+        // }
+        
+        try {
+            $return = $this->request();
+        } catch (Exception $e) {
+            // @todo
+        }
+        
+        return $return;
     }
     
     /**
@@ -95,6 +106,7 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
      */
     public function getAttachments() {
+        
         $this->apiResource = $this->apiVersion . '/attachments';
         
         // @todo prepocess response onto nice model objects.
@@ -116,6 +128,7 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
      */
     public function getClassPasses() {
+        
         $this->apiResource = $this->apiVersion . '/???';
         
         // @todo prepocess response onto nice model objects.
@@ -128,6 +141,8 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
      */
     public function getEvent($eventId) {
+        
+        $this->apiResource = $this->apiVersion . '/events';
         
         $return = null;
         // if(!empty($eventId && !$this->Valdator->validId($eventId))) {
@@ -208,7 +223,20 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocation()
      */
     public function getLocation($locationId) {
+        $this->apiResource = $this->apiVersion . '/locations';
         
+        $return = null;
+        // if(!empty($eventId && !$this->Valdator->validId($ticketId))) {
+        //     throw \Exception::class;
+        // }
+        
+        try {
+            $return = $this->request();
+        } catch (Exception $e) {
+            // @todo
+        }
+        
+        return $return;
     }
     
     /**
@@ -235,7 +263,20 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
      */
     public function getTicket($ticketId) {
+        $this->apiResource = $this->apiVersion . '/tickets';
         
+        $return = null;
+        // if(!empty($eventId && !$this->Valdator->validId($ticketId))) {
+        //     throw \Exception::class;
+        // }
+        
+        try {
+            $return = $this->request();
+        } catch (Exception $e) {
+            // @todo
+        }
+        
+        return $return;
     }
     
     
@@ -255,13 +296,13 @@ class Client implements ClientInterface
         
         return $Response->json();
     }
+    
     /**
      * Sets the token for all future new instances
      * @param $token string The API access token, as obtained on diffbot.com/dev
      * @return void
      */
-    public static function setToken($token)
-    {
+    public static function setToken($token) {
         self::validateToken($token);
         self::$token = $token;
     }
@@ -275,8 +316,7 @@ class Client implements ClientInterface
             throw new \InvalidArgumentException('Token "' . $token . '" is too short, and thus invalid.');
         }
         return true;
-    }
-    
+    } 
 }
 
 // EOF!

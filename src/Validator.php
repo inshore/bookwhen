@@ -11,17 +11,31 @@ use Respect\Validation\Validator as v;
 class Validator implements ValidatorInterface
 {
     
+    /**
+     * 
+     */
     public function __construct() {
         
     }
     
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validDate()
+     */
     public function validDate($date) {
         return v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date);
     }
     
-    public function validFrom($from, $to) {
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validFrom()
+     */
+    public function validFrom($from, $to): bool {
+        
         $fromDate = new \DateTime($from);
-        $toDate = new \DateTime($to);
+        
         if(!$this->validDate($from)) {
             return false;
         }
@@ -29,68 +43,96 @@ class Validator implements ValidatorInterface
         if(empty($to)) {
             return true;
         }
+        
+        $toDate = new \DateTime($to);
+        
         if(!$this->validDate($to)) {
             return false;
         }
-        // compare if actual to date is greater than from
+        
+        // Compare if actual to date is greater than from.
         if($fromDate < $toDate) {
+            return (bool) true;
+        }
+    }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTo()
+     */
+    public function validTo($from, $to): bool {
+        
+        $toDate = new \DateTime($to);
+        
+        $todayDate = date('Ymd');
+        
+        if(!$this->validDate($to)) {
+            return false;
+        }
+        
+        if(empty($from)) {
             return true;
         }
         
-    }
-    
-    public function validTo($from, $to) {
         $fromDate = new \DateTime($from);
-        $toDate = new \DateTime($to);
-        $todayDate = date('Ymd');
-        if(!$this->validDate($to)) {
-            return false;
-        }
-        if(empty($from)) {
-            return false;
-        }
         if(!$this->validFrom($from)) {
             return false;
         }
         if($toDate < $fromDate) {
             return false;
         }
+        
+        // @todo Do we want this?
+//         if($toDate < $todayDate) {
+//             return false;
+//         }
 
-        //do we want this?
-        if($toDate < $todayDate) {
-            return false;
-        }
-        
-        
+        return (bool) true;
     }
     
-    public function validTag($tag) {
+    /**
+     * 
+     * @param unknown $tag
+     * @return unknown
+     */
+    public function validTag($tag): bool {
         return v::stringType()->notEmpty()->alnum()->validate($tag);
     }
     
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validToken()
+     */
     public function validToken($token) {
         return v::alnum()->validate($token);
     }
 
-    public function validId($Id, $type = null) {
+    /**
+     * 
+     * @param unknown $Id
+     * @param unknown $type
+     * @return boolean|unknown
+     */
+    public function validId($Id, $type = null): bool {
+        
         $exploded = explode('-', $Id);
 
         if(count($exploded) !== 3) {
             return false;
         }
+        
         if($exploded[0] !== 'ev') {
             return false;
         }
-        //syntax
-        if(!v::alnum($exploded[1]) || strlen($exploded[1] !== 4)) {
+        
+        // Syntax.
+        if(!v::stringType()->notEmpty()->alnum()->length(8, 8)->validate($exploded[1])) {
             return false;
         } 
-        return $this->validDate($exploded[2]);
         
-
-
-// not empty, php explode to break up the id, count the array and make sure theres three parts,
-//test first part is ev, second part 4 char alphnanum, third part valid date time
+        return (bool) $this->validDate($exploded[2]);
     }
 }
 

@@ -128,7 +128,7 @@ class Validator implements ValidatorInterface
         }
         
         // Syntax.
-        if(!v::stringType()->notEmpty()->alnum()->length(8, 8)->validate($exploded[1])) {
+        if(!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
             return false;
         } 
         

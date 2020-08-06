@@ -23,10 +23,10 @@ class Client implements ClientInterface
     
     /** @var string The API access token */
     private static $token = null;
-
+    
     /** @var string The instance token, settable once per new instance */
     private $instanceToken;
-
+    
     private $apiBaseUri;
     
     private $apiResource;
@@ -48,7 +48,7 @@ class Client implements ClientInterface
         $this->apiVersion = 'v2';
         
         $this->Validator = new Validator();
-       
+        
         $this->GuzzleClient = new GuzzleClient([
             'base_uri' => 'https://api.bookwhen.com/'
         ]);
@@ -66,9 +66,9 @@ class Client implements ClientInterface
             }
         }
     }
-
+    
     /**
-     * 
+     *
      */
     protected function request() {
         try {
@@ -88,9 +88,9 @@ class Client implements ClientInterface
     public function getAttachment($attachmentId) {
         
     }
-
+    
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
      */
@@ -102,7 +102,7 @@ class Client implements ClientInterface
     }
     
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPass()
      */
@@ -111,7 +111,7 @@ class Client implements ClientInterface
     }
     
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
      */
@@ -123,7 +123,7 @@ class Client implements ClientInterface
     }
     
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
      */
@@ -133,7 +133,7 @@ class Client implements ClientInterface
         // if(!empty($eventId && !$this->Valdator->validId($eventId))) {
         //     throw \Exception::class;
         // }
-      
+     
         try {
             $return = $this->request();
         } catch (Exception $e) {
@@ -144,7 +144,7 @@ class Client implements ClientInterface
     }
     
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
      */
@@ -155,8 +155,8 @@ class Client implements ClientInterface
         // Validate $tags.
         if (!empty($tags)) {
             if(!is_array($tags)) {
-               // @todo throw \Exception::class;
-            } else { 
+                // @todo throw \Exception::class;
+            } else {
                 $tags = array_unique($tags);
                 foreach ($tags as $tag) {
                     if (!empty($tag) && !$this->Validator->validTag($tag)) {
@@ -189,11 +189,21 @@ class Client implements ClientInterface
             // @todo
         }
         
-        return json_decode($Response->getBody()->getContents(), true);
+        $body = json_decode($Response->getBody()->getContents());
+        
+        $return = [];
+        
+        foreach ($body->data as $event) {
+            // Add additional properties here.
+            $event->soldOut = (bool) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
+            array_push($return, $event);
+        }
+        
+        return $return;
     }
     
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocation()
      */
@@ -202,7 +212,7 @@ class Client implements ClientInterface
     }
     
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
      */
@@ -217,12 +227,10 @@ class Client implements ClientInterface
         }
 
         return json_decode($Response->getBody()->getContents(), true);
-
-
     } 
     
     /**
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
      */
@@ -230,7 +238,7 @@ class Client implements ClientInterface
         
     }
     
-
+    
     /**
      *
      * {@inheritDoc}
@@ -257,7 +265,7 @@ class Client implements ClientInterface
         self::validateToken($token);
         self::$token = $token;
     }
-
+    
     private static function validateToken($token)
     {
         if (!is_string($token)) {

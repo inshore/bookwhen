@@ -288,13 +288,15 @@ class Client implements ClientInterface
     public function getTickets() {
         $this->apiResource = $this->apiVersion . '/tickets';
         
-        try {
-            $Response->json();
+    try {
+            $Response = $this->request();
         } catch (Exception $e) {
+            
             // @todo
         }
-        
-        return $Response->json();
+
+        return json_decode($Response->getBody()->getContents(), true);
+
     }
     
     /**

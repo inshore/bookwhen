@@ -35,8 +35,8 @@ tools:
     php_analyzer: true
     php_mess_detector: true
     php_code_sniffer:
-    config:
-      standard: "PSR12"
+      config:
+        standard: "PSR12"
     external_code_coverage:
         timeout: 600
         runs: 3

@@ -200,13 +200,21 @@ class Client implements ClientInterface
         }
         
         // Validate $from;
-        if(!empty($from) && !$this->Validator->validFrom($from, $to)) {
-            throw \Exception::class;
+        if(!empty($from)) {
+            if(!$this->Validator->validFrom($from, $to)) {
+                throw \Exception::class;
+            } else {
+                $this->apiQuery['filter[from]'] = $from;
+            }
         }
         
         // Validate $to;
-        if(!empty($to) && !$this->Validator->validFrom($from, $to)) {
-            throw \Exception::class;
+        if(!empty($to)) {
+            if(!$this->Validator->validFrom($from, $to)) {
+                throw \Exception::class;
+            } else {
+                $this->apiQuery['filter[to]'] = $to;
+            }
         }
         
         // API resource.

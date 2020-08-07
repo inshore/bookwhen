@@ -28,6 +28,8 @@ class Client implements ClientInterface
     
     private $apiBaseUri;
     
+    private $apiQuery;
+   
     private $apiResource;
     
     private $apiVersion;
@@ -42,6 +44,8 @@ class Client implements ClientInterface
      */
     public function __construct($token = null)
     {
+        
+        $this->apiQuery = [];
         
         $this->apiVersion = 'v2';
         
@@ -66,15 +70,30 @@ class Client implements ClientInterface
     }
     
     /**
-     *
+     * @todo pull in the $this->$apiQuery and attach if not empty.['query' => ['foo' => 'bar']
      */
     protected function request() {
         try {
-            $headers = [
-                'Authorization' => 'Basic '.base64_encode($this->instanceToken.':'),
+            // Authorization.
+            $requestOptions = [
+                'headers' => [
+                    'Authorization' => 'Basic '.base64_encode($this->instanceToken.':')
+                ]
             ];
-            $request = new Request('GET', $this->apiResource, $headers);
-            return $this->GuzzleClient->send($request);
+            
+            // Query.
+            if (!empty($this->apiQuery) && is_array($this->apiQuery)) {
+                $requestOptions['query'] = $this->apiQuery;
+            }
+   
+            
+            
+            $requestOptions['debug'] = true;
+            //$request = new Request('GET', $this->apiResource, $requestOptions);
+
+            //return $this->GuzzleClient->send($request);
+            return $this->GuzzleClient->request('GET', $this->apiResource, $requestOptions);
+           
         } catch (Exception $e) {
             // @todo;
         }
@@ -164,8 +183,6 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
      */
     public function getEvents($tags = [], $from = null, $to = null, $includeLocation = false, $includeTickets = false) {
-        // API resource.
-        $this->apiResource = $this->apiVersion . '/events';
         
         // Validate $tags.
         if (!empty($tags)) {
@@ -179,17 +196,31 @@ class Client implements ClientInterface
                     }
                 }
             }
+            $this->apiQuery['filter[tag]'] = implode(',', $tags);
         }
         
         // Validate $from;
-        if(!empty($from) && !$this->Validator->validFrom($from, $to)) {
-            throw \Exception::class;
+        if(!empty($from)) {
+            if(!$this->Validator->validFrom($from, $to)) {
+                throw \Exception::class;
+            } else {
+                $this->apiQuery['filter[from]'] = $from;
+            }
         }
         
         // Validate $to;
-        if(!empty($to) && !$this->Validator->validFrom($from, $to)) {
-            throw \Exception::class;
+        if(!empty($to)) {
+            if(!$this->Validator->validFrom($from, $to)) {
+                throw \Exception::class;
+            } else {
+                $this->apiQuery['filter[to]'] = $to;
+            }
         }
+        
+        // API resource.
+        $this->apiResource = $this->apiVersion . '/events';
+        
+        
         
         // Validate $includeLocation;
         
@@ -279,22 +310,39 @@ class Client implements ClientInterface
         return $return;
     }
     
-    
     /**
-     *
+     * 
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
+     * 
+     * ['query' => ['foo' => 'bar']
      */
-    public function getTickets() {
+    public function getTickets($eventId) {
+        if (!$this->Validator->validId($eventId)) {
+            throw new \InvalidArgumentException('Invalid Event ID.');
+        }
+
+        $this->apiQuery = ['event' => $eventId];
+        
         $this->apiResource = $this->apiVersion . '/tickets';
         
         try {
-            $Response->json();
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
         } catch (Exception $e) {
+            
             // @todo
         }
+
+        $return = [];
         
-        return $Response->json();
+        foreach ($body->data as $ticket) {
+            // Add additional properties here.
+            //$event->soldOut = (bool) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
+            array_push($return, $ticket);
+        }
+        
+        return $return;
     }
     
     /**

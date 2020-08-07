@@ -23,8 +23,14 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validDate()
      */
-    public function validDate($date) {
-        return v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date);
+    public function validDate($date): bool 
+    {
+        if(v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date)) {
+            return true;
+        } else { 
+return true;
+           return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('Ymdhms')->validate($date);
+        }
     }
     
     /**
@@ -32,7 +38,8 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validFrom()
      */
-    public function validFrom($from, $to): bool {
+    public function validFrom($from, $to): bool 
+    {
         
         $fromDate = new \DateTime($from);
         
@@ -128,11 +135,11 @@ class Validator implements ValidatorInterface
         }
         
         // Syntax.
-        if(!v::stringType()->notEmpty()->alnum()->length(8, 8)->validate($exploded[1])) {
+        if(!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
             return false;
         } 
         
-        return (bool) $this->validDate($exploded[2]);
+        return $this->validDate($exploded[2]);
     }
 }
 

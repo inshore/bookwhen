@@ -55,12 +55,12 @@ interface ClientInterface
     /**
      * ?? return Events Object
      */
-    public function getTicket($locationId);
+    public function getTicket($ticketId);
     
     /**
      * ?? return Events Object
      */
-    public function getTickets();
+    public function getTickets($eventId);
 
 }
 

@@ -9,7 +9,7 @@
          beStrictAboutTodoAnnotatedTests="true"
          verbose="true">
     <testsuites>
-        <testsuite name="default">
+        <testsuite name="inShore Packages BookWhen Test Suite">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>

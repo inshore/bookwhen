@@ -14,7 +14,7 @@ class Validator implements ValidatorInterface
     /**
      * 
      */
-    public function __construct(): void
+    public function __construct()
     {
         
     }

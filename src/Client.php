@@ -45,7 +45,7 @@ class Client implements ClientInterface
      * @param string|null $token The API access token, as obtained on diffbot.com/dev
      * @throws DiffbotException When no token is provided
      */
-    public function __construct($token = null): void
+    public function __construct($token = null)
     {
         
         $this->apiBaseUri = 'https://api.bookwhen.com/';

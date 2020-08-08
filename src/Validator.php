@@ -28,7 +28,6 @@ class Validator implements ValidatorInterface
         if(v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date)) {
             return true;
         } else { 
-return true;
            return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('Ymdhms')->validate($date);
         }
     }
@@ -68,11 +67,10 @@ return true;
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTo()
      */
-    public function validTo($from, $to): bool {
+    public function validTo($from, $to): bool 
+    {
         
         $toDate = new \DateTime($to);
-        
-        $todayDate = date('Ymd');
         
         if(!$this->validDate($to)) {
             return false;
@@ -90,11 +88,6 @@ return true;
             return false;
         }
         
-        // @todo Do we want this?
-//         if($toDate < $todayDate) {
-//             return false;
-//         }
-
         return (bool) true;
     }
     
@@ -103,7 +96,8 @@ return true;
      * @param unknown $tag
      * @return unknown
      */
-    public function validTag($tag): bool {
+    public function validTag($tag): bool 
+    {
         return v::stringType()->notEmpty()->alnum()->validate($tag);
     }
     
@@ -118,8 +112,8 @@ return true;
 
     /**
      * 
-     * @param unknown $Id
-     * @param unknown $type
+     * @param string $Id
+     * @param string $type
      * @return boolean|unknown
      */
     public function validId($Id, $type = null): bool {

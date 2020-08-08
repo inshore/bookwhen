@@ -37,7 +37,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validFrom()
      */
-    public function validFrom($from, $to): bool 
+    public function validFrom($from, $to = null): bool 
     {
         
         $fromDate = new \DateTime($from);
@@ -67,7 +67,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTo()
      */
-    public function validTo($from, $to): bool 
+    public function validTo($to, $from = null): bool 
     {
         
         $toDate = new \DateTime($to);
@@ -93,8 +93,8 @@ class Validator implements ValidatorInterface
     
     /**
      * 
-     * @param unknown $tag
-     * @return unknown
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTag()
      */
     public function validTag($tag): bool 
     {
@@ -112,9 +112,8 @@ class Validator implements ValidatorInterface
 
     /**
      * 
-     * @param string $Id
-     * @param string $type
-     * @return boolean|unknown
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validId()
      */
     public function validId($Id, $type = null): bool {
         

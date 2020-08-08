@@ -29,12 +29,19 @@ interface ValidatorInterface
      * @param string $type
      */
     public function validId($id, $type);
+    
+    /**
+     *
+     * @param string $tag
+     */
+    public function validTag($tag);
+    
     /**
      * 
-     * @param string $from
      * @param string $to
+     * @param string|null $from
      */
-    public function validTo($from, $to);
+    public function validTo($to, $from);
     
     /**
      * @param string $token

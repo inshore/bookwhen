@@ -9,6 +9,7 @@ use GuzzleHttp\Psr7\Request;
 use InShore\BookWhen\Exception;
 use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Client
@@ -67,7 +68,7 @@ class Client implements ClientInterface
                 throw new Exception($msg);
             }
         } else {
-            if($this->validator->validToken($token)) {
+            if ($this->validator->validToken($token)) {
                 self::$token = $token;
                 $this->instanceToken = self::$token;
             }
@@ -77,13 +78,13 @@ class Client implements ClientInterface
     /**
      * @todo debug flag
      */
-    protected function request()
+    protected function request(): ResponseInterface
     {
         try {
             // Authorization.
             $requestOptions = [
                 'headers' => [
-                    'Authorization' => 'Basic '.base64_encode($this->instanceToken.':')
+                    'Authorization' => 'Basic ' . base64_encode($this->instanceToken.':')
                 ]
             ];
             
@@ -104,7 +105,7 @@ class Client implements ClientInterface
     /**
      * @todo
      */
-    public function getAttachment($attachmentId) 
+    public function getAttachment($attachmentId)
     {
         $this->apiResource = $this->apiVersion . '/attachmetns';
         
@@ -161,7 +162,7 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
      */
     public function getEvent($eventId)
-    {   
+    {
         $this->apiResource = $this->apiVersion . '/events';
        
         // if(!empty($eventId && !$this->Valdator->validId($eventId))) {
@@ -201,7 +202,7 @@ class Client implements ClientInterface
         
         // Validate $from;
         if (!empty($from)) {
-            if(!$this->validator->validFrom($from, $to)) {
+            if (!$this->validator->validFrom($from, $to)) {
                 throw \Exception::class;
             } else {
                 $this->apiQuery['filter[from]'] = $from;
@@ -210,7 +211,7 @@ class Client implements ClientInterface
         
         // Validate $to;
         if (!empty($to)) {
-            if(!$this->validator->validTo($to, $from)) {
+            if (!$this->validator->validTo($to, $from)) {
                 throw \Exception::class;
             } else {
                 $this->apiQuery['filter[to]'] = $to;

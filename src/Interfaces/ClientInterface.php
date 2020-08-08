@@ -7,58 +7,65 @@ interface ClientInterface
 {
 
     /**
-     * 
-     * @param string $token
+     * @param string $token.
      */
     public function __construct($token);
     
     /**
-     * ?? return Events Object
+     * @return attachment object.
      */
     public function getAttachment($attachmentId);
     
     /**
-     * ?? return Events Object
+     * @return attachments objects array.
      */
     public function getAttachments();
     
     /**
-     * ?? return Events Object
+     * @return class pass object.
      */
     public function getClassPass($eventId);
     
     /**
-     * ?? return Events Object
+     * @return class passes object array.
      */
     public function getClassPasses();
     
     /**
-     * ?? return Events Object
+     * @return event object.
      */
     public function getEvent($eventId);
     
     /**
-     * ?? return Events Object
+     * API wrapper to getEvents.
+     *
+     * @param array $tags
+     * @param string $from
+     * @param string $to
+     * @param bool $includeLocation
+     * @param bool $includeTickets
+     * 
+     * @return events object array.
      */
-    public function getEvents();
+    public function getEvents($tags, $from, $to, $includeLocation, $includeTickets);
     
     /**
-     * ?? return Events Object
+     * @return location object.
      */
     public function getLocation($locationId);
     
     /**
-     * ?? return Events Object
+     * @return locations objects array.
      */
     public function getLocations();
     
     /**
-     * ?? return Events Object
+     * @return ticket object.
      */
     public function getTicket($ticketId);
     
     /**
-     * ?? return Events Object
+     * @return tickets object array.
      */
     public function getTickets($eventId);
 

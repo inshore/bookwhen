@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace InShore\BookWhen;
 
@@ -14,7 +14,8 @@ class Validator implements ValidatorInterface
     /**
      * 
      */
-    public function __construct() {
+    public function __construct()
+    {
         
     }
     
@@ -25,10 +26,10 @@ class Validator implements ValidatorInterface
      */
     public function validDate($date): bool 
     {
-        if(v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date)) {
+        if (v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date)) {
             return true;
         } else { 
-           return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('Ymdhms')->validate($date);
+            return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('Ymdhms')->validate($date);
         }
     }
     
@@ -37,27 +38,27 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validFrom()
      */
-    public function validFrom($from, $to): bool 
+    public function validFrom($from, $to = null): bool 
     {
         
         $fromDate = new \DateTime($from);
         
-        if(!$this->validDate($from)) {
+        if (!$this->validDate($from)) {
             return false;
         }
         // need this?
-        if(empty($to)) {
+        if (empty($to)) {
             return true;
         }
         
         $toDate = new \DateTime($to);
         
-        if(!$this->validDate($to)) {
+        if (!$this->validDate($to)) {
             return false;
         }
         
         // Compare if actual to date is greater than from.
-        if($fromDate < $toDate) {
+        if ($fromDate < $toDate) {
             return (bool) true;
         }
     }
@@ -67,24 +68,24 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTo()
      */
-    public function validTo($from, $to): bool 
+    public function validTo($to, $from = null): bool 
     {
         
         $toDate = new \DateTime($to);
         
-        if(!$this->validDate($to)) {
+        if (!$this->validDate($to)) {
             return false;
         }
         
-        if(empty($from)) {
+        if (empty($from)) {
             return true;
         }
         
         $fromDate = new \DateTime($from);
-        if(!$this->validFrom($from)) {
+        if (!$this->validFrom($from)) {
             return false;
         }
-        if($toDate < $fromDate) {
+        if ($toDate < $fromDate) {
             return false;
         }
         
@@ -93,8 +94,8 @@ class Validator implements ValidatorInterface
     
     /**
      * 
-     * @param unknown $tag
-     * @return unknown
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTag()
      */
     public function validTag($tag): bool 
     {
@@ -106,34 +107,68 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validToken()
      */
-    public function validToken($token) {
+    public function validToken($token): bool
+    {
         return v::alnum()->validate($token);
     }
 
     /**
      * 
-     * @param string $Id
-     * @param string $type
-     * @return boolean|unknown
+     * {@inheritDoc}
+     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validId()
+     * @todo
      */
-    public function validId($Id, $type = null): bool {
+    public function validId($Id, $type = null): bool 
+    {
         
-        $exploded = explode('-', $Id);
-
-        if(count($exploded) !== 3) {
-            return false;
+        switch ($type) {
+            case 'classPass':
+                // @todo
+            break;
+            case 'event':
+                $exploded = explode('-', $Id);
+                
+                if (count($exploded) !== 3) {
+                    return false;
+                }
+                
+                if ($exploded[0] !== 'ev') {
+                    return false;
+                }
+                
+                // Syntax.
+                if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
+                    return false;
+                }
+                
+                return $this->validDate($exploded[2]);
+                break;
+            
+            case 'ticket':
+                $exploded = explode('-', $Id);
+                
+                if (count($exploded) !== 3) {
+                    return false;
+                }
+                
+                if ($exploded[0] !== 'ti') {
+                    return false;
+                }
+                
+                // Syntax.
+                if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
+                    return false;
+                }
+                
+                return $this->validDate($exploded[2]);
+                break;
+            
+            case 'attachment':
+            case 'location':
+            default:
+                // @todo
+                break;
         }
-        
-        if($exploded[0] !== 'ev') {
-            return false;
-        }
-        
-        // Syntax.
-        if(!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
-            return false;
-        } 
-        
-        return $this->validDate($exploded[2]);
     }
 }
 

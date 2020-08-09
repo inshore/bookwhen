@@ -16,17 +16,29 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     
     public function provideInvalidDates(): array
     {
-        return [];
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
     }
     
     public function provideInvalidFroms(): array
     {
-        return [];
+        return [
+            'null' => [null, null],
+            'emptyString' => ['', ''],
+            'object' => [ new \stdClass(), new \stdClass() ],
+        ];
     }
     
     public function provideInvalidIds(): array
     {
-        return [];
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
     }
     
     public function provideInvalidTags(): array
@@ -41,12 +53,20 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     
     public function provideInvalidTokens(): array
     {
-        return [];
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
     }
     
     public function provideInvalidTos(): array
     {
-        return [];
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
     }
     
     public function provideValidDates(): array
@@ -60,12 +80,21 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     
     public function provideValidFroms(): array
     {
-        return [];
+        return [
+            'fromFutureToNull' => [ '20211230', null ],
+            'fromPastToNull' => [ '20191230', null ],
+            'fromPastToFuture' => [ '20191230', '20200809' ],
+            'fromPastToPast' => [ '20191230', '20200101' ],
+            'fromPastToPresent' => [ '20191230', '20200809' ],
+            'fromPresentToNull' => [ '20200809', null ]
+        ];
     }
     
     public function provideValidIds(): array
     {
-        return [];
+        return [
+            'eventId' => [ 'ev-sf8b-20200813100000', 'event' ],
+        ];
     }
     
     public function provideValidTags():array
@@ -83,12 +112,45 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     
     public function provideValidTokens(): array
     {
-        return [];
+        return [
+            'ours' => [ '6v47r0jdz3r2ao3yc8f1vyx2kjry' ],
+        ];
     }
     
     public function provideValidTos(): array
     {
-        return [];
+        return [
+            'toFutureFromNull' => [ '20211230', null ],
+            'toPastFromNull' => [ '20191230', null ],
+            'toPastFromPast' => [ '20200809', '20191230' ],
+            'toPastFromPast' => [ '20200101', '20191230' ],
+            'toPresentFromNull' => [ '20200809', null ],
+            'toPresentFromPast' => [ '20200809', '20191230' ],
+        ];
+    }
+    
+    /**
+     * @dataProvider provideInvalidDates
+     */
+    public function testValidDateReturnsFalseOnInvalidDates($date)
+    {
+       $this->assertFalse($this->validator->validTag($date), $date);
+    }
+    
+    /**
+     * @dataProvider provideInvalidFroms
+     */
+    public function testValidFromReturnsFalseOnInvalidFroms($from, $to)
+    {
+       $this->assertFalse($this->validator->validFrom($from, $to), $from);
+    }
+    
+    /**
+     * @dataProvider provideInvalidIds
+     */
+    public function testValidTagReturnsFalseOnInvalidIds($id)
+    {
+       $this->assertFalse($this->validator->validId($id), $id);
     }
     
     /**
@@ -109,16 +171,16 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideValidFroms
      */
-    public function testValidFromReturnsTrueOnValidFroms($tag)
+    public function testValidFromReturnsTrueOnValidFroms($from, $to)
     {
-        $this->assertTrue($this->validator->validTag($tag), $tag);
+        $this->assertTrue($this->validator->validTag($from, $to), $from);
     }
     /**
      * @dataProvider provideValidIds
      */
-    public function testValidIdReturnsTrueOnValidIds($id)
+    public function testValidIdReturnsTrueOnValidIds($id, $type)
     {
-        $this->assertTrue($this->validator->validId($id), $id);
+        $this->assertTrue($this->validator->validId($id, $type), $id);
     }
     
     /**

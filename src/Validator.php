@@ -29,7 +29,7 @@ class Validator implements ValidatorInterface
         if (v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date)) {
             return true;
         } else { 
-            return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('Ymdhms')->validate($date);
+            return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('YmdHis')->validate($date);
         }
     }
     
@@ -142,7 +142,7 @@ class Validator implements ValidatorInterface
                 if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
                     return false;
                 }
-                
+ 
                 return $this->validDate($exploded[2]);
                 break;
             

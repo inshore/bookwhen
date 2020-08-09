@@ -34,6 +34,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/event_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $event = $this->client->getEvent('ev-sf8b-20200813100000');
+        $this->assertEquals('ev-sboe-20200320100000', $event->id);
         $this->assertFalse($event->soldOut, 'Not sold Out');
     }
     

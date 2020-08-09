@@ -165,9 +165,9 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/events';
        
-        // if(!empty($eventId && !$this->Valdator->validId($eventId))) {
-        //     throw \Exception::class;
-        // }
+        if(!empty($eventId && !$this->Valdator->validId($eventId, 'event'))) {
+            throw \Exception::class;
+        }
      
         try {
             $return = $this->request();
@@ -296,9 +296,9 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/tickets';
         
-        // if(!empty($eventId && !$this->Valdator->validId($ticketId))) {
-        //     throw \Exception::class;
-        // }
+        if(!empty($eventId && !$this->Valdator->validId($ticketId, 'ticket'))) {
+            throw \Exception::class;
+        }
         
         try {
             $return = $this->request();
@@ -316,7 +316,7 @@ class Client implements ClientInterface
      */
     public function getTickets($eventId): array
     {
-        if (!$this->validator->validId($eventId)) {
+        if (!$this->validator->validId($eventId, 'eventt')) {
             throw new \InvalidArgumentException('Invalid Event ID.');
         }
 

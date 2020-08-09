@@ -58,9 +58,11 @@ class Validator implements ValidatorInterface
         }
         
         // Compare if actual to date is greater than from.
-        if ($fromDate < $toDate) {
-            return (bool) true;
+        if ($fromDate > $toDate) {
+            return false;
         }
+        
+        return true;
     }
     
     /**
@@ -89,7 +91,7 @@ class Validator implements ValidatorInterface
             return false;
         }
         
-        return (bool) true;
+        return true;
     }
     
     /**

@@ -169,13 +169,18 @@ class Client implements ClientInterface
             throw \Exception::class;
         }
      
+        $return = [];
+        
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            $event = $body->data;
+            $event->soldOut = (bool) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
+            $return = $event;
+            return $return;
         } catch (Exception $e) {
             // @todo
         }
-        
-        return $return;
     }
     
     /**
@@ -311,12 +316,10 @@ class Client implements ClientInterface
      * 
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
-     * 
-     * ['query' => ['foo' => 'bar']
      */
     public function getTickets($eventId): array
     {
-        if (!$this->validator->validId($eventId, 'eventt')) {
+        if (!$this->validator->validId($eventId, 'event')) {
             throw new \InvalidArgumentException('Invalid Event ID.');
         }
 
@@ -329,9 +332,14 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
+            
             foreach ($body->data as $ticket) {
                 array_push($return, $ticket);
             }
+            if (count($return) === 1) {
+                $return = $return[0];
+            }
+            
             return $return;
         } catch (Exception $e) {
             // @todo

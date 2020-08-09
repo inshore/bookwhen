@@ -1,0 +1,70 @@
+{
+  "data": [
+    {
+      "id": "ev-sboe-20200320100000",
+      "type": "event",
+      "attributes": {
+        "title": "The incredible event",
+        "details": "For testing",
+        "all_day": false,
+        "start_at": "2020-08-09T18:22:00.576Z",
+        "end_at": "2020-08-09T18:22:00.576Z",
+        "attendee_limit": 25,
+        "attendee_count": 17,
+        "waiting_list": true,
+        "max_tickets_per_booking": 5,
+        "tags": [
+          "thing-one"
+        ]
+      },
+      "relationships": {
+        "location": {
+          "data": {
+            "id": "sjm7pskr31t3",
+            "type": "location"
+          },
+          "links": {
+            "related": "https://api.bookwhen.com/v2/events/ev-sboe-20200320100000/location",
+            "self": "https://api.bookwhen.com/v2/events/ev-sboe-20200320100000/relationships/location"
+          }
+        },
+        "attachments": {
+          "data": [
+            {
+              "id": "9v06h1cbv0en",
+              "type": "attachment"
+            }
+          ],
+          "links": {
+            "related": "https://api.bookwhen.com/v2/events/ev-sboe-20200320100000/attachments",
+            "self": "https://api.bookwhen.com/v2/events/ev-sboe-20200320100000/relationships/attachments"
+          }
+        },
+        "tickets": {
+          "data": [
+            {
+              "id": "ti-sboe-20200320100000-tk1m",
+              "type": "ticket"
+            }
+          ],
+          "links": {
+            "related": "https://api.bookwhen.com/v2/events/ev-sboe-20200320100000/tickets",
+            "self": "https://api.bookwhen.com/v2/events/ev-sboe-20200320100000/relationships/tickets"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.bookwhen.com/v2/events/ev-sboe-20200320100000"
+      },
+      "included": [
+        {}
+      ]
+    }
+  ],
+  "links": {
+    "self": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=40",
+    "first": "https://api.bookwhen.com/v2/{resource_plural}",
+    "prev": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=20",
+    "next": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=60"
+  }
+}

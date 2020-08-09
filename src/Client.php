@@ -165,7 +165,7 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/events';
        
-        if(!empty($eventId && !$this->Valdator->validId($eventId, 'event'))) {
+        if(!empty($eventId && !$this->validator->validId($eventId, 'event'))) {
             throw \Exception::class;
         }
      
@@ -337,6 +337,14 @@ class Client implements ClientInterface
             // @todo
         }
     }
+    
+    /**
+     * Set Guzzle Client
+     */
+    public function setGuzzleClient($guzzleClient)
+    {
+        $this->guzzleClient = $guzzleClient;
+    } 
     
     /**
      * Sets the token for all future new instances

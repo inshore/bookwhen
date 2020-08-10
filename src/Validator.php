@@ -29,7 +29,7 @@ class Validator implements ValidatorInterface
         if (v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date)) {
             return true;
         } else { 
-            return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('Ymdhms')->validate($date);
+            return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('YmdHis')->validate($date);
         }
     }
     
@@ -39,28 +39,28 @@ class Validator implements ValidatorInterface
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validFrom()
      */
     public function validFrom($from, $to = null): bool 
-    {
-        
-        $fromDate = new \DateTime($from);
-        
+    { 
         if (!$this->validDate($from)) {
             return false;
         }
-        // need this?
+        
+        $fromDate = new \DateTime($from);
+        
         if (empty($to)) {
             return true;
         }
         
-        $toDate = new \DateTime($to);
-        
         if (!$this->validDate($to)) {
             return false;
         }
+        $toDate = new \DateTime($to);
         
         // Compare if actual to date is greater than from.
-        if ($fromDate < $toDate) {
-            return (bool) true;
+        if ($fromDate > $toDate) {
+            return false;
         }
+        
+        return true;
     }
     
     /**
@@ -69,13 +69,12 @@ class Validator implements ValidatorInterface
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTo()
      */
     public function validTo($to, $from = null): bool 
-    {
-        
-        $toDate = new \DateTime($to);
-        
+    {        
         if (!$this->validDate($to)) {
             return false;
         }
+
+        $toDate = new \DateTime($to);
         
         if (empty($from)) {
             return true;
@@ -89,7 +88,7 @@ class Validator implements ValidatorInterface
             return false;
         }
         
-        return (bool) true;
+        return true;
     }
     
     /**
@@ -120,12 +119,28 @@ class Validator implements ValidatorInterface
      */
     public function validId($Id, $type = null): bool 
     {
-        
+        if (!v::stringType()->notEmpty()->validate($Id)) {
+            return false;
+        }
+
         switch ($type) {
             case 'classPass':
-                // @todo
+
+                $exploded = explode('-', $Id);
+                
+                if (count($exploded) !== 2) {
+                    return false;
+                }
+
+                if ($exploded[0] !== 'cp') {
+                    return false;
+                }
+
+                return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+
             break;
             case 'event':
+                
                 $exploded = explode('-', $Id);
                 
                 if (count($exploded) !== 3) {
@@ -140,7 +155,7 @@ class Validator implements ValidatorInterface
                 if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
                     return false;
                 }
-                
+ 
                 return $this->validDate($exploded[2]);
                 break;
             
@@ -166,7 +181,7 @@ class Validator implements ValidatorInterface
             case 'attachment':
             case 'location':
             default:
-                // @todo
+                return v::alnum()->length(12, 12)->validate($Id);
                 break;
         }
     }

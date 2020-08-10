@@ -84,7 +84,7 @@ class Client implements ClientInterface
             // Authorization.
             $requestOptions = [
                 'headers' => [
-                    'Authorization' => 'Basic ' . base64_encode($this->instanceToken.':')
+                    'Authorization' => 'Basic ' . base64_encode($this->instanceToken . ':')
                 ]
             ];
             
@@ -99,6 +99,7 @@ class Client implements ClientInterface
            
         } catch (Exception $e) {
             // @todo;
+            throw \Exception::class;
         }
     }
     
@@ -107,16 +108,22 @@ class Client implements ClientInterface
      */
     public function getAttachment($attachmentId)
     {
-        $this->apiResource = $this->apiVersion . '/attachmetns';
-        
-        // if(!empty($eventId && !$this->Valdator->validId($attachmentId))) {
-        //     throw \Exception::class;
-        // }
+        if (!empty($attachmentId && !$this->validator->validId($attachmentId, 'attachment'))) {
+            throw \Exception::class;
+        }
+        $this->apiResource = $this->apiVersion . '/attachments' . '/' . $attachmentId;
+     
+        $return = [];
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            $attachment = $body->data;
+            $return = $attachment;
+            return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -127,10 +134,24 @@ class Client implements ClientInterface
      */
     public function getAttachments(): array
     {    
+        
         $this->apiResource = $this->apiVersion . '/attachments';
         
-        // @todo prepocess response onto nice model objects.
-        return $this->request();
+        $return = [];
+        
+        try {
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            
+            foreach ($body->data as $attachment) {
+                array_push($return, $attachment);
+            }
+            
+            return $return;
+        } catch (Exception $e) {
+            throw \Exception::class;
+            // @todo
+        }
     }
     
     /**
@@ -140,7 +161,24 @@ class Client implements ClientInterface
      */
     public function getClassPass($classPassId)
     {
+        $this->apiResource = $this->apiVersion . '/class_passes';
+       
+        if (!empty($classPassId && !$this->validator->validId($classPassId, 'classPass'))) {
+            throw \Exception::class;
+        }
+     
+        $return = [];
         
+        try {
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            $classPass = $body->data;
+            $return = $classPass;
+            return $return;
+        } catch (Exception $e) {
+            // @todo
+            throw \Exception::class;
+        }
     }
     
     /**
@@ -153,7 +191,8 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/???';
         
         // @todo prepocess response onto nice model objects.
-        return $this->request();
+        $Response = $this->request();
+        return json_decode($Response->getBody()->getContents());
     }
     
     /**
@@ -163,19 +202,24 @@ class Client implements ClientInterface
      */
     public function getEvent($eventId)
     {
-        $this->apiResource = $this->apiVersion . '/events';
-       
-        // if(!empty($eventId && !$this->Valdator->validId($eventId))) {
-        //     throw \Exception::class;
-        // }
+        if (!empty($eventId && !$this->validator->validId($eventId, 'event'))) {
+            throw \Exception::class;
+        }
+        $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
      
+        $return = [];
+        
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            $event = $body->data;
+            $event->soldOut = (bool) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
+            $return = $event;
+            return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
-        
-        return $return;
     }
     
     /**
@@ -245,6 +289,7 @@ class Client implements ClientInterface
             return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -262,7 +307,8 @@ class Client implements ClientInterface
         // }
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            return json_decode($Response->getBody()->getContents());
         } catch (Exception $e) {
             // @todo
         }
@@ -278,12 +324,20 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/locations';
 
+        $return = [];
+        
         try {
             $Response = $this->request();
-            return json_decode($Response->getBody()->getContents(), true);
-        } catch (Exception $e) {
+            $body = json_decode($Response->getBody()->getContents());
             
+            foreach ($body->data as $location) {
+                array_push($return, $location);
+            }
+            
+            return $return;
+        } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     } 
     
@@ -293,17 +347,20 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
      */
     public function getTicket($ticketId)
-    {
+    {        
+        if (!empty($ticketId && !$this->Valdator->validId($ticketId, 'ticket'))) {
+            throw \Exception::class;
+        }
+
         $this->apiResource = $this->apiVersion . '/tickets';
-        
-        // if(!empty($eventId && !$this->Valdator->validId($ticketId))) {
-        //     throw \Exception::class;
-        // }
+
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            return json_decode($Response->getBody()->getContents());
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -311,12 +368,10 @@ class Client implements ClientInterface
      * 
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
-     * 
-     * ['query' => ['foo' => 'bar']
      */
     public function getTickets($eventId): array
     {
-        if (!$this->validator->validId($eventId)) {
+        if (!$this->validator->validId($eventId, 'event')) {
             throw new \InvalidArgumentException('Invalid Event ID.');
         }
 
@@ -329,14 +384,25 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
+            
             foreach ($body->data as $ticket) {
                 array_push($return, $ticket);
             }
+            
             return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
+    
+    /**
+     * Set Guzzle Client
+     */
+    public function setGuzzleClient($guzzleClient)
+    {
+        $this->guzzleClient = $guzzleClient;
+    } 
     
     /**
      * Sets the token for all future new instances

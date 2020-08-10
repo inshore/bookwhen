@@ -1,0 +1,66 @@
+{
+  "data": [
+    {
+      "id": "ti-sboe-20200320100000-tk1m",
+      "type": "ticket",
+      "attributes": {
+        "title": "Single ticket",
+        "details": "More details about the ticket etc.",
+        "number_issued": 10,
+        "number_taken": 7,
+        "course_ticket": false,
+        "group_ticket": false,
+        "group_min": 3,
+        "group_max": 5,
+        "available": true,
+        "available_from": "2020-08-09T18:22:00.586Z",
+        "available_to": "2020-08-09T18:22:00.586Z",
+        "cost": {
+          "currency_code": "USD",
+          "net": 1000,
+          "tax": 0
+        },
+        "built_basket_iframe_url": "/pagecode/iframe/basket_items/apply?basket_item_ids%5Bti-sboe-20200320100000-tk1m%5D=1",
+        "built_basket_url": "/pagecode/basket_items/apply?basket_item_ids%5Bti-sboe-20200320100000-tk1m%5D=1"
+      },
+      "relationships": {
+        "events": {
+          "data": [
+            {
+              "id": "ev-sboe-20200320100000",
+              "type": "event"
+            }
+          ],
+          "links": {
+            "related": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/events",
+            "self": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/relationships/events"
+          }
+        },
+        "class_passes": {
+          "data": [
+            {
+              "id": "cp-vk3x1brhpsbf",
+              "type": "class_pass"
+            }
+          ],
+          "links": {
+            "related": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/class_passes",
+            "self": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/relationships/class_passes"
+          }
+        }
+      },
+      "links": {
+        "self": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m"
+      },
+      "included": [
+        {}
+      ]
+    }
+  ],
+  "links": {
+    "self": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=40",
+    "first": "https://api.bookwhen.com/v2/{resource_plural}",
+    "prev": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=20",
+    "next": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=60"
+  }
+}

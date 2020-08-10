@@ -107,14 +107,19 @@ class Client implements ClientInterface
      */
     public function getAttachment($attachmentId)
     {
-        $this->apiResource = $this->apiVersion . '/attachmetns';
-        
-        // if(!empty($eventId && !$this->Valdator->validId($attachmentId))) {
-        //     throw \Exception::class;
-        // }
+        if (!empty($attachmentId && !$this->validator->validId($attachmentId, 'attachment'))) {
+            throw \Exception::class;
+        }
+        $this->apiResource = $this->apiVersion . '/attachments' . '/' . $attachmentId;
+     
+        $return = [];
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            $attachment = $body->data;
+            $return = $attachment;
+            return $return;
         } catch (Exception $e) {
             // @todo
         }
@@ -127,6 +132,7 @@ class Client implements ClientInterface
      */
     public function getAttachments(): array
     {    
+        
         $this->apiResource = $this->apiVersion . '/attachments';
         
         $return = [];
@@ -334,12 +340,13 @@ class Client implements ClientInterface
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
      */
     public function getTicket($ticketId)
-    {
-        $this->apiResource = $this->apiVersion . '/tickets';
-        
+    {        
         if (!empty($ticketId && !$this->Valdator->validId($ticketId, 'ticket'))) {
             throw \Exception::class;
         }
+
+        $this->apiResource = $this->apiVersion . '/tickets';
+
         
         try {
             $return = $this->request();

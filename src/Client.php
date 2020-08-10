@@ -99,6 +99,7 @@ class Client implements ClientInterface
            
         } catch (Exception $e) {
             // @todo;
+            throw \Exception::class;
         }
     }
     
@@ -122,6 +123,7 @@ class Client implements ClientInterface
             return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -147,7 +149,7 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            
+            throw \Exception::class;
             // @todo
         }
     }
@@ -175,6 +177,7 @@ class Client implements ClientInterface
             return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -188,7 +191,8 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/???';
         
         // @todo prepocess response onto nice model objects.
-        return $this->request();
+        $Response = $this->request();
+        return json_decode($Response->getBody()->getContents());
     }
     
     /**
@@ -214,6 +218,7 @@ class Client implements ClientInterface
             return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -284,6 +289,7 @@ class Client implements ClientInterface
             return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -301,7 +307,8 @@ class Client implements ClientInterface
         // }
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            return json_decode($Response->getBody()->getContents());
         } catch (Exception $e) {
             // @todo
         }
@@ -329,8 +336,8 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            
             // @todo
+            throw \Exception::class;
         }
     } 
     
@@ -349,9 +356,11 @@ class Client implements ClientInterface
 
         
         try {
-            $return = $this->request();
+            $Response = $this->request();
+            return json_decode($Response->getBody()->getContents());
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     
@@ -383,6 +392,7 @@ class Client implements ClientInterface
             return $return;
         } catch (Exception $e) {
             // @todo
+            throw \Exception::class;
         }
     }
     

@@ -153,7 +153,23 @@ class Client implements ClientInterface
      */
     public function getClassPass($classPassId)
     {
+        $this->apiResource = $this->apiVersion . '/class_passes';
+       
+        if (!empty($classPassId && !$this->validator->validId($classPassId, 'classPass'))) {
+            throw \Exception::class;
+        }
+     
+        $return = [];
         
+        try {
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            $classPass = $body->data;
+            $return = $classPass;
+            return $return;
+        } catch (Exception $e) {
+            // @todo
+        }
     }
     
     /**

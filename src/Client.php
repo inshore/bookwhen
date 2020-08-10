@@ -227,7 +227,20 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
      */
-    public function getEvents($tags = [], $from = null, $to = null, $includeLocation = false, $includeTickets = false): array
+    public function getEvents(
+        $calendar = false,
+        $entry = false,
+        $location = [],
+        $tags = [],
+        $title = [],
+        $detail= [],
+        $from = null,
+        $to = null,
+        $includeLocation = false,
+        $includeAttachments = false,
+        $includeTickets = false,
+        $includeTicketsEvents = false,
+        $includeTicketsClassPasses = false): array
     {    
         // Validate $tags.
         if (!empty($tags)) {

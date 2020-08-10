@@ -38,6 +38,12 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
             'null' => [null, null],
             'emptyString' => ['', null],
             'object' => [ new \stdClass(), null ],
+            'classPassIdNull' => [ null, 'classPass' ],
+            'classPassIdEmptyString' => [ '', 'classPass' ],
+            'classPassIdObject' => [ new \stdClass(), 'classPass' ],
+            'eventIdNull' => [ null, 'eventId']
+
+
         ];
     }
     
@@ -93,6 +99,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function provideValidIds(): array
     {
         return [
+            'classPassId' => [ 'cp-vk3x1brhpsbf', 'classPass' ],
             'eventId' => [ 'ev-sf8b-20200813100000', 'event' ],
         ];
     }

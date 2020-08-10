@@ -119,12 +119,28 @@ class Validator implements ValidatorInterface
      */
     public function validId($Id, $type = null): bool 
     {
-        
+        if (!v::stringType()->notEmpty()->validate($Id)) {
+            return false;
+        }
+
         switch ($type) {
             case 'classPass':
-                // @todo
+
+                $exploded = explode('-', $Id);
+                
+                if (count($exploded) !== 2) {
+                    return false;
+                }
+
+                if ($exploded[0] !== 'cp') {
+                    return false;
+                }
+
+                return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+
             break;
             case 'event':
+                
                 $exploded = explode('-', $Id);
                 
                 if (count($exploded) !== 3) {

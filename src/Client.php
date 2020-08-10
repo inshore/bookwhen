@@ -283,9 +283,17 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/locations';
 
+        $return = [];
+        
         try {
             $Response = $this->request();
-            return json_decode($Response->getBody()->getContents(), true);
+            $body = json_decode($Response->getBody()->getContents());
+            
+            foreach ($body->data as $location) {
+                array_push($return, $location);
+            }
+            
+            return $return;
         } catch (Exception $e) {
             
             // @todo

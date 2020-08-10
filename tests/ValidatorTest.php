@@ -35,9 +35,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function provideInvalidIds(): array
     {
         return [
-            'null' => [null],
-            'emptyString' => [''],
-            'object' => [ new \stdClass() ],
+            'null' => [null, null],
+            'emptyString' => ['', null],
+            'object' => [ new \stdClass(), null ],
         ];
     }
     
@@ -148,9 +148,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider provideInvalidIds
      */
-    public function testValidTagReturnsFalseOnInvalidIds($id)
+    public function testValidIdReturnsFalseOnInvalidIds($id, $type)
     {
-       $this->assertFalse($this->validator->validId($id), $id);
+       $this->assertFalse($this->validator->validId($id, $type), $id);
     }
     
     /**

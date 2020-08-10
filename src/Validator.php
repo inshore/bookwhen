@@ -39,23 +39,21 @@ class Validator implements ValidatorInterface
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validFrom()
      */
     public function validFrom($from, $to = null): bool 
-    {
-        
-        $fromDate = new \DateTime($from);
-        
+    { 
         if (!$this->validDate($from)) {
             return false;
         }
-        // need this?
+        
+        $fromDate = new \DateTime($from);
+        
         if (empty($to)) {
             return true;
         }
         
-        $toDate = new \DateTime($to);
-        
         if (!$this->validDate($to)) {
             return false;
         }
+        $toDate = new \DateTime($to);
         
         // Compare if actual to date is greater than from.
         if ($fromDate > $toDate) {

@@ -336,9 +336,6 @@ class Client implements ClientInterface
             foreach ($body->data as $ticket) {
                 array_push($return, $ticket);
             }
-            if (count($return) === 1) {
-                $return = $return[0];
-            }
             
             return $return;
         } catch (Exception $e) {

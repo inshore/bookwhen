@@ -35,15 +35,28 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function provideInvalidIds(): array
     {
         return [
-            'null' => [null, null],
+            'attachmentIdNull' => [ null, 'attachment' ],
+            'attachmentIdEmptyString' => [ '', 'attachment' ],
+            'attachmentIdObject' => [ new \stdClass(), 'attachment' ],
+            'attachmentIdNonAlphaNumeric' => [ '*&^GLJjklihl', 'attachment' ],
+            'attachmentIdShortAlphaNumeric' => [ 'asdfjkld', 'attachment' ],
+            'attachmentIdLongAlphaNumeric' => [ 'asdfjksdffdsdfld', 'attachment' ],
             'emptyString' => ['', null],
             'object' => [ new \stdClass(), null ],
+            'null' => [null, null],
+            'longAlphaNumeric' => [ 'asdfjksdffdsdfld', null ],
+            'nonAlphaNumeric' => [ '*&^GLJjklihl', null ],
+            'shortAlphaNumeric' => [ 'asdfjkld', null ],
             'classPassIdNull' => [ null, 'classPass' ],
             'classPassIdEmptyString' => [ '', 'classPass' ],
             'classPassIdObject' => [ new \stdClass(), 'classPass' ],
-            'eventIdNull' => [ null, 'eventId']
-
-
+            'eventIdNull' => [ null, 'eventId'],
+            'locationIdNull' => [ null, 'location' ],
+            'locationEmptyString' => [ '', 'location' ],
+            'locationIdObject' => [ new \stdClass(), 'location' ],
+            'locationIdNonAlphaNumeric' => [ '*&^GLJjklihl', 'location' ],
+            'locationIdShortAlphaNumeric' => [ 'asdfjkld', 'location' ],
+            'locationIdLongAlphaNumeric' => [ 'asdfjksdffdsdfld', 'location' ],
         ];
     }
     
@@ -99,8 +112,11 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     public function provideValidIds(): array
     {
         return [
+            'attachmentId' => ['9v06h1cbv0en', 'attachment'],
             'classPassId' => [ 'cp-vk3x1brhpsbf', 'classPass' ],
+            'default' => ['9v06h1cbv0en', null],
             'eventId' => [ 'ev-sf8b-20200813100000', 'event' ],
+            'locationId' => ['sjm7pskr31t3', 'locationIdd' ]
         ];
     }
     

@@ -181,7 +181,7 @@ class Validator implements ValidatorInterface
             case 'attachment':
             case 'location':
             default:
-                // @todo
+                return v::alnum()->length(12, 12)->validate($Id);
                 break;
         }
     }

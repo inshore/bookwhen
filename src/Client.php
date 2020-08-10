@@ -192,11 +192,10 @@ class Client implements ClientInterface
      */
     public function getEvent($eventId)
     {
-        $this->apiResource = $this->apiVersion . '/events';
-       
         if (!empty($eventId && !$this->validator->validId($eventId, 'event'))) {
             throw \Exception::class;
         }
+        $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
      
         $return = [];
         

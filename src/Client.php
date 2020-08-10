@@ -129,8 +129,21 @@ class Client implements ClientInterface
     {    
         $this->apiResource = $this->apiVersion . '/attachments';
         
-        // @todo prepocess response onto nice model objects.
-        return $this->request();
+        $return = [];
+        
+        try {
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            
+            foreach ($body->data as $attachment) {
+                array_push($return, $attachment);
+            }
+            
+            return $return;
+        } catch (Exception $e) {
+            
+            // @todo
+        }
     }
     
     /**

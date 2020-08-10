@@ -84,7 +84,7 @@ class Client implements ClientInterface
             // Authorization.
             $requestOptions = [
                 'headers' => [
-                    'Authorization' => 'Basic ' . base64_encode($this->instanceToken.':')
+                    'Authorization' => 'Basic ' . base64_encode($this->instanceToken . ':')
                 ]
             ];
             
@@ -165,7 +165,7 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/events';
        
-        if(!empty($eventId && !$this->validator->validId($eventId, 'event'))) {
+        if (!empty($eventId && !$this->validator->validId($eventId, 'event'))) {
             throw \Exception::class;
         }
      
@@ -301,7 +301,7 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/tickets';
         
-        if(!empty($ticketId && !$this->Valdator->validId($ticketId, 'ticket'))) {
+        if (!empty($ticketId && !$this->Valdator->validId($ticketId, 'ticket'))) {
             throw \Exception::class;
         }
         

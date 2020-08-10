@@ -69,13 +69,12 @@ class Validator implements ValidatorInterface
      * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTo()
      */
     public function validTo($to, $from = null): bool 
-    {
-        
-        $toDate = new \DateTime($to);
-        
+    {        
         if (!$this->validDate($to)) {
             return false;
         }
+
+        $toDate = new \DateTime($to);
         
         if (empty($from)) {
             return true;

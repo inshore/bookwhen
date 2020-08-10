@@ -301,7 +301,7 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/tickets';
         
-        if(!empty($eventId && !$this->Valdator->validId($ticketId, 'ticket'))) {
+        if(!empty($ticketId && !$this->Valdator->validId($ticketId, 'ticket'))) {
             throw \Exception::class;
         }
         

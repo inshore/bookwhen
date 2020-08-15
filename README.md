@@ -128,7 +128,7 @@ Please see https://github.com/inshore-packages/bookwhen for details.
 
 ## Credits
 
-- Daniel Mullin 
+- Daniel Mullin email@danielmullin.com
 - Brandon Lubbehusen
 
 ## License

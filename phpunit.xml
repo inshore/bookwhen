@@ -10,13 +10,7 @@
          verbose="true">
     <testsuites>
         <testsuite name="inShore Packages BookWhen Test Suite">
-            <directory suffix="Test.php">tests</directory>
+            <file>tests/ClientTest.php</file>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
 </phpunit>

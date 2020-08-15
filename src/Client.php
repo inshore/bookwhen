@@ -132,7 +132,7 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
      */
-    public function getAttachments(): array
+    public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
         
         $this->apiResource = $this->apiVersion . '/attachments';
@@ -186,7 +186,7 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
      */
-    public function getClassPasses(): array
+    public function getClassPasses($title = null, $detail = null, $usageType, $cost = null, $usageAllowance = null, $useRestrictedForDays = null): array
     {   
         $this->apiResource = $this->apiVersion . '/???';
         
@@ -333,7 +333,7 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
      */
-    public function getLocations(): array
+    public function getLocations($addressText = null, $additionalInfo = null): array
     {
         $this->apiResource = $this->apiVersion . '/locations';
 

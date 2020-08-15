@@ -233,7 +233,7 @@ class Client implements ClientInterface
         $location = [],
         $tags = [],
         $title = [],
-        $detail= [],
+        $detail = [],
         $from = null,
         $to = null,
         $includeLocation = false,

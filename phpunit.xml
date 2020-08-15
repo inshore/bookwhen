@@ -10,7 +10,7 @@
          verbose="true">
     <testsuites>
         <testsuite name="inShore Packages BookWhen Test Suite">
-            <file>tests/ClientTest.php</file>
-        </testsuite>
+            <directory suffix="Test.php">tests</directory>
+	</testsuite>
     </testsuites>
 </phpunit>

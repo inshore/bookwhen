@@ -118,7 +118,7 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $attachment = $body->data;
+            $attachment = $body->data[0];
             $return = $attachment;
             return $return;
         } catch (Exception $e) {
@@ -172,7 +172,7 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $classPass = $body->data;
+            $classPass = $body->data[0];
             $return = $classPass;
             return $return;
         } catch (Exception $e) {
@@ -321,7 +321,10 @@ class Client implements ClientInterface
         
         try {
             $Response = $this->request();
-            return json_decode($Response->getBody()->getContents());
+            $body = json_decode($Response->getBody()->getContents());
+            $location = $body->data[0];
+            $return = $location;
+            return $return;
         } catch (Exception $e) {
             // @todo
         }
@@ -370,7 +373,10 @@ class Client implements ClientInterface
         
         try {
             $Response = $this->request();
-            return json_decode($Response->getBody()->getContents());
+            $body = json_decode($Response->getBody()->getContents());
+            $ticket = $body->data[0];
+            $return = $ticket;
+            return $return;
         } catch (Exception $e) {
             // @todo
             throw \Exception::class;

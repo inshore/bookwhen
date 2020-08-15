@@ -11,12 +11,6 @@
     <testsuites>
         <testsuite name="inShore Packages BookWhen Test Suite">
             <directory suffix="Test.php">tests</directory>
-        </testsuite>
+	</testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
 </phpunit>

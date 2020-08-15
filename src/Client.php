@@ -118,7 +118,7 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $attachment = $body->data;
+            $attachment = $body->data[0];
             $return = $attachment;
             return $return;
         } catch (Exception $e) {
@@ -132,7 +132,7 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
      */
-    public function getAttachments(): array
+    public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
         
         $this->apiResource = $this->apiVersion . '/attachments';
@@ -172,7 +172,7 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $classPass = $body->data;
+            $classPass = $body->data[0];
             $return = $classPass;
             return $return;
         } catch (Exception $e) {
@@ -186,7 +186,7 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
      */
-    public function getClassPasses(): array
+    public function getClassPasses($title = null, $detail = null, $usageType, $cost = null, $usageAllowance = null, $useRestrictedForDays = null): array
     {   
         $this->apiResource = $this->apiVersion . '/???';
         
@@ -227,7 +227,20 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
      */
-    public function getEvents($tags = [], $from = null, $to = null, $includeLocation = false, $includeTickets = false): array
+    public function getEvents(
+        $calendar = false,
+        $entry = false,
+        $location = [],
+        $tags = [],
+        $title = [],
+        $detail = [],
+        $from = null,
+        $to = null,
+        $includeLocation = false,
+        $includeAttachments = false,
+        $includeTickets = false,
+        $includeTicketsEvents = false,
+        $includeTicketsClassPasses = false): array
     {    
         // Validate $tags.
         if (!empty($tags)) {
@@ -308,7 +321,10 @@ class Client implements ClientInterface
         
         try {
             $Response = $this->request();
-            return json_decode($Response->getBody()->getContents());
+            $body = json_decode($Response->getBody()->getContents());
+            $location = $body->data[0];
+            $return = $location;
+            return $return;
         } catch (Exception $e) {
             // @todo
         }
@@ -320,7 +336,7 @@ class Client implements ClientInterface
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
      */
-    public function getLocations(): array
+    public function getLocations($addressText = null, $additionalInfo = null): array
     {
         $this->apiResource = $this->apiVersion . '/locations';
 
@@ -357,7 +373,10 @@ class Client implements ClientInterface
         
         try {
             $Response = $this->request();
-            return json_decode($Response->getBody()->getContents());
+            $body = json_decode($Response->getBody()->getContents());
+            $ticket = $body->data[0];
+            $return = $ticket;
+            return $return;
         } catch (Exception $e) {
             // @todo
             throw \Exception::class;

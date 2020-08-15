@@ -1,86 +1,118 @@
-#  Bookwhen
+# inShore.je - Bookwhen PHP API SDK
 
 [![Latest Version](https://img.shields.io/github/release/inshore-packages/bookwhen.svg?style=flat-square)](https://github.com/inshore-packages/bookwhen/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/inshore-packages/bookwhen/master.svg?style=flat-square)](https://travis-ci.org/inshore-packages/bookwhen)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/inshore-packages/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore-packages/bookwhen/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/inshore-packages/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore-packages/bookwhen)
-[![Total Downloads](https://img.shields.io/packagist/dt/league/skeleton.svg?style=flat-square)](https://packagist.org/packages/inshore-packages/bookwhen)
+[![Total Downloads](https://img.shields.io/packagist/dt/inshore-packages/bookwhen.svg?style=flat-square)](https://packagist.org/packages/inshore-packages/bookwhen)
 
+SDK kit for the Bookwhen API.
 
-SDK kit for bookwhen using version 2.0 or greater.
-
+https://www.bookwhen.com
+https://api.bookwhen.com/v2
 
 ## Install
 
-Via Composer
+### Requirements
+
+PHP 7.2 and later.
+
+**Composer**
 
 ``` bash
-$ composer require inshore/booknow
+$ composer require inshore-packages/booknow
 ```
 
 ## Usage
 
 ``` php
 
-
-
 $token = xxxx;
 
 $client = new Client($token)
 
-//For finding all available events
+```
+
+**Events**
+
+``` php
+
+// Fetch events accessible by the API token.
 
 $client->getEvents();
 
-//For finding a specific event
+// Returns the event for the provided event ID.
 
-$eventId = xxxx;
+$eventId = 'ev-smij-20200530100000';
 
 $client->getEvents($eventId);
 
-//Location of event
+```
+
+**Locations**
+
+``` php
+
+// Fetch locations for the given query params.
 
 $client->locations();
 
-//Returns location of given location ID
+// Retrieve a single location.
 
 $locationId = xxxx;
 
 $client->locations($locationId)
 
-//Fetch attachments for the given parameters
+``` 
+
+**Attachments**
+
+``` php
+
+// Fetch attachments for the given query params.
 
 $client->attachments();
 
-// Retrieve single attachment
+// Retrieve a single attachment.
 
-$attachmentId = xxxx;
+$attachmentId = '9v06h1cbv0en';
 
 $client->attachments($attachmentId);
 
-//For listing tickets
+```
 
-$client->tickets();
+**Tickets**
 
-//For viewing details of specific ticket
+``` php
 
-$ticketId = xxxx;
+// Fetch tickets for the given event.
 
-$client->tickets($ticketId);
+$eventId = 'ev-smij-20200530100000';
 
-//Class pass
+$client->tickets($eventId);
+
+// Retrieve a single ticket.
+
+$ticketId = 'ti-sboe-20200320100000-tk1m';
+
+$client->ticket($ticketId);
+
+```
+
+**Class Passes**
+
+``` php
+
+// Fetch class passes for the given query params.
 
 $client->classPasses;
 
-//Retrieve single class pass
+// Retrieve a single class pass.
 
 $classPassId = xxxx;
 
 $client->classPasses($classPassId);
-
-
-
 
 ```
 
@@ -96,9 +128,12 @@ Please see https://github.com/inshore-packages/bookwhen for details.
 
 ## Credits
 
-- Daniel Mullin
+- Daniel Mullin email@danielmullin.com
 - Brandon Lubbehusen
 
 ## License
+
+MIT
+https://github.com/inshore-packages/bookwhen/blob/master/LICENSE.md
 
 

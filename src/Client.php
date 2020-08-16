@@ -6,7 +6,7 @@ namespace InShore\BookWhen;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request;
-use InShore\BookWhen\InshoreBookwhenException;
+use InShore\BookWhen\Exceptions\InshoreBookwhenRestException;
 use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
 use Psr\Http\Message\ResponseInterface;
@@ -98,7 +98,7 @@ class Client implements ClientInterface
             return $this->guzzleClient->request('GET', $this->apiResource, $requestOptions);
            
         } catch (Exception $e) {
-            throw new InshoreBookwhenException($e->getMessage());
+            throw new InshoreBookwhenRestException($e);
         }
     }
     

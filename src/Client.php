@@ -6,7 +6,9 @@ namespace InShore\BookWhen;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request;
-use InShore\BookWhen\Exceptions\InshoreBookwhenRestException;
+use InShore\BookWhen\Exceptions\ConfigurationException;
+use InShore\BookWhen\Exceptions\RestException;
+use InShore\BookWhen\Exceptions\ValidationException;
 use InShore\BookWhen\Interfaces\ClientInterface;
 use InShore\BookWhen\Validator;
 use Psr\Http\Message\ResponseInterface;
@@ -65,7 +67,7 @@ class Client implements ClientInterface
             if (self::$token === null) {
                 $msg = 'No token provided, and none is globally set. ';
                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-                throw new Exception($msg);
+                throw new ConfigurationException($msg);
             }
         } else {
             if ($this->validator->validToken($token)) {
@@ -98,7 +100,7 @@ class Client implements ClientInterface
             return $this->guzzleClient->request('GET', $this->apiResource, $requestOptions);
            
         } catch (Exception $e) {
-            throw new InshoreBookwhenRestException($e);
+            throw new RestException($e);
         }
     }
     
@@ -121,7 +123,7 @@ class Client implements ClientInterface
             $return = $attachment;
             return $return;
         } catch (Exception $e) {
-            throw new InshoreBookwhenException($e->getMessage());
+            throw new RestException($e->getMessage());
         }
     }
     
@@ -147,7 +149,7 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            throw new InshoreBookwhenException($e->getMessage());
+            throw new RestException($e->getMessage());
         }
     }
     
@@ -161,7 +163,7 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/class_passes';
        
         if (!empty($classPassId && !$this->validator->validId($classPassId, 'classPass'))) {
-            throw new InshoreBookwhenException();
+            throw new ValidationException();
         }
      
         $return = [];
@@ -173,7 +175,7 @@ class Client implements ClientInterface
             $return = $classPass;
             return $return;
         } catch (Exception $e) {
-            throw new InshoreBookwhenException($e->getMessage());
+            throw new RestException($e->getMessage());;
         }
     }
     
@@ -199,7 +201,7 @@ class Client implements ClientInterface
     public function getEvent($eventId)
     {
         if (!empty($eventId && !$this->validator->validId($eventId, 'event'))) {
-            throw \Exception::class;
+            throw new ValidationException();
         }
         $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
      
@@ -213,7 +215,7 @@ class Client implements ClientInterface
             $return = $event;
             return $return;
         } catch (Exception $e) {
-            throw new InshoreBookwhenException($e->getMessage());
+            throw new RestException($e->getMessage());
         }
     }
     
@@ -240,12 +242,12 @@ class Client implements ClientInterface
         // Validate $tags.
         if (!empty($tags)) {
             if (!is_array($tags)) {
-                throw new InshoreBookwhenException();
+                throw new ValidationException();
             } else {
                 $tags = array_unique($tags);
                 foreach ($tags as $tag) {
                     if (!empty($tag) && !$this->validator->validTag($tag)) {
-                        throw new InshoreBookwhenException($e->getMessage());
+                        throw new ValidationException();
                     }
                 }
             }
@@ -255,7 +257,7 @@ class Client implements ClientInterface
         // Validate $from;
         if (!empty($from)) {
             if (!$this->validator->validFrom($from, $to)) {
-                throw new InshoreBookwhenException($e->getMessage());
+                throw new ValidationException();
             } else {
                 $this->apiQuery['filter[from]'] = $from;
             }
@@ -296,7 +298,7 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            throw new InshoreBookwhenException($e->getMessage());
+            throw new RestException($e->getMessage());
         }
     }
     
@@ -371,8 +373,7 @@ class Client implements ClientInterface
             $return = $ticket;
             return $return;
         } catch (Exception $e) {
-            // @todo
-            throw \Exception::class;
+            throw new RestException($e->getMessage());
         }
     }
     
@@ -403,7 +404,7 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            throw new InshoreBookwhenException($e->getMessage());
+            throw new RestException($e->getMessage());
         }
     }
     

@@ -10,7 +10,7 @@ namespace InShore\BookWhen\Exceptions;
  * 
  * @package inshore-packages\bookwhen
  */
-class InshoreBookwhenConfigurationException extends InshoreBookwhenException
+class ConfigurationException extends InshoreBookwhenException
 {
   
 }

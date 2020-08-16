@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace InShore\BookWhen;
 
-use InShore\BookWhen\Exception;
 use InShore\BookWhen\Interfaces\ValidatorInterface;
 use Respect\Validation\Validator as v;
 

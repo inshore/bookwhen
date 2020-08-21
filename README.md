@@ -1,11 +1,11 @@
 # inShore.je - Bookwhen PHP API SDK
 
-[![Latest Version](https://img.shields.io/github/release/inshore-packages/bookwhen.svg?style=flat-square)](https://github.com/inshore-packages/bookwhen/releases)
+[![Latest Version](https://img.shields.io/github/release/inshore/bookwhen.svg?style=flat-square)](https://github.com/inshore/bookwhen/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/inshore-packages/bookwhen/master.svg?style=flat-square)](https://travis-ci.org/inshore-packages/bookwhen)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/inshore-packages/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore-packages/bookwhen/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/inshore-packages/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore-packages/bookwhen)
-[![Total Downloads](https://img.shields.io/packagist/dt/inshore-packages/bookwhen.svg?style=flat-square)](https://packagist.org/packages/inshore-packages/bookwhen)
+[![Build Status](https://img.shields.io/travis/inshore/bookwhen/master.svg?style=flat-square)](https://travis-ci.org/inshore/bookwhen)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/inshore/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore/bookwhen/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/inshore/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore/bookwhen)
+[![Total Downloads](https://img.shields.io/packagist/dt/inshore/bookwhen.svg?style=flat-square)](https://packagist.org/packages/inshore/bookwhen)
 
 SDK kit for the Bookwhen API.
 
@@ -21,7 +21,7 @@ PHP 7.2 and later.
 **Composer**
 
 ``` bash
-$ composer require inshore-packages/booknow
+$ composer require inshore/booknow
 ```
 
 ## Usage
@@ -124,7 +124,7 @@ $ phpunit
 
 ## Contributing
 
-Please see https://github.com/inshore-packages/bookwhen for details.
+Please see https://github.com/inshore/bookwhen for details.
 
 ## Credits
 
@@ -134,6 +134,6 @@ Please see https://github.com/inshore-packages/bookwhen for details.
 ## License
 
 MIT
-https://github.com/inshore-packages/bookwhen/blob/master/LICENSE.md
+https://github.com/inshore/bookwhen/blob/master/LICENSE.md
 
 

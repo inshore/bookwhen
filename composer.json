@@ -1,13 +1,13 @@
 {
-	"name" : "inshore-packages/bookwhen",
-	"description" : ":tbc",
+	"name" : "inshore/bookwhen",
+	"description" : "Bookwhen API SDK",
 	"keywords" : [
 		"api",
 		"bookwhen",
 		"inShore",
 		"package"
 	],
-	"homepage" : "https://github.com/inshore-packages/bookwhen",
+	"homepage" : "https://github.com/inshore/bookwhen",
 	"license" : "MIT",
 	"authors" : [{
 			"name" : "Daniel Mullin",

@@ -1,6 +1,6 @@
 <?php 
 
-namespace InShore\BookWhen\Interfaces;
+namespace InShore\Bookwhen\Interfaces;
 
 
 interface ClientInterface

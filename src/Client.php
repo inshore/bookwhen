@@ -6,11 +6,11 @@ namespace InShore\BookWhen;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request;
-use InShore\BookWhen\Exceptions\ConfigurationException;
-use InShore\BookWhen\Exceptions\RestException;
-use InShore\BookWhen\Exceptions\ValidationException;
-use InShore\BookWhen\Interfaces\ClientInterface;
-use InShore\BookWhen\Validator;
+use InShore\Bookwhen\Exceptions\ConfigurationException;
+use InShore\Bookwhen\Exceptions\RestException;
+use InShore\Bookwhen\Exceptions\ValidationException;
+use InShore\Bookwhen\Interfaces\ClientInterface;
+use InShore\Bookwhen\Validator;
 use Psr\Http\Message\ResponseInterface;
 
 /**

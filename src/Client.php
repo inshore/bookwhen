@@ -304,7 +304,7 @@ class Client implements ClientInterface
     public function getLocation($locationId)
     {
         $this->apiResource = $this->apiVersion . '/locations';
-        if(!empty($eventId && !$this->Valdator->validId($locationId, 'location'))) {
+        if(!empty($locationId && !$this->Valdator->validId($locationId, 'location'))) {
             throw new ValidationException();
         }
         
@@ -416,7 +416,8 @@ class Client implements ClientInterface
      */
     public static function setToken($token)
     {
-        if (!$this->validator->validToken($token)) {
+        $validator = new Validator();
+        if (!$validator->validToken($token)) {
             throw new \InvalidArgumentException('Invalid Token.');
         }
         self::$token = $token;

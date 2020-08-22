@@ -17,5 +17,5 @@
 	<whitelist>
 		<directory suffix=".php">src</directory>
 	</whitelist>
-    <filter>
+    </filter>
 </phpunit>

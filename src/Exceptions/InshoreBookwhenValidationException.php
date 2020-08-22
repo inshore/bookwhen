@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 namespace InShore\Bookwhen\Exceptions;
-namespace InShore\Bookwhen\Interfaces;
 
+use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
 
 /**
  * InshoreBookwhenConfigurationException Class
  * 
- * @package inshore-packages\Bookwhen
+ * @package inshore\Bookwhen
  */
 class ValidationException extends InshoreBookwhenException
 {

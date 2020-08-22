@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace InShore\BookWhen\Exceptions;
+namespace InShore\Bookwhen\Exceptions;
 
 /**
  * InshoreBookwhenException Class

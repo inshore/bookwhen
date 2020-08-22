@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace InShore\BookWhen;
+namespace InShore\Bookwhen;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request;
@@ -12,13 +12,14 @@ use InShore\Bookwhen\Exceptions\ValidationException;
 use InShore\Bookwhen\Interfaces\ClientInterface;
 use InShore\Bookwhen\Validator;
 use Psr\Http\Message\ResponseInterface;
+use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
 
 /**
  * Class Client
  *
  * The main class for API consumption
  *
- * @package inshore-packages\bookwhen
+ * @package inshore\bookwhen
  * @todo comments
  * @todo externalise config
  * @todo fix token
@@ -128,7 +129,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getAttachments()
      * @todo validate params.
      */
     public function getAttachments($title = null, $fileName = null, $fileType = null): array
@@ -154,7 +155,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPass()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getClassPass()
      */
     public function getClassPass($classPassId)
     {
@@ -178,7 +179,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getClassPasses()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getClassPasses()
      */
     public function getClassPasses($title = null, $detail = null, $usageType, $cost = null, $usageAllowance = null, $useRestrictedForDays = null): array
     {   
@@ -192,7 +193,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvent()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getEvent()
      */
     public function getEvent($eventId)
     {
@@ -216,7 +217,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getEvents()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getEvents()
      */
     public function getEvents(
         $calendar = false,
@@ -299,7 +300,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocation()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getLocation()
      */
     public function getLocation($locationId)
     {
@@ -323,7 +324,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getLocations()
      * @todo validate params.
      */
     public function getLocations($addressText = null, $additionalInfo = null): array
@@ -349,7 +350,7 @@ class Client implements ClientInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getTicket()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getTicket()
      */
     public function getTicket($ticketId)
     {        
@@ -374,7 +375,7 @@ class Client implements ClientInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ClientInterface::getTickets()
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getTickets()
      */
     public function getTickets($eventId): array
     {

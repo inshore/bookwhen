@@ -7,6 +7,8 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\HandlerStack;
 use InShore\Bookwhen\Client;
+use InShore\Bookwhen\Exceptions\RestException;
+use InShore\Bookwhen\Exceptions\ValidationException;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {

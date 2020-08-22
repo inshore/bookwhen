@@ -1,0 +1,18 @@
+{
+  "data": {
+    "id": "9v06h1cbv0en",
+    "type": "attachment",
+    "attributes": {
+      "title": "My Photo",
+      "file_url": "https://files.bookwhen.com/amplt327zhcc/9v06h1cbv0en/uploaded_file",
+      "file_size_bytes": 47070,
+      "file_size_text": "46 KB",
+      "file_name": "image.jpg",
+      "file_type": "image",
+      "content_type": "image/jpeg"
+    },
+    "links": {
+      "self": "https://api.bookwhen.com/v2/attachments/9v06h1cbv0en"
+    }
+  }
+}

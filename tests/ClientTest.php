@@ -26,7 +26,17 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->client = new Client('6v47r0jdz3r2ao3yc8f1vyx2kjry');
     }
     
-    //
+    /**
+     * Test that true does in fact equal true
+     */
+    public function testGetAttachments()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachment_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $attachments = $this->client->getAttachments('9v06h1cbv0en');
+        $this->assertEquals('9v06h1cbv0en', $attachments[0]->id);
+    }
+    
     /**
      * Test that true does in fact equal true
      */
@@ -34,7 +44,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
-        $attachment = $this->client->getAttachment('9v06h1cbv0en');
+        $attachment = $this->client->getAttachments('9v06h1cbv0en');
         $this->assertEquals('9v06h1cbv0en', $attachment->id);
     }
     
@@ -59,6 +69,14 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $tickets = $this->client->getTickets('ev-sf8b-20200813100000');
+    }
+    
+    public function testGetTicketWithValidTicketId()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/ticket_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $ticket = $this->client->getTicket('ti-sboe-20200320100000-tk1m');
+        $this->assertEquals('ti-sboe-20200320100000-tk1m', $ticket->id);
     }
 }
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace InShore\BookWhen;
 
-use InShore\BookWhen\Exception;
 use InShore\BookWhen\Interfaces\ValidatorInterface;
 use Respect\Validation\Validator as v;
 
@@ -137,8 +136,7 @@ class Validator implements ValidatorInterface
                 }
 
                 return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
-
-            break;
+                break;
             case 'event':
                 
                 $exploded = explode('-', $Id);

@@ -136,8 +136,7 @@ class Validator implements ValidatorInterface
                 }
 
                 return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
-
-            break;
+                break;
             case 'event':
                 
                 $exploded = explode('-', $Id);

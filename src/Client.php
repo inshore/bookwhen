@@ -110,7 +110,7 @@ class Client implements ClientInterface
     public function getAttachment($attachmentId)
     {
         if (!empty($attachmentId && !$this->validator->validId($attachmentId, 'attachment'))) {
-            throw ValidationException::class;
+            throw new ValidationException('Supplied attachmentId ' . $attachmentId . ' is invalid.');
         }
         $this->apiResource = $this->apiVersion . '/attachments' . '/' . $attachmentId;
      
@@ -137,6 +137,7 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/attachments';
         
         try {
+            $return = [];
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
             
@@ -304,7 +305,7 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/locations';
         if(!empty($eventId && !$this->Valdator->validId($locationId, 'location'))) {
-            throw ValidationException::class;
+            throw new ValidationException();
         }
         
         try {
@@ -353,7 +354,7 @@ class Client implements ClientInterface
     public function getTicket($ticketId)
     {        
         if (!empty($ticketId && !$this->validator->validId($ticketId, 'ticket'))) {
-            throw ValidationException::class;
+           // throw new ValidationException();
         }
 
         $this->apiResource = $this->apiVersion . '/tickets';
@@ -378,16 +379,16 @@ class Client implements ClientInterface
     public function getTickets($eventId): array
     {
         if (!$this->validator->validId($eventId, 'event')) {
-            throw ValidationException::class;
+            throw new ValidationException();
         }
 
         $this->apiQuery = ['event' => $eventId];
         
         $this->apiResource = $this->apiVersion . '/tickets';
-        
-        $return = [];
-        
+                
         try {
+            $return = [];
+            
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
             

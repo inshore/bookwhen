@@ -27,14 +27,28 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test that true does in fact equal true
+     * testGetAttachments
+     * 
+     * Using the 200 attachments fixture, test that we get an array of attachemtns back.
      */
     public function testGetAttachments()
     {
-        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachment_200.json')));
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
-        $attachments = $this->client->getAttachments('9v06h1cbv0en');
+        $attachments = $this->client->getAttachments();
+        $this->assertInternalType('array', $attachments);
         $this->assertEquals('9v06h1cbv0en', $attachments[0]->id);
+    }
+    
+    /**
+     * Test that true does in fact equal true
+     */
+    public function testGetAttachmentWithInValidAttachmentId()
+    {
+        $this->setExpectedException('\InShore\BookWhen\Exceptions\ValidationException');
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $attachment = $this->client->getAttachment(null);
     }
     
     /**
@@ -44,7 +58,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
-        $attachment = $this->client->getAttachments('9v06h1cbv0en');
+        $attachment = $this->client->getAttachment('9v06h1cbv0en');
         $this->assertEquals('9v06h1cbv0en', $attachment->id);
     }
     
@@ -61,16 +75,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($event->soldOut, 'Not sold Out');
     }
     
-    /**
-     * Test that true does in fact equal true
-     */
-    public function testGetTicketsWithValidEventId()
-    {
-        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
-        $this->client->setGuzzleClient($this->guzzleClient);
-        $tickets = $this->client->getTickets('ev-sf8b-20200813100000');
-    }
-    
     public function testGetTicketWithValidTicketId()
     {
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/ticket_200.json')));
@@ -78,6 +82,29 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $ticket = $this->client->getTicket('ti-sboe-20200320100000-tk1m');
         $this->assertEquals('ti-sboe-20200320100000-tk1m', $ticket->id);
     }
+    
+    /**
+     * Test that true does in fact equal true
+     */
+    public function testGetTicketsWithInValidEventId()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $tickets = $this->client->getTickets('ev-sf8b-20200813100000');
+    }
+    
+    /**
+     * Test that true does in fact equal true
+     */
+    public function testGetTicketsWithValidEventId()
+    {
+        $this->setExpectedException('\InShore\BookWhen\Exceptions\ValidationException');
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $tickets = $this->client->getTickets('ti-sboe-20200320100000-tk1m');
+    }
+    
+    
 }
 
 // EOF!

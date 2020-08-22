@@ -109,12 +109,10 @@ class Client implements ClientInterface
     public function getAttachment($attachmentId)
     {
         if (!empty($attachmentId && !$this->validator->validId($attachmentId, 'attachment'))) {
-            throw \Exception::class;
+            throw \InvalidArgumentExceptionn::class;
         }
         $this->apiResource = $this->apiVersion . '/attachments' . '/' . $attachmentId;
      
-        $return = [];
-        
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
@@ -131,13 +129,12 @@ class Client implements ClientInterface
      *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getAttachments()
+     * @todo validate params.
      */
     public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
         
         $this->apiResource = $this->apiVersion . '/attachments';
-        
-        $return = [];
         
         try {
             $Response = $this->request();
@@ -164,11 +161,9 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/class_passes';
        
         if (!empty($classPassId && !$this->validator->validId($classPassId, 'classPass'))) {
-            throw \Exception::class;
+            throw \InvalidArgumentException::class;
         }
      
-        $return = [];
-        
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
@@ -207,8 +202,6 @@ class Client implements ClientInterface
         }
         $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
      
-        $return = [];
-        
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
@@ -315,9 +308,9 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/locations';
         
-        // if(!empty($eventId && !$this->Valdator->validId($ticketId))) {
-        //     throw \Exception::class;
-        // }
+        if(!empty($eventId && !$this->Valdator->validId($locationId, 'location'))) {
+            throw \Exception::class;
+        }
         
         try {
             $Response = $this->request();
@@ -335,6 +328,7 @@ class Client implements ClientInterface
      *
      * {@inheritDoc}
      * @see \InShore\BookWhen\Interfaces\ClientInterface::getLocations()
+     * @todo validate params.
      */
     public function getLocations($addressText = null, $additionalInfo = null): array
     {
@@ -364,8 +358,8 @@ class Client implements ClientInterface
      */
     public function getTicket($ticketId)
     {        
-        if (!empty($ticketId && !$this->Valdator->validId($ticketId, 'ticket'))) {
-            throw \Exception::class;
+        if (!empty($ticketId && !$this->validator->validId($ticketId, 'ticket'))) {
+            throw \InvalidArgumentException::class;
         }
 
         $this->apiResource = $this->apiVersion . '/tickets';
@@ -425,13 +419,13 @@ class Client implements ClientInterface
     
     /**
      * Sets the token for all future new instances
-     * @param $token string The API access token, as obtained on diffbot.com/dev
-     * @return void
-     * @todo use the validator.
+     * @param $token string The API access token, as obtained on diffbot.com/dev.
      */
     public static function setToken($token)
     {
-        //self::validateToken($token);
+        if (!$this->validator->validToken($token)) {
+            throw new \InvalidArgumentException('Invalid Token.');
+        }
         self::$token = $token;
     } 
 }

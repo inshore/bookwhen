@@ -10,6 +10,7 @@
 SDK kit for the Bookwhen API.
 
 https://www.bookwhen.com
+
 https://api.bookwhen.com/v2
 
 ## Install
@@ -128,8 +129,8 @@ Please see https://github.com/inshore/bookwhen for details.
 
 ## Credits
 
-- Daniel Mullin email@danielmullin.com
-- Brandon Lubbehusen
+- Daniel Mullin inshore@danielmullin.com
+- Brandon Lubbehusen inshore@danielmullin.com
 
 ## License
 

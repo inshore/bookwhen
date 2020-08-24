@@ -13,6 +13,7 @@ use InShore\Bookwhen\Interfaces\ClientInterface;
 use InShore\Bookwhen\Validator;
 use Psr\Http\Message\ResponseInterface;
 use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
+use GuzzleHttp;
 
 /**
  * Class Client
@@ -130,11 +131,10 @@ class Client implements ClientInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getAttachments()
-     * @todo validate params.
+     * @todo is ! empty then tests each optional param and write validator method.
      */
     public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
-        
         $this->apiResource = $this->apiVersion . '/attachments';
         
         try {
@@ -180,6 +180,7 @@ class Client implements ClientInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getClassPasses()
+     * @todo break params on to multiplper lines..
      */
     public function getClassPasses($title = null, $detail = null, $usageType, $cost = null, $usageAllowance = null, $useRestrictedForDays = null): array
     {   
@@ -380,7 +381,7 @@ class Client implements ClientInterface
     public function getTickets($eventId): array
     {
         if (!$this->validator->validId($eventId, 'event')) {
-            throw new ValidationException('eventId', $eventId);
+            throw new ValidationException('eventId', $event);
         }
 
         $this->apiQuery = ['event' => $eventId];
@@ -398,8 +399,8 @@ class Client implements ClientInterface
             }
             
             return $return;
-        } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+        } catch (GuzzleHttp\Exception\ClientException $e) {
+            throw new RestException($e);
         }
     }
     

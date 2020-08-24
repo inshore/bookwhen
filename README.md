@@ -117,6 +117,22 @@ $client->classPasses($classPassId);
 
 ```
 
+## Logging
+
+Full syslog level logging is available and can be enabled by passing a level in when instatiating the Client. As illustrated in RFC 5424 which describes the syslog protocol, the following levels of intensity are applied.
+
+DEBUG: Detailed debugging information.
+INFO: Handles normal events. Example: SQL logs
+NOTICE: Handles normal events, but with more important events
+WARNING: Warning status, where you should take an action before it will become an error.
+ERROR: Error status, where something is wrong and needs your immediate action
+CRITICAL: Critical status. Example: System component is not available
+ALERT: Immediate action should be exercised. This should trigger some alerts and wake you up during night time.
+EMERGENCY: It is used when the system is unusable.
+
+$client = new Client($token, 'DEBUG');
+
+
 ## Testing
 
 ``` bash

@@ -110,8 +110,8 @@ class Client implements ClientInterface
      */
     public function getAttachment($attachmentId)
     {
-        if (!empty($attachmentId && !$this->validator->validId($attachmentId, 'attachment'))) {
-            throw new ValidationException('Supplied attachmentId ' . $attachmentId . ' is invalid.');
+        if (!$this->validator->validId($attachmentId, 'attachment')) {
+            throw new ValidationException('attachmentId', $attachmentId);
         }
         $this->apiResource = $this->apiVersion . '/attachments' . '/' . $attachmentId;
      
@@ -161,7 +161,7 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/class_passes';
        
-        if (!empty($classPassId && !$this->validator->validId($classPassId, 'classPass'))) {
+        if (!$this->validator->validId($classPassId, 'classPass')) {
             throw ValidationException::class;
         }
      
@@ -197,7 +197,7 @@ class Client implements ClientInterface
      */
     public function getEvent($eventId)
     {
-        if (!empty($eventId && !$this->validator->validId($eventId, 'event'))) {
+        if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException();
         }
         $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
@@ -305,7 +305,7 @@ class Client implements ClientInterface
     public function getLocation($locationId)
     {
         $this->apiResource = $this->apiVersion . '/locations';
-        if(!empty($locationId && !$this->Valdator->validId($locationId, 'location'))) {
+        if(!$this->Valdator->validId($locationId, 'location')) {
             throw new ValidationException();
         }
         
@@ -354,8 +354,8 @@ class Client implements ClientInterface
      */
     public function getTicket($ticketId)
     {        
-        if (!empty($ticketId && !$this->validator->validId($ticketId, 'ticket'))) {
-           // throw new ValidationException();
+        if (!$this->validator->validId($ticketId, 'ticket')) {
+            throw new ValidationException('ticketId', $ticketId);
         }
 
         $this->apiResource = $this->apiVersion . '/tickets';
@@ -380,7 +380,7 @@ class Client implements ClientInterface
     public function getTickets($eventId): array
     {
         if (!$this->validator->validId($eventId, 'event')) {
-            throw new ValidationException();
+            throw new ValidationException('eventId', $eventId);
         }
 
         $this->apiQuery = ['event' => $eventId];

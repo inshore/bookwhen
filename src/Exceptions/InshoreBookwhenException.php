@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 namespace InShore\Bookwhen\Exceptions;
 
 /**
  * InshoreBookwhenException Class
  * 
- * @package inshore-packages\bookwhen
+ * @package inshore\bookwhen
  */
 class InshoreBookwhenException extends \Exception
 {

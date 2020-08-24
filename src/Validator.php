@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace InShore\BookWhen;
+namespace InShore\Bookwhen;
 
-use InShore\BookWhen\Interfaces\ValidatorInterface;
+use InShore\Bookwhen\Interfaces\ValidatorInterface;
 use Respect\Validation\Validator as v;
 
 class Validator implements ValidatorInterface
@@ -21,7 +21,7 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validDate()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validDate()
      */
     public function validDate($date): bool 
     {
@@ -35,7 +35,7 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validFrom()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFrom()
      */
     public function validFrom($from, $to = null): bool 
     { 
@@ -65,7 +65,7 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTo()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTo()
      */
     public function validTo($to, $from = null): bool 
     {        
@@ -93,7 +93,7 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validTag()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTag()
      */
     public function validTag($tag): bool 
     {
@@ -103,7 +103,7 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validToken()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validToken()
      */
     public function validToken($token): bool
     {
@@ -113,7 +113,7 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\BookWhen\Interfaces\ValidatorInterface::validId()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validId()
      * @todo
      */
     public function validId($Id, $type = null): bool 

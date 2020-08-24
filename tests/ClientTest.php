@@ -1,12 +1,14 @@
 <?php
 
-namespace InShore\BookWhen\Test;
+namespace InShore\Bookwhen\Test;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\HandlerStack;
-use InShore\BookWhen\Client;
+use InShore\Bookwhen\Client;
+use InShore\Bookwhen\Exceptions\RestException;
+use InShore\Bookwhen\Exceptions\ValidationException;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -45,7 +47,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAttachmentWithInValidAttachmentId()
     {
-        $this->setExpectedException('\InShore\BookWhen\Exceptions\ValidationException');
+        $this->setExpectedException('\InShore\Bookwhen\Exceptions\ValidationException');
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $attachment = $this->client->getAttachment(null);
@@ -98,7 +100,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTicketsWithValidEventId()
     {
-        $this->setExpectedException('\InShore\BookWhen\Exceptions\ValidationException');
+        $this->setExpectedException('\InShore\Bookwhen\Exceptions\ValidationException');
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $tickets = $this->client->getTickets('ti-sboe-20200320100000-tk1m');

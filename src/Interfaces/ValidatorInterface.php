@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace InShore\BookWhen\Interfaces;
+namespace InShore\Bookwhen\Interfaces;
 
 interface ValidatorInterface
 {

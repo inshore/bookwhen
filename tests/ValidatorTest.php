@@ -1,8 +1,8 @@
 <?php
 
-namespace InShore\BookWhen\Test;
+namespace InShore\Bookwhen\Test;
 
-use InShore\BookWhen\Validator;
+use InShore\Bookwhen\Validator;
 
 class ValidatorTest extends \PHPUnit_Framework_TestCase
 {

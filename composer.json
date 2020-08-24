@@ -25,12 +25,12 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"InShore\\BookWhen\\" : "src"
+			"InShore\\Bookwhen\\" : "src"
 		}
 	},
 	"autoload-dev" : {
 		"psr-4" : {
-			"InShore\\BookWhen\\Test\\" : "tests"
+			"InShore\\Bookwhen\\Test\\" : "tests"
 		}
 	},
 	"extra" : {

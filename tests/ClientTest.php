@@ -17,8 +17,7 @@ use PHPUnit\Framework\TestCase;
 /**
  * 
  * @author danielmullin
- * @covers InShore\Bookwhen\Client::_construct()
- *
+ * @covers InShore\Bookwhen\Client::_construct
  */
 class ClientTest extends TestCase
 {

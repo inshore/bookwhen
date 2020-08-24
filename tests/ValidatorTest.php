@@ -189,7 +189,7 @@ class ValidatorTest extends TestCase
     }
     
     /**
-     * @covers InShore\Bookwhen\Validator::validTags
+     * @covers InShore\Bookwhen\Validator::validTag
      * @dataProvider provideInvalidTags
      */
     public function testValidTagReturnsFalseOnInvalidTags($tag)
@@ -224,7 +224,7 @@ class ValidatorTest extends TestCase
     }
     
     /**
-     * @covers InShore\Bookwhen\Validator::validTags
+     * @covers InShore\Bookwhen\Validator::validTag
      * @dataProvider provideValidTags
      */
     public function testValidTagReturnsTrueOnValidTags($tag)

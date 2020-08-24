@@ -176,7 +176,7 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/class_passes';
        
         if (!$this->validator->validId($classPassId, 'classPass')) {
-            throw ValidationException::class;
+            throw new ValidationException('classPassId', $classPassId);
         }
      
         try {
@@ -213,7 +213,7 @@ class Client implements ClientInterface
     public function getEvent($eventId)
     {
         if (!$this->validator->validId($eventId, 'event')) {
-            throw new ValidationException();
+            throw new ValidationException('eventId', $eventId);
         }
         $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
      
@@ -267,7 +267,7 @@ class Client implements ClientInterface
         // Validate $from;
         if (!empty($from)) {
             if (!$this->validator->validFrom($from, $to)) {
-                throw new ValidationException();
+                throw new ValidationException('from', $from . '-' . $to);
             } else {
                 $this->apiQuery['filter[from]'] = $from;
             }
@@ -276,7 +276,7 @@ class Client implements ClientInterface
         // Validate $to;
         if (!empty($to)) {
             if (!$this->validator->validTo($to, $from)) {
-                throw ValidationException::class;
+                throw new ValidationException('to', $to . '-' . $from);
             } else {
                 $this->apiQuery['filter[to]'] = $to;
             }
@@ -321,7 +321,7 @@ class Client implements ClientInterface
     {
         $this->apiResource = $this->apiVersion . '/locations';
         if(!$this->Valdator->validId($locationId, 'location')) {
-            throw new ValidationException();
+            throw new ValidationException('locationId', $locationId);
         }
         
         try {
@@ -395,7 +395,7 @@ class Client implements ClientInterface
     public function getTickets($eventId): array
     {
         if (!$this->validator->validId($eventId, 'event')) {
-            throw new ValidationException('eventId', $event);
+            throw new ValidationException('eventId', $eventId);
         }
 
         $this->apiQuery = ['event' => $eventId];

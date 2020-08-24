@@ -14,6 +14,8 @@ class RestException extends InshoreBookwhenException
 {
     private $e;
     
+    private $logger;
+    
     public function __construct($e, $logger) 
     {
         $this->e = $e;

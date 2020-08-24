@@ -12,7 +12,18 @@ namespace InShore\Bookwhen\Exceptions;
  */
 class RestException extends InshoreBookwhenException
 {
-  
+    private $e;
+    
+    public function __construct($e) {
+        $this->e = $e;
+    }
+    
+    /**
+     *
+     * @return string
+     */
+    public function errorMessage() {
+        return $this->e->getMessage();    }
 }
 
 //EOF!

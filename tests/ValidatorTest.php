@@ -157,6 +157,7 @@ class ValidatorTest extends TestCase
     }
     
     /**
+     * @covers Validator::validDate
      * @dataProvider provideInvalidDates
      */
     public function testValidDateReturnsFalseOnInvalidDates($date)
@@ -165,6 +166,7 @@ class ValidatorTest extends TestCase
     }
     
     /**
+     * @covers Validator::validFrom
      * @dataProvider provideInvalidFroms
      */
     public function testValidFromReturnsFalseOnInvalidFroms($from, $to)

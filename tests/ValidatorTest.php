@@ -215,6 +215,7 @@ class ValidatorTest extends TestCase
         $this->assertTrue($this->validator->validTag($from, $to), $from);
     }
     /**
+     * @covers InShore\Bookwhen\Validator::validId
      * @dataProvider provideValidIds
      */
     public function testValidIdReturnsTrueOnValidIds($id, $type)
@@ -223,6 +224,7 @@ class ValidatorTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Validator::validTags
      * @dataProvider provideValidTags
      */
     public function testValidTagReturnsTrueOnValidTags($tag)
@@ -231,6 +233,7 @@ class ValidatorTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Validator::validToken
      * @dataProvider provideValidTokens
      */
     public function testValidTokenReturnsTrueOnValidTokens($token)
@@ -239,6 +242,8 @@ class ValidatorTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Validator::validTo
+     * @covers InShore\Bookwhen\Validator::validDate
      * @dataProvider provideValidTos
      */
     public function testValidTosReturnsTrueOnValidTos($to)

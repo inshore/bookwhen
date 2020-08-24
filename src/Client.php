@@ -162,7 +162,7 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/class_passes';
        
         if (!$this->validator->validId($classPassId, 'classPass')) {
-            throw ValidationException::class;
+            throw new ValidationException('classPass', $classPassId);
         }
      
         try {

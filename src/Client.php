@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace InShore\Bookwhen;
 
+use GuzzleHttp;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request;
 use InShore\Bookwhen\Exceptions\ConfigurationException;
@@ -11,9 +12,11 @@ use InShore\Bookwhen\Exceptions\RestException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use InShore\Bookwhen\Interfaces\ClientInterface;
 use InShore\Bookwhen\Validator;
-use Psr\Http\Message\ResponseInterface;
 use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
-use GuzzleHttp;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Psr\Http\Message\ResponseInterface;
+
 
 /**
  * Class Client
@@ -77,6 +80,16 @@ class Client implements ClientInterface
                 $this->instanceToken = self::$token;
             }
         }
+        
+        if (empty($this->logging)) {
+            $this->logging = 'debug';
+            $this->log = 'inShoreBookwhen.log';
+        }
+        
+        $this->logger = new Logger('inShore Bookwhen API');
+        $this->logger->pushHandler(new StreamHandler($this->log, Logger::DEBUG ));
+        $this->logger->info('Client class successfully instantiated');
+        $this->logger->debug(var_export($this, true));
     }
     
     /**
@@ -97,12 +110,13 @@ class Client implements ClientInterface
                 $requestOptions['query'] = $this->apiQuery;
             }
    
+            $this->logger->debug('request(GET, ' . $this->apiResource . ', ' . var_export($requestOptions, true) . ')');
             //$requestOptions['debug'] = true;
             
             return $this->guzzleClient->request('GET', $this->apiResource, $requestOptions);
            
         } catch (Exception $e) {
-            throw new RestException($e);
+            throw new RestException($e, $this->logger);
         }
     }
     
@@ -123,7 +137,7 @@ class Client implements ClientInterface
             $return = $attachment;
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e, $this->logger);
         }
     }
     
@@ -148,7 +162,7 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e, $this->logger);
         }
     }
     
@@ -211,7 +225,7 @@ class Client implements ClientInterface
             $return = $event;
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e, $this->logger);
         }
     }
     
@@ -294,7 +308,7 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e, $this->logger);
         }
     }
     
@@ -344,7 +358,7 @@ class Client implements ClientInterface
             
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e, $this->logger);
         }
     } 
     
@@ -369,7 +383,7 @@ class Client implements ClientInterface
             $return = $ticket;
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e, $this->logger);
         }
     }
     
@@ -397,12 +411,20 @@ class Client implements ClientInterface
             foreach ($body->data as $ticket) {
                 array_push($return, $ticket);
             }
-            
+            $this->logger->debug(var_export($return, true));
             return $return;
         } catch (GuzzleHttp\Exception\ClientException $e) {
-            throw new RestException($e);
+            throw new RestException($e, $this->logger);
         }
     }
+    
+    /**
+     * Set Debug.
+     */
+    public function setLogging($level)
+    {
+        $this->logging = $level;
+    } 
     
     /**
      * Set Guzzle Client

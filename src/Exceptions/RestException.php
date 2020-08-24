@@ -14,16 +14,22 @@ class RestException extends InshoreBookwhenException
 {
     private $e;
     
-    public function __construct($e) {
+    public function __construct($e, $logger) 
+    {
         $this->e = $e;
+        $this->logger = $logger;
     }
     
     /**
      *
      * @return string
      */
-    public function errorMessage() {
-        return $this->e->getMessage();    }
+    public function errorMessage() 
+    {
+        $this->logger->error($this->e->getMessage());
+        $this->logger->debug(var_export($this->e->getMessage(), true));
+        return $this->e->getMessage();
+    }
 }
 
 //EOF!

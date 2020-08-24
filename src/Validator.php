@@ -160,7 +160,7 @@ class Validator implements ValidatorInterface
             case 'ticket':
                 $exploded = explode('-', $Id);
                 
-                if (count($exploded) !== 3) {
+                if (count($exploded) !== 4) {
                     return false;
                 }
                 
@@ -173,7 +173,11 @@ class Validator implements ValidatorInterface
                     return false;
                 }
                 
-                return $this->validDate($exploded[2]);
+                if (!$this->validDate($exploded[2])) {
+                    return false;
+                }
+                
+                return v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[3]);
                 break;
             
             case 'attachment':

@@ -1,4 +1,6 @@
-<?php
+<?php 
+
+declare(strict_types=1);
 
 namespace InShore\Bookwhen\Test;
 
@@ -7,10 +9,12 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\HandlerStack;
 use InShore\Bookwhen\Client;
+use InShore\Bookwhen\Exceptions\ConfigurationException;
 use InShore\Bookwhen\Exceptions\RestException;
 use InShore\Bookwhen\Exceptions\ValidationException;
+use PHPUnit\Framework\TestCase;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     
     protected $client;
@@ -38,7 +42,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $attachments = $this->client->getAttachments();
-        $this->assertInternalType('array', $attachments);
+        $this->assertIsArray($attachments);
         $this->assertEquals('9v06h1cbv0en', $attachments[0]->id);
     }
     
@@ -47,7 +51,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetAttachmentWithInValidAttachmentId()
     {
-        $this->setExpectedException('\InShore\Bookwhen\Exceptions\ValidationException');
+        $this->expectException(ValidationException::class);
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $attachment = $this->client->getAttachment(null);
@@ -90,9 +94,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTicketsWithInValidEventId()
     {
+        $this->expectException(ValidationException::class);
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
-        $tickets = $this->client->getTickets('ev-sf8b-20200813100000');
+        $tickets = $this->client->getTickets('ti-sboe-20200320100000-tk1m');
+        $this->assertIsArray($tickets);
     }
     
     /**
@@ -100,10 +106,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetTicketsWithValidEventId()
     {
-        $this->setExpectedException('\InShore\Bookwhen\Exceptions\ValidationException');
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
-        $tickets = $this->client->getTickets('ti-sboe-20200320100000-tk1m');
+        $tickets = $this->client->getTickets('ev-sf8b-20200813100000');
+        $this->assertIsArray($tickets);
     }
     
     

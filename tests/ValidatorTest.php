@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InShore\Bookwhen\Test;
 
 use InShore\Bookwhen\Validator;
+use PHPUnit\Framework\TestCase;
 
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends TestCase
 {
     
     protected $validator;
@@ -116,7 +119,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
             'classPassId' => [ 'cp-vk3x1brhpsbf', 'classPass' ],
             'default' => ['9v06h1cbv0en', null],
             'eventId' => [ 'ev-sf8b-20200813100000', 'event' ],
-            'locationId' => ['sjm7pskr31t3', 'locationIdd' ]
+            'locationId' => ['sjm7pskr31t3', 'locationId' ],
+            'ticketId' => ['ti-sboe-20200320100000-tk1m', 'ticket']
         ];
     }
     
@@ -153,19 +157,21 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Validator::validDate
      * @dataProvider provideInvalidDates
      */
     public function testValidDateReturnsFalseOnInvalidDates($date)
     {
-       $this->assertFalse($this->validator->validTag($date), $date);
+       $this->assertFalse($this->validator->validTag($date));
     }
     
     /**
+     * @covers InShore\Bookwhen\Validator::validFrom
      * @dataProvider provideInvalidFroms
      */
     public function testValidFromReturnsFalseOnInvalidFroms($from, $to)
     {
-       $this->assertFalse($this->validator->validFrom($from, $to), $from);
+       $this->assertFalse($this->validator->validFrom($from, $to));
     }
     
     /**
@@ -173,7 +179,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidIdReturnsFalseOnInvalidIds($id, $type)
     {
-       $this->assertFalse($this->validator->validId($id, $type), $id);
+       $this->assertFalse($this->validator->validId($id, $type));
     }
     
     /**
@@ -181,7 +187,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidTagReturnsFalseOnInvalidTags($tag)
     {
-       $this->assertFalse($this->validator->validTag($tag), $tag);
+       $this->assertFalse($this->validator->validTag($tag));
     }
     
     /**
@@ -189,7 +195,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidDateReturnsTrueOnValidDates($date)
     {
-        $this->assertTrue($this->validator->validDate($date), $date);
+        $this->assertTrue($this->validator->validDate($date));
     }
     /**
      * @dataProvider provideValidFroms
@@ -203,7 +209,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidIdReturnsTrueOnValidIds($id, $type)
     {
-        $this->assertTrue($this->validator->validId($id, $type), $id);
+        $this->assertTrue($this->validator->validId($id, $type));
     }
     
     /**
@@ -211,7 +217,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidTagReturnsTrueOnValidTags($tag)
     {
-        $this->assertTrue($this->validator->validTag($tag), $tag);
+        $this->assertTrue($this->validator->validTag($tag));
     }
     
     /**
@@ -219,7 +225,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidTokenReturnsTrueOnValidTokens($token)
     {
-        $this->assertTrue($this->validator->validToken($token), $token);
+        $this->assertTrue($this->validator->validToken($token));
     }
     
     /**
@@ -227,7 +233,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidTosReturnsTrueOnValidTos($to)
     {
-        $this->assertTrue($this->validator->validTo($to), $to);
+        $this->assertTrue($this->validator->validTo($to));
     }
 }
 

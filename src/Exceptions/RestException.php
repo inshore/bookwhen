@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace InShore\BookWhen\Exceptions;
+namespace InShore\Bookwhen\Exceptions;
 
 
 /**
  * InshoreBookwhenRestException Class
  * 
- * @package inshore-packages\bookwhen
+ * @package inshore\bookwhen
  */
 class RestException extends InshoreBookwhenException
 {

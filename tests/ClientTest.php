@@ -14,6 +14,11 @@ use InShore\Bookwhen\Exceptions\RestException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * 
+ * @author danielmullin
+ * @covers InShore\Bookwhen\Client::_construct
+ */
 class ClientTest extends TestCase
 {
     
@@ -36,6 +41,7 @@ class ClientTest extends TestCase
      * testGetAttachments
      * 
      * Using the 200 attachments fixture, test that we get an array of attachemtns back.
+     * @covers InShore\Bookwhen\Client::getAttachments
      */
     public function testGetAttachments()
     {
@@ -47,7 +53,7 @@ class ClientTest extends TestCase
     }
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getAttachment
      */
     public function testGetAttachmentWithInValidAttachmentId()
     {
@@ -58,7 +64,7 @@ class ClientTest extends TestCase
     }
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getAttachment
      */
     public function testGetAttachmentWithValidAttachmentId()
     {
@@ -70,7 +76,7 @@ class ClientTest extends TestCase
     
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getEvent
      */
     public function testGetEventWithValidEventId()
     { 
@@ -81,6 +87,9 @@ class ClientTest extends TestCase
         $this->assertFalse($event->soldOut, 'Not sold Out');
     }
     
+    /**
+     * @covers InShore\Bookwhen\Client::getTicket
+     */
     public function testGetTicketWithValidTicketId()
     {
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/ticket_200.json')));
@@ -90,7 +99,7 @@ class ClientTest extends TestCase
     }
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getTickets
      */
     public function testGetTicketsWithInValidEventId()
     {
@@ -102,7 +111,7 @@ class ClientTest extends TestCase
     }
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getTickets
      */
     public function testGetTicketsWithValidEventId()
     {

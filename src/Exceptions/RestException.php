@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace InShore\Bookwhen\Exceptions;
 
-
 /**
  * InshoreBookwhenRestException Class
  * 
@@ -13,6 +12,8 @@ namespace InShore\Bookwhen\Exceptions;
 class RestException extends InshoreBookwhenException
 {
     private $e;
+    
+    private $logger;
     
     public function __construct($e, $logger) 
     {

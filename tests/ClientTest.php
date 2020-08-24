@@ -1,4 +1,6 @@
-<?php
+<?php 
+
+declare(strict_types=1);
 
 namespace InShore\Bookwhen\Test;
 
@@ -7,10 +9,17 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\HandlerStack;
 use InShore\Bookwhen\Client;
+use InShore\Bookwhen\Exceptions\ConfigurationException;
 use InShore\Bookwhen\Exceptions\RestException;
 use InShore\Bookwhen\Exceptions\ValidationException;
+use PHPUnit\Framework\TestCase;
 
-class ClientTest extends \PHPUnit_Framework_TestCase
+/**
+ * 
+ * @author danielmullin
+ * @covers InShore\Bookwhen\Client::_construct
+ */
+class ClientTest extends TestCase
 {
     
     protected $client;
@@ -32,29 +41,30 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      * testGetAttachments
      * 
      * Using the 200 attachments fixture, test that we get an array of attachemtns back.
+     * @covers InShore\Bookwhen\Client::getAttachments
      */
     public function testGetAttachments()
     {
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $attachments = $this->client->getAttachments();
-        $this->assertInternalType('array', $attachments);
+        $this->assertIsArray($attachments);
         $this->assertEquals('9v06h1cbv0en', $attachments[0]->id);
     }
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getAttachment
      */
     public function testGetAttachmentWithInValidAttachmentId()
     {
-        $this->setExpectedException('\InShore\Bookwhen\Exceptions\ValidationException');
+        $this->expectException(ValidationException::class);
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/attachments_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $attachment = $this->client->getAttachment(null);
     }
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getAttachment
      */
     public function testGetAttachmentWithValidAttachmentId()
     {
@@ -66,7 +76,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getEvent
      */
     public function testGetEventWithValidEventId()
     { 
@@ -77,6 +87,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($event->soldOut, 'Not sold Out');
     }
     
+    /**
+     * @covers InShore\Bookwhen\Client::getTicket
+     */
     public function testGetTicketWithValidTicketId()
     {
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/ticket_200.json')));
@@ -86,24 +99,26 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
-     * Test that true does in fact equal true
+     * @covers InShore\Bookwhen\Client::getTickets
      */
     public function testGetTicketsWithInValidEventId()
+    {
+        $this->expectException(ValidationException::class);
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $tickets = $this->client->getTickets('ti-sboe-20200320100000-tk1m');
+        $this->assertIsArray($tickets);
+    }
+    
+    /**
+     * @covers InShore\Bookwhen\Client::getTickets
+     */
+    public function testGetTicketsWithValidEventId()
     {
         $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
         $this->client->setGuzzleClient($this->guzzleClient);
         $tickets = $this->client->getTickets('ev-sf8b-20200813100000');
-    }
-    
-    /**
-     * Test that true does in fact equal true
-     */
-    public function testGetTicketsWithValidEventId()
-    {
-        $this->setExpectedException('\InShore\Bookwhen\Exceptions\ValidationException');
-        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/tickets_200.json')));
-        $this->client->setGuzzleClient($this->guzzleClient);
-        $tickets = $this->client->getTickets('ti-sboe-20200320100000-tk1m');
+        $this->assertIsArray($tickets);
     }
     
     

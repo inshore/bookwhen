@@ -186,6 +186,21 @@ class Validator implements ValidatorInterface
                 return v::alnum()->length(12, 12)->validate($Id);
                 break;
         }
+    } 
+    
+    public function validTitle($title): bool
+    {
+        return v::stringType()->notEmpty()->validate($title);
+    }
+
+    public function validFileType($fileType): bool
+    {
+        return v::stringType()->notEmpty()->in(['jpg', 'jpeg', 'gif', 'png'])->validate(strtolower($fileType));
+    }
+
+    public function validFileName($fileName): bool
+    {
+        return v::stringType()->notEmpty()->validate($fileName);
     }
 }
 

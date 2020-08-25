@@ -149,6 +149,19 @@ class Client implements ClientInterface
      */
     public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
+        if (!is_null($title) && !$this->validator->validTitle($title)) {
+            throw new ValidationException('title', $title);
+        }
+
+        if(!is_null($fileName) && !$this->validator->validFileName($fileName)) {
+            throw new ValidationException('file name', $fileName);
+        }
+
+
+        if(!is_null($fileType) && !$this->validator->validFileType($fileType)) {
+            throw new ValidationException('file type', $fileType);
+        }
+        
         $this->apiResource = $this->apiVersion . '/attachments';
         
         try {
@@ -196,8 +209,18 @@ class Client implements ClientInterface
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getClassPasses()
      * @todo break params on to multiplper lines..
      */
-    public function getClassPasses($title = null, $detail = null, $usageType, $cost = null, $usageAllowance = null, $useRestrictedForDays = null): array
+    public function getClassPasses(
+        $title = null, 
+        $detail = null, 
+        $usageType, 
+        $cost = null, 
+        $usageAllowance = null, 
+        $useRestrictedForDays = null): array
     {   
+        if (!is_null($title) && !$this->validator->validTitle($title)) {
+            throw new ValidationException('title', $title);
+        }
+       
         $this->apiResource = $this->apiVersion . '/???';
         
         // @todo prepocess response onto nice model objects.

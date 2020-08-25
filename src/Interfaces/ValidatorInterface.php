@@ -16,9 +16,18 @@ interface ValidatorInterface
      * @param string $date
      */
     public function validDate($date);
+
+    /**
+     * @param string $fileName
+     */
+    public function validFileName($fileName);
+
+    /**
+     * @param string $fileType
+     */
+    public function validFileType($fileType);
     
     /**
-     * 
      * @param string $from
      * @param string $to
      */
@@ -31,13 +40,16 @@ interface ValidatorInterface
     public function validId($id, $type);
     
     /**
-     *
      * @param string $tag
      */
     public function validTag($tag);
+
+    /**
+     * @param string $title
+     */
+    public function validTitle($title);
     
     /**
-     * 
      * @param string $to
      * @param string|null $from
      */
@@ -47,6 +59,6 @@ interface ValidatorInterface
      * @param string $token
      */
     public function validToken($token);
-    
+
 }
 

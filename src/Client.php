@@ -320,6 +320,14 @@ class Client implements ClientInterface
         
         
         // Validate $includeLocation;
+
+        if (!empty($includeLocation)) {
+            if(!$this->validator->validIncludeLocation($includeLocation)) {
+                throw new ValidationException();
+            } else {
+                $this->include['location'] = $includeLocation;
+            }
+        }
         
         // Validate $includeTickets;
   

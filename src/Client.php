@@ -44,6 +44,8 @@ class Client implements ClientInterface
     private $apiResource;
     
     private $apiVersion;
+
+    private $include;
     
     private $validator;
     
@@ -61,6 +63,8 @@ class Client implements ClientInterface
         $this->apiQuery = [];
         
         $this->apiVersion = 'v2';
+
+        $this->include = [];
         
         $this->validator = new Validator();
         
@@ -108,6 +112,11 @@ class Client implements ClientInterface
             // Query.
             if (!empty($this->apiQuery) && is_array($this->apiQuery)) {
                 $requestOptions['query'] = $this->apiQuery;
+            }
+            
+            // Include.
+            if (!empty($this->include) && is_array($this->include)) {
+                $requestOptions['include'] = $this->include;
             }
    
             $this->logger->debug('request(GET, ' . $this->apiResource . ', ' . var_export($requestOptions, true) . ')');

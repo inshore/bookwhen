@@ -25,7 +25,7 @@ interface ValidatorInterface
     /**
      * @param string $fileType
      */
-    public function validType($fileType);
+    public function validFileType($fileType);
     
     /**
      * @param string $from

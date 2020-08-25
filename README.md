@@ -17,7 +17,7 @@ https://api.bookwhen.com/v2
 
 ### Requirements
 
-PHP 7.2 and later.
+PHP 7.3 and later.
 
 **Composer**
 

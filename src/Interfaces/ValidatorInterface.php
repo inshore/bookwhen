@@ -60,9 +60,5 @@ interface ValidatorInterface
      */
     public function validToken($token);
 
-
-
-    
-    
 }
 

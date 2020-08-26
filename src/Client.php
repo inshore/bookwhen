@@ -115,7 +115,7 @@ class Client implements ClientInterface
             }
    
             $this->logger->debug('request(GET, ' . $this->apiResource . ', ' . var_export($requestOptions, true) . ')');
-            //$requestOptions['debug'] = true;
+            $requestOptions['debug'] = true;
             
             return $this->guzzleClient->request('GET', $this->apiResource, $requestOptions);
            

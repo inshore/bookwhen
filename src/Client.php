@@ -113,11 +113,6 @@ class Client implements ClientInterface
             if (!empty($this->apiQuery) && is_array($this->apiQuery)) {
                 $requestOptions['query'] = $this->apiQuery;
             }
-            
-            // Include.
-            if (!empty($this->include) && is_array($this->include)) {
-                $requestOptions['include'] = $this->include;
-            }
    
             $this->logger->debug('request(GET, ' . $this->apiResource . ', ' . var_export($requestOptions, true) . ')');
             //$requestOptions['debug'] = true;
@@ -318,18 +313,62 @@ class Client implements ClientInterface
         $this->apiResource = $this->apiVersion . '/events';
         
         
-        
+        $include = [];
         // Validate $includeLocation;
 
         if (!empty($includeLocation)) {
-            if(!$this->validator->validIncludeLocation($includeLocation)) {
-                throw new ValidationException();
+            if(!$this->validator->validInclude($includeLocation)) {
+                throw new ValidationException('include', $includeLocation);
             } else {
-                $this->include['location'] = $includeLocation;
+                $include[] = 'location';
+            }
+        }
+
+                // Validate $includeAttachments;
+
+
+        if (!empty($includeAttachments)) {
+            if(!$this->validator->validInclude($includeAttachments)) {
+                throw new ValidationException('include', $includeAttachments);
+            } else {
+                $include[] = 'attachments';
             }
         }
         
         // Validate $includeTickets;
+
+        if (!empty($includeTickets)) {
+            if(!$this->validator->validInclude($includeTickets)) {
+                throw new ValidationException('include', $includeTickets);
+            } else {
+                $include[] = 'tickets';
+            }
+        }
+        
+         // Validate $includeTicketsEvents;
+
+         if (!empty($includeTicketsEvents)) {
+            if(!$this->validator->validInclude($includeTicketsEvents)) {
+                throw new ValidationException('include', $includeTicketsEvents);
+            } else {
+                $include[] = 'tickets.events';
+            }
+        }
+
+         // Validate $includeTicketsEvents;
+
+         if (!empty($includeTicketsClassPasses)) {
+            if(!$this->validator->validInclude($includeTicketsClassPasses)) {
+                throw new ValidationException('include', $includeTicketsClassPasses);
+            } else {
+                $include[] = 'tickets.class_passes';
+            }
+        }
+
+        if (count($include) > 0) {
+            $this->apiQuery['include'] = implode(',', $include);
+
+        }
   
         try {
             $Response = $this->request();
@@ -360,7 +399,7 @@ class Client implements ClientInterface
     public function getLocation($locationId)
     {
         $this->apiResource = $this->apiVersion . '/locations';
-        if (!$this->Valdator->validId($locationId, 'location')) {
+        if (!$this->Validator->validId($locationId, 'location')) {
             throw new ValidationException('locationId', $locationId);
         }
         

@@ -159,6 +159,81 @@ class ValidatorTest extends TestCase
             'toPresentFromPast' => [ '20200809', '20191230' ],
         ];
     }
+
+    public function provideValidTitle(): array
+    {
+        return [
+            'validTitle' => ['Yoga Level 2'],
+        ];
+    }
+
+    public function provideInvalidTitle(): array
+    {
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
+    }
+
+    public function provideValidFileType(): array
+    {
+        return [
+            'validFileType' => ['jpg'],
+            'validFileType' => ['jpeg'],
+            'validFileType' => ['gif'],
+            'validFileType' => ['png'],
+            'validFileType' => ['JPG'],
+            'validFileType' => ['JPEG'],
+            'validFileType' => ['GIF'],
+            'validFileType' => ['PNG'],
+
+        ];
+    }
+
+    public function provideInvalidFileType(): array
+    {
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
+    }
+
+    public function provideValidFileName(): array
+    {
+        return [
+            'validFileName' => ['Yoga Time'],
+        ];
+    }
+
+    public function provideInvalidFileName(): array
+    {
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
+    }
+    
+    public function provideValidInclude(): array
+    {
+        return [
+            'validInclude' => [true],
+            'validInclude' => [false],
+
+        ];
+    }
+
+    public function provideInvalidInclude(): array
+    {
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
+    }
+
     
     /**
      * @covers InShore\Bookwhen\Validator::validDate
@@ -250,6 +325,81 @@ class ValidatorTest extends TestCase
     {
         $this->assertTrue($this->validator->validTo($to));
     }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validTitle
+     * @dataProvider provideValidTitle
+     */
+    public function testValidTitlesReturnsTrueOnValidTitle($title)
+    {
+        $this->assertTrue($this->validator->validTitle($title));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validTitle
+     * @dataProvider provideInvalidTitle
+     */
+    public function testInvalidTitlesReturnsFalseOnInValidTitle($title)
+    {
+        $this->assertFalse($this->validator->validTitle($title));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validFileType
+     * @dataProvider provideValidFileType
+     */
+    public function testValidFileTypeReturnsTrueOnValidFileType($fileType)
+    {
+        $this->assertTrue($this->validator->validFileType($fileType));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validFileType
+     * @dataProvider provideInValidFileType
+     */
+    public function testInvalidFileTypeReturnsFalseOnInvalidFileType($fileType)
+    {
+        $this->assertFalse($this->validator->validFileType($fileType));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validFileName
+     * @dataProvider provideValidFileName
+     */
+    public function testValidFileNameReturnsTrueOnValidFileName($fileName)
+    {
+        $this->assertTrue($this->validator->validFileName($fileName));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validFileName
+     * @dataProvider provideInvalidFileName
+     */
+    public function testInValidFileNameReturnsFalseOnInValidFileName($fileName)
+    {
+        $this->assertFalse($this->validator->validFileName($fileName));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validInclude
+     * @dataProvider provideValidInclude
+     */
+    public function testValidIncludeReturnsTrueOnValidInclude($include)
+    {
+        $this->assertTrue($this->validator->validInclude($include));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validInclude
+     * @dataProvider provideInvalidInclude
+     */
+    public function testValidIncludeReturnsFalseOnInvalidInclude($include)
+    {
+        $this->assertTrue($this->validator->validInclude($include));
+    }
+  
+
 }
+
 
 // EOF!

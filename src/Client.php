@@ -324,9 +324,7 @@ class Client implements ClientInterface
             }
         }
 
-                // Validate $includeAttachments;
-
-
+        // Validate $includeAttachments;
         if (!empty($includeAttachments)) {
             if (!$this->validator->validInclude($includeAttachments)) {
                 throw new ValidationException('include', $includeAttachments);
@@ -335,8 +333,7 @@ class Client implements ClientInterface
             }
         }
         
-        // Validate $includeTickets;
-
+        // Validate $includeTickets
         if (!empty($includeTickets)) {
             if (!$this->validator->validInclude($includeTickets)) {
                 throw new ValidationException('include', $includeTickets);
@@ -346,7 +343,6 @@ class Client implements ClientInterface
         }
         
          // Validate $includeTicketsEvents;
-
          if (!empty($includeTicketsEvents)) {
             if (!$this->validator->validInclude($includeTicketsEvents)) {
                 throw new ValidationException('include', $includeTicketsEvents);
@@ -355,14 +351,13 @@ class Client implements ClientInterface
             }
         }
 
-         // Validate $includeTicketsEvents;
-
-         if (!empty($includeTicketsClassPasses)) {
-            if (!$this->validator->validInclude($includeTicketsClassPasses)) {
-                throw new ValidationException('include', $includeTicketsClassPasses);
-            } else {
-                $include[] = 'tickets.class_passes';
-            }
+        // Validate $includeTicketsEvents;
+        if (!empty($includeTicketsClassPasses)) {
+           if (!$this->validator->validInclude($includeTicketsClassPasses)) {
+               throw new ValidationException('include', $includeTicketsClassPasses);
+           } else {
+               $include[] = 'tickets.class_passes';
+           }
         }
 
         if (count($include) > 0) {

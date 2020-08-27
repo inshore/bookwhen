@@ -159,6 +159,23 @@ class ValidatorTest extends TestCase
             'toPresentFromPast' => [ '20200809', '20191230' ],
         ];
     }
+
+    public function provideValidTitle(): array
+    {
+        return [
+            'validTitle' => ['Yoga Level 2'],
+        ];
+    }
+
+    public function provideInvalidTitle(): array
+    {
+        return [
+            'null' => [null],
+            'emptyString' => [''],
+            'object' => [ new \stdClass() ],
+        ];
+    }
+
     
     /**
      * @covers InShore\Bookwhen\Validator::validDate
@@ -250,6 +267,35 @@ class ValidatorTest extends TestCase
     {
         $this->assertTrue($this->validator->validTo($to));
     }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validTitle
+     * @dataProvider provideValidTitle
+     */
+    public function testValidTitlesReturnsTrueOnValidTitle($title)
+    {
+        $this->assertTrue($this->validator->validTitle($title));
+    }
+
+    /**
+     * @covers InShore\Bookwhen\Validator::validTitle
+     * @dataProvider provideInvalidTitle
+     */
+    public function testValidTitlesReturnsFalseOnInValidTitle($title)
+    {
+        $this->assertFalse($this->validator->validTitle($title));
+    }
+
+        /**
+     * @covers InShore\Bookwhen\Validator::validTitle
+     * @dataProvider provideInvalidTitle
+     */
+    // public function testValidIncludeReturnsTrueOnValidInclude($title)
+    // {
+    //     $this->assertFalse($this->validator->validTitle($title));
+    // }
+
 }
+
 
 // EOF!

@@ -203,7 +203,7 @@ class Validator implements ValidatorInterface
         return v::stringType()->notEmpty()->validate($fileName);
     }
 
-    public function validInclude($include)
+    public function validInclude($include): bool
     {
         return v::boolType()->validate($include);
     }

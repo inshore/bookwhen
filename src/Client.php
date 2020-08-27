@@ -342,22 +342,22 @@ class Client implements ClientInterface
             }
         }
         
-         // Validate $includeTicketsEvents;
-         if (!empty($includeTicketsEvents)) {
-            if (!$this->validator->validInclude($includeTicketsEvents)) {
-                throw new ValidationException('include', $includeTicketsEvents);
-            } else {
-                $include[] = 'tickets.events';
-            }
+        // Validate $includeTicketsEvents;
+        if (!empty($includeTicketsEvents)) {
+           if (!$this->validator->validInclude($includeTicketsEvents)) {
+               throw new ValidationException('include', $includeTicketsEvents);
+           } else {
+               $include[] = 'tickets.events';
+           }
         }
 
         // Validate $includeTicketsEvents;
         if (!empty($includeTicketsClassPasses)) {
-           if (!$this->validator->validInclude($includeTicketsClassPasses)) {
-               throw new ValidationException('include', $includeTicketsClassPasses);
-           } else {
-               $include[] = 'tickets.class_passes';
-           }
+            if (!$this->validator->validInclude($includeTicketsClassPasses)) {
+                throw new ValidationException('include', $includeTicketsClassPasses);
+            } else {
+                $include[] = 'tickets.class_passes';
+            }
         }
 
         if (count($include) > 0) {

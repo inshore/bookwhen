@@ -319,7 +319,7 @@ class Client implements ClientInterface
         if (!empty($includeLocation)) {
             if (!$this->validator->validInclude($includeLocation)) {
                 throw new ValidationException('include', $includeLocation);
-            } else {
+            } else if($includeLocation) {
                 $include[] = 'location';
             }
         }
@@ -328,7 +328,7 @@ class Client implements ClientInterface
         if (!empty($includeAttachments)) {
             if (!$this->validator->validInclude($includeAttachments)) {
                 throw new ValidationException('include', $includeAttachments);
-            } else {
+            } else if ($includeAttachments) {
                 $include[] = 'attachments';
             }
         }
@@ -337,8 +337,8 @@ class Client implements ClientInterface
         if (!empty($includeTickets)) {
             if (!$this->validator->validInclude($includeTickets)) {
                 throw new ValidationException('include', $includeTickets);
-            } else {
-                $include[] = 'tickets';
+            } else if ($includeTickets) {
+                    $include[] = 'tickets';
             }
         }
         
@@ -346,7 +346,7 @@ class Client implements ClientInterface
         if (!empty($includeTicketsEvents)) {
            if (!$this->validator->validInclude($includeTicketsEvents)) {
                throw new ValidationException('include', $includeTicketsEvents);
-           } else {
+           } else if ($includeTicketsEvents) {
                $include[] = 'tickets.events';
            }
         }
@@ -355,7 +355,7 @@ class Client implements ClientInterface
         if (!empty($includeTicketsClassPasses)) {
             if (!$this->validator->validInclude($includeTicketsClassPasses)) {
                 throw new ValidationException('include', $includeTicketsClassPasses);
-            } else {
+            } else if ($includeTicketsClassPasses) {
                 $include[] = 'tickets.class_passes';
             }
         }

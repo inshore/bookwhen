@@ -1,6 +1,6 @@
 <?php
 
-//declare(strict_types=1);
+declare(strict_types=1);
 
 namespace InShore\Bookwhen\Exceptions;
 
@@ -13,10 +13,6 @@ use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
  */
 class ValidationException extends InshoreBookwhenException
 {
-    
-    
-    
-    
     private $key;
     
     private $value;
@@ -26,7 +22,8 @@ class ValidationException extends InshoreBookwhenException
      * @param unknown $key
      * @param unknown $value
      */
-    public function __construct($key, $value) {
+    public function __construct($key, $value)
+    {
         $this->key = $key;
         $this->value = $value;
     }
@@ -35,8 +32,8 @@ class ValidationException extends InshoreBookwhenException
      * 
      * @return string
      */
-    public function errorMessage() {
-
+    public function errorMessage()
+    {
         return 'Validation Error!<br/>The value "' . $this->value . '" is invalid for ' . $this->key . '.<br/>Please refer to the package documentation <a href=https://github.com/inshore/bookwhen>https://github.com/inshore/bookwhen</a> or <a href=https://api.bookwhen.com/v2>https://api.bookwhen.com/v2</a>';
     }
 }

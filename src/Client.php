@@ -91,7 +91,7 @@ class Client implements ClientInterface
         }
         
         $this->logger = new Logger('inShore Bookwhen API');
-        $this->logger->pushHandler(new StreamHandler($this->log, Logger::DEBUG ));
+        $this->logger->pushHandler(new StreamHandler($this->log, Logger::DEBUG));
         $this->logger->info('Client class successfully instantiated');
         $this->logger->debug(var_export($this, true));
     }
@@ -157,12 +157,12 @@ class Client implements ClientInterface
             throw new ValidationException('title', $title);
         }
 
-        if(!is_null($fileName) && !$this->validator->validFileName($fileName)) {
+        if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
             throw new ValidationException('file name', $fileName);
         }
 
 
-        if(!is_null($fileType) && !$this->validator->validFileType($fileType)) {
+        if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
             throw new ValidationException('file type', $fileType);
         }
         
@@ -317,48 +317,43 @@ class Client implements ClientInterface
         // Validate $includeLocation;
 
         if (!empty($includeLocation)) {
-            if(!$this->validator->validInclude($includeLocation)) {
+            if (!$this->validator->validInclude($includeLocation)) {
                 throw new ValidationException('include', $includeLocation);
             } else {
                 $include[] = 'location';
             }
         }
 
-                // Validate $includeAttachments;
-
-
+        // Validate $includeAttachments;
         if (!empty($includeAttachments)) {
-            if(!$this->validator->validInclude($includeAttachments)) {
+            if (!$this->validator->validInclude($includeAttachments)) {
                 throw new ValidationException('include', $includeAttachments);
             } else {
                 $include[] = 'attachments';
             }
         }
         
-        // Validate $includeTickets;
-
+        // Validate $includeTickets
         if (!empty($includeTickets)) {
-            if(!$this->validator->validInclude($includeTickets)) {
+            if (!$this->validator->validInclude($includeTickets)) {
                 throw new ValidationException('include', $includeTickets);
             } else {
                 $include[] = 'tickets';
             }
         }
         
-         // Validate $includeTicketsEvents;
-
-         if (!empty($includeTicketsEvents)) {
-            if(!$this->validator->validInclude($includeTicketsEvents)) {
-                throw new ValidationException('include', $includeTicketsEvents);
-            } else {
-                $include[] = 'tickets.events';
-            }
+        // Validate $includeTicketsEvents;
+        if (!empty($includeTicketsEvents)) {
+           if (!$this->validator->validInclude($includeTicketsEvents)) {
+               throw new ValidationException('include', $includeTicketsEvents);
+           } else {
+               $include[] = 'tickets.events';
+           }
         }
 
-         // Validate $includeTicketsEvents;
-
-         if (!empty($includeTicketsClassPasses)) {
-            if(!$this->validator->validInclude($includeTicketsClassPasses)) {
+        // Validate $includeTicketsEvents;
+        if (!empty($includeTicketsClassPasses)) {
+            if (!$this->validator->validInclude($includeTicketsClassPasses)) {
                 throw new ValidationException('include', $includeTicketsClassPasses);
             } else {
                 $include[] = 'tickets.class_passes';

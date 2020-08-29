@@ -125,7 +125,8 @@ class Client implements ClientInterface
     }
     
     /**
-     * @todo
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getAttachment()
      */
     public function getAttachment($attachmentId)
     {

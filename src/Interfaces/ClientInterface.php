@@ -3,6 +3,8 @@
 namespace InShore\Bookwhen\Interfaces;
 
 
+use InShore\Bookwhen\Exceptions\RestException;
+
 interface ClientInterface
 {
 
@@ -22,6 +24,9 @@ interface ClientInterface
      * @param string $attachmentId ID of attachment to retrieve.
      * 
      * @return attachment object.
+     * 
+     * @throws ValidationException if any supplied parameter is invalid.
+     * @throws RestException if an error occurs during API interation.
      */
     public function getAttachment($attachmentId);
     
@@ -38,6 +43,9 @@ interface ClientInterface
      * @param string $fileType Filter on the file type.
      * 
      * @return attachments objects array.
+     * 
+     * @throws ValidationException if any supplied parameter is invalid.
+     * @throws RestException if an error occurs during API interation.
      */
     public function getAttachments($title, $fileName, $fileType);
     
@@ -52,6 +60,9 @@ interface ClientInterface
      * @param string $classPassId required ID of class pass to retrieve.
      * 
      * @return class pass object.
+     * 
+     * @throws ValidationException if any supplied parameter is invalid.
+     * @throws RestException if an error occurs during API interation.
      */
     public function getClassPass($classPassId);
     

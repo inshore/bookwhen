@@ -31,6 +31,26 @@ class Validator implements ValidatorInterface
             return v::stringType()->notEmpty()->numericVal()->length(14, 14)->dateTime('YmdHis')->validate($date);
         }
     }
+
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFileName()
+     */
+    public function validFileName($fileName): bool
+    {
+        return v::stringType()->notEmpty()->validate($fileName);
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFileType()
+     */
+    public function validFileType($fileType): bool
+    {
+        return v::stringType()->notEmpty()->in(['jpg', 'jpeg', 'gif', 'png'])->validate(strtolower($fileType));
+    }
     
     /**
      * 
@@ -60,54 +80,6 @@ class Validator implements ValidatorInterface
         }
         
         return true;
-    }
-    
-    /**
-     * 
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTo()
-     */
-    public function validTo($to, $from = null): bool 
-    {        
-        if (!$this->validDate($to)) {
-            return false;
-        }
-
-        $toDate = new \DateTime($to);
-        
-        if (empty($from)) {
-            return true;
-        }
-        
-        $fromDate = new \DateTime($from);
-        if (!$this->validFrom($from)) {
-            return false;
-        }
-        if ($toDate < $fromDate) {
-            return false;
-        }
-        
-        return true;
-    }
-    
-    /**
-     * 
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTag()
-     */
-    public function validTag($tag): bool 
-    {
-        return v::stringType()->notEmpty()->alnum()->validate($tag);
-    }
-    
-    /**
-     * 
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validToken()
-     */
-    public function validToken($token): bool
-    {
-        return v::alnum()->validate($token);
     }
 
     /**
@@ -153,7 +125,7 @@ class Validator implements ValidatorInterface
                 if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
                     return false;
                 }
- 
+                
                 return $this->validDate($exploded[2]);
                 break;
             
@@ -187,25 +159,73 @@ class Validator implements ValidatorInterface
                 break;
         }
     } 
-    
+
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validInclude()
+     */
+    public function validInclude($include): bool
+    {
+        return v::boolType()->validate($include);
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTag()
+     */
+    public function validTag($tag): bool 
+    {
+        return v::stringType()->notEmpty()->alnum()->validate($tag);
+    }
+
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTitle()
+     */
     public function validTitle($title): bool
     {
         return v::stringType()->notEmpty()->validate($title);
     }
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTo()
+     */
+    public function validTo($to, $from = null): bool 
+    {        
+        if (!$this->validDate($to)) {
+            return false;
+        }
 
-    public function validFileType($fileType): bool
-    {
-        return v::stringType()->notEmpty()->in(['jpg', 'jpeg', 'gif', 'png'])->validate(strtolower($fileType));
+        $toDate = new \DateTime($to);
+        
+        if (empty($from)) {
+            return true;
+        }
+        
+        $fromDate = new \DateTime($from);
+        if (!$this->validFrom($from)) {
+            return false;
+        }
+        if ($toDate < $fromDate) {
+            return false;
+        }
+        
+        return true;
     }
-
-    public function validFileName($fileName): bool
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validToken()
+     */
+    public function validToken($token): bool
     {
-        return v::stringType()->notEmpty()->validate($fileName);
-    }
-
-    public function validInclude($include): bool
-    {
-        return v::boolType()->validate($include);
+        return v::alnum()->validate($token);
     }
 }
 

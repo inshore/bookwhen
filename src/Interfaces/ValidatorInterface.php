@@ -38,6 +38,11 @@ interface ValidatorInterface
      * @param string $type
      */
     public function validId($id, $type);
+
+    /**
+     * @param string $include
+     */
+    public function validInclude($include);
     
     /**
      * @param string $tag

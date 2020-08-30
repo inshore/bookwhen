@@ -82,11 +82,11 @@ class Client implements ClientInterface
         ]);
         
         if ($token === null) {
-            if (self::$token === null) {
-                $msg = 'No token provided, and none is globally set. ';
-                $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-                throw new ConfigurationException($msg);
-            }
+//             if (self::$token === null) {
+//                 $msg = 'No token provided, and none is globally set. ';
+//                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+//                 throw new ConfigurationException($msg);
+//             }
         } else {
             if ($this->validator->validToken($token)) {
                 self::$token = $token;
@@ -294,7 +294,7 @@ class Client implements ClientInterface
                 $tags = array_unique($tags);
                 foreach ($tags as $tag) {
                     if (!empty($tag) && !$this->validator->validTag($tag)) {
-                        throw new ValidationException();
+                        throw new ValidationException('tag', $tag);
                     }
                 }
             }

@@ -53,6 +53,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getAttachment
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetAttachmentWithInValidAttachmentId()
     {
@@ -64,6 +65,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getAttachment
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetAttachmentWithValidAttachmentId()
     {
@@ -76,6 +78,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getEvent
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetEventWithValidEventId()
     { 
@@ -88,6 +91,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getTicket
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetTicketWithValidTicketId()
     {
@@ -99,6 +103,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getTickets
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetTicketsWithInValidEventId()
     {
@@ -111,6 +116,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getTickets
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetTicketsWithValidEventId()
     {

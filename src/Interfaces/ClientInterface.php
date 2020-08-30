@@ -23,7 +23,7 @@ interface ClientInterface
      * 
      * @param string $attachmentId ID of attachment to retrieve.
      * 
-     * @return attachment object.
+     * @return object attachment.
      * 
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
@@ -42,7 +42,7 @@ interface ClientInterface
      * @param string $fileName Filter on the file name.
      * @param string $fileType Filter on the file type.
      * 
-     * @return attachments objects array.
+     * @return array of attachment objects.
      * 
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
@@ -59,7 +59,7 @@ interface ClientInterface
      * 
      * @param string $classPassId required ID of class pass to retrieve.
      * 
-     * @return class pass object.
+     * @return object class pass.
      * 
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
@@ -81,7 +81,7 @@ interface ClientInterface
      * @param string $usagAallowance Filter on pass usage allowance. This also accepts a comparison operator like cost.
      * @param string $useRestrictedForDays Filter on pass days restriction. This also accepts a comparison operator like cost.
      * 
-     * @return class passes object array.
+     * @return array of class passes objects.
      */
     public function getClassPasses($title, $detail, $usageType, $cost, $usageAllowance, $useRestrictedForDays);
 
@@ -95,7 +95,7 @@ interface ClientInterface
      * 
      * @param string $eventId ID of account to retrieve.
      *
-     * @return event object.
+     * @return object of the event.
      */
     public function getEvent($eventId);
     

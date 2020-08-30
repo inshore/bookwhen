@@ -80,7 +80,7 @@ class ClientTest extends TestCase
     /**
      * @covers InShore\Bookwhen\Client::getEvent
      * @uses InShore\Bookwhen\Validator
-    * @uses InShore\Bookwhen\Exceptions\ValidationException
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
     public function testGetEventWithValidEventId()
     { 
@@ -106,6 +106,7 @@ class ClientTest extends TestCase
     /**
      * @covers InShore\Bookwhen\Client::getTickets
      * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
     public function testGetTicketsWithInValidEventId()
     {

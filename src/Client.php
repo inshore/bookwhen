@@ -289,7 +289,7 @@ class Client implements ClientInterface
         // Validate $tags.
         if (!empty($tags)) {
             if (!is_array($tags)) {
-                throw new ValidationException();
+                throw new ValidationException('tags', implode(' ', $tags));
             } else {
                 $tags = array_unique($tags);
                 foreach ($tags as $tag) {

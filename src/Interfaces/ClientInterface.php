@@ -109,8 +109,8 @@ interface ClientInterface
      * 
      * @copyright inShore Ltd (Jersey)
      * 
-     * @param unknown calendar
-     * @param unknown entry
+     * @param string calendar
+     * @param string entry
      * @param array location Array of location slugs to include.
      * @param array $tags Array of tags to include.
      * @param array $title Array of titles to search for.
@@ -135,7 +135,7 @@ interface ClientInterface
      * 
      * @access public 
      * 
-     * @param string ID of location to retrieve
+     * @param string $locationId of location to retrieve
      * 
      * @return location object.
      */
@@ -152,7 +152,7 @@ interface ClientInterface
      * @param string $addressText Restrict to locations containing the address text filter.
      * @param string $additionalInfo Filter by the text contained in the additional info.
      * 
-     * @return locations objects array.
+     * @return arryay of location objects.
      */
     public function getLocations($addressText, $additionalInfo);
     
@@ -166,7 +166,7 @@ interface ClientInterface
      * 
      * @param string $ticketId ID of ticket to retrieve.
      * 
-     * @return ticket object.
+     * @return array of ticket objects.
      */
     public function getTicket($ticketId);
     

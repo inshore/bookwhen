@@ -47,6 +47,15 @@ class Client implements ClientInterface
 
     private $include;
     
+    /** @var string The path to the log file */
+    private $log;
+    
+    /** @var the loging object. */
+    private $logger;
+    
+    /** @var the logging level. */
+    private $logging;
+    
     private $validator;
     
     private $guzzleClient;

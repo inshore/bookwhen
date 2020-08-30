@@ -20,7 +20,7 @@ class ValidationException extends InshoreBookwhenException
     /**
      * 
      * @param string $key
-     * @param unknown $value
+     * @param array|boolean|object|int|string $value
      */
     public function __construct($key, $value)
     {

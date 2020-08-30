@@ -109,9 +109,9 @@ interface ClientInterface
      * 
      * @copyright inShore Ltd (Jersey)
      * 
-     * @param string calendar
-     * @param string entry
-     * @param array location Array of location slugs to include.
+     * @param string $calendar
+     * @param string $entry
+     * @param array $location Array of location slugs to include.
      * @param array $tags Array of tags to include.
      * @param array $title Array of titles to search for.
      * @param array $detail Array of details to search for.
@@ -180,7 +180,7 @@ interface ClientInterface
      * 
      * @param string $eventId The ID of the event to list tickets for.
      * 
-     * @return tickets object array.
+     * @return array of ticket objects.
      */
     public function getTickets($eventId);
 

@@ -213,7 +213,7 @@ class Client implements ClientInterface
             $return = $classPass;
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e->getMessage(), $this->logger);
         }
     }
     
@@ -404,7 +404,7 @@ class Client implements ClientInterface
     public function getLocation($locationId)
     {
         $this->apiResource = $this->apiVersion . '/locations';
-        if (!$this->Validator->validId($locationId, 'location')) {
+        if (!$this->validator->validId($locationId, 'location')) {
             throw new ValidationException('locationId', $locationId);
         }
         
@@ -415,7 +415,7 @@ class Client implements ClientInterface
             $return = $location;
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e->getMessage(), $this->logger);
         }
 
     }

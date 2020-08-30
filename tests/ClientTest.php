@@ -15,7 +15,9 @@ use InShore\Bookwhen\Exceptions\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers InShore\Bookwhen\Client::_construct
+ * @author Daniel Mullin daniel@inshore.je
+ * @author Brandon Lubbehusen brandon@inshore.je
+ * 
  * @uses InShore\Bookwhen\Client
  */
 class ClientTest extends TestCase

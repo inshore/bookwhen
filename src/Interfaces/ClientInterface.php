@@ -152,7 +152,7 @@ interface ClientInterface
      * @param string $addressText Restrict to locations containing the address text filter.
      * @param string $additionalInfo Filter by the text contained in the additional info.
      * 
-     * @return arryay of location objects.
+     * @return array of location objects.
      */
     public function getLocations($addressText, $additionalInfo);
     

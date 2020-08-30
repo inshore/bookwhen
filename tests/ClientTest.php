@@ -54,6 +54,7 @@ class ClientTest extends TestCase
     /**
      * @covers InShore\Bookwhen\Client::getAttachment
      * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
     public function testGetAttachmentWithInValidAttachmentId()
     {
@@ -79,6 +80,7 @@ class ClientTest extends TestCase
     /**
      * @covers InShore\Bookwhen\Client::getEvent
      * @uses InShore\Bookwhen\Validator
+    * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
     public function testGetEventWithValidEventId()
     { 

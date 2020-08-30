@@ -123,7 +123,7 @@ interface ClientInterface
      * @param bool $includeTicketsEvents
      * @param bool $includeTicketsClassPasses
      * 
-     * @return events object array.
+     * @return array of events objects.
      */
     public function getEvents($calendar, $entry, $location, $tags, $title, $detail, $from, $to, $includeLocation, $includeAttachments, $includeTickets, $includeTicketsEvents, $includeTicketsClassPasses);
     
@@ -137,7 +137,7 @@ interface ClientInterface
      * 
      * @param string $locationId of location to retrieve
      * 
-     * @return location object.
+     * @return objectlocation.
      */
     public function getLocation($locationId);
     
@@ -166,7 +166,7 @@ interface ClientInterface
      * 
      * @param string $ticketId ID of ticket to retrieve.
      * 
-     * @return array of ticket objects.
+     * @return object ticket.
      */
     public function getTicket($ticketId);
     

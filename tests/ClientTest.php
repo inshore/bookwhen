@@ -15,9 +15,9 @@ use InShore\Bookwhen\Exceptions\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * 
  * @author danielmullin
  * @covers InShore\Bookwhen\Client::_construct
+ * @uses InShore\Bookwhen\Client
  */
 class ClientTest extends TestCase
 {
@@ -38,10 +38,8 @@ class ClientTest extends TestCase
     }
     
     /**
-     * testGetAttachments
-     * 
-     * Using the 200 attachments fixture, test that we get an array of attachemtns back.
      * @covers InShore\Bookwhen\Client::getAttachments
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetAttachments()
     {

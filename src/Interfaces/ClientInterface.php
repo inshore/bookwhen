@@ -137,7 +137,7 @@ interface ClientInterface
      * 
      * @param string $locationId of location to retrieve
      * 
-     * @return objectlocation.
+     * @return object location.
      */
     public function getLocation($locationId);
     

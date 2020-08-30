@@ -108,7 +108,7 @@ class Validator implements ValidatorInterface
                 }
 
                 return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
-                break;
+
             case 'event':
                 
                 $exploded = explode('-', $Id);
@@ -127,7 +127,6 @@ class Validator implements ValidatorInterface
                 }
                 
                 return $this->validDate($exploded[2]);
-                break;
             
             case 'ticket':
                 $exploded = explode('-', $Id);
@@ -150,13 +149,11 @@ class Validator implements ValidatorInterface
                 }
                 
                 return v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[3]);
-                break;
             
             case 'attachment':
             case 'location':
             default:
                 return v::alnum()->length(12, 12)->validate($Id);
-                break;
         }
     } 
 

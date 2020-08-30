@@ -47,6 +47,15 @@ class Client implements ClientInterface
 
     private $include;
     
+    /** @var string The path to the log file */
+    private $log;
+    
+    /** @var object loging object. */
+    private $logger;
+    
+    /** @var string the logging level. */
+    private $logging;
+    
     private $validator;
     
     private $guzzleClient;
@@ -73,11 +82,11 @@ class Client implements ClientInterface
         ]);
         
         if ($token === null) {
-            if (self::$token === null) {
-                $msg = 'No token provided, and none is globally set. ';
-                $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-                throw new ConfigurationException($msg);
-            }
+//             if (self::$token === null) {
+//                 $msg = 'No token provided, and none is globally set. ';
+//                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+//                 throw new ConfigurationException($msg);
+//             }
         } else {
             if ($this->validator->validToken($token)) {
                 self::$token = $token;
@@ -125,7 +134,8 @@ class Client implements ClientInterface
     }
     
     /**
-     * @todo
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getAttachment()
      */
     public function getAttachment($attachmentId)
     {
@@ -203,7 +213,7 @@ class Client implements ClientInterface
             $return = $classPass;
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e->getMessage(), $this->logger);
         }
     }
     
@@ -279,12 +289,12 @@ class Client implements ClientInterface
         // Validate $tags.
         if (!empty($tags)) {
             if (!is_array($tags)) {
-                throw new ValidationException();
+                throw new ValidationException('tags', implode(' ', $tags));
             } else {
                 $tags = array_unique($tags);
                 foreach ($tags as $tag) {
                     if (!empty($tag) && !$this->validator->validTag($tag)) {
-                        throw new ValidationException();
+                        throw new ValidationException('tag', $tag);
                     }
                 }
             }
@@ -319,7 +329,7 @@ class Client implements ClientInterface
         if (!empty($includeLocation)) {
             if (!$this->validator->validInclude($includeLocation)) {
                 throw new ValidationException('include', $includeLocation);
-            } else if($includeLocation) {
+            } else if ($includeLocation) {
                 $include[] = 'location';
             }
         }
@@ -338,7 +348,7 @@ class Client implements ClientInterface
             if (!$this->validator->validInclude($includeTickets)) {
                 throw new ValidationException('include', $includeTickets);
             } else if ($includeTickets) {
-                    $include[] = 'tickets';
+                $include[] = 'tickets';
             }
         }
         
@@ -394,7 +404,7 @@ class Client implements ClientInterface
     public function getLocation($locationId)
     {
         $this->apiResource = $this->apiVersion . '/locations';
-        if (!$this->Validator->validId($locationId, 'location')) {
+        if (!$this->validator->validId($locationId, 'location')) {
             throw new ValidationException('locationId', $locationId);
         }
         
@@ -405,7 +415,7 @@ class Client implements ClientInterface
             $return = $location;
             return $return;
         } catch (Exception $e) {
-            throw new RestException($e->getMessage());
+            throw new RestException($e->getMessage(), $this->logger);
         }
 
     }
@@ -442,7 +452,7 @@ class Client implements ClientInterface
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getTicket()
      */
     public function getTicket($ticketId)
-    {        
+    {
         if (!$this->validator->validId($ticketId, 'ticket')) {
             throw new ValidationException('ticketId', $ticketId);
         }

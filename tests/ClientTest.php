@@ -15,9 +15,10 @@ use InShore\Bookwhen\Exceptions\ValidationException;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @author Daniel Mullin daniel@inshore.je
+ * @author Brandon Lubbehusen brandon@inshore.je
  * 
- * @author danielmullin
- * @covers InShore\Bookwhen\Client::_construct
+ * @uses InShore\Bookwhen\Client
  */
 class ClientTest extends TestCase
 {
@@ -38,10 +39,8 @@ class ClientTest extends TestCase
     }
     
     /**
-     * testGetAttachments
-     * 
-     * Using the 200 attachments fixture, test that we get an array of attachemtns back.
      * @covers InShore\Bookwhen\Client::getAttachments
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetAttachments()
     {
@@ -54,6 +53,8 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getAttachment
+     * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
     public function testGetAttachmentWithInValidAttachmentId()
     {
@@ -65,6 +66,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getAttachment
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetAttachmentWithValidAttachmentId()
     {
@@ -77,6 +79,8 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getEvent
+     * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
     public function testGetEventWithValidEventId()
     { 
@@ -89,6 +93,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getTicket
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetTicketWithValidTicketId()
     {
@@ -100,6 +105,8 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getTickets
+     * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
     public function testGetTicketsWithInValidEventId()
     {
@@ -112,6 +119,7 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::getTickets
+     * @uses InShore\Bookwhen\Validator
      */
     public function testGetTicketsWithValidEventId()
     {

@@ -50,10 +50,10 @@ class Client implements ClientInterface
     /** @var string The path to the log file */
     private $log;
     
-    /** @var the loging object. */
+    /** @var object loging object. */
     private $logger;
     
-    /** @var the logging level. */
+    /** @var string the logging level. */
     private $logging;
     
     private $validator;

@@ -329,7 +329,7 @@ class Client implements ClientInterface
         if (!empty($includeLocation)) {
             if (!$this->validator->validInclude($includeLocation)) {
                 throw new ValidationException('include', $includeLocation);
-            } else if($includeLocation) {
+            } else if ($includeLocation) {
                 $include[] = 'location';
             }
         }
@@ -348,7 +348,7 @@ class Client implements ClientInterface
             if (!$this->validator->validInclude($includeTickets)) {
                 throw new ValidationException('include', $includeTickets);
             } else if ($includeTickets) {
-                    $include[] = 'tickets';
+                $include[] = 'tickets';
             }
         }
         
@@ -452,7 +452,7 @@ class Client implements ClientInterface
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getTicket()
      */
     public function getTicket($ticketId)
-    {        
+    {
         if (!$this->validator->validId($ticketId, 'ticket')) {
             throw new ValidationException('ticketId', $ticketId);
         }

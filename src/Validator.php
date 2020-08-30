@@ -149,7 +149,6 @@ class Validator implements ValidatorInterface
                 }
                 
                 return v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[3]);
-                break;
             
             case 'attachment':
             case 'location':

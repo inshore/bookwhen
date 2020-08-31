@@ -11,25 +11,12 @@ interface ValidatorInterface
      *
      */
     public function __construct();
-
-    /**
-     * @param string $id
-     * @return bool
-     */
-    public function validClassPassId($id);
-    
-        
+      
     /**
      * @param string $date
      * @return bool
      */
     public function validDate($date);
-
-    /**
-     * @param string $id
-     * @return bool
-     */
-    public function validEventId($id);
 
     /**
      * @param string $fileName
@@ -67,12 +54,6 @@ interface ValidatorInterface
      * @param string $tag
      */
     public function validTag($tag);
-
-    /**
-     * @param string $id
-     * @return bool
-     */
-    public function validTicketId($id);
 
     /**
      * @param string $title

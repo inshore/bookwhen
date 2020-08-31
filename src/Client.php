@@ -12,12 +12,9 @@ use InShore\Bookwhen\Exceptions\RestException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use InShore\Bookwhen\Interfaces\ClientInterface;
 use InShore\Bookwhen\Validator;
-use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Http\Message\ResponseInterface;
-use phpDocumentor\Reflection\Types\Null_;
-
 
 /**
  * Class Client
@@ -62,9 +59,8 @@ class Client implements ClientInterface
     private $guzzleClient;
     
     /**
-     * @param string|null $token The API access token, as obtained on diffbot.com/dev
-     * @throws DiffbotException When no token is provided
-     * @todo flip default debug back to emergency.
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::__construct()
      */
     public function __construct($token = null, $debug = 'DEBUG')
     {
@@ -114,7 +110,8 @@ class Client implements ClientInterface
     }
     
     /**
-     * @todo debug flag
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::request()
      */
     protected function request(): ResponseInterface
     {

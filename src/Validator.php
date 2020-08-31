@@ -19,12 +19,18 @@ class Validator implements ValidatorInterface
     }
     
     /**
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validClassPassId()
+     * 
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     * 
+     * @access protected
+     *
+     * @param string $classPassId
+     * @return bool
      */
-    protected function validClassPassId($id): bool 
+    protected function validClassPassId($classPassId): bool 
     {
-        $exploded = explode('-', $id);
+        $exploded = explode('-', $classPassId);
         
         if (count($exploded) !== 2) {
             return false;
@@ -39,12 +45,17 @@ class Validator implements ValidatorInterface
     }
 
     /**
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validEventId()
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     * 
+     * @access protected
+     *
+     * @param string $eventId
+     * @return bool
      */
-    protected function validEventId($id): bool 
+    protected function validEventId($eventId): bool 
     {
-        $exploded = explode('-', $id);
+        $exploded = explode('-', $eventId);
                 
         if (count($exploded) !== 3) {
             return false;
@@ -63,13 +74,18 @@ class Validator implements ValidatorInterface
     }
 
     /**
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTicketId()
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     * 
+     * @access protected
+     *
+     * @param string $ticketId
+     * @return bool
      */
-    protected function validTicketId($id): bool 
+    protected function validTicketId($ticketId): bool 
     {
 
-        $exploded = explode('-', $id);
+        $exploded = explode('-', $ticketId);
                 
         if (count($exploded) !== 4) {
             return false;

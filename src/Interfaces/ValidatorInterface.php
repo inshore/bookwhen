@@ -11,36 +11,55 @@ interface ValidatorInterface
      *
      */
     public function __construct();
+
+    /**
+     * @param string $id
+     * @return bool
+     */
+    public function validClassPassId($id);
+    
         
     /**
      * @param string $date
+     * @return bool
      */
     public function validDate($date);
 
     /**
+     * @param string $id
+     * @return bool
+     */
+    public function validEventId($id);
+
+    /**
      * @param string $fileName
+     * @return bool
      */
     public function validFileName($fileName);
 
     /**
      * @param string $fileType
+     * @return bool
      */
     public function validFileType($fileType);
     
     /**
      * @param string $from
      * @param string $to
+     * @return bool
      */
     public function validFrom($from, $to);
     
     /**
      * @param string $id
      * @param string $type
+     * @return bool
      */
     public function validId($id, $type);
 
     /**
      * @param string $include
+     * @return bool
      */
     public function validInclude($include);
     
@@ -50,18 +69,27 @@ interface ValidatorInterface
     public function validTag($tag);
 
     /**
+     * @param string $id
+     * @return bool
+     */
+    public function validTicketId($id);
+
+    /**
      * @param string $title
+     * @return bool
      */
     public function validTitle($title);
     
     /**
      * @param string $to
      * @param string|null $from
+     * @return bool
      */
     public function validTo($to, $from);
     
     /**
      * @param string $token
+     * @return bool
      */
     public function validToken($token);
 

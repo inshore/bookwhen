@@ -295,7 +295,7 @@ class Client implements ClientInterface
         $includeTicketsEvents = false,
         $includeTicketsClassPasses = false): array
     {    
-        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), 1) . ')');
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         
         // Validate $tags.
         if (!empty($tags)) {
@@ -365,11 +365,11 @@ class Client implements ClientInterface
         
         // Validate $includeTicketsEvents;
         if (!empty($includeTicketsEvents)) {
-           if (!$this->validator->validInclude($includeTicketsEvents)) {
-               throw new ValidationException('include', $includeTicketsEvents);
-           } else if ($includeTicketsEvents) {
-               $include[] = 'tickets.events';
-           }
+            if (!$this->validator->validInclude($includeTicketsEvents)) {
+                throw new ValidationException('include', $includeTicketsEvents);
+            } else if ($includeTicketsEvents) {
+                $include[] = 'tickets.events';
+            }
         }
 
         // Validate $includeTicketsEvents;

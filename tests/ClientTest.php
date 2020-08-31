@@ -39,7 +39,9 @@ class ClientTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getAttachments
+     * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
      */
     public function testGetAttachments()
@@ -52,7 +54,9 @@ class ClientTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getAttachment
+     * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
      * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
@@ -65,7 +69,9 @@ class ClientTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getAttachment
+     * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
      */
     public function testGetAttachmentWithValidAttachmentId()
@@ -77,7 +83,9 @@ class ClientTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getEvent
+     * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
      * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
@@ -89,9 +97,26 @@ class ClientTest extends TestCase
         $this->assertEquals('ev-sboe-20200320100000', $event->id);
         $this->assertFalse($event->soldOut, 'Not sold Out');
     }
+
+    /**
+     * @covers InShore\Bookwhen\Client::__construct
+     * @covers InShore\Bookwhen\Client::getEvents
+     * @covers InShore\Bookwhen\Client::request
+     * @uses InShore\Bookwhen\Validator
+     */
+    public function testGetEvents()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/events_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $events = $this->client->getEvents();
+        $this->assertIsArray($events);
+        $this->assertEquals('ev-sboe-20200320100000', $events[0]->id);
+    }
     
     /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getTicket
+     * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
      */
     public function testGetTicketWithValidTicketId()
@@ -103,7 +128,9 @@ class ClientTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getTickets
+     * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
      * @uses InShore\Bookwhen\Exceptions\ValidationException
      */
@@ -117,7 +144,9 @@ class ClientTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getTickets
+     * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
      */
     public function testGetTicketsWithValidEventId()

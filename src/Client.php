@@ -16,6 +16,7 @@ use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Http\Message\ResponseInterface;
+use phpDocumentor\Reflection\Types\Null_;
 
 
 /**
@@ -63,8 +64,9 @@ class Client implements ClientInterface
     /**
      * @param string|null $token The API access token, as obtained on diffbot.com/dev
      * @throws DiffbotException When no token is provided
+     * @todo flip default debug back to emergency.
      */
-    public function __construct($token = null)
+    public function __construct($token = null, $debug = 'debug')
     {
         
         $this->apiBaseUri = 'https://api.bookwhen.com/';
@@ -95,12 +97,12 @@ class Client implements ClientInterface
         }
         
         if (empty($this->logging)) {
-            $this->logging = 'debug';
+            $this->logging = 'info';
             $this->log = 'inShoreBookwhen.log';
         }
         
         $this->logger = new Logger('inShore Bookwhen API');
-        $this->logger->pushHandler(new StreamHandler($this->log, Logger::DEBUG));
+        $this->logger->pushHandler(new StreamHandler($this->log, Logger::EMERGENCY));
         $this->logger->info('Client class successfully instantiated');
         $this->logger->debug(var_export($this, true));
     }
@@ -110,6 +112,7 @@ class Client implements ClientInterface
      */
     protected function request(): ResponseInterface
     {
+        $this->logger->debug(__METHOD__ . '()');
         try {
             // Authorization.
             $requestOptions = [
@@ -139,6 +142,7 @@ class Client implements ClientInterface
      */
     public function getAttachment($attachmentId)
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         if (!$this->validator->validId($attachmentId, 'attachment')) {
             throw new ValidationException('attachmentId', $attachmentId);
         }
@@ -162,6 +166,7 @@ class Client implements ClientInterface
      */
     public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
         }
@@ -198,6 +203,7 @@ class Client implements ClientInterface
      */
     public function getClassPass($classPassId)
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         $this->apiResource = $this->apiVersion . '/class_passes';
        
         if (!$this->validator->validId($classPassId, 'classPass')) {
@@ -229,6 +235,8 @@ class Client implements ClientInterface
         $usageAllowance = null, 
         $useRestrictedForDays = null): array
     {   
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+        
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
         }
@@ -284,6 +292,8 @@ class Client implements ClientInterface
         $includeTicketsEvents = false,
         $includeTicketsClassPasses = false): array
     {    
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), 1) . ')');
+        
         // Validate $tags.
         if (!empty($tags)) {
             if (!is_array($tags)) {
@@ -476,6 +486,7 @@ class Client implements ClientInterface
      */
     public function getTickets($eventId): array
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
         }

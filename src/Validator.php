@@ -23,7 +23,7 @@ class Validator implements ValidatorInterface
      * @param string $id
      * @return bool
      */
-    protected function validClassPass($id): bool 
+    protected function validClassPassId($id): bool 
     {
         $exploded = explode('-', $id);
         
@@ -117,7 +117,7 @@ class Validator implements ValidatorInterface
 
         switch ($type) {
             case 'classPass':
-                return $this->validClassPass($id);
+                return $this->validClassPassId($id);
 
             case 'event':
                 

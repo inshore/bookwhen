@@ -3,13 +3,16 @@
 namespace InShore\Bookwhen\Interfaces;
 
 
+use InShore\Bookwhen\Exceptions\RestException;
+
 interface ClientInterface
 {
 
     /**
      * @param string $token.
+     * @param string $debug.
      */
-    public function __construct($token);
+    public function __construct($token, $debug);
     
     /**
      * API wrapper to getAttachment.
@@ -21,7 +24,10 @@ interface ClientInterface
      * 
      * @param string $attachmentId ID of attachment to retrieve.
      * 
-     * @return attachment object.
+     * @return object attachment.
+     * 
+     * @throws ValidationException if any supplied parameter is invalid.
+     * @throws RestException if an error occurs during API interation.
      */
     public function getAttachment($attachmentId);
     
@@ -37,7 +43,10 @@ interface ClientInterface
      * @param string $fileName Filter on the file name.
      * @param string $fileType Filter on the file type.
      * 
-     * @return attachments objects array.
+     * @return array of attachment objects.
+     * 
+     * @throws ValidationException if any supplied parameter is invalid.
+     * @throws RestException if an error occurs during API interation.
      */
     public function getAttachments($title, $fileName, $fileType);
     
@@ -51,7 +60,10 @@ interface ClientInterface
      * 
      * @param string $classPassId required ID of class pass to retrieve.
      * 
-     * @return class pass object.
+     * @return object class pass.
+     * 
+     * @throws ValidationException if any supplied parameter is invalid.
+     * @throws RestException if an error occurs during API interation.
      */
     public function getClassPass($classPassId);
     
@@ -70,7 +82,7 @@ interface ClientInterface
      * @param string $usagAallowance Filter on pass usage allowance. This also accepts a comparison operator like cost.
      * @param string $useRestrictedForDays Filter on pass days restriction. This also accepts a comparison operator like cost.
      * 
-     * @return class passes object array.
+     * @return array of class passes objects.
      */
     public function getClassPasses($title, $detail, $usageType, $cost, $usageAllowance, $useRestrictedForDays);
 
@@ -84,7 +96,7 @@ interface ClientInterface
      * 
      * @param string $eventId ID of account to retrieve.
      *
-     * @return event object.
+     * @return object of the event.
      */
     public function getEvent($eventId);
     
@@ -98,9 +110,9 @@ interface ClientInterface
      * 
      * @copyright inShore Ltd (Jersey)
      * 
-     * @param unknown calendar
-     * @param unknown entry
-     * @param array location Array of location slugs to include.
+     * @param string $calendar
+     * @param string $entry
+     * @param array $location Array of location slugs to include.
      * @param array $tags Array of tags to include.
      * @param array $title Array of titles to search for.
      * @param array $detail Array of details to search for.
@@ -112,7 +124,7 @@ interface ClientInterface
      * @param bool $includeTicketsEvents
      * @param bool $includeTicketsClassPasses
      * 
-     * @return events object array.
+     * @return array of events objects.
      */
     public function getEvents($calendar, $entry, $location, $tags, $title, $detail, $from, $to, $includeLocation, $includeAttachments, $includeTickets, $includeTicketsEvents, $includeTicketsClassPasses);
     
@@ -124,9 +136,9 @@ interface ClientInterface
      * 
      * @access public 
      * 
-     * @param string ID of location to retrieve
+     * @param string $locationId of location to retrieve
      * 
-     * @return location object.
+     * @return object location.
      */
     public function getLocation($locationId);
     
@@ -141,7 +153,7 @@ interface ClientInterface
      * @param string $addressText Restrict to locations containing the address text filter.
      * @param string $additionalInfo Filter by the text contained in the additional info.
      * 
-     * @return locations objects array.
+     * @return array of location objects.
      */
     public function getLocations($addressText, $additionalInfo);
     
@@ -155,7 +167,7 @@ interface ClientInterface
      * 
      * @param string $ticketId ID of ticket to retrieve.
      * 
-     * @return ticket object.
+     * @return object ticket.
      */
     public function getTicket($ticketId);
     
@@ -169,7 +181,7 @@ interface ClientInterface
      * 
      * @param string $eventId The ID of the event to list tickets for.
      * 
-     * @return tickets object array.
+     * @return array of ticket objects.
      */
     public function getTickets($eventId);
 

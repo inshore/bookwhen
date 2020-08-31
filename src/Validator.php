@@ -20,6 +20,95 @@ class Validator implements ValidatorInterface
     
     /**
      * 
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     * 
+     * @access protected
+     *
+     * @param string $classPassId
+     * @return bool
+     */
+    protected function validClassPassId($classPassId): bool 
+    {
+        $exploded = explode('-', $classPassId);
+        
+        if (count($exploded) !== 2) {
+            return false;
+        }
+    
+        if ($exploded[0] !== 'cp') {
+            return false;
+        }
+    
+        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+    
+    }
+
+    /**
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     * 
+     * @access protected
+     *
+     * @param string $eventId
+     * @return bool
+     */
+    protected function validEventId($eventId): bool 
+    {
+        $exploded = explode('-', $eventId);
+                
+        if (count($exploded) !== 3) {
+            return false;
+        }
+        
+        if ($exploded[0] !== 'ev') {
+            return false;
+        }
+        
+        // Syntax.
+        if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
+            return false;
+        }
+        
+        return $this->validDate($exploded[2]);
+    }
+
+    /**
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     * 
+     * @access protected
+     *
+     * @param string $ticketId
+     * @return bool
+     */
+    protected function validTicketId($ticketId): bool 
+    {
+
+        $exploded = explode('-', $ticketId);
+                
+        if (count($exploded) !== 4) {
+            return false;
+        }
+    
+        if ($exploded[0] !== 'ti') {
+            return false;
+        }
+    
+        // Syntax.
+        if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
+            return false;
+        }
+    
+        if (!$this->validDate($exploded[2])) {
+            return false;
+        }
+    
+        return v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[3]);
+        }
+    
+    /**
+     * 
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validDate()
      */
@@ -85,75 +174,29 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validId()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validid()
      * @todo
      */
-    public function validId($Id, $type = null): bool 
+    public function validid($id, $type = null): bool 
     {
-        if (!v::stringType()->notEmpty()->validate($Id)) {
+        if (!v::stringType()->notEmpty()->validate($id)) {
             return false;
         }
 
         switch ($type) {
             case 'classPass':
-
-                $exploded = explode('-', $Id);
-                
-                if (count($exploded) !== 2) {
-                    return false;
-                }
-
-                if ($exploded[0] !== 'cp') {
-                    return false;
-                }
-
-                return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+                return $this->validClassPassId($id);
 
             case 'event':
+                return $this->validEventId($id);
                 
-                $exploded = explode('-', $Id);
-                
-                if (count($exploded) !== 3) {
-                    return false;
-                }
-                
-                if ($exploded[0] !== 'ev') {
-                    return false;
-                }
-                
-                // Syntax.
-                if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
-                    return false;
-                }
-                
-                return $this->validDate($exploded[2]);
-            
             case 'ticket':
-                $exploded = explode('-', $Id);
-                
-                if (count($exploded) !== 4) {
-                    return false;
-                }
-                
-                if ($exploded[0] !== 'ti') {
-                    return false;
-                }
-                
-                // Syntax.
-                if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
-                    return false;
-                }
-                
-                if (!$this->validDate($exploded[2])) {
-                    return false;
-                }
-                
-                return v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[3]);
+                return $this->validTicketId($id);
             
             case 'attachment':
             case 'location':
             default:
-                return v::alnum()->length(12, 12)->validate($Id);
+                return v::alnum()->length(12, 12)->validate($id);
         }
     } 
 

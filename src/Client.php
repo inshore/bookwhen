@@ -12,11 +12,9 @@ use InShore\Bookwhen\Exceptions\RestException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use InShore\Bookwhen\Interfaces\ClientInterface;
 use InShore\Bookwhen\Validator;
-use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Http\Message\ResponseInterface;
-
 
 /**
  * Class Client
@@ -40,7 +38,7 @@ class Client implements ClientInterface
     private $apiBaseUri;
     
     private $apiQuery;
-   
+
     private $apiResource;
     
     private $apiVersion;
@@ -61,32 +59,37 @@ class Client implements ClientInterface
     private $guzzleClient;
     
     /**
-     * @param string|null $token The API access token, as obtained on diffbot.com/dev
-     * @throws DiffbotException When no token is provided
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::__construct()
      */
-    public function __construct($token = null)
+    public function __construct($token = null, $debug = 'DEBUG')
     {
-        
-        $this->apiBaseUri = 'https://api.bookwhen.com/';
-            
-        $this->apiQuery = [];
-        
-        $this->apiVersion = 'v2';
-
-        $this->include = [];
+        // Logging.
+        // 'DEBUG',
+        // 'INFO',
+        // 'NOTICE',
+        // 'WARNING',
+        // 'ERROR',
+        // 'CRITICAL',
+        // 'ALERT',
+        // 'EMERGENCY',
+        if (empty($this->logging)) {
+            $this->logging = 'DEBUG';
+            $this->log = 'inShoreBookwhen.log';
+        }
+        $this->logger = new Logger('inShore Bookwhen API');
+        $this->logger->pushHandler(new StreamHandler($this->log, Logger::getLevels()[$this->logging]));
         
         $this->validator = new Validator();
         
-        $this->guzzleClient = new GuzzleClient([
-            'base_uri' => $this->apiBaseUri
-        ]);
+        $this->include = [];
         
         if ($token === null) {
-//             if (self::$token === null) {
-//                 $msg = 'No token provided, and none is globally set. ';
-//                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-//                 throw new ConfigurationException($msg);
-//             }
+            //             if (self::$token === null) {
+            //                 $msg = 'No token provided, and none is globally set. ';
+            //                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+            //                 throw new ConfigurationException($msg);
+            //             }
         } else {
             if ($this->validator->validToken($token)) {
                 self::$token = $token;
@@ -94,22 +97,25 @@ class Client implements ClientInterface
             }
         }
         
-        if (empty($this->logging)) {
-            $this->logging = 'debug';
-            $this->log = 'inShoreBookwhen.log';
-        }
+        $this->apiBaseUri = 'https://api.bookwhen.com/';    
+        $this->apiQuery = [];
+        $this->apiVersion = 'v2';
         
-        $this->logger = new Logger('inShore Bookwhen API');
-        $this->logger->pushHandler(new StreamHandler($this->log, Logger::DEBUG));
+        $this->guzzleClient = new GuzzleClient([
+            'base_uri' => $this->apiBaseUri
+        ]);
+        
         $this->logger->info('Client class successfully instantiated');
         $this->logger->debug(var_export($this, true));
     }
     
     /**
-     * @todo debug flag
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ClientInterface::request()
      */
     protected function request(): ResponseInterface
     {
+        $this->logger->debug(__METHOD__ . '()');
         try {
             // Authorization.
             $requestOptions = [
@@ -122,12 +128,12 @@ class Client implements ClientInterface
             if (!empty($this->apiQuery) && is_array($this->apiQuery)) {
                 $requestOptions['query'] = $this->apiQuery;
             }
-   
+
             $this->logger->debug('request(GET, ' . $this->apiResource . ', ' . var_export($requestOptions, true) . ')');
             $requestOptions['debug'] = true;
             
             return $this->guzzleClient->request('GET', $this->apiResource, $requestOptions);
-           
+        
         } catch (Exception $e) {
             throw new RestException($e, $this->logger);
         }
@@ -139,11 +145,12 @@ class Client implements ClientInterface
      */
     public function getAttachment($attachmentId)
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         if (!$this->validator->validId($attachmentId, 'attachment')) {
             throw new ValidationException('attachmentId', $attachmentId);
         }
         $this->apiResource = $this->apiVersion . '/attachments' . '/' . $attachmentId;
-     
+    
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
@@ -159,10 +166,10 @@ class Client implements ClientInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getAttachments()
-     * @todo is ! empty then tests each optional param and write validator method.
      */
     public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
         }
@@ -170,8 +177,7 @@ class Client implements ClientInterface
         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
             throw new ValidationException('file name', $fileName);
         }
-
-
+        
         if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
             throw new ValidationException('file type', $fileType);
         }
@@ -200,16 +206,17 @@ class Client implements ClientInterface
      */
     public function getClassPass($classPassId)
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         $this->apiResource = $this->apiVersion . '/class_passes';
-       
+    
         if (!$this->validator->validId($classPassId, 'classPass')) {
             throw new ValidationException('classPassId', $classPassId);
         }
-     
+
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $classPass = $body->data[0];
+            $classPass = $body->data;
             $return = $classPass;
             return $return;
         } catch (Exception $e) {
@@ -226,20 +233,34 @@ class Client implements ClientInterface
     public function getClassPasses(
         $title = null, 
         $detail = null, 
-        $usageType, 
+        $usageType = null,
         $cost = null, 
         $usageAllowance = null, 
         $useRestrictedForDays = null): array
     {   
+        
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+        
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
         }
-       
-        $this->apiResource = $this->apiVersion . '/???';
+
+        $this->apiResource = $this->apiVersion . '/class_passes';
+
+        $return = [];
         
-        // @todo prepocess response onto nice model objects.
-        $Response = $this->request();
-        return json_decode($Response->getBody()->getContents());
+        try {
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            
+            foreach ($body->data as $classPass) {
+                array_push($return, $classPass);
+            }
+            
+            return $return;
+        } catch (Exception $e) {
+            throw new RestException($e, $this->logger);
+        }
     }
     
     /**
@@ -249,11 +270,13 @@ class Client implements ClientInterface
      */
     public function getEvent($eventId)
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+        
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
         }
         $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
-     
+    
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
@@ -285,7 +308,10 @@ class Client implements ClientInterface
         $includeTickets = false,
         $includeTicketsEvents = false,
         $includeTicketsClassPasses = false): array
-    {    
+    {   
+        
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+        
         // Validate $tags.
         if (!empty($tags)) {
             if (!is_array($tags)) {
@@ -354,11 +380,11 @@ class Client implements ClientInterface
         
         // Validate $includeTicketsEvents;
         if (!empty($includeTicketsEvents)) {
-           if (!$this->validator->validInclude($includeTicketsEvents)) {
-               throw new ValidationException('include', $includeTicketsEvents);
-           } else if ($includeTicketsEvents) {
-               $include[] = 'tickets.events';
-           }
+            if (!$this->validator->validInclude($includeTicketsEvents)) {
+                throw new ValidationException('include', $includeTicketsEvents);
+            } else if ($includeTicketsEvents) {
+                $include[] = 'tickets.events';
+            }
         }
 
         // Validate $includeTicketsEvents;
@@ -411,7 +437,7 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $location = $body->data[0];
+            $location = $body->data;
             $return = $location;
             return $return;
         } catch (Exception $e) {
@@ -478,6 +504,7 @@ class Client implements ClientInterface
      */
     public function getTickets($eventId): array
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
         }

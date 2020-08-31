@@ -38,7 +38,7 @@ class Client implements ClientInterface
     private $apiBaseUri;
     
     private $apiQuery;
-   
+
     private $apiResource;
     
     private $apiVersion;
@@ -128,12 +128,12 @@ class Client implements ClientInterface
             if (!empty($this->apiQuery) && is_array($this->apiQuery)) {
                 $requestOptions['query'] = $this->apiQuery;
             }
-   
+
             $this->logger->debug('request(GET, ' . $this->apiResource . ', ' . var_export($requestOptions, true) . ')');
             $requestOptions['debug'] = true;
             
             return $this->guzzleClient->request('GET', $this->apiResource, $requestOptions);
-           
+        
         } catch (Exception $e) {
             throw new RestException($e, $this->logger);
         }
@@ -150,7 +150,7 @@ class Client implements ClientInterface
             throw new ValidationException('attachmentId', $attachmentId);
         }
         $this->apiResource = $this->apiVersion . '/attachments' . '/' . $attachmentId;
-     
+    
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
@@ -208,11 +208,11 @@ class Client implements ClientInterface
     {
         $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         $this->apiResource = $this->apiVersion . '/class_passes';
-       
+    
         if (!$this->validator->validId($classPassId, 'classPass')) {
             throw new ValidationException('classPassId', $classPassId);
         }
-     
+
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
@@ -233,7 +233,7 @@ class Client implements ClientInterface
     public function getClassPasses(
         $title = null, 
         $detail = null, 
-        $usageType, 
+        $usageType = null,
         $cost = null, 
         $usageAllowance = null, 
         $useRestrictedForDays = null): array
@@ -244,12 +244,23 @@ class Client implements ClientInterface
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
         }
-       
-        $this->apiResource = $this->apiVersion . '/???';
+
+        $this->apiResource = $this->apiVersion . '/class_passes';
+
+        $return = [];
         
-        // @todo prepocess response onto nice model objects.
-        $Response = $this->request();
-        return json_decode($Response->getBody()->getContents());
+        try {
+            $Response = $this->request();
+            $body = json_decode($Response->getBody()->getContents());
+            
+            foreach ($body->data as $classPass) {
+                array_push($return, $classPass);
+            }
+            
+            return $return;
+        } catch (Exception $e) {
+            throw new RestException($e, $this->logger);
+        }
     }
     
     /**
@@ -265,7 +276,7 @@ class Client implements ClientInterface
             throw new ValidationException('eventId', $eventId);
         }
         $this->apiResource = $this->apiVersion . '/events' . '/' . $eventId;
-     
+    
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());

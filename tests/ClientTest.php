@@ -81,6 +81,21 @@ class ClientTest extends TestCase
         $attachment = $this->client->getAttachment('9v06h1cbv0en');
         $this->assertEquals('9v06h1cbv0en', $attachment->id);
     }
+
+    /**
+     * @covers InShore\Bookwhen\Client::__construct
+     * @covers InShore\Bookwhen\Client::getClassPasses
+     * @covers InShore\Bookwhen\Client::request
+     * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
+     */
+    public function testGetClassPasses()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/classpasses_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $classPasses = $this->client->getClassPasses();
+        $this->assertEquals('cp-vk3x1brhpsbf', $classPasses[0]->id);
+    }
     
     /**
      * @covers InShore\Bookwhen\Client::__construct

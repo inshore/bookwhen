@@ -216,7 +216,7 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $classPass = $body->data[0];
+            $classPass = $body->data;
             $return = $classPass;
             return $return;
         } catch (Exception $e) {
@@ -238,6 +238,7 @@ class Client implements ClientInterface
         $usageAllowance = null, 
         $useRestrictedForDays = null): array
     {   
+        
         $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         
         if (!is_null($title) && !$this->validator->validTitle($title)) {
@@ -258,6 +259,8 @@ class Client implements ClientInterface
      */
     public function getEvent($eventId)
     {
+        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+        
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
         }
@@ -294,7 +297,8 @@ class Client implements ClientInterface
         $includeTickets = false,
         $includeTicketsEvents = false,
         $includeTicketsClassPasses = false): array
-    {    
+    {   
+        
         $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
         
         // Validate $tags.

@@ -84,6 +84,21 @@ class ClientTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\Client::__construct
+     * @covers InShore\Bookwhen\Client::getClassPass
+     * @covers InShore\Bookwhen\Client::request
+     * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
+     */
+    public function testGetClassPassWithValidClassPassId()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/classpass_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $classPass = $this->client->getClassPass('cp-vk3x1brhpsbf');
+        $this->assertEquals('cp-vk3x1brhpsbf', $classPass->id);
+    }
+    
+    /**
+     * @covers InShore\Bookwhen\Client::__construct
      * @covers InShore\Bookwhen\Client::getEvent
      * @covers InShore\Bookwhen\Client::request
      * @uses InShore\Bookwhen\Validator
@@ -111,6 +126,22 @@ class ClientTest extends TestCase
         $events = $this->client->getEvents();
         $this->assertIsArray($events);
         $this->assertEquals('ev-sboe-20200320100000', $events[0]->id);
+        $this->assertFalse($events[0]->soldOut, 'Not sold Out');
+    }
+    
+    /**
+     * @covers InShore\Bookwhen\Client::__construct
+     * @covers InShore\Bookwhen\Client::getLocation
+     * @covers InShore\Bookwhen\Client::request
+     * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
+     */
+    public function testGetLocationWithValidLocationId()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/location_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $location = $this->client->getLocation('sjm7pskr31t3');
+        $this->assertEquals('sjm7pskr31t3', $location->id);
     }
     
     /**

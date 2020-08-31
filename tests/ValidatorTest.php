@@ -290,7 +290,10 @@ class ValidatorTest extends TestCase
         $this->assertTrue($this->validator->validTag($from, $to), $from);
     }
     /**
+     * @covers InShore\Bookwhen\Validator::validClassPassId
+     * @covers InShore\Bookwhen\Validator::validEventId
      * @covers InShore\Bookwhen\Validator::validId
+     * @covers InShore\Bookwhen\Validator::validTicketId
      * @dataProvider provideValidIds
      */
     public function testValidIdReturnsTrueOnValidIds($id, $type)

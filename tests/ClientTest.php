@@ -76,7 +76,6 @@ class ClientTest extends TestCase
         $this->assertEquals('9v06h1cbv0en', $attachment->id);
     }
     
-    
     /**
      * @covers InShore\Bookwhen\Client::getEvent
      * @uses InShore\Bookwhen\Validator

@@ -159,7 +159,6 @@ class Client implements ClientInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getAttachments()
-     * @todo is ! empty then tests each optional param and write validator method.
      */
     public function getAttachments($title = null, $fileName = null, $fileType = null): array
     {    
@@ -170,8 +169,7 @@ class Client implements ClientInterface
         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
             throw new ValidationException('file name', $fileName);
         }
-
-
+        
         if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
             throw new ValidationException('file type', $fileType);
         }

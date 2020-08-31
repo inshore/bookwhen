@@ -20,6 +20,27 @@ class Validator implements ValidatorInterface
     
     /**
      * 
+     * @param string $id
+     * @return bool
+     */
+    protected function validClassPass($id): bool 
+    {
+        $exploded = explode('-', $id);
+        
+        if (count($exploded) !== 2) {
+            return false;
+        }
+    
+        if ($exploded[0] !== 'cp') {
+            return false;
+        }
+    
+        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+    
+    }
+    
+    /**
+     * 
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validDate()
      */
@@ -85,33 +106,22 @@ class Validator implements ValidatorInterface
     /**
      * 
      * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validId()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validid()
      * @todo
      */
-    public function validId($Id, $type = null): bool 
+    public function validid($id, $type = null): bool 
     {
-        if (!v::stringType()->notEmpty()->validate($Id)) {
+        if (!v::stringType()->notEmpty()->validate($id)) {
             return false;
         }
 
         switch ($type) {
             case 'classPass':
-
-                $exploded = explode('-', $Id);
-                
-                if (count($exploded) !== 2) {
-                    return false;
-                }
-
-                if ($exploded[0] !== 'cp') {
-                    return false;
-                }
-
-                return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+                return $this->validClassPass($id);
 
             case 'event':
                 
-                $exploded = explode('-', $Id);
+                $exploded = explode('-', $id);
                 
                 if (count($exploded) !== 3) {
                     return false;
@@ -129,7 +139,7 @@ class Validator implements ValidatorInterface
                 return $this->validDate($exploded[2]);
             
             case 'ticket':
-                $exploded = explode('-', $Id);
+                $exploded = explode('-', $id);
                 
                 if (count($exploded) !== 4) {
                     return false;
@@ -153,7 +163,7 @@ class Validator implements ValidatorInterface
             case 'attachment':
             case 'location':
             default:
-                return v::alnum()->length(12, 12)->validate($Id);
+                return v::alnum()->length(12, 12)->validate($id);
         }
     } 
 

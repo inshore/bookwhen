@@ -10,8 +10,9 @@ interface ClientInterface
 
     /**
      * @param string $token.
+     * @param string $debug.
      */
-    public function __construct($token);
+    public function __construct($token, $debug);
     
     /**
      * API wrapper to getAttachment.

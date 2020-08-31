@@ -128,6 +128,21 @@ class ClientTest extends TestCase
         $this->assertEquals('ev-sboe-20200320100000', $events[0]->id);
         $this->assertFalse($events[0]->soldOut, 'Not sold Out');
     }
+
+    /**
+     * @covers InShore\Bookwhen\Client::__construct
+     * @covers InShore\Bookwhen\Client::getLocations
+     * @covers InShore\Bookwhen\Client::request
+     * @uses InShore\Bookwhen\Validator
+     * @uses InShore\Bookwhen\Exceptions\ValidationException
+     */
+    public function testGetLocations()
+    {
+        $this->mockHandler->append(new Response('200', [], file_get_contents(__DIR__ . '/fixtures/locations_200.json')));
+        $this->client->setGuzzleClient($this->guzzleClient);
+        $locations = $this->client->getLocations('sjm7pskr31t3');
+        $this->assertEquals('sjm7pskr31t3', $locations[0]->id);
+    }
     
     /**
      * @covers InShore\Bookwhen\Client::__construct
@@ -143,6 +158,7 @@ class ClientTest extends TestCase
         $location = $this->client->getLocation('sjm7pskr31t3');
         $this->assertEquals('sjm7pskr31t3', $location->id);
     }
+
     
     /**
      * @covers InShore\Bookwhen\Client::__construct

@@ -66,29 +66,34 @@ class Client implements ClientInterface
      * @throws DiffbotException When no token is provided
      * @todo flip default debug back to emergency.
      */
-    public function __construct($token = null, $debug = 'debug')
+    public function __construct($token = null, $debug = 'DEBUG')
     {
-        
-        $this->apiBaseUri = 'https://api.bookwhen.com/';
-            
-        $this->apiQuery = [];
-        
-        $this->apiVersion = 'v2';
-
-        $this->include = [];
+        // Logging.
+        // 'DEBUG',
+        // 'INFO',
+        // 'NOTICE',
+        // 'WARNING',
+        // 'ERROR',
+        // 'CRITICAL',
+        // 'ALERT',
+        // 'EMERGENCY',
+        if (empty($this->logging)) {
+            $this->logging = 'DEBUG';
+            $this->log = 'inShoreBookwhen.log';
+        }
+        $this->logger = new Logger('inShore Bookwhen API');
+        $this->logger->pushHandler(new StreamHandler($this->log, Logger::getLevels()[$this->logging]));
         
         $this->validator = new Validator();
         
-        $this->guzzleClient = new GuzzleClient([
-            'base_uri' => $this->apiBaseUri
-        ]);
+        $this->include = [];
         
         if ($token === null) {
-//             if (self::$token === null) {
-//                 $msg = 'No token provided, and none is globally set. ';
-//                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-//                 throw new ConfigurationException($msg);
-//             }
+            //             if (self::$token === null) {
+            //                 $msg = 'No token provided, and none is globally set. ';
+            //                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+            //                 throw new ConfigurationException($msg);
+            //             }
         } else {
             if ($this->validator->validToken($token)) {
                 self::$token = $token;
@@ -96,13 +101,14 @@ class Client implements ClientInterface
             }
         }
         
-        if (empty($this->logging)) {
-            $this->logging = 'info';
-            $this->log = 'inShoreBookwhen.log';
-        }
+        $this->apiBaseUri = 'https://api.bookwhen.com/';    
+        $this->apiQuery = [];
+        $this->apiVersion = 'v2';
         
-        $this->logger = new Logger('inShore Bookwhen API');
-        $this->logger->pushHandler(new StreamHandler($this->log, Logger::EMERGENCY));
+        $this->guzzleClient = new GuzzleClient([
+            'base_uri' => $this->apiBaseUri
+        ]);
+        
         $this->logger->info('Client class successfully instantiated');
         $this->logger->debug(var_export($this, true));
     }

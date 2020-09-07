@@ -282,6 +282,7 @@ class Client implements ClientInterface
             $body = json_decode($Response->getBody()->getContents());
             $event = $body->data;
             $event->soldOut = (bool) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
+            $event->availability = (integer) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
             $return = $event;
             return $return;
         } catch (Exception $e) {
@@ -412,6 +413,7 @@ class Client implements ClientInterface
             
             foreach ($body->data as $event) {
                 // Add additional properties here.
+                $event->availability = (int) ($event->attributes->attendee_limit - $event->attributes->attendee_count);
                 $event->soldOut = (bool) ($event->attributes->attendee_count >= $event->attributes->attendee_limit);
                 array_push($return, $event);
             }

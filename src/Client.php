@@ -127,6 +127,7 @@ class Client implements ClientInterface
             // Query.
             if (!empty($this->apiQuery) && is_array($this->apiQuery)) {
                 $requestOptions['query'] = $this->apiQuery;
+                $this->apiQuery = [];
             }
 
             $this->logger->debug('request(GET, ' . $this->apiResource . ', ' . var_export($requestOptions, true) . ')');

@@ -440,7 +440,7 @@ class Client implements ClientInterface
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $location = $body->data;
+            $location = $body->data[0];
             $return = $location;
             return $return;
         } catch (Exception $e) {

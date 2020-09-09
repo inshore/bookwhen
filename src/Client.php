@@ -432,15 +432,17 @@ class Client implements ClientInterface
      */
     public function getLocation($locationId)
     {
-        $this->apiResource = $this->apiVersion . '/locations';
+        
         if (!$this->validator->validId($locationId, 'location')) {
             throw new ValidationException('locationId', $locationId);
         }
         
+        $this->apiResource = $this->apiVersion . '/locations/' . $locationId;
+        
         try {
             $Response = $this->request();
             $body = json_decode($Response->getBody()->getContents());
-            $location = $body->data[0];
+            $location = $body->data;
             $return = $location;
             return $return;
         } catch (Exception $e) {

@@ -22,7 +22,7 @@ PHP 7.3 and later.
 **Composer**
 
 ``` bash
-$ composer require inshore/booknow
+$ composer require inshore/bookwhen
 ```
 
 ## Usage

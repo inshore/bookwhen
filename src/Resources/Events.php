@@ -9,7 +9,7 @@ use InShore\Bookwhen\Responses\Events\ListResponse;
 use InShore\Bookwhen\Responses\Events\RetrieveResponse;
 use InShore\Bookwhen\ValueObjects\Transporter\Payload;
 
-final class Files implements EventsContract
+final class Events implements EventsContract
 {
     use Concerns\Transportable;
 

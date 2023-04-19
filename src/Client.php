@@ -572,7 +572,7 @@ class Client implements ClientInterface
     
     public function events(): Events
     {
-        return new Events($this->transporter);
+        return new Events();
     }
     
     

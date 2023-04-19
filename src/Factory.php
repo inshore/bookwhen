@@ -10,7 +10,7 @@ use InShore\Bookwhen\Transporters\HttpTransporter;
 use InShore\Bookwhen\ValueObjects\ApiKey;
 use InShore\Bookwhen\ValueObjects\Transporter\BaseUri;
 use InShore\Bookwhen\ValueObjects\Transporter\Headers;
-use InShore\BookwhenI\ValueObjects\Transporter\QueryParams;
+//use InShore\BookwhenI\ValueObjects\Transporter\QueryParams;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -65,53 +65,12 @@ final class Factory
     }
 
     /**
-     * Sets the organization for the requests.
-     */
-    public function withOrganization(?string $organization): self
-    {
-        $this->organization = $organization;
-
-        return $this;
-    }
-
-    /**
-     * Sets the HTTP client for the requests.
-     * If no client is provided the factory will try to find one using PSR-18 HTTP Client Discovery.
-     */
-    public function withHttpClient(ClientInterface $client): self
-    {
-        $this->httpClient = $client;
-
-        return $this;
-    }
-
-    /**
-     * Sets the stream handler for the requests. Not required when using Guzzle.
-     */
-    public function withStreamHandler(Closure $streamHandler): self
-    {
-        $this->streamHandler = $streamHandler;
-
-        return $this;
-    }
-
-    /**
      * Sets the base URI for the requests.
      * If no URI is provided the factory will use the default OpenAI API URI.
      */
     public function withBaseUri(string $baseUri): self
     {
         $this->baseUri = $baseUri;
-
-        return $this;
-    }
-
-    /**
-     * Adds a custom HTTP header to the requests.
-     */
-    public function withHttpHeader(string $name, string $value): self
-    {
-        $this->headers[$name] = $value;
 
         return $this;
     }
@@ -137,15 +96,7 @@ final class Factory
             $headers = Headers::withAuthorization(ApiKey::from($this->apiKey));
         }
 
-        if ($this->organization !== null) {
-            $headers = $headers->withOrganization($this->organization);
-        }
-
-        foreach ($this->headers as $name => $value) {
-            $headers = $headers->withCustomHeader($name, $value);
-        }
-
-        $baseUri = BaseUri::from($this->baseUri ?: 'api.openai.com/v1');
+        $baseUri = BaseUri::from($this->baseUri ?: 'api.bookwhen.com/v2');
 
         $queryParams = QueryParams::create();
         foreach ($this->queryParams as $name => $value) {
@@ -159,27 +110,5 @@ final class Factory
         $transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams, $sendAsync);
 
         return new Client($transporter);
-    }
-
-    /**
-     * Creates a new stream handler for "stream" requests.
-     */
-    private function makeStreamHandler(ClientInterface $client): Closure
-    {
-        if (! is_null($this->streamHandler)) {
-            return $this->streamHandler;
-        }
-
-        if ($client instanceof GuzzleClient) {
-            return fn (RequestInterface $request): ResponseInterface => $client->send($request, ['stream' => true]);
-        }
-
-        if ($client instanceof Psr18Client) { // @phpstan-ignore-line
-            return fn (RequestInterface $request): ResponseInterface => $client->sendRequest($request); // @phpstan-ignore-line
-        }
-
-        return function (RequestInterface $_): never {
-            throw new Exception('To use stream requests you must provide an stream handler closure via the OpenAI factory.');
-        };
     }
 }

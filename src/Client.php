@@ -69,7 +69,7 @@ class Client implements ClientInterface
      * @todo sanity check the log level passed in an exception if wrong.
      * @todo handle guzzle error
      */
-    public function __construct(private readonly TransporterContract $transporter)
+    public function __construct(private $transporter)
     {}
         // ..
 //     }public function __construct($token = null, string $logFile = 'inShoreBookwhen.log', string $logLevel = 'Debug')

@@ -10,7 +10,7 @@ use InShore\Bookwhen\Transporters\HttpTransporter;
 use InShore\Bookwhen\ValueObjects\ApiKey;
 use InShore\Bookwhen\ValueObjects\Transporter\BaseUri;
 use InShore\Bookwhen\ValueObjects\Transporter\Headers;
-//use InShore\BookwhenI\ValueObjects\Transporter\QueryParams;
+use InShore\Bookwhen\ValueObjects\Transporter\QueryParams;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -98,17 +98,16 @@ final class Factory
 
         $baseUri = BaseUri::from($this->baseUri ?: 'api.bookwhen.com/v2');
 
-//         $queryParams = QueryParams::create();
-//         foreach ($this->queryParams as $name => $value) {
-//             $queryParams = $queryParams->withParam($name, $value);
-//         }
+        $queryParams = QueryParams::create();
+        foreach ($this->queryParams as $name => $value) {
+            $queryParams = $queryParams->withParam($name, $value);
+        }
 
         $client = $this->httpClient ??= Psr18ClientDiscovery::find();
 
         $sendAsync = $this->makeStreamHandler($client);
 
-        //$transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams, $sendAsync);
-        $transporter = new HttpTransporter($client, $baseUri, $headers, null, $sendAsync);
+        $transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams, $sendAsync);
         
         return new Client($transporter);
     }

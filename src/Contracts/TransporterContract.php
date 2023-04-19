@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace OpenAI\Contracts;
+namespace InShore\Bookwhen\Contracts;
 
-use OpenAI\Exceptions\ErrorException;
-use OpenAI\Exceptions\TransporterException;
-use OpenAI\Exceptions\UnserializableResponse;
-use OpenAI\ValueObjects\Transporter\Payload;
+use InShore\Bookwhen\Exceptions\ErrorException;
+use InShore\Bookwhen\Exceptions\TransporterException;
+use InShore\Bookwhen\Exceptions\UnserializableResponse;
+use InShore\Bookwhen\ValueObjects\Transporter\Payload;
 use Psr\Http\Message\ResponseInterface;
 
 /**

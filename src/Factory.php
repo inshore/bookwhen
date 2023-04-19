@@ -98,10 +98,10 @@ final class Factory
 
         $baseUri = BaseUri::from($this->baseUri ?: 'api.bookwhen.com/v2');
 
-        $queryParams = QueryParams::create();
-        foreach ($this->queryParams as $name => $value) {
-            $queryParams = $queryParams->withParam($name, $value);
-        }
+//         $queryParams = QueryParams::create();
+//         foreach ($this->queryParams as $name => $value) {
+//             $queryParams = $queryParams->withParam($name, $value);
+//         }
 
         $client = $this->httpClient ??= Psr18ClientDiscovery::find();
 
@@ -110,5 +110,27 @@ final class Factory
         $transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams, $sendAsync);
 
         return new Client($transporter);
+    }
+    
+    /**
+     * Creates a new stream handler for "stream" requests.
+     */
+    private function makeStreamHandler(ClientInterface $client): Closure
+    {
+        if (! is_null($this->streamHandler)) {
+            return $this->streamHandler;
+        }
+        
+        if ($client instanceof GuzzleClient) {
+            return fn (RequestInterface $request): ResponseInterface => $client->send($request, ['stream' => true]);
+        }
+        
+        if ($client instanceof Psr18Client) { // @phpstan-ignore-line
+            return fn (RequestInterface $request): ResponseInterface => $client->sendRequest($request); // @phpstan-ignore-line
+        }
+        
+        return function (RequestInterface $_): never {
+            throw new Exception('To use stream requests you must provide an stream handler closure via the OpenAI factory.');
+        };
     }
 }

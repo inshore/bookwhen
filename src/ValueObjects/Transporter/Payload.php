@@ -24,7 +24,7 @@ final class Payload
      * @param  array<string, mixed>  $parameters
      */
     private function __construct(
-        private readonly ContentType $contentType,
+        //private readonly ContentType $contentType,
         private readonly Method $method,
         private readonly ResourceUri $uri,
         private readonly array $parameters = [],
@@ -37,11 +37,11 @@ final class Payload
      */
     public static function list(string $resource): self
     {
-        //$contentType = ContentType::JSON;
+        $contentType = ContentType::JSON;
         $method = Method::GET;
         $uri = ResourceUri::list($resource);
 
-        return new self($contentType, $method, $uri);
+        return new self('', $method, $uri);
     }
 
     /**

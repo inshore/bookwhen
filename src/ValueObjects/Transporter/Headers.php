@@ -35,7 +35,7 @@ final class Headers
     public static function withAuthorization(ApiKey $apiKey): self
     {
         return new self([
-            'Basic ' . base64_encode($apiKey->toString() . ':')
+            'Authorization' => 'Basic ' . base64_encode($apiKey->toString() . ':')
         ]);
     }
 

@@ -32,6 +32,6 @@ final class BaseUri implements StringableContract
      */
     public function toString(): string
     {
-        return 'https:// ' . $this->baseUri . '/';
+        return 'https://' . $this->baseUri . '/';
     }
 }

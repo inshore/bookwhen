@@ -107,8 +107,9 @@ final class Factory
 
         $sendAsync = $this->makeStreamHandler($client);
 
-        $transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams, $sendAsync);
-
+        //$transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams, $sendAsync);
+        $transporter = new HttpTransporter($client, $baseUri, $headers, null, $sendAsync);
+        
         return new Client($transporter);
     }
     

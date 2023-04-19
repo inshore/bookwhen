@@ -12,6 +12,7 @@ use InShore\Bookwhen\Exceptions\RestException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use InShore\Bookwhen\Interfaces\ClientInterface;
 use InShore\Bookwhen\Validator;
+use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Http\Message\ResponseInterface;
@@ -30,7 +31,7 @@ class Client implements ClientInterface
 {
     
     /** @var string The API access token */
-    private static $token = null;
+    private $token;
     
     /** @var string The instance token, settable once per new instance */
     private $instanceToken;
@@ -46,13 +47,13 @@ class Client implements ClientInterface
     private $include;
     
     /** @var string The path to the log file */
-    private $log;
+    private $logFile;
     
     /** @var object loging object. */
     private $logger;
     
     /** @var string the logging level. */
-    private $logging;
+    private string $logLevel;
     
     private $validator;
     
@@ -61,39 +62,38 @@ class Client implements ClientInterface
     /**
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::__construct()
+     * @todo sanity check the log level passed in an exception if wrong.
+     * @todo handle guzzle error
      */
-    public function __construct($token = null, $debug = 'DEBUG')
+    public function __construct($token = null, string $logFile = 'inShoreBookwhen.log', string $logLevel = 'Debug')
     {
         // Logging.
-        // 'DEBUG',
-        // 'INFO',
-        // 'NOTICE',
-        // 'WARNING',
-        // 'ERROR',
-        // 'CRITICAL',
-        // 'ALERT',
-        // 'EMERGENCY',
-        if (empty($this->logging)) {
-            $this->logging = 'DEBUG';
-            $this->log = 'inShoreBookwhen.log';
-        }
+        // 'Debug',
+        // 'Info',
+        // 'Notice',
+        // 'Warning',
+        // 'Error',
+        // 'Critical',
+        // 'Alert',
+        // 'Emergency',
+        // Level::cases()
+        $this->logFile = $logFile;
+        $this->logLevel = $logLevel;
         $this->logger = new Logger('inShore Bookwhen API');
-        $this->logger->pushHandler(new StreamHandler($this->log, Logger::getLevels()[$this->logging]));
+        $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
         
         $this->validator = new Validator();
         
         $this->include = [];
         
         if ($token === null) {
-            //             if (self::$token === null) {
-            //                 $msg = 'No token provided, and none is globally set. ';
-            //                 $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-            //                 throw new ConfigurationException($msg);
-            //             }
+            $msg = 'No token provided, and none is globally set. ';
+            $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+            throw new ConfigurationException($msg);
         } else {
             if ($this->validator->validToken($token)) {
-                self::$token = $token;
-                $this->instanceToken = self::$token;
+                $this->token = $token;
+                $this->instanceToken = $this->token;
             }
         }
         

@@ -12,7 +12,7 @@ interface ClientInterface
      * @param string $token.
      * @param string $debug.
      */
-    public function __construct(string $token, string $logFile, string $logLevel);
+    //public function __construct(string $token, string $logFile, string $logLevel);
     
     /**
      * API wrapper to getAttachment.

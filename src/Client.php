@@ -69,50 +69,53 @@ class Client implements ClientInterface
      * @todo sanity check the log level passed in an exception if wrong.
      * @todo handle guzzle error
      */
-    public function __construct($token = null, string $logFile = 'inShoreBookwhen.log', string $logLevel = 'Debug')
-    {
-        // Logging.
-        // 'Debug',
-        // 'Info',
-        // 'Notice',
-        // 'Warning',
-        // 'Error',
-        // 'Critical',
-        // 'Alert',
-        // 'Emergency',
-        // Level::cases()
-        $this->logFile = $logFile;
-        $this->logLevel = $logLevel;
-        $this->logger = new Logger('inShore Bookwhen API');
-        $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
+    public function __construct(private readonly TransporterContract $transporter)
+    {}
+        // ..
+//     }public function __construct($token = null, string $logFile = 'inShoreBookwhen.log', string $logLevel = 'Debug')
+//     {
+//         // Logging.
+//         // 'Debug',
+//         // 'Info',
+//         // 'Notice',
+//         // 'Warning',
+//         // 'Error',
+//         // 'Critical',
+//         // 'Alert',
+//         // 'Emergency',
+//         // Level::cases()
+//         $this->logFile = $logFile;
+//         $this->logLevel = $logLevel;
+//         $this->logger = new Logger('inShore Bookwhen API');
+//         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
         
-        $this->validator = new Validator();
+//         $this->validator = new Validator();
         
-        $this->include = [];
+//         $this->include = [];
         
-        if ($token === null) {
-            // @todo fix messaging here
-            $msg = 'No token provided, and none is globally set. ';
-            $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
-            throw new ConfigurationException($msg);
-        } else {
-            if ($this->validator->validToken($token)) {
-                $this->token = $token;
-                $this->instanceToken = $this->token;
-            }
-        }
+//         if ($token === null) {
+//             // @todo fix messaging here
+//             $msg = 'No token provided, and none is globally set. ';
+//             $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
+//             throw new ConfigurationException($msg);
+//         } else {
+//             if ($this->validator->validToken($token)) {
+//                 $this->token = $token;
+//                 $this->instanceToken = $this->token;
+//             }
+//         }
         
-        $this->apiBaseUri = 'https://api.bookwhen.com/';    
-        $this->apiQuery = [];
-        $this->apiVersion = 'v2';
+//         $this->apiBaseUri = 'https://api.bookwhen.com/';    
+//         $this->apiQuery = [];
+//         $this->apiVersion = 'v2';
         
-        $this->guzzleClient = new GuzzleClient([
-            'base_uri' => $this->apiBaseUri
-        ]);
+//         $this->guzzleClient = new GuzzleClient([
+//             'base_uri' => $this->apiBaseUri
+//         ]);
         
-        $this->logger->info('Client class successfully instantiated');
-        $this->logger->debug(var_export($this, true));
-    }
+//         $this->logger->info('Client class successfully instantiated');
+//         $this->logger->debug(var_export($this, true));
+//     }
     
     /**
      * {@inheritDoc}

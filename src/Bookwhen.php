@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace InShore\Bookwhen;
+
 use InShore\Bookwhen\Client;
 use InShore\Bookwhen\Factory;
 

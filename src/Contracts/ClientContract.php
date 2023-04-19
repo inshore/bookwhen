@@ -2,12 +2,12 @@
 
 namespace InShore\Bookwhen\Contracts;
 
-use InShore\Bookwhen\Resources\TicketsContract;
+use InShore\Bookwhen\Resources\EventsContract;
 
 interface ClientContract
 {
     /**
      * @todo ref the api documents
      */
-    public function tickets(): TicketsContract;
+    public function events(): EventsContract;
 }

@@ -570,9 +570,9 @@ class Client implements ClientInterface
     
     // DEV
     
-    public function tickets(): Tickets
+    public function events(): Events
     {
-        return new Tickets($this->transporter);
+        return new Events($this->transporter);
     }
     
     

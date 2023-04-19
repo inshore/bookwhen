@@ -1,16 +1,16 @@
 <?php
 
-namespace OpenAI;
+namespace InShore\Bookwhen;
 
 use Closure;
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Discovery\Psr18ClientDiscovery;
-use OpenAI\Transporters\HttpTransporter;
-use OpenAI\ValueObjects\ApiKey;
-use OpenAI\ValueObjects\Transporter\BaseUri;
-use OpenAI\ValueObjects\Transporter\Headers;
-use OpenAI\ValueObjects\Transporter\QueryParams;
+use InShore\Bookwhen\Transporters\HttpTransporter;
+use InShore\Bookwhen\ValueObjects\ApiKey;
+use InShore\Bookwhen\ValueObjects\Transporter\BaseUri;
+use InShore\Bookwhen\ValueObjects\Transporter\Headers;
+use InShore\BookwhenI\ValueObjects\Transporter\QueryParams;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

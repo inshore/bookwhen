@@ -16,6 +16,10 @@ use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Http\Message\ResponseInterface;
+use InShore\Bookwhen\Resources\ClassPasses;
+use InShore\Bookwhen\Resources\Events;
+use InShore\Bookwhen\Resources\Locations;
+use InShore\Bookwhen\Resources\Tickets;
 
 /**
  * Class Client
@@ -87,6 +91,7 @@ class Client implements ClientInterface
         $this->include = [];
         
         if ($token === null) {
+            // @todo fix messaging here
             $msg = 'No token provided, and none is globally set. ';
             $msg .= 'Use Diffbot::setToken, or instantiate the Diffbot class with a $token parameter.';
             throw new ConfigurationException($msg);
@@ -562,6 +567,15 @@ class Client implements ClientInterface
         }
         self::$token = $token;
     } 
+    
+    // DEV
+    
+    public function tickets(): Tickets
+    {
+        return new Tickets($this->transporter);
+    }
+    
+    
 }
 
 // EOF!

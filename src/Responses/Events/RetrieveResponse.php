@@ -37,6 +37,8 @@ final class RetrieveResponse implements ResponseContract
      */
     public static function from(array $attributes): self
     {
+        var_export($attributes);
+        die();
         return new self(
             $attributes['id'],
             $attributes['type'],

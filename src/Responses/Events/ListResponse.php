@@ -25,7 +25,6 @@ final class ListResponse implements ResponseContract
      * @param  array<int, RetrieveResponse>  $data
      */
     private function __construct(
-        //public readonly string $attributes,
         public readonly array $data,
     ) {
     }
@@ -33,18 +32,15 @@ final class ListResponse implements ResponseContract
     /**
      * Acts as static factory, and returns a new Response instance.
      *
-     * @param  array{object: string, data: array<int, array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>}  $attributes
+     * @param  array{data: array<int, array{event_id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>}  $attributes
      */
     public static function from(array $attributes): self
     {
-        var_export($attributes['data']);
-        die();
         $data = array_map(fn (array $result): RetrieveResponse => RetrieveResponse::from(
             $result
         ), $attributes['data']);
 
         return new self(
-            $attributes['attributes'],
             $data,
         );
     }

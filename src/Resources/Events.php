@@ -34,7 +34,7 @@ final class Events implements EventsContract
      * @see https://beta.openai.com/docs/api-reference/files/retrieve
      */
     public function retrieve(string $eventId): RetrieveResponse
-    
+    {
         $payload = Payload::retrieve('events', $eventId);
 
         /** @var array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null} $result */

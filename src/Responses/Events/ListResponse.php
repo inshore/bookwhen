@@ -37,7 +37,7 @@ final class ListResponse implements ResponseContract
      */
     public static function from(array $attributes): self
     {
-        var_export($attributes);
+        var_export($attributes['data']);
         die();
         $data = array_map(fn (array $result): RetrieveResponse => RetrieveResponse::from(
             $result

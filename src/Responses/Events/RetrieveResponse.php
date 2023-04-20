@@ -18,7 +18,7 @@ final class RetrieveResponse implements ResponseContract
      */
     use ArrayAccessible;
 
-    use Fakeable;
+    //use Fakeable;
 
     /**
      * @param  array<array-key, mixed>|null  $statusDetails

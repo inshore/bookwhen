@@ -37,11 +37,11 @@ final class Payload
      */
     public static function list(string $resource): self
     {
-        $contentType = ContentType::JSON;
+        //$contentType = ContentType::JSON;
         $method = Method::GET;
         $uri = ResourceUri::list($resource);
 
-        return new self('', $method, $uri);
+        return new self($method, $uri);
     }
 
     /**

@@ -24,9 +24,16 @@ final class RetrieveResponse implements ResponseContract
      * @param  array<array-key, mixed>|null  $statusDetails
      */
     private function __construct(
+        public readonly bool $allDay,
+        public readonly int $attendeeCount,
+        public readonly int $attendeeLimit,
+        public readonly string $details,
+        public readonly string $endAt,
         public readonly string $id,
-        public readonly string $type,
-        //public readonly array $attributes
+        public readonly int $maxTicketsPerBooking,
+        public readonly string $startAt,
+        public readonly string $title,
+        public readonly bool $waitingList
     ) {
     }
 
@@ -38,9 +45,16 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes): self
     {
         return new self(
+            $attributes['attributes']['all_day'],
+            $attributes['attributes']['attendee_count'],
+            $attributes['attributes']['attendee_limit'],
+            $attributes['attributes']['details'],
+            $attributes['attributes']['end_at'],
             $attributes['id'],
-            $attributes['type'],
-            //$attributes['attributes']
+            $attributes['attributes']['max_tickets_per_booking'],
+            $attributes['attributes']['start_at'],
+            $attributes['attributes']['title'],
+            $attributes['attributes']['waiting_list']
         );
     }
 

@@ -134,7 +134,7 @@ final class Payload
             $uri .= '?'.http_build_query($queryParams->toArray());
         }
 
-        $headers = $headers->withContentType($this->contentType);
+        //$headers = $headers->withContentType($this->contentType);
 
         if ($this->method === Method::POST) {
             if ($this->contentType === ContentType::MULTIPART) {

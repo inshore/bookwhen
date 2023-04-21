@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace InShore\Bookwhen\Domain;
 
+use InShore\Bookwhen\Domain\Location;
+
 final class Event {
     
     /**
@@ -11,6 +13,7 @@ final class Event {
      */
     public readonly int $attendeeAvailable;
 
+    public Location $location;
     /**
      * 
      */
@@ -21,6 +24,10 @@ final class Event {
      */
     public readonly bool $soldOut;
     
+    /**
+     * 
+     * 
+     */
     public function __construct(
         public readonly bool $allDay,
         public readonly int $attendeeCount,
@@ -38,4 +45,7 @@ final class Event {
         $this->finished = false; // @todo
         $this->soldOut = ($this->attendeeCount === $this->attendeeLimit);
     }
+    
+   
+    
 }

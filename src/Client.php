@@ -578,6 +578,11 @@ class Client implements ClientInterface
         return new Events($this->transporter);
     }
     
+    public function locations(): Locations
+    {
+        return new Locations($this->transporter);
+    }
+    
     
 }
 

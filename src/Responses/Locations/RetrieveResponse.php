@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace InShore\Bookwhen\Responses\Events;
+namespace InShore\Bookwhen\Responses\Locations;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
 use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
@@ -24,17 +24,13 @@ final class RetrieveResponse implements ResponseContract
      * @param  array<array-key, mixed>|null  $statusDetails
      */
     private function __construct(
-        public readonly bool $allDay,
-        public readonly int $attendeeCount,
-        public readonly int $attendeeLimit,
-        public readonly string $details,
-        public readonly string $endAt,
+        public readonly string $addressText,
+        public readonly string $additionalInfo,
         public readonly string $id,
-        public readonly string $locationId,
-        public readonly int $maxTicketsPerBooking,
-        public readonly string $startAt,
-        public readonly string $title,
-        public readonly bool $waitingList
+        public readonly float $latitude,
+        public readonly float $longitude,
+        public readonly string $mapUrl,
+        public readonly int $zoom
     ) {
     }
 
@@ -46,17 +42,13 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes): self
     {
         return new self(
-            $attributes['attributes']['all_day'],
-            $attributes['attributes']['attendee_count'],
-            $attributes['attributes']['attendee_limit'],
-            $attributes['attributes']['details'],
-            $attributes['attributes']['end_at'],
+            $attributes['attributes']['address_text'],
+            $attributes['attributes']['additional_info'],
             $attributes['id'],
-            $attributes['relationships']['location']['data']['id'], // @todo optional?
-            $attributes['attributes']['max_tickets_per_booking'],
-            $attributes['attributes']['start_at'],
-            $attributes['attributes']['title'],
-            $attributes['attributes']['waiting_list']
+            $attributes['attributes']['latitude'],
+            $attributes['attributes']['longitude'],
+            $attributes['attributes']['map_url'],
+            $attributes['attributes']['zoom']
         );
     }
 

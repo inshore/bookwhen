@@ -6,12 +6,11 @@ namespace InShore\Bookwhen\Exceptions;
 
 /**
  * InshoreBookwhenException Class
- * 
+ *
  * @package inshore\bookwhen
  */
 class InshoreBookwhenException extends \Exception
 {
-  
 }
 
 //EOF!

@@ -49,7 +49,7 @@ final class Payload
      */
     public static function retrieve(string $resource, string $id, string $suffix = ''): self
     {
-       // $contentType = ContentType::JSON;
+        // $contentType = ContentType::JSON;
         $method = Method::GET;
         $uri = ResourceUri::retrieve($resource, $id, $suffix);
 

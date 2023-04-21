@@ -7,6 +7,7 @@ namespace InShore\Bookwhen\Responses\Events;
 use InShore\Bookwhen\Contracts\ResponseContract;
 use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
 use InShore\Bookwhen\Responses\Events\RetrieveResponse;
+
 //use InShore\Bookwhen\Testing\Responses\Concerns\Fakeable;
 
 /**
@@ -19,7 +20,7 @@ final class ListResponse implements ResponseContract
      */
     use ArrayAccessible;
 
-//     use Fakeable;
+    //     use Fakeable;
 
     /**
      * @param  array<int, RetrieveResponse>  $data

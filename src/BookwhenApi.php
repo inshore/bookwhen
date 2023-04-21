@@ -25,6 +25,6 @@ final class BookwhenApi
     public static function factory(): Factory
     {
         return new Factory();
-        
+
     }
 }

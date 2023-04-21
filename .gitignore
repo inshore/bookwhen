@@ -1,5 +1,6 @@
 # ZendStudio
 .buildPath
+.php-cs-fixer.cache
 .project
 .settings/
 

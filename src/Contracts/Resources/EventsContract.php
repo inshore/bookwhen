@@ -13,7 +13,7 @@ interface EventsContract
      * @see https://
      */
     public function list(): ListResponse;
-    
+
     /**
      * Returns information about a specific event.
      *

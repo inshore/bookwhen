@@ -6,6 +6,7 @@ namespace InShore\Bookwhen\Responses\Events;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
 use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
+
 //use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**

@@ -108,10 +108,10 @@ final class Factory
         $sendAsync = $this->makeStreamHandler($client);
 
         $transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams, $sendAsync);
-        
+
         return new Client($transporter);
     }
-    
+
     /**
      * Creates a new stream handler for "stream" requests.
      */
@@ -120,15 +120,15 @@ final class Factory
         if (! is_null($this->streamHandler)) {
             return $this->streamHandler;
         }
-        
+
         if ($client instanceof GuzzleClient) {
             return fn (RequestInterface $request): ResponseInterface => $client->send($request, ['stream' => true]);
         }
-        
+
         if ($client instanceof Psr18Client) { // @phpstan-ignore-line
             return fn (RequestInterface $request): ResponseInterface => $client->sendRequest($request); // @phpstan-ignore-line
         }
-        
+
         return function (RequestInterface $_): never {
             throw new Exception('To use stream requests you must provide an stream handler closure via the OpenAI factory.');
         };

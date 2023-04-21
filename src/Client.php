@@ -558,38 +558,6 @@ class Client implements ClientInterface
     }
 
     /**
-     *
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getTickets()
-     */
-    public function getTickets($eventId): array
-    {
-        $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        if (!$this->validator->validId($eventId, 'event')) {
-            throw new ValidationException('eventId', $eventId);
-        }
-
-        $this->apiQuery = ['event' => $eventId];
-
-        $this->apiResource = $this->apiVersion . '/tickets';
-
-        try {
-            $return = [];
-
-            $Response = $this->request();
-            $body = json_decode($Response->getBody()->getContents());
-
-            foreach ($body->data as $ticket) {
-                array_push($return, $ticket);
-            }
-            $this->logger->debug(var_export($return, true));
-            return $return;
-        } catch (GuzzleHttp\Exception\ClientException $e) {
-            throw new RestException($e, $this->logger);
-        }
-    }
-
-    /**
      * Set Debug.
      */
     public function setLogging($level)
@@ -597,14 +565,7 @@ class Client implements ClientInterface
         $this->logging = $level;
     }
 
-    /**
-     * Set Guzzle Client
-     */
-    public function setGuzzleClient($guzzleClient)
-    {
-        $this->guzzleClient = $guzzleClient;
-    }
-
+    /*
     /**
      * Sets the token for all future new instances
      * @param $token string The API access token, as obtained on diffbot.com/dev.

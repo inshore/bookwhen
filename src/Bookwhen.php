@@ -56,6 +56,7 @@ final class Bookwhen
     /** @var string the logging level. */
     private string $logLevel;
         
+    public array $tickets = [];
     /**
      * Creates a new Bookwhen Client with the given API token.
      */
@@ -107,6 +108,26 @@ final class Bookwhen
         
      
         $eventTickets = [];
+        foreach ($event->tickets as $eventTicket) {
+            $ticket = $this->client->tickets()->retrieve($eventTicket['id']);
+            array_push($eventTickets, new Ticket(
+                $ticket->available,
+                $ticket->availableFrom,
+                $ticket->availableTo,
+                $ticket->builtBasketUrl,
+                $ticket->builtBasketIframeUrl,
+                $ticket->courseTicket,
+                $ticket->details,
+                $ticket->groupTicket,
+                $ticket->groupMin,
+                $ticket->groupMax,
+                $ticket->id,
+                $ticket->numberIssued,
+                $ticket->numberTaken,
+                $ticket->title
+            ));
+        }
+
         $location = $this->client->locations()->retrieve($event->locationId);
         
 //         $this->event->location = new Location(
@@ -218,11 +239,29 @@ final class Bookwhen
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getTicket()
      */
-    public function ticket($ticketId)
+    public function ticket($ticketId): Ticket
     {
         if (!$this->validator->validId($ticketId, 'ticket')) {
             throw new ValidationException('ticketId', $ticketId);
         }
+        $ticket = $this->client->tickets()->retrieve($ticketId);
+        
+        return new Ticket(
+            $ticket->available,
+            $ticket->availableFrom,
+            $ticket->availableTo,
+            $ticket->builtBasketUrl,
+            $ticket->builtBasketIframeUrl,
+            $ticket->courseTicket,
+            $ticket->details,
+            $ticket->groupTicket,
+            $ticket->groupMin,
+            $ticket->groupMax,
+            $ticket->id,
+            $ticket->numberIssued,
+            $ticket->numberTaken,
+            $ticket->title
+         );
     }
     
     /**
@@ -230,8 +269,20 @@ final class Bookwhen
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getTicket()
      */
-    public function tickets()
+    public function tickets(string $eventId): array
     {
-        return $this->client->tickets();
+//             /$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+            if (!$this->validator->validId($eventId, 'event')) {
+                throw new ValidationException('eventId', $eventId);
+            }
+            
+            
+        $tickets = $this->client->tickets();
+        
+        foreach ($tickets as $ticket) {
+            array_push($this->tickets, new Ticket());
+        }
+        return $this->tickets;
+        
     }
 }

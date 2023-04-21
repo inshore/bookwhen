@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace InShore\Bookwhen\Responses\Locations;
+namespace InShore\Bookwhen\Responses\Tickets;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
 use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
-use InShore\Bookwhen\Responses\Events\RetrieveResponse;
+use InShore\Bookwhen\Responses\Tickets\RetrieveResponse;
 
 //use InShore\Bookwhen\Testing\Responses\Concerns\Fakeable;
 

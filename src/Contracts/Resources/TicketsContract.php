@@ -2,8 +2,8 @@
 
 namespace InShore\Bookwhen\Contracts\Resources;
 
-use InShore\Bookwhen\Responses\Tickets\TicketResponse;
-use InShore\Bookwhen\Responses\Tickets\TicketsResponse;
+use InShore\Bookwhen\Responses\Tickets\ListResponse;
+use InShore\Bookwhen\Responses\Tickets\RetrieveResponse;
 
 interface TicketsContract
 {

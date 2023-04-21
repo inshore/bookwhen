@@ -245,7 +245,7 @@ final class Bookwhen
             throw new ValidationException('ticketId', $ticketId);
         }
         $ticket = $this->client->tickets()->retrieve($ticketId);
-        
+
         return new Ticket(
             $ticket->available,
             $ticket->availableFrom,
@@ -277,10 +277,28 @@ final class Bookwhen
             }
             
             
-        $tickets = $this->client->tickets();
-        
-        foreach ($tickets as $ticket) {
-            array_push($this->tickets, new Ticket());
+        $tickets = $this->client->tickets()->list([
+            'event_id' => $eventId,
+            'include' => 'events.tickets'
+        ]);
+
+        foreach ($tickets->data as $ticket) { //@todo resolve this inside data
+            array_push($this->tickets, new Ticket(
+                $ticket->available,
+                $ticket->availableFrom,
+                $ticket->availableTo,
+                $ticket->builtBasketUrl,
+                $ticket->builtBasketIframeUrl,
+                $ticket->courseTicket,
+                $ticket->details,
+                $ticket->groupTicket,
+                $ticket->groupMin,
+                $ticket->groupMax,
+                $ticket->id,
+                $ticket->numberIssued,
+                $ticket->numberTaken,
+                $ticket->title
+            ));
         }
         return $this->tickets;
         

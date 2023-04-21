@@ -38,7 +38,7 @@ final class Locations implements LocationsContract
         $payload = Payload::retrieve('locations', $eventId);
 
         /** @var array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null} $result */
-        $result = $this->transporter->requestObject($payload);
+        $result = $this->transporter->requestObject($payload)['data'];
 
         return RetrieveResponse::from($result);
     }

@@ -40,6 +40,15 @@ final class ResourceUri implements StringableContract
      */
     public static function list(string $resource): self
     {
+//         if (empty($parameters)) {
+//             return new self($resource);
+//         }
+
+//         $resource = $resource . '?' . array_reduce(array_keys($parameters), function($carry, $key) use ($parameters) {
+//             $value = urlencode($parameters[$key]);
+//             return $carry . ($carry ? '&' : '') . urlencode($key) . '=' . $value;
+//         });
+        
         return new self($resource);
     }
 

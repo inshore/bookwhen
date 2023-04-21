@@ -35,13 +35,14 @@ final class Payload
     /**
      * Creates a new Payload value object from the given parameters.
      */
-    public static function list(string $resource): self
+    public static function list(string $resource, array $parameters = []): self
     {
+        //var_export($parameters);
         //$contentType = ContentType::JSON;
         $method = Method::GET;
         $uri = ResourceUri::list($resource);
 
-        return new self($method, $uri);
+        return new self($method, $uri, $parameters);
     }
 
     /**
@@ -130,33 +131,9 @@ final class Payload
         $body = null;
 
         $uri = $baseUri->toString().$this->uri->toString();
-        if (! empty($queryParams->toArray())) {
-            $uri .= '?'.http_build_query($queryParams->toArray());
-        }
-
-        //$headers = $headers->withContentType($this->contentType);
-
-        if ($this->method === Method::POST) {
-            if ($this->contentType === ContentType::MULTIPART) {
-                $streamBuilder = new MultipartStreamBuilder($psr17Factory);
-
-                /** @var array<string, StreamInterface|string|int|float|bool> $parameters */
-                $parameters = $this->parameters;
-
-                foreach ($parameters as $key => $value) {
-                    if (is_int($value) || is_float($value) || is_bool($value)) {
-                        $value = (string) $value;
-                    }
-
-                    $streamBuilder->addResource($key, $value);
-                }
-
-                $body = $streamBuilder->build();
-
-                $headers = $headers->withContentType($this->contentType, '; boundary='.$streamBuilder->getBoundary());
-            } else {
-                $body = $psr17Factory->createStream(json_encode($this->parameters, JSON_THROW_ON_ERROR));
-            }
+        
+        if (! empty($this->parameters)) {
+            $uri .= '?'.http_build_query($this->parameters);
         }
 
         $request = $psr17Factory->createRequest($this->method->value, $uri);
@@ -168,7 +145,6 @@ final class Payload
         foreach ($headers->toArray() as $name => $value) {
             $request = $request->withHeader($name, $value);
         }
-
         return $request;
     }
 }

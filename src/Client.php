@@ -16,6 +16,7 @@ use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Http\Message\ResponseInterface;
+use InShore\Bookwhen\Resources\Attachments;
 use InShore\Bookwhen\Resources\ClassPasses;
 use InShore\Bookwhen\Resources\Events;
 use InShore\Bookwhen\Resources\Locations;
@@ -71,6 +72,52 @@ class Client implements ClientInterface
     public function __construct(private $transporter)
     {
     }
+    
+    /**
+     * 
+     */
+    public function attachments(): Attachments
+    {
+        return new Attachments($this->transporter);
+    }
+    
+    /**
+
+     */
+    public function classPasses(): ClassPssses
+    {
+        return new ClassPasses($this->transporter);
+    }
+/*
+ * 
+ */    
+    public function events(): Events
+    {
+        return new Events($this->transporter);
+    }
+   /**
+
+    */ 
+    public function locations(): Locations
+    {
+        return new Locations($this->transporter);
+    }
+/**
+
+ */    
+    public function tickets(): Tickets
+    {
+        return new Tickets($this->transporter);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
         // ..
 //     }public function __construct($token = null, string $logFile = 'inShoreBookwhen.log', string $logLevel = 'Debug')
 //     {
@@ -571,18 +618,7 @@ class Client implements ClientInterface
         self::$token = $token;
     }
 
-    // DEV
-
-    public function events(): Events
-    {
-        return new Events($this->transporter);
-    }
-
-    public function locations(): Locations
-    {
-        return new Locations($this->transporter);
-    }
-
+    
 
 }
 

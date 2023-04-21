@@ -6,19 +6,19 @@ namespace InShore\Bookwhen\Exceptions;
 
 /**
  * InshoreBookwhenRestException Class
- * 
+ *
  * @package inshore\bookwhen
  */
 class RestException extends InshoreBookwhenException
 {
     /** @var \Exception the thrown exception. */
     private $e;
-    
+
     /** @var \Monolog\Logger the thrown exception. */
     private $logger;
-    
+
     /**
-     * 
+     *
      * @param \Exception $e
      * @param \Monolog\Logger $logger
      */
@@ -27,7 +27,7 @@ class RestException extends InshoreBookwhenException
         $this->e = $e;
         $this->logger = $logger;
     }
-    
+
     /**
      *
      * @return string the error messsage.

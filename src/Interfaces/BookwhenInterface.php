@@ -2,9 +2,14 @@
 
 namespace InShore\Bookwhen\Interfaces;
 
+use InShore\Bookwhen\Domain\Attachment;
+use InShore\Bookwhen\Domain\ClassPass;
+use InShore\Bookwhen\Domain\Event;
+use InShore\Bookwhen\Domain\Location;
+use InShore\Bookwhen\Domain\Ticket;
 use InShore\Bookwhen\Exceptions\RestException;
 
-interface ClientInterface
+interface BookwhenInterface
 {
     /**
      * @param string $token.
@@ -13,7 +18,7 @@ interface ClientInterface
     //public function __construct(string $token, string $logFile, string $logLevel);
 
     /**
-     * API wrapper to getAttachment.
+     * API wrapper to get an Attachment.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -27,10 +32,10 @@ interface ClientInterface
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
      */
-  //  public function getAttachment($attachmentId);
+    public function attachment(string $attachmentId): Attachment;
 
     /**
-     * API wrapper to getAttachments
+     * API wrapper to get a list of Attachments
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -46,10 +51,14 @@ interface ClientInterface
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
      */
-   // public function getAttachments($title, $fileName, $fileType);
+    public function attachments(
+        null | string $title,
+        null | string $fileName,
+        null | string $fileType
+    ): array;
 
     /**
-     * API wrapper to getClassPass.
+     * API wrapper to get a ClassPass.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -63,7 +72,7 @@ interface ClientInterface
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
      */
-   // public function getClassPass($classPassId);
+    public function classPass(string $classPassId): ClassPass;
 
     /**
      * API wrapper to getClassPasses.
@@ -82,10 +91,17 @@ interface ClientInterface
      *
      * @return array of class passes objects.
      */
-   // public function getClassPasses($title, $detail, $usageType, $cost, $usageAllowance, $useRestrictedForDays);
+    public function classPasses(
+        null | string $title,
+        null | string $detail,
+        null | string $usageType,
+        null | string $cost,
+        null | string $usageAllowance,
+        null | string $useRestrictedForDays
+    );
 
     /**
-     * API wrapper to getEvent.
+     * API wrapper to get an Event.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -96,10 +112,10 @@ interface ClientInterface
      *
      * @return object of the event.
      */
-   // public function getEvent($eventId);
+     public function event(string $eventId): Event;
 
     /**
-     * API wrapper to getEvents.
+     * API wrapper to get a list of Events.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -124,10 +140,24 @@ interface ClientInterface
      *
      * @return array of events objects.
      */
-    //public function getEvents($calendar, $entry, $location, $tags, $title, $detail, $from, $to, $includeLocation, $includeAttachments, $includeTickets, $includeTicketsEvents, $includeTicketsClassPasses);
+    public function events(
+        string $calendar,
+        string $entry,
+        array $location,
+        array $tags,
+        array $title,
+        array $detail,
+        string $from,
+        string $to,
+        bool $includeLocation,
+        bool $includeAttachments,
+        bool $includeTickets,
+        bool $includeTicketsEvents,
+        bool $includeTicketsClassPasses
+    ): array;
 
     /**
-     * API wrapper to locationId.
+     * API wrapper to get a location.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -138,10 +168,10 @@ interface ClientInterface
      *
      * @return object location.
      */
-   // public function getLocation($locationId);
+    public function location(string $locationId): Location;
 
     /**
-     * API wrapper to getLocations.
+     * API wrapper to get a list of locations.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -153,10 +183,13 @@ interface ClientInterface
      *
      * @return array of location objects.
      */
-   // public function getLocations($addressText, $additionalInfo);
+    public function locations(
+        string $addressText,
+        string $additionalInfo
+    ): array;
 
     /**
-     * API wrapper to getTicket.
+     * API wrapper to get a Ticket.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -167,10 +200,10 @@ interface ClientInterface
      *
      * @return object ticket.
      */
-   // public function getTicket($ticketId);
+     public function ticket(string $ticketId): Ticket;
 
     /**
-     * API wrapper to getTickets.
+     * API wrapper to get Tickets.
      *
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
@@ -181,7 +214,7 @@ interface ClientInterface
      *
      * @return array of ticket objects.
      */
-    //public function getTickets($eventId);
+    public function tickets(string $eventId): array;
 
 }
 

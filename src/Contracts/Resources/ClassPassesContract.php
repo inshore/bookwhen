@@ -2,10 +2,10 @@
 
 namespace InShore\Bookwhen\Contracts\Resources;
 
-use InShore\Bookwhen\Responses\ClassPasses\TicketResponse;
-use InShore\Bookwhen\Responses\ClassPasses\TicketsResponse;
+use InShore\Bookwhen\Responses\ClassPasses\ListResponse;
+use InShore\Bookwhen\Responses\ClassPasses\RetrieveResponse;
 
-interface TicketsContract
+interface ClassPassesContract
 {
     /**
      * Returns a list of events that belong to the user's organization.

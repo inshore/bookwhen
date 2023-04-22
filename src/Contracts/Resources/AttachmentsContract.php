@@ -2,8 +2,8 @@
 
 namespace InShore\Bookwhen\Contracts\Resources;
 
-use InShore\Bookwhen\Responses\Attachements\ListResponse;
-use InShore\Bookwhen\Responses\Attachements\RetrieveResponse;
+use InShore\Bookwhen\Responses\Attachments\ListResponse;
+use InShore\Bookwhen\Responses\Attachments\RetrieveResponse;
 
 interface AttachmentsContract
 {

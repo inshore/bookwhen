@@ -27,31 +27,31 @@ final class Bookwhen implements BookwhenInterface
      * @var unknown
      */
     public Attachment $attachment;
-    
+
     /**
      *
      * @var unknown
      */
     public array $attachments = [];
-    
+
     /**
      *
      * @var unknown
      */
     public ClassPass $classPass;
-    
+
     /**
      *
      * @var unknown
      */
     public array $classPasses = [];
-    
+
     /**
      *
      * @var unknown
      */
     public Event $event;
-    
+
     /**
      *
      * @var unknown
@@ -59,21 +59,21 @@ final class Bookwhen implements BookwhenInterface
     public array $events = [];
 
     /**
-     * 
+     *
      */
     public readonly Location $location;
 
-    
+
     /**
 
      */
     public Ticket $ticket;
-    
+
     /**
 
      */
     public array $tickets = [];
-    
+
     /**
         *
      */
@@ -82,13 +82,13 @@ final class Bookwhen implements BookwhenInterface
 
     /** @var string The path to the log file */
     private $logFile;
-    
+
     /** @var object loging object. */
     private $logger;
-    
+
     /** @var string the logging level. */
     private string $logLevel;
-        
+
 
 
     /**
@@ -97,15 +97,14 @@ final class Bookwhen implements BookwhenInterface
      */
     public function __construct(
         private $validator = new Validator()
-    )
-    {
-//         $this->logFile = $logFile;
-//         $this->logLevel = $logLevel;
-//         $this->logger = new Logger('inShore Bookwhen API');
-//         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
+    ) {
+        //         $this->logFile = $logFile;
+        //         $this->logLevel = $logLevel;
+        //         $this->logger = new Logger('inShore Bookwhen API');
+        //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
         $this->client = BookwhenApi::client($_ENV['INSHORE_BOOKWHEN_API_KEY']);
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -117,16 +116,16 @@ final class Bookwhen implements BookwhenInterface
         if (!$this->validator->validId($attachmentId, 'attachment')) {
             throw new ValidationException('attachmentId', $attachmentId);
         }
-        
+
         $attachment = $this->client->attachments()->retrieve($attachmentId);
-        
+
         return $this->attachment = new Attachment(
             $classPass->details,
             $classPass->id,
             $classPass->title,
         );
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -134,52 +133,51 @@ final class Bookwhen implements BookwhenInterface
      * @todo
      */
     public function attachments(
-        string $title = null, 
-        string $fileName = null, 
+        string $title = null,
+        string $fileName = null,
         string $fileType = null
-    ): array
-    {
+    ): array {
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
+
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
         }
-        
+
         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
             throw new ValidationException('file name', $fileName);
         }
-        
+
         if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
             throw new ValidationException('file type', $fileType);
         }
-        
+
         $attachments = $this->client->attachments()->list();
-        
+
         foreach ($attachments->data as $attachment) {
             array_push($this->attachment, new Attachment(
                 $attachment->id,
             ));
         }
-        
+
         return $this->attachments;
     }
-    
+
     /**
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getClassPass()
      * @todo
      */
-    public function classPass(string $classPassId): ClassPass 
+    public function classPass(string $classPassId): ClassPass
     {
-//         $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
- //       if (!$this->validator->validId($classPassId, 'classPass')) {
- //           throw new ValidationException('classPassId', $classPassId);
-  //      }
-        
+        //         $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+
+        //       if (!$this->validator->validId($classPassId, 'classPass')) {
+        //           throw new ValidationException('classPassId', $classPassId);
+        //      }
+
         $classPass = $this->client->classPasses()->retrieve($classPassId);
-        
+
         return new ClassPass(
             $classPass->details,
             $classPass->id,
@@ -190,7 +188,7 @@ final class Bookwhen implements BookwhenInterface
             $classPass->use_restricted_for_days
         );
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -204,19 +202,18 @@ final class Bookwhen implements BookwhenInterface
         $cost = null,
         $usageAllowance = null,
         $useRestrictedForDays = null
-        ): array 
-    {
-            
+    ): array {
+
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
+
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
         }
-        
+
         // @todo remaingin validation
-        
+
         $classPasses = $this->client->classPasses()->list([]);
-        
+
         foreach ($classPasses->data as $classPass) {
             array_push($this->classPasses, new classPasses(
                 $ticket->details,
@@ -236,15 +233,15 @@ final class Bookwhen implements BookwhenInterface
     public function event(string $eventId): Event
     {
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
+
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
         }
 
         $event = $this->client->events()->retrieve($eventId);
         $eventAttachments = [];
-        
-     
+
+
         $eventTickets = [];
         foreach ($event->tickets as $eventTicket) {
             $ticket = $this->client->tickets()->retrieve($eventTicket['id']);
@@ -267,7 +264,7 @@ final class Bookwhen implements BookwhenInterface
         }
 
         $location = $this->client->locations()->retrieve($event->locationId);
-        
+
         $this->event = new Event(
             $event->allDay,
             $eventAttachments,
@@ -287,15 +284,15 @@ final class Bookwhen implements BookwhenInterface
             ),
             $event->maxTicketsPerBooking,
             $event->startAt,
-            $eventTickets, 
+            $eventTickets,
             $event->title,
             $event->waitingList
         );
 
         return $this->event;
     }
-    
-    
+
+
     /**
      *
      * {@inheritDoc}
@@ -315,11 +312,10 @@ final class Bookwhen implements BookwhenInterface
         $includeTickets = false,
         $includeTicketsEvents = false,
         $includeTicketsClassPasses = false
-        ): array 
-     {
-        
+    ): array {
+
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
+
         // Validate $tags.
         if (!empty($tags)) {
             if (!is_array($tags)) {
@@ -332,33 +328,33 @@ final class Bookwhen implements BookwhenInterface
                     }
                 }
             }
-           // $this->apiQuery['filter[tag]'] = implode(',', $tags);
+            // $this->apiQuery['filter[tag]'] = implode(',', $tags);
         }
-        
+
         // Validate $from;
         if (!empty($from)) {
             if (!$this->validator->validFrom($from, $to)) {
                 throw new ValidationException('from', $from . '-' . $to);
             } else {
-             //   $this->apiQuery['filter[from]'] = $from;
+                //   $this->apiQuery['filter[from]'] = $from;
             }
         }
-        
+
         // Validate $to;
         if (!empty($to)) {
             if (!$this->validator->validTo($to, $from)) {
                 throw new ValidationException('to', $to . '-' . $from);
             } else {
-              //  $this->apiQuery['filter[to]'] = $to;
+                //  $this->apiQuery['filter[to]'] = $to;
             }
         }
-        
+
         $this->events = [];
-        
+
         return $this->events;
-        
+
     }
-    
+
     /*
      *
      * {@inheritDoc}
@@ -366,13 +362,13 @@ final class Bookwhen implements BookwhenInterface
      */
     public function location(string $locationId): Location
     {
-        
+
         if (!$this->validator->validId($locationId, 'location')) {
             throw new ValidationException('locationId', $locationId);
         }
-        
+
         $location = $this->client->locations()->retrieve($locationId);
-        
+
         return $this->location = new Location(
             $location->additionalInfo,
             $location->addressText,
@@ -383,7 +379,7 @@ final class Bookwhen implements BookwhenInterface
             $location->zoom
         );
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -393,17 +389,16 @@ final class Bookwhen implements BookwhenInterface
     public function locations(
         null | string $addressText = null,
         null | string $additionalInfo = null
-    ): array
-    {
+    ): array {
 
         // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
+
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
         }
-        
+
         $locations = $this->client->locations()->list();
-        
+
         foreach ($locations->data as $location) {
             array_push($this->locations, new Location(
                 $location->additionalInfo,
@@ -415,11 +410,11 @@ final class Bookwhen implements BookwhenInterface
                 $location->zoom
             ));
         }
-        
+
         return $this->locations;
-        
+
     }
-    
+
     /**
      * Set Debug.
      * @deprecated
@@ -428,7 +423,7 @@ final class Bookwhen implements BookwhenInterface
     {
         $this->logging = $level;
     }
-    
+
      /**
      * Sets the token for all future new instances
      * @deprecated
@@ -442,14 +437,14 @@ final class Bookwhen implements BookwhenInterface
         }
         self::$token = $token;
     }
-    
+
     /**
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\BookWhenInterface::ticket()
      */
     public function ticket($ticketId): Ticket
     {
-        if (!$this->validator->validId($ticketId, 'ticket')) { 
+        if (!$this->validator->validId($ticketId, 'ticket')) {
             throw new ValidationException('ticketId', $ticketId);
         }
 
@@ -470,7 +465,7 @@ final class Bookwhen implements BookwhenInterface
             $ticket->numberIssued,
             $ticket->numberTaken,
             $ticket->title
-         );
+        );
     }
 
     /**
@@ -481,11 +476,11 @@ final class Bookwhen implements BookwhenInterface
     public function tickets(string $eventId): array
     {
         // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
+
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
         }
-            
+
         $tickets = $this->client->tickets()->list([
             'event_id' => $eventId,
             'include' => 'events.tickets'
@@ -509,8 +504,8 @@ final class Bookwhen implements BookwhenInterface
                 $ticket->title
             ));
         }
- 
-       return $this->tickets;
-        
+
+        return $this->tickets;
+
     }
 }

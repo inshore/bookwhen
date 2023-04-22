@@ -43,15 +43,15 @@ class Client implements ClientInterface
     public function __construct(private $transporter)
     {
     }
-    
+
     /**
-     * 
+     *
      */
     public function attachments(): Attachments
     {
         return new Attachments($this->transporter);
     }
-    
+
     /**
 
      */
@@ -60,22 +60,22 @@ class Client implements ClientInterface
         return new ClassPasses($this->transporter);
     }
 /*
- * 
- */    
+ *
+ */
     public function events(): Events
     {
         return new Events($this->transporter);
     }
    /**
 
-    */ 
+    */
     public function locations(): Locations
     {
         return new Locations($this->transporter);
     }
 /**
 
- */    
+ */
     public function tickets(): Tickets
     {
         return new Tickets($this->transporter);

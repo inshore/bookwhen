@@ -112,7 +112,7 @@ interface BookwhenInterface
      *
      * @return object of the event.
      */
-     public function event(string $eventId): Event;
+    public function event(string $eventId): Event;
 
     /**
      * API wrapper to get a list of Events.
@@ -200,7 +200,7 @@ interface BookwhenInterface
      *
      * @return object ticket.
      */
-     public function ticket(string $ticketId): Ticket;
+    public function ticket(string $ticketId): Ticket;
 
     /**
      * API wrapper to get Tickets.

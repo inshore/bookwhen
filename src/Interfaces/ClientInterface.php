@@ -27,7 +27,7 @@ interface ClientInterface
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
      */
-  //  public function getAttachment($attachmentId);
+    //  public function getAttachment($attachmentId);
 
     /**
      * API wrapper to getAttachments
@@ -46,7 +46,7 @@ interface ClientInterface
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
      */
-   // public function getAttachments($title, $fileName, $fileType);
+    // public function getAttachments($title, $fileName, $fileType);
 
     /**
      * API wrapper to getClassPass.
@@ -63,7 +63,7 @@ interface ClientInterface
      * @throws ValidationException if any supplied parameter is invalid.
      * @throws RestException if an error occurs during API interation.
      */
-   // public function getClassPass($classPassId);
+    // public function getClassPass($classPassId);
 
     /**
      * API wrapper to getClassPasses.
@@ -82,7 +82,7 @@ interface ClientInterface
      *
      * @return array of class passes objects.
      */
-   // public function getClassPasses($title, $detail, $usageType, $cost, $usageAllowance, $useRestrictedForDays);
+    // public function getClassPasses($title, $detail, $usageType, $cost, $usageAllowance, $useRestrictedForDays);
 
     /**
      * API wrapper to getEvent.
@@ -96,7 +96,7 @@ interface ClientInterface
      *
      * @return object of the event.
      */
-   // public function getEvent($eventId);
+    // public function getEvent($eventId);
 
     /**
      * API wrapper to getEvents.
@@ -138,7 +138,7 @@ interface ClientInterface
      *
      * @return object location.
      */
-   // public function getLocation($locationId);
+    // public function getLocation($locationId);
 
     /**
      * API wrapper to getLocations.
@@ -153,7 +153,7 @@ interface ClientInterface
      *
      * @return array of location objects.
      */
-   // public function getLocations($addressText, $additionalInfo);
+    // public function getLocations($addressText, $additionalInfo);
 
     /**
      * API wrapper to getTicket.
@@ -167,7 +167,7 @@ interface ClientInterface
      *
      * @return object ticket.
      */
-   // public function getTicket($ticketId);
+    // public function getTicket($ticketId);
 
     /**
      * API wrapper to getTickets.

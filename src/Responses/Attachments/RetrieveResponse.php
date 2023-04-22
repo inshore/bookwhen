@@ -27,8 +27,8 @@ final class RetrieveResponse implements ResponseContract
     private function __construct(
         public readonly string $id,
         public readonly string $title
-    ) 
-    {}
+    ) {
+    }
 
     /**
      * Acts as static factory, and returns a new Response instance.

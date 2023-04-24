@@ -8,17 +8,17 @@ use InShore\Bookwhen\Exceptions\InshoreBookwhenException;
 
 /**
  * InshoreBookwhenConfigurationException Class
- * 
+ *
  * @package inshore\Bookwhen
  */
 class ValidationException extends InshoreBookwhenException
 {
     private $key;
-    
+
     private $value;
-    
+
     /**
-     * 
+     *
      * @param string $key
      * @param array|boolean|object|int|string $value
      */
@@ -27,9 +27,9 @@ class ValidationException extends InshoreBookwhenException
         $this->key = $key;
         $this->value = $value;
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function errorMessage()

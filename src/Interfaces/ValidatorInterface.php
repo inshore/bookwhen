@@ -6,12 +6,11 @@ namespace InShore\Bookwhen\Interfaces;
 
 interface ValidatorInterface
 {
-    
     /**
      *
      */
     public function __construct();
-      
+
     /**
      * @param string $date
      * @return bool
@@ -29,14 +28,14 @@ interface ValidatorInterface
      * @return bool
      */
     public function validFileType($fileType);
-    
+
     /**
      * @param string $from
      * @param string $to
      * @return bool
      */
     public function validFrom($from, $to);
-    
+
     /**
      * @param string $id
      * @param string $type
@@ -49,7 +48,7 @@ interface ValidatorInterface
      * @return bool
      */
     public function validInclude($include);
-    
+
     /**
      * @param string $tag
      */
@@ -60,14 +59,14 @@ interface ValidatorInterface
      * @return bool
      */
     public function validTitle($title);
-    
+
     /**
      * @param string $to
      * @param string|null $from
      * @return bool
      */
     public function validTo($to, $from);
-    
+
     /**
      * @param string $token
      * @return bool
@@ -75,4 +74,3 @@ interface ValidatorInterface
     public function validToken($token);
 
 }
-

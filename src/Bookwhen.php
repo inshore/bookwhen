@@ -237,9 +237,16 @@ final class Bookwhen implements BookwhenInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\BookwhenInterface::event()
-     * @todo break params on to multiplper lines..
+     * @todo filters.
      */
-    public function event(string $eventId, bool $hydrate = true): Event
+    public function event(
+        string $eventId, 
+        bool $attachments = false,
+        bool $location = false,
+        bool $tickets = false,
+        bool $ticketsClassPasses = false,
+        bool $ticketsEventslocation = false
+    ): Event
     {
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
@@ -251,30 +258,9 @@ final class Bookwhen implements BookwhenInterface
             
         $eventAttachments = [];
         $eventTickets = [];
-
-        if (!$hydrate) {
-            return $this->event = new Event(
-                $event->allDay,
-                $eventAttachments,
-                $event->attendeeCount,
-                $event->attendeeLimit,
-                $event->details,
-                $event->endAt,
-                $event->id,
-                new Location(
-                    null,
-                    null,
-                    $event->locationId
-                    ),
-                $event->maxTicketsPerBooking,
-                $event->startAt,
-                $eventTickets,
-                $event->title,
-                $event->waitingList
-            );
-        }
-        else {
-            // attachments
+        
+        // attachments
+        if($attachments) {
             foreach ($event->attachments as $eventAttachment) {
                 $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
                 array_push($eventAttachments, new Attachment(
@@ -282,10 +268,32 @@ final class Bookwhen implements BookwhenInterface
                     $attachment->title,
                 ));
             }
-            // location
+        }
+
+        // location
+        // @todo resolve dynamic type
+        if(!$location) {
+            $eventLocation = new Location(
+                null,
+                null,
+                $event->locationId
+            );
+        }
+        else {
             $location = $this->client->locations()->retrieve($event->locationId);
-            
-            // tickets
+            $eventLocation = new Location(
+                $location->addressText,
+                $location->additionalInfo,
+                $location->id,
+                $location->latitude,
+                $location->longitude,
+                $location->mapUrl,
+                $location->zoom
+            );
+        }
+        
+        // tickets
+        if($tickets) {
             foreach ($event->tickets as $eventTicket) {
                 $ticket = $this->client->tickets()->retrieve($eventTicket['id']);
                 array_push($eventTickets, new Ticket(
@@ -305,31 +313,29 @@ final class Bookwhen implements BookwhenInterface
                     $ticket->title
                 ));
             }
-            
-            return $this->event = new Event(
-                $event->allDay,
-                $eventAttachments,
-                $event->attendeeCount,
-                $event->attendeeLimit,
-                $event->details,
-                $event->endAt,
-                $event->id,
-                new Location(
-                    $location->addressText,
-                    $location->additionalInfo,
-                    $location->id,
-                    $location->latitude,
-                    $location->longitude,
-                    $location->mapUrl,
-                    $location->zoom
-                    ),
-                $event->maxTicketsPerBooking,
-                $event->startAt,
-                $eventTickets,
-                $event->title,
-                $event->waitingList
-             );
         }
+        
+        // ticketsClassPasses
+        // @todo
+        
+        // ticketsEvents
+        // @todo
+        
+        return $this->event = new Event(
+            $event->allDay,
+            $eventAttachments,
+            $event->attendeeCount,
+            $event->attendeeLimit,
+            $event->details,
+            $event->endAt,
+            $event->id,
+            $eventLocation,
+            $event->maxTicketsPerBooking,
+            $event->startAt,
+            $eventTickets,
+            $event->title,
+            $event->waitingList
+         );
     }
 
     /**
@@ -338,12 +344,12 @@ final class Bookwhen implements BookwhenInterface
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getEvents()
      */
     public function Events(
-        $calendar = false, // @todo 
-        $entry = false, // @todo 
-        $location = [], // @todo 
+        $calendar = false, 
+        $entry = false, 
+        $location = [], 
         $tags = [],
         $title = [], 
-        $detail = [], // @todo 
+        $detail = [], 
         $from = null, 
         $to = null, 
         $includeAttachments = false,
@@ -486,9 +492,9 @@ final class Bookwhen implements BookwhenInterface
         
         $events = $this->client->events()->list(array_merge($this->filters, ['include' => implode(',', $this->includes)]));
         
-        $eventAttachments = []; // @todo hydrate
+        $eventAttachments = [];
         
-        $eventTickets = []; // @todo hydrate
+        $eventTickets = [];
 
         foreach ($events->data as $event) {
             array_push($this->events, new Event(

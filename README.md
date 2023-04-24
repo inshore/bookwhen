@@ -38,7 +38,7 @@ via .env or how you prefer.
 ``` php
 $bookwhen = new Bookwhen();
 ```
-**Attachments**
+###Attachments###
 
 ``` php
 
@@ -51,7 +51,7 @@ $attachments = $bookwhen->attachments());
 $attachment = $bookwhen->attachment('ev-smij-20200530100000');
 
 ```
-**Class Passes**
+###Class Passes###
 
 ``` php
 
@@ -65,13 +65,9 @@ $classPass = $bookwhen->classPass('ev-smij-20200530100000');
 
 ```
 
-**Events**
+###Event###
 
 ``` php
-
-// Fetch events accessible by the API token.
-
-$events = $bookwhen->events());
 
 // Returns the event for the provided event ID.
 
@@ -79,7 +75,70 @@ $event = $bookwhen->event('ev-smij-20200530100000');
 
 ```
 
-**Locations**
+**Includes**
+
+By default the event will NOT have its attachments, location and tickets populated.
+
+To retrieve an event withg the included relationships,
+simply pass boolean true for the relationship that is required. 
+
+attachments
+location
+tickets
+tickets.class_passes
+tickets.events
+
+for example to retrieve the event with its location and tickets.
+
+``` php
+
+// Returns the event for the provided event ID.
+
+$event = $bookwhen->event(eventId: 'ev-smij-20200530100000', location: true, tickets: true);
+
+```
+
+###Events###
+
+``` php
+
+// Fetch events accessible by the API token.
+
+$events = $bookwhen->events());
+
+```
+
+**Filters**
+
+The event list can be filtered as per the api documentation
+
+**Includes**
+
+By default the event will NOT have its attachments, location and tickets populated.
+
+To retrieve an event withg the included relationships,
+simply pass boolean true for the relationship that is required. 
+
+attachments
+location
+tickets
+tickets.class_passes
+tickets.events
+
+for example to retrieve the event with its location and tickets.
+
+
+
+``` php
+
+// Fetch events accessible by the API token.
+
+$events = $bookwhen->events(location: true, tickets: true);));
+
+```
+
+
+###Locations###
 
 ``` php
 
@@ -92,7 +151,7 @@ $locations = $bookwhen->location());
 $location = $bookwhen->location('ev-smij-20200530100000');
 
 ```
-**Tickets**
+###Tickets###
 
 ``` php
 

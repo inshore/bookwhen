@@ -50,7 +50,7 @@ final class RetrieveResponse implements ResponseContract
     {
         return new self(
             $attributes['attributes']['all_day'],
-            $attributes['relationships']['tickets']['data'],
+            $attributes['relationships']['attachments']['data'],
             $attributes['attributes']['attendee_count'],
             $attributes['attributes']['attendee_limit'],
             $attributes['attributes']['details'],

@@ -28,10 +28,10 @@ final class RetrieveResponse implements ResponseContract
         public readonly string $addressText,
         public readonly string $additionalInfo,
         public readonly string $id,
-        public readonly float $latitude,
-        public readonly float $longitude,
+        public readonly float | null $latitude,
+        public readonly float | null $longitude,
         public readonly string $mapUrl,
-        public readonly int $zoom
+        public readonly int | null $zoom
     ) {
     }
 

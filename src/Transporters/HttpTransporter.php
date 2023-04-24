@@ -54,7 +54,7 @@ final class HttpTransporter implements TransporterContract
         if ($response->getHeader('Content-Type')[0] === 'text/plain; charset=utf-8') {
             return $contents;
         }
-        var_export($response);
+ 
         try {
             /** @var array{error?: array{message: string, type: string, code: string}} $response */
             $response = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);

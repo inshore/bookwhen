@@ -130,9 +130,8 @@ final class Bookwhen implements BookwhenInterface
         $attachment = $this->client->attachments()->retrieve($attachmentId);
 
         return $this->attachment = new Attachment(
-            $classPass->details,
-            $classPass->id,
-            $classPass->title,
+            $attachment->id,
+            $attachment->title,
         );
     }
 
@@ -240,7 +239,7 @@ final class Bookwhen implements BookwhenInterface
      * @see \InShore\Bookwhen\Interfaces\BookwhenInterface::event()
      * @todo break params on to multiplper lines..
      */
-    public function event(string $eventId): Event
+    public function event(string $eventId, bool $hydrate = true): Event
     {
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
@@ -249,60 +248,89 @@ final class Bookwhen implements BookwhenInterface
         }
 
         $event = $this->client->events()->retrieve($eventId);
-       
+            
         $eventAttachments = [];
-
         $eventTickets = [];
-        
-        foreach ($event->tickets as $eventTicket) {
-            $ticket = $this->client->tickets()->retrieve($eventTicket['id']);
-            array_push($eventTickets, new Ticket(
-                $ticket->available,
-                $ticket->availableFrom,
-                $ticket->availableTo,
-                $ticket->builtBasketUrl,
-                $ticket->builtBasketIframeUrl,
-                $ticket->courseTicket,
-                $ticket->details,
-                $ticket->groupTicket,
-                $ticket->groupMin,
-                $ticket->groupMax,
-                $ticket->id,
-                $ticket->numberIssued,
-                $ticket->numberTaken,
-                $ticket->title
-            ));
+
+        if (!$hydrate) {
+            return $this->event = new Event(
+                $event->allDay,
+                $eventAttachments,
+                $event->attendeeCount,
+                $event->attendeeLimit,
+                $event->details,
+                $event->endAt,
+                $event->id,
+                new Location(
+                    null,
+                    null,
+                    $event->locationId
+                    ),
+                $event->maxTicketsPerBooking,
+                $event->startAt,
+                $eventTickets,
+                $event->title,
+                $event->waitingList
+            );
         }
-
-        $location = $this->client->locations()->retrieve($event->locationId);
-
-        $this->event = new Event(
-            $event->allDay,
-            $eventAttachments,
-            $event->attendeeCount,
-            $event->attendeeLimit,
-            $event->details,
-            $event->endAt,
-            $event->id,
-            new Location(
-                $location->addressText,
-                $location->additionalInfo,
-                $location->id,
-                $location->latitude,
-                $location->longitude,
-                $location->mapUrl,
-                $location->zoom
-            ),
-            $event->maxTicketsPerBooking,
-            $event->startAt,
-            $eventTickets,
-            $event->title,
-            $event->waitingList
-        );
-
-        return $this->event;
+        else {
+            // attachments
+            foreach ($event->attachments as $eventAttachment) {
+                $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
+                array_push($eventAttachments, new Attachment(
+                    $attachment->id,
+                    $attachment->title,
+                ));
+            }
+            // location
+            $location = $this->client->locations()->retrieve($event->locationId);
+            
+            // tickets
+            foreach ($event->tickets as $eventTicket) {
+                $ticket = $this->client->tickets()->retrieve($eventTicket['id']);
+                array_push($eventTickets, new Ticket(
+                    $ticket->available,
+                    $ticket->availableFrom,
+                    $ticket->availableTo,
+                    $ticket->builtBasketUrl,
+                    $ticket->builtBasketIframeUrl,
+                    $ticket->courseTicket,
+                    $ticket->details,
+                    $ticket->groupTicket,
+                    $ticket->groupMin,
+                    $ticket->groupMax,
+                    $ticket->id,
+                    $ticket->numberIssued,
+                    $ticket->numberTaken,
+                    $ticket->title
+                ));
+            }
+            
+            return $this->event = new Event(
+                $event->allDay,
+                $eventAttachments,
+                $event->attendeeCount,
+                $event->attendeeLimit,
+                $event->details,
+                $event->endAt,
+                $event->id,
+                new Location(
+                    $location->addressText,
+                    $location->additionalInfo,
+                    $location->id,
+                    $location->latitude,
+                    $location->longitude,
+                    $location->mapUrl,
+                    $location->zoom
+                    ),
+                $event->maxTicketsPerBooking,
+                $event->startAt,
+                $eventTickets,
+                $event->title,
+                $event->waitingList
+             );
+        }
     }
-
 
     /**
      *
@@ -327,6 +355,51 @@ final class Bookwhen implements BookwhenInterface
 
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
+        // Validate $calendar
+        // @todo details required
+        
+        // Validate $detail
+        if (!empty($detail)) {
+            if (!is_array($detail)) {
+                throw new ValidationException('detail', implode(' ', $detail));
+            } else {
+                $detail = array_unique($detail);
+                foreach($detail as $item) {
+                    if (!$this->validator->validLocation($item)) {
+                        throw new ValidationException('detail', $item);
+                    }
+                }
+                $this->filters['filter[detail]'] = implode(',', $detail);
+            }
+        }
+
+        // Validate $entry
+        // @todo details required
+        
+        // Validate $from;
+        if (!empty($from)) {
+            if (!$this->validator->validFrom($from, $to)) {
+                throw new ValidationException('from', $from . '-' . $to);
+            } else {
+                $this->filters['filter[from]'] = $from;
+            }
+        }
+
+        // Validate $location
+        if (!empty($location)) {
+            if (!is_array($location)) {
+                throw new ValidationException('location', implode(' ', $title));
+            } else {
+                $location = array_unique($location);
+                foreach($location as $item) {
+                    if (!$this->validator->validLocation($item)) {
+                        throw new ValidationException('location', $item);
+                    }
+                }
+                $this->filters['filter[location]'] = implode(',', $location);
+            }
+        }
+        
         // Validate $tags.
         if (!empty($tags)) {
             if (!is_array($tags)) {
@@ -342,23 +415,19 @@ final class Bookwhen implements BookwhenInterface
             $this->filters['filter[tag]'] = implode(',', $tags);
         }
 
-        // Validate $from;
-        if (!empty($from)) {
-            if (!$this->validator->validFrom($from, $to)) {
-                throw new ValidationException('from', $from . '-' . $to);
-            } else {
-                $this->filters['filter[from]'] = $from;
-            }
-        }
-
         // Validate $title;
         if (!empty($title)) {
-            foreach($title as $item) {
-                if (!$this->validator->validTitle($item)) {
-                    throw new ValidationException('title', $item);
+            if (!is_array($title)) {
+                throw new ValidationException('title', implode(' ', $title));
+            } else {
+                $title = array_unique($title);
+                foreach($title as $item) {
+                    if (!$this->validator->validTitle($item)) {
+                        throw new ValidationException('title', $item);
+                    }
                 }
+                $this->filters['filter[title]'] = implode(',', $title);
             }
-            $this->filters['filter[title]'] = implode(',', $title);
         }
         
         // Validate $to;
@@ -430,15 +499,11 @@ final class Bookwhen implements BookwhenInterface
                 $event->details,
                 $event->endAt,
                 $event->id,
-                new Location( null, null, 
-//                     $location->addressText,
-//                     $location->additionalInfo,
-                     $event->locationId,
-//                     $location->latitude,
-//                     $location->longitude,
-//                     $location->mapUrl,
-//                     $location->zoom
-                    ),
+                new Location( 
+                    null,
+                    null, 
+                    $event->locationId,
+                ),
                 $event->maxTicketsPerBooking,
                 $event->startAt,
                 $eventTickets,
@@ -448,7 +513,6 @@ final class Bookwhen implements BookwhenInterface
         }
 
         return $this->events;
-
     }
 
     /*

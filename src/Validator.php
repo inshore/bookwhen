@@ -123,6 +123,16 @@ class Validator implements ValidatorInterface
     /**
      *
      * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validDetails()
+     */
+    public function validDetails($details): bool
+    {
+        return v::stringType()->notEmpty()->validate($details);
+    }
+
+    /**
+     *
+     * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFileName()
      */
     public function validFileName($fileName): bool
@@ -207,6 +217,16 @@ class Validator implements ValidatorInterface
     public function validInclude($include): bool
     {
         return v::boolType()->validate($include);
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validLocation()
+     */
+    public function validLocation($location): bool
+    {
+        return v::stringType()->notEmpty()->validate($location);
     }
 
     /**

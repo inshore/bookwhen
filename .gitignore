@@ -44,5 +44,6 @@ docs
 vendor
 
 .README.md.html
+.phpunit.result.cache
 inshoreBookwhen.log
 

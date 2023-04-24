@@ -10,13 +10,13 @@ final class Location
      *
      */
     public function __construct(
-        public readonly string $addressText,
-        public readonly string $additionalInfo,
+        public readonly null | string $addressText = null,
+        public readonly null | string $additionalInfo = null,
         public readonly string $id,
-        public readonly null | float $latittude,
-        public readonly null | float $longitude,
-        public readonly string $mapUrl,
-        public readonly int | null $zoom
+        public readonly float | null $latitude = null,
+        public readonly float| null $longitude = null,
+        public readonly null | string $mapUrl = null ,
+        public readonly int | null $zoom = null
     ) {
     }
 }

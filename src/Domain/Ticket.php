@@ -8,9 +8,8 @@ use InShore\Bookwhen\Domain\Event;
 
 final class Ticket
 {
-    
     /**
-     * 
+     *
      */
     public function __construct(
         public readonly bool $available,
@@ -27,6 +26,6 @@ final class Ticket
         public readonly int | null $numberIssued,
         public readonly int $numberTaken,
         public readonly string $title
-        ) {
+    ) {
     }
 }

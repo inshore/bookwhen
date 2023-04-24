@@ -131,7 +131,7 @@ final class Payload
         $body = null;
 
         $uri = $baseUri->toString().$this->uri->toString();
-        
+
         if (! empty($this->parameters)) {
             $uri .= '?'.http_build_query($this->parameters);
         }

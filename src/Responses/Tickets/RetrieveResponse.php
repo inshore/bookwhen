@@ -27,7 +27,7 @@ final class RetrieveResponse implements ResponseContract
 
 
 
-    'cost' => 
+    'cost' =>
     array (
       'currency_code' => 'GBP',
       'net' => 3500,

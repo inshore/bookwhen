@@ -41,13 +41,13 @@ $client = new Client($token)
 
 // Fetch events accessible by the API token.
 
-$client->getEvents();
+$client->events();
 
 // Returns the event for the provided event ID.
 
-$eventId = 'ev-smij-20200530100000';
+$eventId = 'xxxx';
 
-$client->getEvents($eventId);
+$client->event($eventId);
 
 ```
 
@@ -63,7 +63,7 @@ $client->locations();
 
 $locationId = xxxx;
 
-$client->locations($locationId)
+$client->location($locationId)
 
 ``` 
 
@@ -89,13 +89,13 @@ $client->attachments($attachmentId);
 
 // Fetch tickets for the given event.
 
-$eventId = 'ev-smij-20200530100000';
+$eventId = 'xxxx';
 
 $client->tickets($eventId);
 
 // Retrieve a single ticket.
 
-$ticketId = 'ti-sboe-20200320100000-tk1m';
+$ticketId = 'xxxx';
 
 $client->ticket($ticketId);
 

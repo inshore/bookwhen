@@ -176,7 +176,7 @@ class Validator implements ValidatorInterface
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validid()
      * @todo
      */
-    public function validid($id, $type = null): bool
+    public function validId($id, $type = null): bool
     {
         if (!v::stringType()->notEmpty()->validate($id)) {
             return false;

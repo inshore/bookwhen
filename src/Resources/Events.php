@@ -18,9 +18,9 @@ final class Events implements EventsContract
      *
      * @see https://beta.openai.com/docs/api-reference/files/list
      */
-    public function list(): ListResponse
+    public function list($parameters): ListResponse
     {
-        $payload = Payload::list('events');
+        $payload = Payload::list('events', $parameters);
 
         /** @var array{object: string, data: array<int, array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>} $result */
         $result = $this->transporter->requestObject($payload);

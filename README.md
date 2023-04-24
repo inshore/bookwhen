@@ -23,15 +23,45 @@ PHP 8.1 and later.
 
 ``` bash
 $ composer require inshore/bookwhen
+
 ```
 
 ## Usage
 
+Simply expose your Bookwhen API key as the environment property 
+
+INSHORE_BOOKWHEN_API_KEY 
+
+via .env or how you prefer.
+
+
+``` php
+$bookwhen = new Bookwhen();
+```
+**Attachments**
+
 ``` php
 
-$token = xxxx;
+// Fetch attachments accessible by the API token.
 
-$client = new Client($token)
+$attachments = $bookwhen->attachments());
+
+// Returns the attachment for the provided attachment ID.
+
+$attachment = $bookwhen->attachment('ev-smij-20200530100000');
+
+```
+**Class Passes**
+
+``` php
+
+// Fetch class passes accessible by the API token.
+
+$classPasses = $bookwhen->classPasses());
+
+// Returns the class pass for the provided class pass ID.
+
+$classPass = $bookwhen->classPass('ev-smij-20200530100000');
 
 ```
 
@@ -41,13 +71,11 @@ $client = new Client($token)
 
 // Fetch events accessible by the API token.
 
-$client->events();
+$events = $bookwhen->events());
 
 // Returns the event for the provided event ID.
 
-$eventId = 'xxxx';
-
-$client->event($eventId);
+$event = $bookwhen->event('ev-smij-20200530100000');
 
 ```
 
@@ -55,65 +83,30 @@ $client->event($eventId);
 
 ``` php
 
-// Fetch locations for the given query params.
+// Fetch events accessible by the API token.
 
-$client->locations();
+$locations = $bookwhen->location());
 
-// Retrieve a single location.
+// Returns the location for the provided location ID.
 
-$locationId = xxxx;
-
-$client->location($locationId)
-
-``` 
-
-**Attachments**
-
-``` php
-
-// Fetch attachments for the given query params.
-
-$client->attachments();
-
-// Retrieve a single attachment.
-
-$attachmentId = '9v06h1cbv0en';
-
-$client->attachments($attachmentId);
+$location = $bookwhen->location('ev-smij-20200530100000');
 
 ```
-
 **Tickets**
 
 ``` php
 
 // Fetch tickets for the given event.
 
-$eventId = 'xxxx';
+$eventId = 'ev-smij-20200530100000';
 
 $client->tickets($eventId);
 
 // Retrieve a single ticket.
 
-$ticketId = 'xxxx';
+$ticketId = 'ti-sboe-20200320100000-tk1m';
 
 $client->ticket($ticketId);
-
-```
-
-**Class Passes**
-
-``` php
-
-// Fetch class passes for the given query params.
-
-$client->classPasses;
-
-// Retrieve a single class pass.
-
-$classPassId = xxxx;
-
-$client->classPasses($classPassId);
 
 ```
 
@@ -130,7 +123,7 @@ CRITICAL: Critical status. Example: System component is not available
 ALERT: Immediate action should be exercised. This should trigger some alerts and wake you up during night time.
 EMERGENCY: It is used when the system is unusable.
 
-$client = new Client($token, 'DEBUG');
+$bookwhen = new Bookwhen()->debug('Debug');
 
 
 ## Testing
@@ -143,14 +136,20 @@ $ phpunit
 
 Please see https://github.com/inshore/bookwhen for details.
 
+## Support ##
+
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="danielmullin" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+
+[https://www.buymeacoffee.com/danielmullin](https://www.buymeacoffee.com/danielmullin)
+
 ## Credits
 
 - Daniel Mullin inshore@danielmullin.com
 - Brandon Lubbehusen inshore@danielmullin.com
 
+
 ## License
 
 MIT
 https://github.com/inshore/bookwhen/blob/master/LICENSE.md
-
 

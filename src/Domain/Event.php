@@ -11,17 +11,17 @@ final class Event
     /**
      *
      */
-    public readonly int $attendeeAvailable;
+    public int $attendeeAvailable;
 
     /**
      *
      */
-    public readonly bool $finished;
+    public bool $finished;
 
     /**
      *
      */
-    public readonly bool $soldOut;
+    public bool $soldOut;
 
     /**
      *
@@ -46,7 +46,4 @@ final class Event
         $this->finished = false; // @todo
         $this->soldOut = ($this->attendeeCount === $this->attendeeLimit);
     }
-
-
-
 }

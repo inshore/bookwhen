@@ -263,8 +263,13 @@ final class Bookwhen implements BookwhenInterface
             foreach ($event->attachments as $eventAttachment) {
                 $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
                 array_push($eventAttachments, new Attachment(
-                    $attachment->id,
-                    $attachment->title,
+                    $attachment->contentType,
+                    $attachment->fileUrl,
+                    $attachment->fileSizeBytes,
+                    $attachment->fileSizeText,
+                    $attachment->fileName,
+                    $attachment->fileType,
+                    $attachment->id
                 ));
             }
         }

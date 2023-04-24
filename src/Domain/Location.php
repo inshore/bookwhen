@@ -13,10 +13,10 @@ final class Location
         public readonly string $addressText,
         public readonly string $additionalInfo,
         public readonly string $id,
-        public readonly float $latittude,
-        public readonly float $longitude,
+        public readonly null | float $latittude,
+        public readonly null | float $longitude,
         public readonly string $mapUrl,
-        public readonly int $zoom
+        public readonly int | null $zoom
     ) {
     }
 }

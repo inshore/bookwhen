@@ -15,12 +15,6 @@ use ArrayAccess;
  */
 interface ResponseContract extends ArrayAccess
 {
-    /**
-     * Returns the array representation of the Response.
-     *
-     * @return TArray
-     */
-    public function toArray(): array;
 
     /**
      * @param  key-of<TArray>  $offset

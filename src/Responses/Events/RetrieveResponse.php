@@ -64,16 +64,4 @@ final class RetrieveResponse implements ResponseContract
             $attributes['attributes']['waiting_list']
         );
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function toArray(): array
-    {
-        return [
-            'id' => $this->id,
-            'type' => $this->type,
-            //'attributes' => $this->attributes,
-        ];
-    }
 }

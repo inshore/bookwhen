@@ -11,37 +11,18 @@ class Validator implements ValidatorInterface
 {
     /**
      *
-     */
-    public function __construct()
-    {
-
-    }
-
-    /**
-     *
      * @author Daniel Mullin daniel@inshore.je
      *
      * @access protected
      *
-     * @param string $cattachmentId
+     * @param string $attachmentId
      * @return bool
      */
     protected function validAttachmentId(string $attachmentId): bool
     {
-        $exploded = explode('-', $attachmentId);
-
-        if (count($exploded) !== 2) {
-            return false;
-        }
-
-        if ($exploded[0] !== 'cp') {
-            return false;
-        }
-
         return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
-
     }
- 
+
     /**
      *
      * @author Daniel Mullin daniel@inshore.je
@@ -52,9 +33,9 @@ class Validator implements ValidatorInterface
      * @param string $classPassId
      * @return bool
      */
-    protected function validClassPassId($classPassId): bool
+    protected function validClassPassId(string $classPassId): bool
     {
-        $exploded = explode('-', $classPassId);
+        array $exploded = explode('-', $classPassId);
 
         if (count($exploded) !== 2) {
             return false;
@@ -65,17 +46,14 @@ class Validator implements ValidatorInterface
         }
 
         return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
-
     }
-
-
 
     /**
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validDate()
      */
-    public function validDate($date): bool
+    public function validDate(string $date): bool
     {
         if (v::stringType()->notEmpty()->numericVal()->length(8, 8)->date('Ymd')->validate($date)) {
             return true;
@@ -105,7 +83,7 @@ class Validator implements ValidatorInterface
      */
     protected function validEventId(string $eventId): bool
     {
-        $exploded = explode('-', $eventId);
+        array $exploded = explode('-', $eventId);
 
         if (count($exploded) !== 3) {
             return false;
@@ -138,7 +116,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFileType()
      */
-    public function validFileType($fileType): bool
+    public function validFileType(string $fileType): bool
     {
         return v::stringType()->notEmpty()->in(['jpg', 'jpeg', 'gif', 'png'])->validate(strtolower($fileType));
     }
@@ -148,13 +126,13 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFrom()
      */
-    public function validFrom($from, $to = null): bool
+    public function validFrom(int $from, int $to = null): bool
     {
         if (!$this->validDate($from)) {
             return false;
         }
 
-        $fromDate = new \DateTime($from);
+        string $fromDate = new \DateTime($from);
 
         if (empty($to)) {
             return true;
@@ -163,7 +141,8 @@ class Validator implements ValidatorInterface
         if (!$this->validDate($to)) {
             return false;
         }
-        $toDate = new \DateTime($to);
+
+        string $toDate = new \DateTime($to);
 
         // Compare if actual to date is greater than from.
         if ($fromDate > $toDate) {
@@ -176,10 +155,11 @@ class Validator implements ValidatorInterface
     /**
      *
      * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validid()
+     * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validId()
      * @todo
      */
-    public function validId($id, $type = null): bool
+    public function validId(string $id, string|null $type = null): bool
+                //CHECK
     {
         if (!v::stringType()->notEmpty()->validate($id)) {
             return false;
@@ -208,7 +188,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validInclude()
      */
-    public function validInclude($include): bool
+    public function validInclude(bool $include): bool
     {
         return v::boolType()->validate($include);
     }
@@ -220,7 +200,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validLocation()
      */
-    public function validLocation($location): bool
+    public function validLocation(string $location): bool
     {
         return v::stringType()->notEmpty()->validate($location);
     }
@@ -236,18 +216,7 @@ class Validator implements ValidatorInterface
      */
     protected function validLocationId(string $locationId): bool
     {
-        $exploded = explode('-', $locationId);
-        
-        if (count($exploded) !== 2) {
-            return false;
-        }
-        
-        if ($exploded[0] !== 'cp') {
-            return false;
-        }
-        
-        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
-        
+        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($locationId);
     }
     
     /**
@@ -255,7 +224,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTag()
      */
-    public function validTag($tag): bool
+    public function validTag(string $tag): bool
     {
         return v::stringType()->notEmpty()->alnum()->validate($tag);
     }
@@ -269,10 +238,10 @@ class Validator implements ValidatorInterface
      * @param string $ticketId
      * @return bool
      */
-    protected function validTicketId($ticketId): bool
+    protected function validTicketId(string $ticketId): bool
     {
 
-        $exploded = explode('-', $ticketId);
+        array $exploded = explode('-', $ticketId);
 
         if (count($exploded) !== 4) {
             return false;
@@ -299,7 +268,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTitle()
      */
-    public function validTitle($title): bool
+    public function validTitle(string $title): bool
     {
         return v::stringType()->notEmpty()->validate($title);
     }
@@ -309,19 +278,20 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTo()
      */
-    public function validTo($to, $from = null): bool
+    public function validTo(string $to, string|null $from = null): bool
     {
         if (!$this->validDate($to)) {
             return false;
         }
 
-        $toDate = new \DateTime($to);
+        string $toDate = new \DateTime($to);
 
         if (empty($from)) {
             return true;
         }
 
-        $fromDate = new \DateTime($from);
+        string $fromDate = new \DateTime($from);
+
         if (!$this->validFrom($from)) {
             return false;
         }
@@ -337,7 +307,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validToken()
      */
-    public function validToken($token): bool
+    public function validToken(string $token): bool
     {
         return v::alnum()->validate($token);
     }

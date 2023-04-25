@@ -623,7 +623,7 @@ final class Bookwhen implements BookwhenInterface
                 $this->filters['filter[address_text]'] = $addressText;
             }
             
-            $locations = $this->client->locations()->list();
+            $locations = $this->client->locations()->list($this->filters);
             
             foreach ($locations->data as $location) {
                 array_push($this->locations, new Location(

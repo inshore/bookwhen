@@ -505,8 +505,8 @@ final class Bookwhen implements BookwhenInterface
                 $event->location->longitude,
                 $event->location->mapUrl,
                 $event->location->zoom
-                );
-                        
+            );
+
             array_push($this->events, new Event(
                 $event->allDay,
                 $event->attachments,

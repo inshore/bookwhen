@@ -15,7 +15,6 @@ use ArrayAccess;
  */
 interface ResponseContract extends ArrayAccess
 {
-
     /**
      * @param  key-of<TArray>  $offset
      */
@@ -28,6 +27,10 @@ interface ResponseContract extends ArrayAccess
      * @return TArray[TOffsetKey]
      */
     public function offsetGet(mixed $offset): mixed;
+
+
+
+
 
     /**
      * @template TOffsetKey of key-of<TArray>

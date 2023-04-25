@@ -41,7 +41,7 @@ class Validator implements ValidatorInterface
         return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
 
     }
- 
+
     /**
      *
      * @author Daniel Mullin daniel@inshore.je
@@ -204,7 +204,7 @@ class Validator implements ValidatorInterface
     /**
      *
      * @author Brandon Lubbehusen brandon@inshore.je
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validInclude()
      */
@@ -216,7 +216,7 @@ class Validator implements ValidatorInterface
     /**
      *
      * @author Brandon Lubbehusen brandon@inshore.je
-     *     
+     *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validLocation()
      */
@@ -237,19 +237,19 @@ class Validator implements ValidatorInterface
     protected function validLocationId(string $locationId): bool
     {
         $exploded = explode('-', $locationId);
-        
+
         if (count($exploded) !== 2) {
             return false;
         }
-        
+
         if ($exploded[0] !== 'cp') {
             return false;
         }
-        
+
         return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
-        
+
     }
-    
+
     /**
      *
      * {@inheritDoc}

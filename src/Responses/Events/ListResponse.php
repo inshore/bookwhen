@@ -43,7 +43,8 @@ final class ListResponse implements ResponseContract
         }
 
         $data = array_map(fn (array $result): RetrieveResponse => RetrieveResponse::from(
-            $result, $included
+            $result,
+            $included
         ), $attributes['data']);
 
         return new self(

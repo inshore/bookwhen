@@ -46,18 +46,4 @@ final class ListResponse implements ResponseContract
             $data,
         );
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function toArray(): array
-    {
-        return [
-            'object' => $this->object,
-            'data' => array_map(
-                static fn (RetrieveResponse $response): array => $response->toArray(),
-                $this->data,
-            ),
-        ];
-    }
 }

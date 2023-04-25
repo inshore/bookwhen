@@ -28,10 +28,6 @@ interface ResponseContract extends ArrayAccess
      */
     public function offsetGet(mixed $offset): mixed;
 
-
-
-
-
     /**
      * @template TOffsetKey of key-of<TArray>
      *

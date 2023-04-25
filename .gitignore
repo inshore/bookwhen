@@ -3,7 +3,7 @@
 .php-cs-fixer.cache
 .project
 .settings/
-
+.php-cs-fixer.php
 
 
 # IntelliJ - PhpStorm and PyCharm

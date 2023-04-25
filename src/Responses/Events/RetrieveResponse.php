@@ -61,8 +61,18 @@ final class RetrieveResponse implements ResponseContract
                 ],
                 'id' => $attributes['relationships']['location']['data']['id']
             ]);
-        }
-        else {
+        } else {
+            $location = LocationsRetrieveResponse::from([
+                'attributes' => [
+                    'address_text' => null,
+                    'additional_info' => null,
+                    'latitude' => null,
+                    'longitude' => null,
+                    'map_url' => null,
+                    'zoom' => null
+                ],
+                'id' => $attributes['relationships']['location']['data']['id']
+            ]);
             foreach ($included as $includedData) {
                 if($includedData['type'] === 'location' && $includedData['id'] = $attributes['relationships']['location']['data']['id']) {
                     $location = LocationsRetrieveResponse::from($includedData);

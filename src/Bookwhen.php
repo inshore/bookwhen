@@ -130,6 +130,12 @@ final class Bookwhen implements BookwhenInterface
         $attachment = $this->client->attachments()->retrieve($attachmentId);
 
         return $this->attachment = new Attachment(
+            $attachment->contentType,
+            $attachment->fileUrl,
+            $attachment->fileSizeBytes,
+            $attachment->fileSizeText,
+            $attachment->fileName,
+            $attachment->fileType,
             $attachment->id,
             $attachment->title,
         );
@@ -150,21 +156,34 @@ final class Bookwhen implements BookwhenInterface
 
         if (!is_null($title) && !$this->validator->validTitle($title)) {
             throw new ValidationException('title', $title);
+        } else {
+            $this->filters['filter[title]'] = $title; 
         }
 
         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
             throw new ValidationException('file name', $fileName);
+        } else {
+            $this->filters['filter[file_name]'] = $fileName;
         }
 
         if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
             throw new ValidationException('file type', $fileType);
+        } else {
+            $this->filters['filter[file_type]'] = $fileType;
         }
 
-        $attachments = $this->client->attachments()->list();
+        $attachments = $this->client->attachments()->list($this->filters);
 
         foreach ($attachments->data as $attachment) {
-            array_push($this->attachment, new Attachment(
+            array_push($this->attachments, new Attachment(
+                $attachment->contentType,
+                $attachment->fileUrl,
+                $attachment->fileSizeBytes,
+                $attachment->fileSizeText,
+                $attachment->fileName,
+                $attachment->fileType,
                 $attachment->id,
+                $attachment->title
             ));
         }
 
@@ -300,22 +319,21 @@ final class Bookwhen implements BookwhenInterface
 
         $event = $this->client->events()->retrieve($eventId, ['include' => implode(',', $this->includes)]);
 
-        $eventAttachments = []; // deprecated
-
         // attachments
-        if($includeAttachments) {
-//             foreach ($event->attachments as $eventAttachment) {
-//                 $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
-//                 array_push($eventAttachments, new Attachment(
-//                     $attachment->contentType,
-//                     $attachment->fileUrl,
-//                     $attachment->fileSizeBytes,
-//                     $attachment->fileSizeText,
-//                     $attachment->fileName,
-//                     $attachment->fileType,
-//                     $attachment->id
-//                 ));
-//             }
+        $eventAttachments = [];
+        
+        foreach ($event->attachments as $eventAttachment) {
+            $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
+            array_push($eventAttachments, new Attachment(
+                $attachment->contentType,
+                $attachment->fileUrl,
+                $attachment->fileSizeBytes,
+                $attachment->fileSizeText,
+                $attachment->fileName,
+                $attachment->fileType,
+                $attachment->id,
+                $attachment->title
+            ));
         }
 
         // eventTickets

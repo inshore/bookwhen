@@ -10,13 +10,13 @@ interface ValidatorInterface
      * @param string $attachmentId
      * @return bool
      */
-    protected function validAttachmentId(string $attachmentId): bool;
+    public function validAttachmentId(string $attachmentId): bool;
 
     /**
      * @param string $classPassId
      * @return bool
      */
-    protected function validClassPassId(string $classPassId): bool;
+    public function validClassPassId(string $classPassId): bool;
 
     /**
      * @param string $date
@@ -34,7 +34,7 @@ interface ValidatorInterface
      * @param string $eventId
      * @return bool
      */
-    protected function validEventId(string $eventId): bool;
+    public function validEventId(string $eventId): bool;
 
     /**
      * @param string $fileName
@@ -78,7 +78,7 @@ interface ValidatorInterface
      * @param string $locationId
      * @return bool
      */
-    protected function validLocationId(string $locationId): bool;
+    public function validLocationId(string $locationId): bool;
 
     /**
      * @param string $tag
@@ -90,7 +90,7 @@ interface ValidatorInterface
      * @param string $ticketId
      * @return bool
      */
-    protected function validTicketId(string $ticketId): bool;
+    public function validTicketId(string $ticketId): bool;
 
     /**
      * @param string $title

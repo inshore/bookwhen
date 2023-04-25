@@ -13,12 +13,12 @@ class Validator implements ValidatorInterface
      *
      * @author Daniel Mullin daniel@inshore.je
      *
-     * @access protected
+     * @access public
      *
      * @param string $attachmentId
      * @return bool
      */
-    protected function validAttachmentId(string $attachmentId): bool
+    public function validAttachmentId(string $attachmentId): bool
     {
         return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
     }
@@ -28,12 +28,12 @@ class Validator implements ValidatorInterface
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
      *
-     * @access protected
+     * @access public
      *
      * @param string $classPassId
      * @return bool
      */
-    protected function validClassPassId(string $classPassId): bool
+    public function validClassPassId(string $classPassId): bool
     {
         $exploded = explode('-', $classPassId);
 
@@ -76,12 +76,12 @@ class Validator implements ValidatorInterface
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
      *
-     * @access protected
+     * @access public
      *
      * @param string $eventId
      * @return bool
      */
-    protected function validEventId(string $eventId): bool
+    public function validEventId(string $eventId): bool
     {
         $exploded = explode('-', $eventId);
 
@@ -208,12 +208,12 @@ class Validator implements ValidatorInterface
      *
      * @author Daniel Mullin daniel@inshore.je
      *
-     * @access protected
+     * @access public
      *
      * @param string $locationId
      * @return bool
      */
-    protected function validLocationId(string $locationId): bool
+    public function validLocationId(string $locationId): bool
     {
         return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($locationId);
     }
@@ -232,12 +232,12 @@ class Validator implements ValidatorInterface
      * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
      *
-     * @access protected
+     * @access public
      *
      * @param string $ticketId
      * @return bool
      */
-    protected function validTicketId(string $ticketId): bool
+    public function validTicketId(string $ticketId): bool
     {
 
         $exploded = explode('-', $ticketId);

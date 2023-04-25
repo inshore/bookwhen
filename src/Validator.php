@@ -20,7 +20,7 @@ class Validator implements ValidatorInterface
      */
     public function validAttachmentId(string $attachmentId): bool
     {
-        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($attachmentId);
     }
 
     /**

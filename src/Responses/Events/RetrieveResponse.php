@@ -20,9 +20,9 @@ final class RetrieveResponse implements ResponseContract
      * @use ArrayAccessible<array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>
      */
     use ArrayAccessible;
-
+    
     //use Fakeable;
-
+    
     /**
      * @param  array<array-key, mixed>|null  $statusDetails
      */
@@ -40,9 +40,9 @@ final class RetrieveResponse implements ResponseContract
         public readonly array $tickets,
         public readonly string $title,
         public readonly bool $waitingList
-    ) {
+        ) {
     }
-
+    
     /**
      * Acts as static factory, and returns a new Response instance.
      *
@@ -50,6 +50,20 @@ final class RetrieveResponse implements ResponseContract
      */
     public static function from(array $attributes, $included = []): self
     {
+        // location
+        $location = LocationsRetrieveResponse::from([
+            'attributes' => [
+                'address_text' => null,
+                'additional_info' => null,
+                'latitude' => null,
+                'longitude' => null,
+                'map_url' => null,
+                'zoom' => null
+            ],
+            'id' => $attributes['relationships']['location']['data']['id']
+        ]);
+        
+        // tickets
         $tickets = [];
         foreach($attributes['relationships']['tickets']['data'] as $ticket) {
             array_push($tickets, TicketsRetrieveResponse::from([
@@ -66,40 +80,15 @@ final class RetrieveResponse implements ResponseContract
                     'group_max' => null,
                     'number_issued' => null,
                     'number_taken' => null,
-                    'title' => null 
+                    'title' => null
                 ],
                 'id' => $ticket['id']
             ]));
         }
         
-        if(empty($included)) {
-            // location
-            $location = LocationsRetrieveResponse::from([
-                'attributes' => [
-                    'address_text' => null,
-                    'additional_info' => null,
-                    'latitude' => null,
-                    'longitude' => null,
-                    'map_url' => null,
-                    'zoom' => null
-                ],
-                'id' => $attributes['relationships']['location']['data']['id']
-            ]);
-        } else {
-            // location
-            $location = LocationsRetrieveResponse::from([
-                'attributes' => [
-                    'address_text' => null,
-                    'additional_info' => null,
-                    'latitude' => null,
-                    'longitude' => null,
-                    'map_url' => null,
-                    'zoom' => null
-                ],
-                'id' => $attributes['relationships']['location']['data']['id']
-            ]);
+        if(!empty($included)) {
             foreach ($included as $includedData) {
-                if($includedData['type'] === 'location' && $includedData['id'] = $attributes['relationships']['location']['data']['id']) {
+                if($includedData['type'] === 'location' && $includedData['id'] = $location->id) {
                     $location = LocationsRetrieveResponse::from($includedData);
                 }
             }
@@ -113,7 +102,7 @@ final class RetrieveResponse implements ResponseContract
                 }
             }
         }
-
+        
         return new self(
             $attributes['attributes']['all_day'],
             $attributes['relationships']['attachments']['data'],
@@ -128,6 +117,6 @@ final class RetrieveResponse implements ResponseContract
             $tickets,
             $attributes['attributes']['title'],
             $attributes['attributes']['waiting_list']
-        );
+            );
     }
 }

@@ -42,7 +42,6 @@ final class HttpTransporter implements TransporterContract
     public function requestObject(Payload $payload): array|string
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-
         try {
             $response = $this->client->sendRequest($request);
         } catch (ClientExceptionInterface $clientException) {

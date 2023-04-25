@@ -9,6 +9,35 @@ use Respect\Validation\Validator as v;
 
 class Validator implements ValidatorInterface
 {
+    
+    /**
+     *
+     * @author Daniel Mullin daniel@inshore.je
+     *
+     * @access public
+     *
+     * @param string $additionalInfo
+     * @return bool
+     */
+    public function validAdditionalInfo(string $additionalInfo): bool
+    {
+        return v::stringType()->notEmpty()->alnum()->validate($additionalInfo);
+    }
+    
+    /**
+     *
+     * @author Daniel Mullin daniel@inshore.je
+     *
+     * @access public
+     *
+     * @param string $addressText
+     * @return bool
+     */
+    public function validAddressText(string $addressText): bool
+    {
+        return v::stringType()->notEmpty()->alnum()->validate($addressText);
+    }
+
     /**
      *
      * @author Daniel Mullin daniel@inshore.je

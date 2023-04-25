@@ -601,38 +601,46 @@ final class Bookwhen implements BookwhenInterface
 
     /**
      *
-     * {@inheritDoc}
-     * @see \InShore\Bookwhen\Interfaces\ClientInterface::getLocations()
-     * @todo validate params.
      */
     public function locations(
         null | string $addressText = null,
         null | string $additionalInfo = null
     ): array {
+            
+            // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
-        // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-
-        if (!$this->validator->validId($eventId, 'event')) {
-            throw new ValidationException('eventId', $eventId);
-        }
-
-        $locations = $this->client->locations()->list();
-
-        foreach ($locations->data as $location) {
-            array_push($this->locations, new Location(
-                $location->additionalInfo,
-                $location->addressText,
-                $location->id,
-                $location->latitude,
-                $location->longitude,
-                $location->mapUrl,
-                $location->zoom
-            ));
-        }
-
-        return $this->locations;
-
+            if (!empty($additionalInfo)) {
+                if (!$this->validator->validAdditionalInfo($additionalInfo, 'additionalInfo')) {
+                    throw new ValidationException('additionalInfo', $additionalInfo);
+                }
+                $this->filters['filter[additional_info]'] = $additionalInfo;
+            }
+            
+            if (!empty($addressText)) {
+                if (!$this->validator->validAddressText($addressText, 'addressText')) {
+                    throw new ValidationException('addressText', $addressText);
+                }
+                $this->filters['filter[address_text]'] = $addressText;
+            }
+            
+            $locations = $this->client->locations()->list($this->filters);
+            
+            foreach ($locations->data as $location) {
+                array_push($this->locations, new Location(
+                    $location->additionalInfo,
+                    $location->addressText,
+                    $location->id,
+                    $location->latitude,
+                    $location->longitude,
+                    $location->mapUrl,
+                    $location->zoom
+                    ));
+            }
+            
+            return $this->locations;
+            
     }
+    
 
     /**
      * Set Debug.

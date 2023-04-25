@@ -66,7 +66,7 @@ interface ValidatorInterface
      * @param string $include
      * @return bool
      */
-    public function validInclude(string $include): bool;
+    public function validInclude(bool $include): bool;
 
     /**
      * @param string $location

@@ -11,17 +11,17 @@ final class Event
     /**
      *
      */
-    public readonly int $attendeeAvailable;
+    public int $attendeeAvailable;
 
     /**
      *
      */
-    public readonly bool $finished;
+    public bool $finished;
 
     /**
      *
      */
-    public readonly bool $soldOut;
+    public bool $soldOut;
 
     /**
      *
@@ -29,7 +29,7 @@ final class Event
      */
     public function __construct(
         public readonly bool $allDay,
-        public array $attachments,
+        public readonly array $attachments,
         public readonly int $attendeeCount,
         public readonly int $attendeeLimit,
         public readonly string $details,
@@ -38,7 +38,7 @@ final class Event
         public readonly Location $location,
         public readonly int $maxTicketsPerBooking,
         public readonly string $startAt,
-        public array $tickets,
+        public readonly array $tickets,
         public readonly string $title,
         public readonly bool $waitingList
     ) {
@@ -46,7 +46,4 @@ final class Event
         $this->finished = false; // @todo
         $this->soldOut = ($this->attendeeCount === $this->attendeeLimit);
     }
-
-
-
 }

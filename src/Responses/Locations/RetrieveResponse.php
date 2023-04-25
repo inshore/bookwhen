@@ -25,12 +25,12 @@ final class RetrieveResponse implements ResponseContract
      * @param  array<array-key, mixed>|null  $statusDetails
      */
     private function __construct(
-        public readonly string $addressText,
-        public readonly string $additionalInfo,
+        public readonly null | string $addressText,
+        public readonly null | string $additionalInfo,
         public readonly string $id,
         public readonly float | null $latitude,
         public readonly float | null $longitude,
-        public readonly string $mapUrl,
+        public readonly null | string $mapUrl,
         public readonly int | null $zoom
     ) {
     }

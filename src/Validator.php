@@ -20,6 +20,31 @@ class Validator implements ValidatorInterface
     /**
      *
      * @author Daniel Mullin daniel@inshore.je
+     *
+     * @access protected
+     *
+     * @param string $cattachmentId
+     * @return bool
+     */
+    protected function validAttachmentId(string $attachmentId): bool
+    {
+        $exploded = explode('-', $attachmentId);
+
+        if (count($exploded) !== 2) {
+            return false;
+        }
+
+        if ($exploded[0] !== 'cp') {
+            return false;
+        }
+
+        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+
+    }
+ 
+    /**
+     *
+     * @author Daniel Mullin daniel@inshore.je
      * @author Brandon Lubbehusen brandon@inshore.je
      *
      * @access protected
@@ -43,68 +68,7 @@ class Validator implements ValidatorInterface
 
     }
 
-    /**
-     * @author Daniel Mullin daniel@inshore.je
-     * @author Brandon Lubbehusen brandon@inshore.je
-     *
-     * @access protected
-     *
-     * @param string $eventId
-     * @return bool
-     */
-    protected function validEventId($eventId): bool
-    {
-        $exploded = explode('-', $eventId);
 
-        if (count($exploded) !== 3) {
-            return false;
-        }
-
-        if ($exploded[0] !== 'ev') {
-            return false;
-        }
-
-        // Syntax.
-        if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
-            return false;
-        }
-
-        return $this->validDate($exploded[2]);
-    }
-
-    /**
-     * @author Daniel Mullin daniel@inshore.je
-     * @author Brandon Lubbehusen brandon@inshore.je
-     *
-     * @access protected
-     *
-     * @param string $ticketId
-     * @return bool
-     */
-    protected function validTicketId($ticketId): bool
-    {
-
-        $exploded = explode('-', $ticketId);
-
-        if (count($exploded) !== 4) {
-            return false;
-        }
-
-        if ($exploded[0] !== 'ti') {
-            return false;
-        }
-
-        // Syntax.
-        if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
-            return false;
-        }
-
-        if (!$this->validDate($exploded[2])) {
-            return false;
-        }
-
-        return v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[3]);
-    }
 
     /**
      *
@@ -128,6 +92,35 @@ class Validator implements ValidatorInterface
     public function validDetails($details): bool
     {
         return v::stringType()->notEmpty()->validate($details);
+    }
+
+    /**
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     *
+     * @access protected
+     *
+     * @param string $eventId
+     * @return bool
+     */
+    protected function validEventId(string $eventId): bool
+    {
+        $exploded = explode('-', $eventId);
+
+        if (count($exploded) !== 3) {
+            return false;
+        }
+
+        if ($exploded[0] !== 'ev') {
+            return false;
+        }
+
+        // Syntax.
+        if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
+            return false;
+        }
+
+        return $this->validDate($exploded[2]);
     }
 
     /**
@@ -195,15 +188,14 @@ class Validator implements ValidatorInterface
         switch ($type) {
             case 'classPass':
                 return $this->validClassPassId($id);
-
             case 'event':
                 return $this->validEventId($id);
-
             case 'ticket':
                 return $this->validTicketId($id);
-
             case 'attachment':
+                return $this->validAttachmentId($id);
             case 'location':
+                return $this->validLocationId($id);
             default:
                 return v::alnum()->length(12, 12)->validate($id);
         }
@@ -211,6 +203,8 @@ class Validator implements ValidatorInterface
 
     /**
      *
+     * @author Brandon Lubbehusen brandon@inshore.je
+     * 
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validInclude()
      */
@@ -221,6 +215,8 @@ class Validator implements ValidatorInterface
 
     /**
      *
+     * @author Brandon Lubbehusen brandon@inshore.je
+     *     
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validLocation()
      */
@@ -231,12 +227,71 @@ class Validator implements ValidatorInterface
 
     /**
      *
+     * @author Daniel Mullin daniel@inshore.je
+     *
+     * @access protected
+     *
+     * @param string $locationId
+     * @return bool
+     */
+    protected function validLocationId(string $locationId): bool
+    {
+        $exploded = explode('-', $locationId);
+        
+        if (count($exploded) !== 2) {
+            return false;
+        }
+        
+        if ($exploded[0] !== 'cp') {
+            return false;
+        }
+        
+        return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($exploded[1]);
+        
+    }
+    
+    /**
+     *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTag()
      */
     public function validTag($tag): bool
     {
         return v::stringType()->notEmpty()->alnum()->validate($tag);
+    }
+
+    /**
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     *
+     * @access protected
+     *
+     * @param string $ticketId
+     * @return bool
+     */
+    protected function validTicketId($ticketId): bool
+    {
+
+        $exploded = explode('-', $ticketId);
+
+        if (count($exploded) !== 4) {
+            return false;
+        }
+
+        if ($exploded[0] !== 'ti') {
+            return false;
+        }
+
+        // Syntax.
+        if (!v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[1])) {
+            return false;
+        }
+
+        if (!$this->validDate($exploded[2])) {
+            return false;
+        }
+
+        return v::stringType()->notEmpty()->alnum()->length(4, 4)->validate($exploded[3]);
     }
 
     /**

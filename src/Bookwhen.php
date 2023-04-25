@@ -605,7 +605,7 @@ final class Bookwhen implements BookwhenInterface
     public function locations(
         null | string $addressText = null,
         null | string $additionalInfo = null
-        ): array {
+    ): array {
             
             // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
             

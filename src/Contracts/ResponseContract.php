@@ -15,7 +15,6 @@ use ArrayAccess;
  */
 interface ResponseContract extends ArrayAccess
 {
-
     /**
      * @param  key-of<TArray>  $offset
      */

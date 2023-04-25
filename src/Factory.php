@@ -24,11 +24,6 @@ final class Factory
     private ?string $apiKey = null;
 
     /**
-     * The organization for the requests.
-     */
-    private ?string $organization = null;
-
-    /**
      * The HTTP client for the requests.
      */
     private ?ClientInterface $httpClient = null;

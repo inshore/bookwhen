@@ -35,7 +35,7 @@ class Validator implements ValidatorInterface
      */
     protected function validClassPassId(string $classPassId): bool
     {
-        array $exploded = explode('-', $classPassId);
+        $exploded = explode('-', $classPassId);
 
         if (count($exploded) !== 2) {
             return false;
@@ -83,7 +83,7 @@ class Validator implements ValidatorInterface
      */
     protected function validEventId(string $eventId): bool
     {
-        array $exploded = explode('-', $eventId);
+        $exploded = explode('-', $eventId);
 
         if (count($exploded) !== 3) {
             return false;
@@ -132,7 +132,7 @@ class Validator implements ValidatorInterface
             return false;
         }
 
-        string $fromDate = new \DateTime($from);
+        $fromDate = new \DateTime($from);
 
         if (empty($to)) {
             return true;
@@ -142,7 +142,7 @@ class Validator implements ValidatorInterface
             return false;
         }
 
-        string $toDate = new \DateTime($to);
+        $toDate = new \DateTime($to);
 
         // Compare if actual to date is greater than from.
         if ($fromDate > $toDate) {
@@ -184,7 +184,7 @@ class Validator implements ValidatorInterface
     /**
      *
      * @author Brandon Lubbehusen brandon@inshore.je
-     * 
+     *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validInclude()
      */
@@ -196,7 +196,7 @@ class Validator implements ValidatorInterface
     /**
      *
      * @author Brandon Lubbehusen brandon@inshore.je
-     *     
+     *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validLocation()
      */
@@ -218,7 +218,7 @@ class Validator implements ValidatorInterface
     {
         return v::stringType()->notEmpty()->alnum()->length(12, 12)->validate($locationId);
     }
-    
+
     /**
      *
      * {@inheritDoc}
@@ -241,7 +241,7 @@ class Validator implements ValidatorInterface
     protected function validTicketId(string $ticketId): bool
     {
 
-        array $exploded = explode('-', $ticketId);
+        $exploded = explode('-', $ticketId);
 
         if (count($exploded) !== 4) {
             return false;
@@ -284,13 +284,13 @@ class Validator implements ValidatorInterface
             return false;
         }
 
-        string $toDate = new \DateTime($to);
+        $toDate = new \DateTime($to);
 
         if (empty($from)) {
             return true;
         }
 
-        string $fromDate = new \DateTime($from);
+        $fromDate = new \DateTime($from);
 
         if (!$this->validFrom($from)) {
             return false;

@@ -79,14 +79,14 @@ $event = $bookwhen->event('ev-smij-20200530100000');
 
 By default the event will NOT have its attachments, location and tickets populated.
 
-To retrieve an event withg the included relationships,
+To retrieve an event with the included relationships,
 simply pass boolean true for the relationship that is required. 
 
-attachments
-location
-tickets
-tickets.class_passes
-tickets.events
+includeAttachments
+includeLocation
+includeTickets
+includeTickets.class_passes
+includeTickets.events
 
 for example to retrieve the event with its location and tickets.
 
@@ -94,7 +94,7 @@ for example to retrieve the event with its location and tickets.
 
 // Returns the event for the provided event ID.
 
-$event = $bookwhen->event(eventId: 'ev-smij-20200530100000', location: true, tickets: true);
+$event = $bookwhen->event(eventId: 'ev-smij-20200530100000', includeLocation: true, includeTickets: true);
 
 ```
 
@@ -119,11 +119,11 @@ By default the event will NOT have its attachments, location and tickets populat
 To retrieve an event withg the included relationships,
 simply pass boolean true for the relationship that is required. 
 
-attachments
-location
-tickets
-tickets.class_passes
-tickets.events
+includeAttachments
+includeLocation
+includeTickets
+includeTickets.class_passes
+includeTickets.events
 
 for example to retrieve the event with its location and tickets.
 
@@ -133,7 +133,7 @@ for example to retrieve the event with its location and tickets.
 
 // Fetch events accessible by the API token.
 
-$events = $bookwhen->events(location: true, tickets: true);));
+$events = $bookwhen->events(location: true, includeTickets: true);));
 
 ```
 

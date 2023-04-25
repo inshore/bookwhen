@@ -48,13 +48,13 @@ final class Payload
     /**
      * Creates a new Payload value object from the given parameters.
      */
-    public static function retrieve(string $resource, string $id, string $suffix = ''): self
+    public static function retrieve(string $resource, string $id, array $parameters): self
     {
         // $contentType = ContentType::JSON;
         $method = Method::GET;
-        $uri = ResourceUri::retrieve($resource, $id, $suffix);
+        $uri = ResourceUri::retrieve($resource, $id);
 
-        return new self($method, $uri);
+        return new self($method, $uri, $parameters);
     }
 
     /**

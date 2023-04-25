@@ -19,5 +19,5 @@ interface EventsContract
      *
      * @see https://
      */
-    public function retrieve(string $eventId): RetrieveResponse;
+    public function retrieve(string $eventId, array $parameters): RetrieveResponse;
 }

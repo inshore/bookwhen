@@ -25,8 +25,16 @@ final class RetrieveResponse implements ResponseContract
      * @param  array<array-key, mixed>|null  $statusDetails
      */
     private function __construct(
+        public readonly null | string $contentType,
+        public readonly null | string $fileName,
+        public readonly null | string $fileSizeBytes,
+        public readonly null | string $fileSizeText,
+        public readonly null | string $fileType,
+        public readonly null | string $fileUrl,
         public readonly string $id,
-        public readonly string $title
+        public readonly null | string $title
+        
+
     ) {
     }
 
@@ -38,6 +46,12 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes): self
     {
         return new self(
+            $attributes['attributes']['content_type'],
+            $attributes['attributes']['file_name'],
+            $attributes['attributes']['file_size_bytes'],
+            $attributes['attributes']['file_size_text'],
+            $attributes['attributes']['file_type'],
+            $attributes['attributes']['file_url'],
             $attributes['id'],
             $attributes['attributes']['title']
         );

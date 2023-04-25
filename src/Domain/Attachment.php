@@ -19,7 +19,8 @@ final class Attachment
         public readonly null | string $fileSizeText,
         public readonly null | string $fileName,
         public readonly null | string $fileType,
-        public readonly string $id
+        public readonly string $id,
+        public readonly null | string $title
     ) {
     }
 }

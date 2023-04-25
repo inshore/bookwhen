@@ -275,12 +275,11 @@ final class Bookwhen implements BookwhenInterface
         }
 
         // location
-        // @todo resolve dynamic type
         if(!$location) {
             $eventLocation = new Location(
                 null,
                 null,
-                $event->locationId
+                $event->location->Id
             );
         } else {
             $location = $this->client->locations()->retrieve($event->locationId);

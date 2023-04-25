@@ -158,8 +158,7 @@ class Validator implements ValidatorInterface
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validId()
      * @todo
      */
-    public function validId(string $id, string|null $type = null): bool
-                //CHECK
+    public function validId(string $id, null | string $type = null): bool
     {
         if (!v::stringType()->notEmpty()->validate($id)) {
             return false;
@@ -278,7 +277,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validTo()
      */
-    public function validTo(string $to, string|null $from = null): bool
+    public function validTo(string $to, null | string $from = null): bool
     {
         if (!$this->validDate($to)) {
             return false;

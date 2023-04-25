@@ -528,6 +528,27 @@ final class Bookwhen implements BookwhenInterface
         $events = $this->client->events()->list(array_merge($this->filters, ['include' => implode(',', $this->includes)]));
 
         foreach ($events->data as $event) {
+            
+            $eventTickets = [];
+            foreach($event->tickets as $ticket) {
+                array_push($eventTickets, new Ticket(
+                    $ticket->available,
+                    $ticket->availableFrom,
+                    $ticket->availableTo,
+                    $ticket->builtBasketUrl,
+                    $ticket->builtBasketIframeUrl,
+                    $ticket->courseTicket,
+                    $ticket->details,
+                    $ticket->groupTicket,
+                    $ticket->groupMin,
+                    $ticket->groupMax,
+                    $ticket->id,
+                    $ticket->numberIssued,
+                    $ticket->numberTaken,
+                    $ticket->title
+                    ));
+            }
+            
             array_push($this->events, new Event(
                 $event->allDay,
                 $event->attachments,
@@ -547,7 +568,7 @@ final class Bookwhen implements BookwhenInterface
                 ),
                 $event->maxTicketsPerBooking,
                 $event->startAt,
-                $event->tickets,
+                $eventTickets,
                 $event->title,
                 $event->waitingList
             ));

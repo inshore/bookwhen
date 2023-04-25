@@ -7,6 +7,7 @@ namespace InShore\Bookwhen\Responses\Events;
 use InShore\Bookwhen\Contracts\ResponseContract;
 use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
 use InShore\Bookwhen\Responses\Locations\RetrieveResponse as LocationsRetrieveResponse;
+use InShore\Bookwhen\Responses\Tickets\RetrieveResponse as TicketsRetrieveResponse;
 
 //use OpenAI\Testing\Responses\Concerns\Fakeable;
 
@@ -49,7 +50,30 @@ final class RetrieveResponse implements ResponseContract
      */
     public static function from(array $attributes, $included = []): self
     {
+        $tickets = [];
+        foreach($attributes['relationships']['tickets']['data'] as $ticket) {
+            array_push($tickets, TicketsRetrieveResponse::from([
+                'attributes' => [
+                    'available' => null,
+                    'available_from' => null,
+                    'available_to' => null,
+                    'built_basket_url' => null,
+                    'built_basket_iframe_url' => null,
+                    'course_ticket' => null,
+                    'details' => null,
+                    'group_ticket' => null,
+                    'group_min' => null,
+                    'group_max' => null,
+                    'number_issued' => null,
+                    'number_taken' => null,
+                    'title' => null 
+                ],
+                'id' => $ticket['id']
+            ]));
+        }
+        
         if(empty($included)) {
+            // location
             $location = LocationsRetrieveResponse::from([
                 'attributes' => [
                     'address_text' => null,
@@ -62,6 +86,7 @@ final class RetrieveResponse implements ResponseContract
                 'id' => $attributes['relationships']['location']['data']['id']
             ]);
         } else {
+            // location
             $location = LocationsRetrieveResponse::from([
                 'attributes' => [
                     'address_text' => null,
@@ -78,6 +103,15 @@ final class RetrieveResponse implements ResponseContract
                     $location = LocationsRetrieveResponse::from($includedData);
                 }
             }
+            
+            //tickets
+            foreach($tickets as $index => $ticket) {
+                foreach ($included as $includedData) {
+                    if($includedData['type'] === 'ticket' && $includedData['id'] = $ticket->id) {
+                        $tickets[$index] = TicketsRetrieveResponse::from($includedData);
+                    }
+                }
+            }
         }
 
         return new self(
@@ -91,7 +125,7 @@ final class RetrieveResponse implements ResponseContract
             $location,
             $attributes['attributes']['max_tickets_per_booking'],
             $attributes['attributes']['start_at'],
-            $attributes['relationships']['tickets']['data'],
+            $tickets,
             $attributes['attributes']['title'],
             $attributes['attributes']['waiting_list']
         );

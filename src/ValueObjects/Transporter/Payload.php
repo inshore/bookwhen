@@ -48,7 +48,7 @@ final class Payload
     /**
      * Creates a new Payload value object from the given parameters.
      */
-    public static function retrieve(string $resource, string $id, array $parameters): self
+    public static function retrieve(string $resource, string $id, array $parameters = []): self
     {
         // $contentType = ContentType::JSON;
         $method = Method::GET;
@@ -135,9 +135,9 @@ final class Payload
         if (! empty($this->parameters)) {
             $uri .= '?'.http_build_query($this->parameters);
         }
-        //die($uri);
-        $request = $psr17Factory->createRequest($this->method->value, $uri);
 
+        $request = $psr17Factory->createRequest($this->method->value, $uri);
+        
         if ($body !== null) {
             $request = $request->withBody($body);
         }

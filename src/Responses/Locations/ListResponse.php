@@ -6,7 +6,7 @@ namespace InShore\Bookwhen\Responses\Locations;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
 use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
-use InShore\Bookwhen\Responses\Events\RetrieveResponse;
+use InShore\Bookwhen\Responses\Locations\RetrieveResponse;
 
 //use InShore\Bookwhen\Testing\Responses\Concerns\Fakeable;
 
@@ -37,6 +37,7 @@ final class ListResponse implements ResponseContract
      */
     public static function from(array $attributes): self
     {
+
         $data = array_map(fn (array $result): RetrieveResponse => RetrieveResponse::from(
             $result
         ), $attributes['data']);

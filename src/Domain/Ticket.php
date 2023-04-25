@@ -12,20 +12,21 @@ final class Ticket
      *
      */
     public function __construct(
-        public readonly bool $available,
+        public readonly bool | null $available,
         public readonly null | string $availableFrom,
         public readonly null | string $availableTo,
-        public readonly string $builtBasketUrl,
-        public readonly string $builtBasketIframeUrl,
-        public readonly bool $courseTicket,
-        public readonly string $details,
-        public readonly bool $groupTicket,
-        public readonly int $groupMin,
-        public readonly int $groupMax,
+        public readonly null | string $builtBasketUrl,
+        public readonly null | string $builtBasketIframeUrl,
+        public readonly bool | null $courseTicket,
+        // cost
+        public readonly null | string $details,
+        public readonly bool | null $groupTicket,
+        public readonly int | null $groupMin,
+        public readonly int | null $groupMax,
         public readonly string $id,
         public readonly int | null $numberIssued,
-        public readonly int $numberTaken,
-        public readonly string $title
+        public readonly int | null $numberTaken,
+        public readonly null | string $title
     ) {
     }
 }

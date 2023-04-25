@@ -26,7 +26,7 @@ final class ListResponse implements ResponseContract
      * @param  array<int, RetrieveResponse>  $data
      */
     private function __construct(
-        public readonly array $data,
+        public readonly array $data
     ) {
     }
 
@@ -43,7 +43,8 @@ final class ListResponse implements ResponseContract
         }
 
         $data = array_map(fn (array $result): RetrieveResponse => RetrieveResponse::from(
-            $result, $included
+            $result,
+            $included
         ), $attributes['data']);
 
         return new self(

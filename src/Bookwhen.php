@@ -608,20 +608,19 @@ final class Bookwhen implements BookwhenInterface
     ): array {
             
             // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-            
-            if (!empty($addresText)) {
-                if (!$this->validator->validAddressText($addresText, 'addressText')) {
-                    throw new ValidationException('addressText', $addressText);
-                }
-                $this->filters['filter[address_text]'] = $addressText;
-            }
-            
-            
+
             if (!empty($additionalInfo)) {
                 if (!$this->validator->validAdditionalInfo($additionalInfo, 'additionalInfo')) {
                     throw new ValidationException('additionalInfo', $additionalInfo);
                 }
                 $this->filters['filter[additional_info]'] = $additionalInfo;
+            }
+            
+            if (!empty($addressText)) {
+                if (!$this->validator->validAddressText($addressText, 'addressText')) {
+                    throw new ValidationException('addressText', $addressText);
+                }
+                $this->filters['filter[address_text]'] = $addressText;
             }
             
             $locations = $this->client->locations()->list();

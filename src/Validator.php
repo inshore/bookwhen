@@ -16,12 +16,12 @@ class Validator implements ValidatorInterface
      *
      * @access public
      *
-     * @param string $addittionalInfo
+     * @param string $additionalInfo
      * @return bool
      */
-    public function validAdditionalInfo(string $addittionalInfo): bool
+    public function validAdditionalInfo(string $additionalInfo): bool
     {
-        return v::stringType()->notEmpty()->alnum()->validate($addittionalInfo);
+        return v::stringType()->notEmpty()->alnum()->validate($additionalInfo);
     }
     
     /**

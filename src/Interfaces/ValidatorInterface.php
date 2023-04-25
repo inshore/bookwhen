@@ -11,13 +11,13 @@ interface ValidatorInterface
      * @param string $attachmentId
      * @return bool
      */
-    public function validAdditionalInfo(string $additionalInfo): bool
+    public function validAdditionalInfo(string $additionalInfo): bool;
     
     /**
      * @param string $addressText
      * @return bool
      */
-    public function validAddressText(string $addressText): bool
+    public function validAddressText(string $addressText): bool;
 
     /**
      * @param string $attachmentId

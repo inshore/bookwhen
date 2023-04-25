@@ -346,7 +346,7 @@ final class Bookwhen implements BookwhenInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getEvents()
      */
-    public function Events(
+    public function events(
         $calendar = false,
         $entry = false,
         $location = [],
@@ -495,27 +495,30 @@ final class Bookwhen implements BookwhenInterface
 
         $events = $this->client->events()->list(array_merge($this->filters, ['include' => implode(',', $this->includes)]));
 
-        $eventAttachments = [];
-
-        $eventTickets = [];
-
         foreach ($events->data as $event) {
+
+            $eventLocation = new Location(
+                $event->location->addressText,
+                $event->location->additionalInfo,
+                $event->location->id,
+                $event->location->latitude,
+                $event->location->longitude,
+                $event->location->mapUrl,
+                $event->location->zoom
+                );
+                        
             array_push($this->events, new Event(
                 $event->allDay,
-                $eventAttachments,
+                $event->attachments,
                 $event->attendeeCount,
                 $event->attendeeLimit,
                 $event->details,
                 $event->endAt,
                 $event->id,
-                new Location(
-                    null,
-                    null,
-                    $event->locationId,
-                ),
+                $eventLocation,
                 $event->maxTicketsPerBooking,
                 $event->startAt,
-                $eventTickets,
+                $event->tickets,
                 $event->title,
                 $event->waitingList
             ));

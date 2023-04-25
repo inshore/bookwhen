@@ -241,11 +241,11 @@ final class Bookwhen implements BookwhenInterface
      */
     public function event(
         string $eventId,
-        bool $attachments = false,
-        bool $location = false,
-        bool $tickets = false,
-        bool $ticketsClassPasses = false,
-        bool $ticketsEventslocation = false
+        bool $includeAttachments = false,
+        bool $includeLocation = false,
+        bool $includeTickets = false,
+        bool $includeTicketsClassPasses = false,
+        bool $includeTicketsEvents = false
     ): Event {
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
@@ -253,68 +253,93 @@ final class Bookwhen implements BookwhenInterface
             throw new ValidationException('eventId', $eventId);
         }
 
-        $event = $this->client->events()->retrieve($eventId);
-
-        $eventAttachments = [];
-        $eventTickets = [];
-
-        // attachments
-        if($attachments) {
-            foreach ($event->attachments as $eventAttachment) {
-                $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
-                array_push($eventAttachments, new Attachment(
-                    $attachment->contentType,
-                    $attachment->fileUrl,
-                    $attachment->fileSizeBytes,
-                    $attachment->fileSizeText,
-                    $attachment->fileName,
-                    $attachment->fileType,
-                    $attachment->id
-                ));
+        // Validate $includeAttachments;
+        if (!$this->validator->validInclude($includeAttachments)) {
+            throw new ValidationException('includeAttachments', $includeAttachments);
+        } else {
+            if($includeAttachments) {
+                array_push($this->includes, 'attachments');
+            }
+        }
+        
+        // Validate $includeTickets;
+        if (!$this->validator->validInclude($includeLocation)) {
+            throw new ValidationException('includeLocation', $includeLocation);
+        } else {
+            if($includeLocation) {
+                array_push($this->includes, 'location');
+            }
+        }
+        
+        // Validate $includeTickets;
+        if (!$this->validator->validInclude($includeTickets)) {
+            throw new ValidationException('includeTickets', $includeTickets);
+        } else {
+            if($includeTickets) {
+                array_push($this->includes, 'tickets');
+            }
+        }
+        
+        // Validate $includeTicketsEvents;
+        if (!$this->validator->validInclude($includeTicketsEvents)) {
+            throw new ValidationException('includeTicketsEvents', $includeTicketsEvents);
+        } else {
+            if($includeTicketsEvents) {
+                array_push($this->includes, 'tickets.events');
+            }
+        }
+        
+        // Validate $includeTicketsClassPasses;
+        if (!$this->validator->validInclude($includeTicketsClassPasses)) {
+            throw new ValidationException('includeTicketsClassPasses', $includeTicketsClassPasses);
+        } else {
+            if($includeTicketsClassPasses) {
+                array_push($this->includes, 'tickets.class_passes');
             }
         }
 
-        // location
-        if(!$location) {
-            $eventLocation = new Location(
-                null,
-                null,
-                $event->location->Id
-            );
-        } else {
-            $location = $this->client->locations()->retrieve($event->locationId);
-            $eventLocation = new Location(
-                $location->addressText,
-                $location->additionalInfo,
-                $location->id,
-                $location->latitude,
-                $location->longitude,
-                $location->mapUrl,
-                $location->zoom
-            );
+        $event = $this->client->events()->retrieve($eventId, ['include' => implode(',', $this->includes)]);
+
+        $eventAttachments = []; // deprecated
+        $eventTickets = []; // deprecated
+
+        // attachments
+        if($includeAttachments) {
+//             foreach ($event->attachments as $eventAttachment) {
+//                 $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
+//                 array_push($eventAttachments, new Attachment(
+//                     $attachment->contentType,
+//                     $attachment->fileUrl,
+//                     $attachment->fileSizeBytes,
+//                     $attachment->fileSizeText,
+//                     $attachment->fileName,
+//                     $attachment->fileType,
+//                     $attachment->id
+//                 ));
+//             }
         }
 
         // tickets
-        if($tickets) {
-            foreach ($event->tickets as $eventTicket) {
-                $ticket = $this->client->tickets()->retrieve($eventTicket['id']);
-                array_push($eventTickets, new Ticket(
-                    $ticket->available,
-                    $ticket->availableFrom,
-                    $ticket->availableTo,
-                    $ticket->builtBasketUrl,
-                    $ticket->builtBasketIframeUrl,
-                    $ticket->courseTicket,
-                    $ticket->details,
-                    $ticket->groupTicket,
-                    $ticket->groupMin,
-                    $ticket->groupMax,
-                    $ticket->id,
-                    $ticket->numberIssued,
-                    $ticket->numberTaken,
-                    $ticket->title
-                ));
-            }
+        if($includeTickets) {
+//             foreach ($event->tickets as $eventTicket) {
+//                 $ticket = $this->client->tickets()->retrieve($eventTicket['id']);
+//                 array_push($eventTickets, new Ticket(
+//                     $ticket->available,
+//                     $ticket->availableFrom,
+//                     $ticket->availableTo,
+//                     $ticket->builtBasketUrl,
+//                     $ticket->builtBasketIframeUrl,
+//                     $ticket->courseTicket,
+//                     $ticket->details,
+//                     $ticket->groupTicket,
+//                     $ticket->groupMin,
+//                     $ticket->groupMax,
+//                     $ticket->id,
+//                     $ticket->numberIssued,
+//                     $ticket->numberTaken,
+//                     $ticket->title
+//                 ));
+//             }
         }
 
         // ticketsClassPasses
@@ -331,7 +356,15 @@ final class Bookwhen implements BookwhenInterface
             $event->details,
             $event->endAt,
             $event->id,
-            $eventLocation,
+            new Location(
+                $event->location->addressText,
+                $event->location->additionalInfo,
+                $event->location->id,
+                $event->location->latitude,
+                $event->location->longitude,
+                $event->location->mapUrl,
+                $event->location->zoom
+            ),
             $event->maxTicketsPerBooking,
             $event->startAt,
             $eventTickets,
@@ -354,11 +387,11 @@ final class Bookwhen implements BookwhenInterface
         $detail = [],
         $from = null,
         $to = null,
-        $includeAttachments = false,
-        $includeLocation = false,
-        $includeTickets = false,
-        $includeTicketsClassPasses = false,
-        $includeTicketsEvents = false
+        bool $includeAttachments = false,
+        bool $includeLocation = false,
+        bool $includeTickets = false,
+        bool $includeTicketsClassPasses = false,
+        bool $includeTicketsEvents = false
     ): array {
 
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
@@ -478,7 +511,7 @@ final class Bookwhen implements BookwhenInterface
         if (!$this->validator->validInclude($includeTicketsEvents)) {
             throw new ValidationException('includeTicketsEvents', $includeTicketsEvents);
         } else {
-            if($includeTickets) {
+            if($includeTicketsEvents) {
                 array_push($this->includes, 'tickets.events');
             }
         }
@@ -495,17 +528,6 @@ final class Bookwhen implements BookwhenInterface
         $events = $this->client->events()->list(array_merge($this->filters, ['include' => implode(',', $this->includes)]));
 
         foreach ($events->data as $event) {
-
-            $eventLocation = new Location(
-                $event->location->addressText,
-                $event->location->additionalInfo,
-                $event->location->id,
-                $event->location->latitude,
-                $event->location->longitude,
-                $event->location->mapUrl,
-                $event->location->zoom
-            );
-
             array_push($this->events, new Event(
                 $event->allDay,
                 $event->attachments,
@@ -514,7 +536,15 @@ final class Bookwhen implements BookwhenInterface
                 $event->details,
                 $event->endAt,
                 $event->id,
-                $eventLocation,
+                new Location(
+                    $event->location->addressText,
+                    $event->location->additionalInfo,
+                    $event->location->id,
+                    $event->location->latitude,
+                    $event->location->longitude,
+                    $event->location->mapUrl,
+                    $event->location->zoom
+                ),
                 $event->maxTicketsPerBooking,
                 $event->startAt,
                 $event->tickets,

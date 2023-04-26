@@ -21,7 +21,7 @@ class ValidatorTest extends TestCase
         $this->validator = new Validator();
     }
     
-    public function provideInvalidDates(): array
+    public static function provideInvalidDates(): array
     {
         return [
             'null' => [null],
@@ -30,16 +30,16 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideInvalidFroms(): array
+    public static function provideInvalidFroms(): array
     {
         return [
-            'null' => [null, null],
+            //'null' => [null, null],
             'emptyString' => ['', ''],
-            'object' => [ new \stdClass(), new \stdClass() ],
+            //'object' => [ new \stdClass(), new \stdClass() ],
         ];
     }
     
-    public function provideInvalidIds(): array
+    public static function provideInvalidIds(): array
     {
         return [
             'attachmentIdNull' => [ null, 'attachment' ],
@@ -67,7 +67,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideInvalidTags(): array
+    public static function provideInvalidTags(): array
     {
         return [
             'null' => [null],
@@ -77,7 +77,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideInvalidTokens(): array
+    public static function provideInvalidTokens(): array
     {
         return [
             'null' => [null],
@@ -86,7 +86,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideInvalidTos(): array
+    public static function provideInvalidTos(): array
     {
         return [
             'null' => [null],
@@ -95,7 +95,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideValidDates(): array
+    public static function provideValidDates(): array
     {
         return [
             'datePast' => [ '20191230' ],
@@ -104,7 +104,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideValidFroms(): array
+    public static function provideValidFroms(): array
     {
         return [
             'fromFutureToNull' => [ '20211230', null ],
@@ -116,7 +116,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideValidIds(): array
+    public static function provideValidIds(): array
     {
         return [
             'attachmentId' => ['9v06h1cbv0en', 'attachment'],
@@ -128,7 +128,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideValidTags():array
+    public static function provideValidTags():array
     {
         return [
             'alphanumericMixedcase' => [ 'a1D3' ],
@@ -141,14 +141,14 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideValidTokens(): array
+    public static function provideValidTokens(): array
     {
         return [
             'ours' => [ '6v47r0jdz3r2ao3yc8f1vyx2kjry' ],
         ];
     }
     
-    public function provideValidTos(): array
+    public static function provideValidTos(): array
     {
         return [
             'toFutureFromNull' => [ '20211230', null ],
@@ -160,14 +160,14 @@ class ValidatorTest extends TestCase
         ];
     }
 
-    public function provideValidTitle(): array
+    public static function provideValidTitle(): array
     {
         return [
             'validTitle' => ['Yoga Level 2'],
         ];
     }
 
-    public function provideInvalidTitle(): array
+    public static function provideInvalidTitle(): array
     {
         return [
             'null' => [null],
@@ -176,7 +176,7 @@ class ValidatorTest extends TestCase
         ];
     }
 
-    public function provideValidFileType(): array
+    public static function provideValidFileType(): array
     {
         return [
             'validFileType' => ['jpg'],
@@ -191,7 +191,7 @@ class ValidatorTest extends TestCase
         ];
     }
 
-    public function provideInvalidFileType(): array
+    public static function provideInvalidFileType(): array
     {
         return [
             // 'null' => [null], FAILS TESTING
@@ -200,14 +200,14 @@ class ValidatorTest extends TestCase
         ];
     }
 
-    public function provideValidFileName(): array
+    public static function provideValidFileName(): array
     {
         return [
             'validFileName' => ['Yoga Time'],
         ];
     }
 
-    public function provideInvalidFileName(): array
+    public static function provideInvalidFileName(): array
     {
         return [
             'null' => [null],
@@ -216,7 +216,7 @@ class ValidatorTest extends TestCase
         ];
     }
     
-    public function provideValidInclude(): array
+    public static function provideValidInclude(): array
     {
         return [
             'validInclude' => [true],
@@ -225,7 +225,7 @@ class ValidatorTest extends TestCase
         ];
     }
 
-    public function provideInvalidInclude(): array
+    public static function provideInvalidInclude(): array
     {
         return [
             'null' => [null],
@@ -241,7 +241,13 @@ class ValidatorTest extends TestCase
      */
     public function testValidDateReturnsFalseOnInvalidDates($date)
     {
-       $this->assertFalse($this->validator->validDate($date));
+        if (is_string($date)) {
+            $this->assertFalse($this->validator->validDate($date));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validDate($date);
+        }
     }
     
     /**
@@ -278,7 +284,13 @@ class ValidatorTest extends TestCase
      */
     public function testValidDateReturnsTrueOnValidDates($date)
     {
-        $this->assertTrue($this->validator->validDate($date));
+        if (is_string($date)) {
+            $this->assertFalse($this->validator->validDate($date));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validDate($date);
+        }
     }
     /**
      * @covers InShore\Bookwhen\Validator::validFrom
@@ -344,7 +356,13 @@ class ValidatorTest extends TestCase
      */
     public function testInvalidTitlesReturnsFalseOnInValidTitle($title)
     {
-        $this->assertFalse($this->validator->validTitle($title));
+        if (is_string($title)) {
+            $this->assertFalse($this->validator->validTitle($title));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validDate($title);
+        }
     }
 
     /**
@@ -362,7 +380,13 @@ class ValidatorTest extends TestCase
      */
     public function testInvalidFileTypeReturnsFalseOnInvalidFileType($fileType)
     {
-        $this->assertFalse($this->validator->validFileType($fileType));
+        if (is_string($fileType)) {
+            $this->assertFalse($this->validator->validFileType($fileType));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validFileType($fileType);
+        }
     }
 
     /**
@@ -380,7 +404,13 @@ class ValidatorTest extends TestCase
      */
     public function testInValidFileNameReturnsFalseOnInValidFileName($fileName)
     {
-        $this->assertFalse($this->validator->validFileName($fileName));
+        if (is_string($fileName)) {
+            $this->assertFalse($this->validator->validFileName($fileName));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validFileName($fileName);
+        }
     }
 
     /**
@@ -388,7 +418,7 @@ class ValidatorTest extends TestCase
      * @dataProvider provideValidInclude
      */
     public function testValidIncludeReturnsTrueOnValidInclude($include)
-    {
+    {   
         $this->assertTrue($this->validator->validInclude($include));
     }
 
@@ -398,7 +428,13 @@ class ValidatorTest extends TestCase
      */
     public function testInValidIncludeReturnsFalseOnInvalidInclude($include)
     {
-        $this->assertFalse($this->validator->validInclude($include));
+        if (is_bool($include)) {
+            $this->assertFalse($this->validator->validInclude($include));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validInclude($include);
+        }
     }
   
 

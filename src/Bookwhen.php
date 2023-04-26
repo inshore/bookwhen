@@ -209,11 +209,11 @@ final class Bookwhen implements BookwhenInterface
         return new ClassPass(
             $classPass->details,
             $classPass->id,
-            $classPass->number_available,
+            $classPass->numberAvailable,
             $classPass->title,
-            $classPass->usage_allowance,
-            $classPass->usage_type,
-            $classPass->use_restricted_for_days
+            $classPass->usageAllowance,
+            $classPass->usageType,
+            $classPass->useRestrictedForDays
         );
     }
 

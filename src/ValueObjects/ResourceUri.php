@@ -58,6 +58,7 @@ final class ResourceUri implements StringableContract
     public static function retrieve(string $resource, string $id): self
     {
         return new self("{$resource}/{$id}");
+
     }
 
     /**

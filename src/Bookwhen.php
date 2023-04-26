@@ -200,9 +200,9 @@ final class Bookwhen implements BookwhenInterface
     {
         //         $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
-        //       if (!$this->validator->validId($classPassId, 'classPass')) {
-        //           throw new ValidationException('classPassId', $classPassId);
-        //      }
+        if (!$this->validator->validId($classPassId, 'classPass')) {
+            throw new ValidationException('classPassId', $classPassId);
+        }
 
         $classPass = $this->client->classPasses()->retrieve($classPassId);
 
@@ -224,29 +224,57 @@ final class Bookwhen implements BookwhenInterface
      * @todo break params on to multiplper lines..
      */
     public function classPasses(
-        $title = null,
-        $detail = null,
-        $usageType = null,
         $cost = null,
+        $detail = null,
+        $title = null,
         $usageAllowance = null,
+        $usageType = null,
         $useRestrictedForDays = null
     ): array {
 
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
-        if (!is_null($title) && !$this->validator->validTitle($title)) {
-            throw new ValidationException('title', $title);
+        if (!is_null($detail) && !$this->validator->validDetails($detail)) {
+            throw new ValidationException('detail', $detail);
+        } else {
+            $this->filters['filter[detail]'] = $detail;
         }
 
-        // @todo remaingin validation
+        if (!is_null($title) && !$this->validator->validTitle($title)) {
+            throw new ValidationException('title', $title);
+        } else {
+            $this->filters['filter[title]'] = $title;
+        }
 
-        $classPasses = $this->client->classPasses()->list([]);
+        if (!is_null($usageAllowance) && !$this->validator->validUsageAllowance($usageAllowance)) {
+            throw new ValidationException('usageAllowance', $usageAllowance);
+        } else {
+            $this->filters['filter[usage_allowance]'] = $usageAllowance;
+        }
+
+        if (!is_null($usageType) && !$this->validator->validUsageType($usageType)) {
+            throw new ValidationException('usageType', $usageType);
+        } else {
+            $this->filters['filter[usage_type]'] = $usageType;
+        }
+
+        if (!is_null($useRestrictedForDays) && !$this->validator->validUseRestrictedForDays($useRestrictedForDays)) {
+            throw new ValidationException('useRestrictedForDays', $useRestrictedForDays);
+        } else {
+            $this->filters['filter[use_restricted_for_days]'] = $useRestrictedForDays;
+        }
+
+        $classPasses = $this->client->classPasses()->list($this->filters);
 
         foreach ($classPasses->data as $classPass) {
-            array_push($this->classPasses, new classPasses(
-                $ticket->details,
-                $ticket->id,
-                $ticket->title
+            array_push($this->classPasses, new ClassPass(
+                $classPass->details,
+                $classPass->id,
+                $classPass->numberAvailable,
+                $classPass->title,
+                $classPass->usageAllowance,
+                $classPass->usageType,
+                $classPass->useRestrictedForDays,
             ));
         }
         return $this->classPasses;

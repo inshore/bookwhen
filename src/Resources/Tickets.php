@@ -25,7 +25,11 @@ final class Tickets implements TicketsContract
         /** @var array{object: string, data: array<int, array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>} $result */
         $result = $this->transporter->requestObject($payload);
 
-        return ListResponse::from($result);
+        if(!array_key_exists('included', $result)) {
+            return ListResponse::from($result);
+        } else {
+            return ListResponse::from($result, $result['included']);
+        }
     }
 
     /**
@@ -38,7 +42,12 @@ final class Tickets implements TicketsContract
         $payload = Payload::retrieve('tickets', $ticketId);
 
         /** @var array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null} $result */
-        $result = $this->transporter->requestObject($payload)['data'];
-        return RetrieveResponse::from($result);
+        $result = $this->transporter->requestObject($payload);
+
+        if(!array_key_exists('included', $result)) {
+            return RetrieveResponse::from($result['data']);
+        } else {
+            return RetrieveResponse::from($result['data'], $result['included']);
+        }
     }
 }

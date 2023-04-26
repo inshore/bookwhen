@@ -17,8 +17,8 @@ final class Ticket
         public readonly null | string $availableTo,
         public readonly null | string $builtBasketUrl,
         public readonly null | string $builtBasketIframeUrl,
+        public readonly null | object $cost,
         public readonly bool | null $courseTicket,
-        // cost
         public readonly null | string $details,
         public readonly bool | null $groupTicket,
         public readonly int | null $groupMin,

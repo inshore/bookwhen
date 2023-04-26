@@ -21,74 +21,67 @@ use Monolog\Handler\StreamHandler;
 final class Bookwhen implements BookwhenInterface
 {
     /**
-     * @var unknown
+     *
      */
     private null | Client $client;
 
     /**
      *
-     * @var unknown
      */
     public Attachment $attachment;
 
     /**
      *
-     * @var unknown
      */
     public array $attachments = [];
 
     /**
      *
-     * @var unknown
      */
     public ClassPass $classPass;
 
     /**
      *
-     * @var unknown
      */
     public array $classPasses = [];
 
     /**
      *
-     * @var unknown
      */
     public Event $event;
 
     /**
      *
-     * @var unknown
      */
     public array $events = [];
 
     /**
      *
-     * @var unknown
      */
     private array $filters = [];
 
     /**
      *
      */
-    public readonly Location $location;
+    public Location $location;
 
     /**
      *
-     * @var unknown
      */
     private array $includes = [];
-    /**
 
+    /**
+     *
      */
     public Ticket $ticket;
 
     /**
-
+     *
      */
     public array $tickets = [];
 
     /**
-        *
+     *
      */
     public $locations = [];
 
@@ -101,8 +94,6 @@ final class Bookwhen implements BookwhenInterface
 
     /** @var string the logging level. */
     private string $logLevel;
-
-
 
     /**
      * Creates a new Bookwhen Client with the given API token.
@@ -685,21 +676,7 @@ final class Bookwhen implements BookwhenInterface
      */
     public function setLogging($level)
     {
-        $this->logging = $level;
-    }
-
-     /**
-     * Sets the token for all future new instances
-     * @deprecated
-     * @param $token string The API access token, as obtained on diffbot.com/dev.
-     */
-    public static function setToken($token)
-    {
-        $validator = new Validator();
-        if (!$validator->validToken($token)) {
-            throw new \InvalidArgumentException('Invalid Token.');
-        }
-        self::$token = $token;
+        $this->logLevel = $level;
     }
 
     /**

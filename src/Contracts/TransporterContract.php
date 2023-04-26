@@ -22,7 +22,7 @@ interface TransporterContract
      *
      * @throws ErrorException|UnserializableResponse|TransporterException
      */
-    public function requestObject(Payload $payload): array|string;
+    public function requestObject(Payload $payload): array;
 
     /**
      * Sends a content request to a server.

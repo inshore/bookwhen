@@ -42,8 +42,7 @@ final class Events implements EventsContract
 
         if(!array_key_exists('included', $result)) {
             return RetrieveResponse::from($result['data']);
-        }
-        else {
+        } else {
             return RetrieveResponse::from($result['data'], $result['included']);
         }
     }

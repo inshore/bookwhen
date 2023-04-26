@@ -20,6 +20,9 @@ use Monolog\Handler\StreamHandler;
 
 final class Bookwhen implements BookwhenInterface
 {
+    /**
+     * @var unknown
+     */
     private null | Client $client;
 
     /**
@@ -771,13 +774,13 @@ final class Bookwhen implements BookwhenInterface
         }
 
         $ticket = $this->client->tickets()->retrieve($ticketId);
-
         return $this->ticket = new Ticket(
             $ticket->available,
             $ticket->availableFrom,
             $ticket->availableTo,
             $ticket->builtBasketUrl,
             $ticket->builtBasketIframeUrl,
+            $ticket->cost,
             $ticket->courseTicket,
             $ticket->details,
             $ticket->groupTicket,
@@ -803,6 +806,7 @@ final class Bookwhen implements BookwhenInterface
         bool $includeEventsLocation = false,
         bool $includeEventsTickets = false
     ): array {
+
         // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
         if (!$this->validator->validId($eventId, 'event')) {
@@ -863,6 +867,7 @@ final class Bookwhen implements BookwhenInterface
                 $ticket->availableTo,
                 $ticket->builtBasketUrl,
                 $ticket->builtBasketIframeUrl,
+                $ticket->cost,
                 $ticket->courseTicket,
                 $ticket->details,
                 $ticket->groupTicket,

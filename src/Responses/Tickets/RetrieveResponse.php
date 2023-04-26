@@ -40,8 +40,8 @@ final class RetrieveResponse implements ResponseContract
         public readonly null | string $availableTo,
         public readonly null | string $builtBasketUrl,
         public readonly null | string $builtBasketIframeUrl,
+        public readonly object $cost,
         public readonly bool | null $courseTicket,
-        // cost
         public readonly null | string $details,
         public readonly bool | null $groupTicket,
         public readonly int | null $groupMin,
@@ -60,12 +60,21 @@ final class RetrieveResponse implements ResponseContract
      */
     public static function from(array $attributes): self
     {
+
+        $cost = new \stdClass();
+        if(!empty($attributes['attributes']['cost'])) {
+            $cost->currencyCode = $attributes['attributes']['cost']['currency_code'];
+            $cost->net = $attributes['attributes']['cost']['net'];
+            $cost->tax = $attributes['attributes']['cost']['tax'];
+        }
+
         return new self(
             $attributes['attributes']['available'],
             $attributes['attributes']['available_from'],
             $attributes['attributes']['available_to'],
             $attributes['attributes']['built_basket_url'],
             $attributes['attributes']['built_basket_iframe_url'],
+            $cost,
             $attributes['attributes']['course_ticket'],
             $attributes['attributes']['details'],
             $attributes['attributes']['group_ticket'],

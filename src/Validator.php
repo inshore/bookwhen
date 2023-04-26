@@ -9,7 +9,6 @@ use Respect\Validation\Validator as v;
 
 class Validator implements ValidatorInterface
 {
-    
     /**
      *
      * @author Daniel Mullin daniel@inshore.je
@@ -23,7 +22,7 @@ class Validator implements ValidatorInterface
     {
         return v::stringType()->notEmpty()->alnum()->validate($additionalInfo);
     }
-    
+
     /**
      *
      * @author Daniel Mullin daniel@inshore.je

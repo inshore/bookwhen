@@ -33,8 +33,6 @@ final class RetrieveResponse implements ResponseContract
         public readonly null | string $fileUrl,
         public readonly string $id,
         public readonly null | string $title
-        
-
     ) {
     }
 

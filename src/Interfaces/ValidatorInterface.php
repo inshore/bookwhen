@@ -6,13 +6,12 @@ namespace InShore\Bookwhen\Interfaces;
 
 interface ValidatorInterface
 {
-    
     /**
      * @param string $attachmentId
      * @return bool
      */
     public function validAdditionalInfo(string $additionalInfo): bool;
-    
+
     /**
      * @param string $addressText
      * @return bool

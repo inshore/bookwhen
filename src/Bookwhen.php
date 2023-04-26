@@ -723,7 +723,7 @@ final class Bookwhen implements BookwhenInterface
         bool $includeEventsLocation = false,
         bool $includeEventsTickets = false
     ): Ticket {
-        
+
         // ticketId
         if (!$this->validator->validId($ticketId, 'ticket')) {
             throw new ValidationException('ticketId', $ticketId);
@@ -733,7 +733,7 @@ final class Bookwhen implements BookwhenInterface
         if (!$this->validator->validInclude($includeClassPasses)) {
             throw new ValidationException('includeClassPasses', $includeClassPasses);
         }
-            
+
         if($includeClassPasses) {
             array_push($this->includes, 'class_passes');
         }
@@ -813,43 +813,43 @@ final class Bookwhen implements BookwhenInterface
         if (!$this->validator->validInclude($includeClassPasses)) {
             throw new ValidationException('includeClassPasses', $includeClassPasses);
         }
-        
+
         if($includeClassPasses) {
             array_push($this->includes, 'class_passes');
         }
-        
+
         // Validate $includeEvents;
         if (!$this->validator->validInclude($includeEvents)) {
             throw new ValidationException('includeEvents', $includeEvents);
         }
-        
+
         if($includeEvents) {
             array_push($this->includes, 'events');
         }
-        
+
         // Validate $includeAttachments;
         if (!$this->validator->validInclude($includeEventsAttachments)) {
             throw new ValidationException('includeEventssAttachments', $includeEventsAttachments);
         }
-        
+
         if($includeEventsAttachments) {
             array_push($this->includes, 'events.attachments');
         }
-        
+
         // Validate $includeEventsLocation;
         if (!$this->validator->validInclude($includeEventsLocation)) {
             throw new ValidationException('includeEventsLocation', $includeEventsLocation);
         }
-        
+
         if($includeEventsLocation) {
             array_push($this->includes, 'events.location');
         }
-        
+
         // Validate $includeEventsTickets;
         if (!$this->validator->validInclude($includeEventsTickets)) {
             throw new ValidationException('includeEventsTickets', $includeEventsTickets);
         }
-        
+
         if($includeEventsTickets) {
             array_push($this->includes, 'events.tickets');
         }

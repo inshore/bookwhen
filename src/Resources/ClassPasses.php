@@ -20,10 +20,11 @@ final class ClassPasses implements ClassPassesContract
      */
     public function list(): ListResponse
     {
-        $payload = Payload::list('classPasses');
+        $payload = Payload::list('class_passes');
 
         /** @var array{object: string, data: array<int, array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>} $result */
         $result = $this->transporter->requestObject($payload);
+
 
         return ListResponse::from($result);
     }
@@ -35,7 +36,7 @@ final class ClassPasses implements ClassPassesContract
      */
     public function retrieve(string $classPassId): RetrieveResponse
     {
-        $payload = Payload::retrieve('classPasses', $classPassId);
+        $payload = Payload::retrieve('class_passes', $classPassId, []);
 
         /** @var array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null} $result */
         $result = $this->transporter->requestObject($payload)['data'];

@@ -123,4 +123,22 @@ interface ValidatorInterface
      */
     public function validToken(string $token): bool;
 
+    /**
+     * @param int $usageAllowance
+     * @return bool
+     */
+    public function validusageAllowance(int $usageAllowance): bool;
+
+    /**
+     * @param string $usageType
+     * @return bool
+     */
+    public function validusageType(string $usageType): bool;
+
+        /**
+     * @param int $useRestrictedForDays
+     * @return bool
+     */
+    public function validUseRestrictedForDays(int $useRestrictedForDays): bool;
+
 }

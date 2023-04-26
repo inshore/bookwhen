@@ -18,13 +18,12 @@ final class ClassPasses implements ClassPassesContract
      *
      * @see https://beta.openai.com/docs/api-reference/files/list
      */
-    public function list(): ListResponse
+    public function list(array $parameters): ListResponse
     {
-        $payload = Payload::list('class_passes');
+        $payload = Payload::list('class_passes', $parameters);
 
         /** @var array{object: string, data: array<int, array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>} $result */
         $result = $this->transporter->requestObject($payload);
-
 
         return ListResponse::from($result);
     }

@@ -313,6 +313,7 @@ class Validator implements ValidatorInterface
 
         $toDate = new \DateTime($to);
 
+
         if (empty($from)) {
             return true;
         }
@@ -337,6 +338,48 @@ class Validator implements ValidatorInterface
     public function validToken(string $token): bool
     {
         return v::alnum()->validate($token);
+    }
+
+    /**
+     *
+     * @author Brandon Lubbehusen brandon@inshore.je
+     *
+     * @access public
+     *
+     * @param int $usageAllowance
+     * @return bool
+     */
+    public function validUsageAllowance(int $usageAllowance): bool
+    {
+        return v::intType()->notEmpty()->alnum()->validate($usageAllowance);
+    }
+
+    /**
+     *
+     * @author Brandon Lubbehusen brandon@inshore.je
+     *
+     * @access public
+     *
+     * @param string $usageType
+     * @return bool
+     */
+    public function validUsageType(string $usageType): bool
+    {
+        return v::regex('/\b(personal|any)\b/')->validate($usageType);
+    }
+
+    /**
+     *
+     * @author Brandon Lubbehusen brandon@inshore.je
+     *
+     * @access public
+     *
+     * @param int $useRestrictedForDays
+     * @return bool
+     */
+    public function validuseRestrictedForDays(int $useRestrictedForDays): bool
+    {
+        return v::intType()->notEmpty()->alnum()->validate($useRestrictedForDays);
     }
 }
 

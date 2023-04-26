@@ -12,7 +12,7 @@ interface ClassPassesContract
      *
      * @see https://
      */
-    public function list(): ListResponse;
+    public function list(array $parameters): ListResponse;
 
     /**
      * Returns information about a specific event.

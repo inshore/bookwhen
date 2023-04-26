@@ -135,7 +135,7 @@ interface ValidatorInterface
      */
     public function validusageType(string $usageType): bool;
 
-        /**
+    /**
      * @param int $useRestrictedForDays
      * @return bool
      */

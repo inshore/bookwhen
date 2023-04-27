@@ -38,7 +38,7 @@ final class ListResponse implements ResponseContract
     public static function from(array $attributes): self
     {
         $included = [];
-        if(array_key_exists('included', $attributes)) {
+        if (array_key_exists('included', $attributes)) {
             $included = $attributes['included'];
         }
 

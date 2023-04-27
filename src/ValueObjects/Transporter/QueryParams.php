@@ -30,7 +30,7 @@ final class QueryParams
     /**
      * Creates a new Query Params value object, with the newly added param, and the existing params.
      */
-    public function withParam(string $name, string|int $value): self
+    public function withParam(string $name, string | int $value): self
     {
         return new self([
             ...$this->params,

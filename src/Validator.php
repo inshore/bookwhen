@@ -186,19 +186,26 @@ class Validator implements ValidatorInterface
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validId()
      * @todo
      */
-    public function validId(string $id, string $type): bool
+    public function validId(string $id, null | string $type = null): bool
     {
         if (!v::stringType()->notEmpty()->validate($id)) {
             return false;
         }
 
-        if (!v::stringType()->regex('/\b(attachment|classPass|event|location|\ticket|)\b/')->validate($type)) {
-            return false;
+        switch ($type) {
+            case 'classPass':
+                return $this->validClassPassId($id);
+            case 'event':
+                return $this->validEventId($id);
+            case 'ticket':
+                return $this->validTicketId($id);
+            case 'attachment':
+                return $this->validAttachmentId($id);
+            case 'location':
+                return $this->validLocationId($id);
+            default:
+                return v::alnum()->length(12, 12)->validate($id);
         }
-
-        $validationMethod = 'valid' . ucFirst($type) . 'Id';
-
-        return $this->$validationMethod($id);
     }
 
     /**

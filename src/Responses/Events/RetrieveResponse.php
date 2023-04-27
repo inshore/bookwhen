@@ -52,14 +52,14 @@ final class RetrieveResponse implements ResponseContract
     {
         // location
         $location = LocationsRetrieveResponse::from([
-            'attributes' => [
-                'address_text' => null,
-                'additional_info' => null,
-                'latitude' => null,
-                'longitude' => null,
-                'map_url' => null,
-                'zoom' => null
-            ],
+//             'attributes' => [
+//                 'address_text' => null,
+//                 'additional_info' => null,
+//                 'latitude' => null,
+//                 'longitude' => null,
+//                 'map_url' => null,
+//                 'zoom' => null
+//             ],
             'id' => $attributes['relationships']['location']['data']['id']
         ]);
 
@@ -67,21 +67,6 @@ final class RetrieveResponse implements ResponseContract
         $tickets = [];
         foreach ($attributes['relationships']['tickets']['data'] as $ticket) {
             array_push($tickets, TicketsRetrieveResponse::from([
-                'attributes' => [
-                    'available' => null,
-                    'available_from' => null,
-                    'available_to' => null,
-                    'built_basket_url' => null,
-                    'built_basket_iframe_url' => null,
-                    'course_ticket' => null,
-                    'details' => null,
-                    'group_ticket' => null,
-                    'group_min' => null,
-                    'group_max' => null,
-                    'number_issued' => null,
-                    'number_taken' => null,
-                    'title' => null
-                ],
                 'id' => $ticket['id']
             ]));
         }

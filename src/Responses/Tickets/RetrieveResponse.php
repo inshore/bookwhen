@@ -69,21 +69,21 @@ final class RetrieveResponse implements ResponseContract
         }
 
         return new self(
-            $attributes['attributes']['available'],
-            $attributes['attributes']['available_from'],
-            $attributes['attributes']['available_to'],
-            $attributes['attributes']['built_basket_url'],
-            $attributes['attributes']['built_basket_iframe_url'],
+            $attributes['attributes']['available'] ?? null,
+            $attributes['attributes']['available_from'] ?? null,
+            $attributes['attributes']['available_to'] ?? null,
+            $attributes['attributes']['built_basket_url'] ?? null,
+            $attributes['attributes']['built_basket_iframe_url'] ?? null,
             $cost,
-            $attributes['attributes']['course_ticket'],
-            $attributes['attributes']['details'],
-            $attributes['attributes']['group_ticket'],
-            $attributes['attributes']['group_min'],
-            $attributes['attributes']['group_max'],
+            $attributes['attributes']['course_ticket'] ?? null,
+            $attributes['attributes']['details'] ?? null,
+            $attributes['attributes']['group_ticket'] ?? null,
+            $attributes['attributes']['group_min'] ?? null,
+            $attributes['attributes']['group_max'] ?? null,
             $attributes['id'],
-            $attributes['attributes']['number_issued'],
-            $attributes['attributes']['number_taken'],
-            $attributes['attributes']['title']
+            $attributes['attributes']['number_issued'] ?? null,
+            $attributes['attributes']['number_taken'] ?? null,
+            $attributes['attributes']['title'] ?? null,
         );
     }
 }

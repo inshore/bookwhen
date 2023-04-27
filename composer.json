@@ -1,6 +1,6 @@
 {
 	"name" : "inshore/bookwhen",
-	"description" : "Bookwhen API SDK",
+	"description" : "Bookwhen API SDK providing plug & play access to the Bookwhen booking platform inside you PHP application. https://www.buymeacoffee.com/danielmullin",
 	"keywords" : [
 		"api",
 		"bookwhen",
@@ -15,7 +15,7 @@
 		}
 	],
 	"require" : {
-		"php" : ">=8.1",
+		"php": "^8.1 || ^8.2",
 		"guzzlehttp/guzzle" : "^7.0",
 		"respect/validation" : "^2.0",
 		"monolog/monolog": "^3.0",
@@ -44,8 +44,11 @@
 		}
 	},
 	"config": {
-      "allow-plugins": {
-          "php-http/discovery": true
-      }
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  },
+  "scripts": {
+    "phpunit": "vendor/bin/phpunit"
   }
 }

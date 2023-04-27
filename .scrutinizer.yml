@@ -3,7 +3,7 @@ build:
     environment:
         php: 8.1.2
     nodes:
-	requires:
+        requires:
             branch: master
         analysis:
             project_setup:

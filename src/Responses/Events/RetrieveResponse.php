@@ -50,18 +50,18 @@ final class RetrieveResponse implements ResponseContract
      */
     public static function from(array $attributes, $included = []): self
     {
+
         // location
-        $location = LocationsRetrieveResponse::from([
-//             'attributes' => [
-//                 'address_text' => null,
-//                 'additional_info' => null,
-//                 'latitude' => null,
-//                 'longitude' => null,
-//                 'map_url' => null,
-//                 'zoom' => null
-//             ],
+        $locationId = $attributes['relationships']['location']['data']['id'];
+        $location = array_reduce($included, function ($data, $includedData) use ($locationId) {
+            if($locationId === $includedData['id']) {
+                return  LocationsRetrieveResponse::from($includedData);
+            }
+            return $data;
+        }, LocationsRetrieveResponse::from([
             'id' => $attributes['relationships']['location']['data']['id']
-        ]);
+        ]));
+
 
         // tickets
         $tickets = [];

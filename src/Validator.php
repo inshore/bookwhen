@@ -191,13 +191,10 @@ class Validator implements ValidatorInterface
         if (!v::stringType()->notEmpty()->validate($id)) {
             return false;
         }
-
         if (!v::stringType()->regex('/\b(attachment|classPass|event|location|\ticket|)\b/')->validate($type)) {
             return false;
         }
-
         $validationMethod = 'valid' . ucFirst($type) . 'Id';
-
         return $this->$validationMethod($id);
     }
 

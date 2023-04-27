@@ -43,13 +43,13 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes): self
     {
         return new self(
-            $attributes['attributes']['address_text'],
-            $attributes['attributes']['additional_info'],
+            $attributes['attributes']['address_text'] ?? null,
+            $attributes['attributes']['additional_info'] ?? null,
             $attributes['id'],
-            $attributes['attributes']['latitude'],
-            $attributes['attributes']['longitude'],
-            $attributes['attributes']['map_url'],
-            $attributes['attributes']['zoom']
+            $attributes['attributes']['latitude'] ?? null,
+            $attributes['attributes']['longitude'] ?? null,
+            $attributes['attributes']['map_url'] ?? null,
+            $attributes['attributes']['zoom'] ?? null
         );
     }
 }

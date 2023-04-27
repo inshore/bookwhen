@@ -65,7 +65,7 @@ final class RetrieveResponse implements ResponseContract
 
         // tickets
         $tickets = [];
-        foreach($attributes['relationships']['tickets']['data'] as $ticket) {
+        foreach ($attributes['relationships']['tickets']['data'] as $ticket) {
             array_push($tickets, TicketsRetrieveResponse::from([
                 'attributes' => [
                     'available' => null,
@@ -86,7 +86,7 @@ final class RetrieveResponse implements ResponseContract
             ]));
         }
 
-        if(!empty($included)) {
+        if (!empty($included)) {
             foreach ($included as $includedData) {
                 if($includedData['type'] === 'location' && $includedData['id'] = $location->id) {
                     $location = LocationsRetrieveResponse::from($includedData);
@@ -94,9 +94,9 @@ final class RetrieveResponse implements ResponseContract
             }
 
             //tickets
-            foreach($tickets as $index => $ticket) {
+            foreach ($tickets as $index => $ticket) {
                 foreach ($included as $includedData) {
-                    if($includedData['type'] === 'ticket' && $includedData['id'] = $ticket->id) {
+                    if ($includedData['type'] === 'ticket' && $includedData['id'] = $ticket->id) {
                         $tickets[$index] = TicketsRetrieveResponse::from($includedData);
                     }
                 }

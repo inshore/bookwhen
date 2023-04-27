@@ -31,7 +31,6 @@ final class HttpTransporter implements TransporterContract
         private readonly BaseUri $baseUri,
         private readonly Headers $headers,
         private readonly QueryParams $queryParams,
-        private readonly Closure $streamHandler,
     ) {
         // ..
     }
@@ -39,7 +38,7 @@ final class HttpTransporter implements TransporterContract
     /**
      * {@inheritDoc}
      */
-    public function requestObject(Payload $payload): array|string
+    public function requestObject(Payload $payload): array | string
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
 

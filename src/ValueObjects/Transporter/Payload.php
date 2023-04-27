@@ -130,10 +130,10 @@ final class Payload
 
         $body = null;
 
-        $uri = $baseUri->toString().$this->uri->toString();
+        $uri = $baseUri->toString() . $this->uri->toString();
 
         if (! empty($this->parameters)) {
-            $uri .= '?'.http_build_query($this->parameters);
+            $uri .= '?' . http_build_query($this->parameters);
         }
 
         $request = $psr17Factory->createRequest($this->method->value, $uri);

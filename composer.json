@@ -1,6 +1,6 @@
 {
 	"name" : "inshore/bookwhen",
-	"description" : "Bookwhen API SDK providing plug & play access to the Bookwhen booking platform inside you PHP application. https://www.buymeacoffee.com/danielmullin",
+	"description" : "Bookwhen API SDK providing plug & play access to the Bookwhen booking platform inside you PHP application.",
 	"keywords" : [
 		"api",
 		"bookwhen",

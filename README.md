@@ -38,20 +38,61 @@ via .env or how you prefer.
 ``` php
 $bookwhen = new Bookwhen();
 ```
-###Attachments###
+### Attachments
+
+implements [https://api.bookwhen.com/v2#tag/Attachment](https://api.bookwhen.com/v2#tag/Attachment)
+
+Attachments
+
+https://api.bookwhen.com/v2#tag/Attachment/paths/~1attachments/get
 
 ``` php
 
 // Fetch attachments accessible by the API token.
 
 $attachments = $bookwhen->attachments());
+```
 
+** Filters **
+
+The filter parameters can be passed in as function parameters.
+
+**title** - Filter on the file title text.
+
+**fileName** - Filter on the file name.
+
+**fileType** - Filter on the file type.
+
+``` php
+
+// Fetch attachments accessible by the API token.
+
+$attachments = $bookwhen->attachments(fileName: 'CV'));
+
+$attachments = $bookwhen->attachments(fileType: 'pdf'));
+
+$attachments = $bookwhen->attachments(title: 'Title to filter by'));
+
+$attachments = $bookwhen->attachments(fileName: 'CV', fileType: 'pdf', title: 'Title to filter by'));
+```
+
+Attachment
+
+[https://api.bookwhen.com/v2#tag/Attachment/paths/~1attachments~1%7Battachment_id%7D/g](https://api.bookwhen.com/v2#tag/Attachment/paths/~1attachments~1%7Battachment_id%7D/get)
+
+```
 // Returns the attachment for the provided attachment ID.
 
-$attachment = $bookwhen->attachment('ev-smij-20200530100000');
+$attachment = $bookwhen->attachment('ev-smij-20200530100000' );
 
 ```
 ###Class Passes###
+
+implements [https://api.bookwhen.com/v2#tag/ClassPass](https://api.bookwhen.com/v2#tag/ClassPass)
+
+ClassPasses
+
+https://api.bookwhen.com/v2#tag/ClassPass/paths/~1class_passes/get
 
 ``` php
 
@@ -59,21 +100,90 @@ $attachment = $bookwhen->attachment('ev-smij-20200530100000');
 
 $classPasses = $bookwhen->classPasses());
 
+```
+
+** Filters **
+
+The filter parameters can be passed in as function parameters
+
+**title** - Filter on the title text of the pass.
+
+**detail** - Filter on the details text.
+
+**usageType** - Filter on the type of the pass: personal or any.
+
+**cost** - Filter on the cost with an exact value or use a comparison operator. e.g. filter[cost][gte]=2000
+
+  **gt** - greater than
+
+  **gte** - greater than or equal
+
+  **lt** - less than
+
+  **lte** - less than or equal
+
+  **eq** - equal to
+
+**usageAllowance** - Filter on pass usage allowance. This also accepts a comparison operator like cost.
+
+**useRestrictedForDays** - Filter on pass days restriction. This also accepts a comparison operator like cost.
+
+``` php
+
+// Fetch class passes accessible by the API token.
+
+$classPasses = $bookwhen->classPasses());
+
+$classPasses = $bookwhen->classPasses(title: 'Title to filter by'));
+```
+
+ClassPass
+
+https://api.bookwhen.com/v2#tag/ClassPass/paths/~1class_passes~1%7Bclass_pass_id%7D/get
+
+``` php
+
 // Returns the class pass for the provided class pass ID.
 
 $classPass = $bookwhen->classPass('ev-smij-20200530100000');
 
 ```
 
-###Event###
+### Events
+
+[https://api.bookwhen.com/v2#tag/Event](https://api.bookwhen.com/v2#tag/Event)
+
+Events
+
+[https://api.bookwhen.com/v2#tag/Event/paths/~1events/get](https://api.bookwhen.com/v2#tag/Event/paths/~1events/get)
 
 ``` php
 
 // Returns the event for the provided event ID.
 
-$event = $bookwhen->event('ev-smij-20200530100000');
+$event = $bookwhen->events();
 
 ```
+
+**Filters**
+
+**calendar** - Restrict to events on the given calendars (schedule pages).
+
+**entry** - Restrict to given entries.
+
+**location** - Array of location slugs to include.
+
+**tag** - Array of tag words to include.
+
+**title** - Array of entry titles to search for.
+
+**detail** - Array of entry details to search for.
+
+**from** - Inclusive time to fetch events from in format YYYYMMDD or YYYYMMDDHHMISS. Defaults to today.
+
+**to** - Non-inclusive time to fetch events until in format YYYYMMDD or YYYYMMDDHHMISS
+
+**compact** - Boolean: Combine events in a course into a single virtual event.
 
 **Includes**
 
@@ -89,6 +199,27 @@ includeTickets.class_passes
 includeTickets.events
 
 for example to retrieve the event with its location and tickets.
+
+``` php
+
+// Returns the event for the provided event ID.
+
+$event = $bookwhen->events(title: 'Title to filter by'));
+
+```
+
+Event
+
+[https://api.bookwhen.com/v2#tag/Event/paths/~1events~1%7Bevent_id%7D/get](https://api.bookwhen.com/v2#tag/Event/paths/~1events~1%7Bevent_id%7D/get)
+
+``` php
+
+// Returns the event for the provided event ID.
+
+$event = $bookwhen->event('ev-smij-20200530100000');
+
+```
+
 
 ``` php
 
@@ -119,11 +250,10 @@ By default the event will NOT have its attachments, location and tickets populat
 To retrieve an event withg the included relationships,
 simply pass boolean true for the relationship that is required. 
 
-includeAttachments
-includeLocation
-includeTickets
-includeTickets.class_passes
-includeTickets.events
+**includeAttachments**
+**includeLocation**
+**includeTickets.class_passes**
+**includeTickets.events**
 
 for example to retrieve the event with its location and tickets.
 
@@ -138,20 +268,60 @@ $events = $bookwhen->events(location: true, includeTickets: true);));
 ```
 
 
-###Locations###
+### Locations
+
+
+Implements [https://api.bookwhen.com/v2#tag/Location](https://api.bookwhen.com/v2#tag/Location)
+
+Locations
+
+[https://api.bookwhen.com/v2#tag/Location/paths/~1locations/get](https://api.bookwhen.com/v2#tag/Location/paths/~1locations/get)
 
 ``` php
 
 // Fetch events accessible by the API token.
 
-$locations = $bookwhen->location());
+$locations = $bookwhen->locations());
 
+// Returns the location for the provided location ID.
+
+```
+
+**Filters**
+
+**addressText** - Restrict to locations containing the address text filter.
+
+**additionalInfo** - Filter by the text contained in the additional info.
+
+``` php
+
+// Fetch events accessible by the API token.
+
+$locations = $bookwhen->locations(addressText: 'Remote'));
+
+// Returns the location for the provided location ID.
+
+```
+
+Location
+
+[https://api.bookwhen.com/v2#tag/Location/paths/~1locations~1%7Blocation_id%7D/get](https://api.bookwhen.com/v2#tag/Location/paths/~1locations~1%7Blocation_id%7D/get)
+
+```php
 // Returns the location for the provided location ID.
 
 $location = $bookwhen->location('ev-smij-20200530100000');
 
 ```
-###Tickets###
+
+### Tickets
+
+Implements [https://api.bookwhen.com/v2#tag/Ticket](https://api.bookwhen.com/v2#tag/Ticket)
+
+Tickets
+
+[https://api.bookwhen.com/v2#tag/Ticket/paths/~1tickets/get](https://api.bookwhen.com/v2#tag/Ticket/paths/~1tickets/get)
+
 
 ``` php
 
@@ -160,12 +330,58 @@ $location = $bookwhen->location('ev-smij-20200530100000');
 $eventId = 'ev-smij-20200530100000';
 
 $client->tickets($eventId);
+```
 
+**Includes**
+
+By default the tickets will NOT have its attachments, evetns and location populated.
+
+To retrieve an event withg the included relationships,
+simply pass boolean true for the relationship that is required. 
+
+**includeAttachments**
+**includeLocation**
+**includeTickets.class_passes**
+**includeTickets.events**
+
+``` php
+
+// Fetch tickets for the given event.
+
+$eventId = 'ev-smij-20200530100000';
+
+$client->tickets($eventId, includeAttachments: true);
+```
+
+Ticket
+
+[https://api.bookwhen.com/v2#tag/Ticket/paths/~1tickets~1%7Bticket_id%7D/get](https://api.bookwhen.com/v2#tag/Ticket/paths/~1tickets~1%7Bticket_id%7D/get)
+
+``` php
 // Retrieve a single ticket.
 
 $ticketId = 'ti-sboe-20200320100000-tk1m';
 
 $client->ticket($ticketId);
+
+```
+
+**Includes**
+
+By default the tickets will NOT have its attachments, evetns and location populated.
+
+To retrieve an event withg the included relationships,
+simply pass boolean true for the relationship that is required. 
+
+**includeAttachments**
+**includeLocation**
+**includeTickets.class_passes**
+**includeTickets.events**
+
+``` php
+// Retrieve a single ticket.
+
+$client->ticket('ti-sboe-20200320100000-tk1m', includeAttachments: true););
 
 ```
 

@@ -22,19 +22,6 @@ interface TransporterContract
      *
      * @throws ErrorException|UnserializableResponse|TransporterException
      */
-    public function requestObject(Payload $payload): array | string;
+    public function requestObject(Payload $payload): array;
 
-    /**
-     * Sends a content request to a server.
-     *
-     * @throws ErrorException|TransporterException
-     */
-    public function requestContent(Payload $payload): string;
-
-    /**
-     * Sends a stream request to a server.
-     **
-     * @throws ErrorException
-     */
-    public function requestStream(Payload $payload): ResponseInterface;
 }

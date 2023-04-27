@@ -100,8 +100,6 @@ final class Factory
 
         $client = $this->httpClient ??= Psr18ClientDiscovery::find();
 
-       // $sendAsync = $this->makeStreamHandler($client);
-
         $transporter = new HttpTransporter($client, $baseUri, $headers, $queryParams);
 
         return new Client($transporter);

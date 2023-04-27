@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace InShore\Bookwhen\Transporters;
 
-use Closure;
 use JsonException;
 use InShore\Bookwhen\Contracts\TransporterContract;
 use InShore\Bookwhen\Exceptions\ErrorException;
@@ -31,7 +30,6 @@ final class HttpTransporter implements TransporterContract
         private readonly BaseUri $baseUri,
         private readonly Headers $headers,
         private readonly QueryParams $queryParams,
-        private readonly Closure $streamHandler,
     ) {
         // ..
     }
@@ -39,7 +37,7 @@ final class HttpTransporter implements TransporterContract
     /**
      * {@inheritDoc}
      */
-    public function requestObject(Payload $payload): array|string
+    public function requestObject(Payload $payload): array
     {
         $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
 
@@ -64,51 +62,6 @@ final class HttpTransporter implements TransporterContract
 
         if (isset($response['error'])) {
             throw new ErrorException($response['error']);
-        }
-
-        return $response;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function requestContent(Payload $payload): string
-    {
-        $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-
-        try {
-            $response = $this->client->sendRequest($request);
-        } catch (ClientExceptionInterface $clientException) {
-            throw new TransporterException($clientException);
-        }
-
-        $contents = $response->getBody()->getContents();
-
-        try {
-            /** @var array{error?: array{message: string, type: string, code: string}} $response */
-            $response = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
-
-            if (isset($response['error'])) {
-                throw new ErrorException($response['error']);
-            }
-        } catch (JsonException) {
-            // ..
-        }
-
-        return $contents;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function requestStream(Payload $payload): ResponseInterface
-    {
-        $request = $payload->toRequest($this->baseUri, $this->headers, $this->queryParams);
-
-        try {
-            $response = ($this->streamHandler)($request);
-        } catch (ClientExceptionInterface $clientException) {
-            throw new TransporterException($clientException);
         }
 
         return $response;

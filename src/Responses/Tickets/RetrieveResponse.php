@@ -62,7 +62,7 @@ final class RetrieveResponse implements ResponseContract
     {
 
         $cost = new \stdClass();
-        if(!empty($attributes['attributes']['cost'])) {
+        if (!empty($attributes['attributes']['cost'])) {
             $cost->currencyCode = $attributes['attributes']['cost']['currency_code'];
             $cost->net = $attributes['attributes']['cost']['net'];
             $cost->tax = $attributes['attributes']['cost']['tax'];

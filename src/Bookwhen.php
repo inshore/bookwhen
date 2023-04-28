@@ -148,13 +148,15 @@ final class Bookwhen implements BookwhenInterface
         string $fileType = null
     ): array {
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-
-        if (!is_null($title) && !$this->validator->validTitle($title)) {
-            throw new ValidationException('title', $title);
-        } else {
-            $this->filters['filter[title]'] = $title;
+        
+        if (!is_null($title)) {
+            if ($this->validator->validTitle($title)) {
+                $this->filters['filter[title]'] = $title;
+            } else {
+                throw new ValidationException('title', $title);
+            }
         }
-
+        
         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
             throw new ValidationException('file name', $fileName);
         } else {

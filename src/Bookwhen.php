@@ -621,8 +621,8 @@ final class Bookwhen implements BookwhenInterface
         $location = $this->client->locations()->retrieve($locationId);
 
         return $this->location = new Location(
-            $event->location->additionalInfo,
-            $event->location->addressText,
+            $location->additionalInfo,
+            $location->addressText,
             $location->id,
             $location->latitude,
             $location->longitude,

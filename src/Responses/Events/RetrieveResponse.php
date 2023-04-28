@@ -72,13 +72,6 @@ final class RetrieveResponse implements ResponseContract
         }
 
         if (!empty($included)) {
-            foreach ($included as $includedData) {
-                if ($includedData['type'] === 'location' && $includedData['id'] = $location->id) {
-                    $location = LocationsRetrieveResponse::from($includedData);
-                }
-            }
-
-            //tickets
             foreach ($tickets as $index => $ticket) {
                 foreach ($included as $includedData) {
                     if ($includedData['type'] === 'ticket' && $includedData['id'] = $ticket->id) {

@@ -10,8 +10,8 @@ final class Location
      *
      */
     public function __construct(
-        public readonly null | string $addressText = null,
         public readonly null | string $additionalInfo = null,
+        public readonly null | string $addressText = null,
         public readonly string $id,
         public readonly float | null $latitude = null,
         public readonly float | null $longitude = null,

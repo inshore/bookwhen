@@ -413,6 +413,10 @@ Please see https://github.com/inshore/bookwhen for details.
 
 ## Support ##
 
+If you require assistance with this package or implementing in your own project or business...
+
+[https://bookwhen.com/inshore](https://bookwhen.com/inshore)
+
 <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="danielmullin" data-color="#FFDD00" data-emoji="" data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
 
 [https://www.buymeacoffee.com/danielmullin](https://www.buymeacoffee.com/danielmullin)
@@ -422,6 +426,7 @@ Please see https://github.com/inshore/bookwhen for details.
 - Daniel Mullin inshore@danielmullin.com
 - Brandon Lubbehusen inshore@danielmullin.com
 
+This package was heavily influenced by Nuno Maduro and the https://github.com/openai-php/client package.
 
 ## License
 

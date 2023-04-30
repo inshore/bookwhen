@@ -15,7 +15,7 @@ final class ApiKeyTest extends TestCase
         ];
     }
     
-    public static function provideValidApiKeys(): array
+    public static function provideValidApiKey(): array
     {
         return [
             'string' => [ 'fdhldfhjsflkds' ],
@@ -23,6 +23,7 @@ final class ApiKeyTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\ValueObjects\ApiKey::__construct()
      * @covers InShore\Bookwhen\ValueObjects\ApiKey::from()
      * @dataProvider provideInvalidApiKeys
      */
@@ -38,14 +39,14 @@ final class ApiKeyTest extends TestCase
     }
     
     /**
+     * @covers InShore\Bookwhen\ValueObjects\ApiKey::__construct()
      * @covers InShore\Bookwhen\ValueObjects\ApiKey::from
      * @covers InShore\Bookwhen\ValueObjects\ApiKey::toString()
-     * @dataProvider provideValidApiKeys
+     * @dataProvider provideValidApiKey
      */
     public function testValidApiKey($testApiKey): void
     {
         $apiKey = ApiKey::from($testApiKey);
         $this->assertSame($testApiKey, $apiKey->toString());
     }
-    
 }

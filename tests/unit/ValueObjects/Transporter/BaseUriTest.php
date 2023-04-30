@@ -46,7 +46,7 @@ final class BaseUriTest extends TestCase
     
     /**
      * @covers InShore\Bookwhen\ValueObjects\Transporter\BaseUri::__construct()
-     * @covers InShore\Bookwhen\ValueObjects\Transporter\BaseUri::form()
+     * @covers InShore\Bookwhen\ValueObjects\Transporter\BaseUri::from()
      * @covers InShore\Bookwhen\ValueObjects\Transporter\BaseUri::toString()
      * @dataProvider provideValidBaseUriResource
      */

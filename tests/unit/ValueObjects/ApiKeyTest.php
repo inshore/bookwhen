@@ -23,7 +23,6 @@ final class ApiKeyTest extends TestCase
     }
     
     /**
-     * @covers InShore\Bookwhen\ValueObjects\ApiKey::__construct()
      * @covers InShore\Bookwhen\ValueObjects\ApiKey::from()
      * @dataProvider provideInvalidApiKeys
      */
@@ -39,9 +38,8 @@ final class ApiKeyTest extends TestCase
     }
     
     /**
-     * @covers InShore\Bookwhen\ValueObjects\ApiKey::__construct()
      * @covers InShore\Bookwhen\ValueObjects\ApiKey::from
-     * InShore\Bookwhen\ValueObjects\ApiKey::toString()
+     * @covers InShore\Bookwhen\ValueObjects\ApiKey::toString()
      * @dataProvider provideValidApiKeys
      */
     public function testValidApiKey($testApiKey): void

@@ -15,7 +15,6 @@ use InShore\Bookwhen\Responses\ClassPasses\RetrieveResponse;
  */
 final class ListResponse implements ResponseContract
 {
-
     /**
      * @param  array<int, RetrieveResponse>  $data
      */

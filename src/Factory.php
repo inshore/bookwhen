@@ -87,7 +87,7 @@ final class Factory
     {
         $headers = Headers::create();
 
-        if ($this->apiKey !== null) {
+        if (null !== $this->apiKey) {
             $headers = Headers::withAuthorization(ApiKey::from($this->apiKey));
         }
 

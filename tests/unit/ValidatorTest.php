@@ -203,7 +203,6 @@ class ValidatorTest extends TestCase
     public static function provideValidFileName(): array
     {
         return [
-            'null' => [null],
             'validFileName' => ['Yoga Time'],
         ];
     }
@@ -211,6 +210,7 @@ class ValidatorTest extends TestCase
     public static function provideInvalidFileName(): array
     {
         return [
+            'null' => [null],
             'emptyString' => [''],
             'object' => [ new \stdClass() ],
         ];
@@ -297,7 +297,7 @@ class ValidatorTest extends TestCase
     public function testValidDateReturnsTrueOnValidDates($date)
     {
         if (is_string($date)) {
-            $this->assertFalse($this->validator->validDate($date));
+            $this->assertTrue($this->validator->validDate($date));
         }
         else {
             $this->expectException(\TypeError::class);

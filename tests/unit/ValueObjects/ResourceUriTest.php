@@ -9,7 +9,7 @@ final class ResourceUriTest extends TestCase
     /**
      * 
      */
-    public static function provideInvalidListResource(): array
+    public static function provideInvalidListResources(): array
     {
         return [
             'null' => [null],
@@ -31,7 +31,7 @@ final class ResourceUriTest extends TestCase
     /**
      * @covers InShore\Bookwhen\ValueObjects\ResourceUri::__construct()
      * @covers InShore\Bookwhen\ValueObjects\ResourceUri::list()
-     * @dataProvider provideInvalidListResource
+     * @dataProvider provideInvalidListResources
      */
     public function testInvalidList($testResource): void
     {
@@ -48,7 +48,7 @@ final class ResourceUriTest extends TestCase
      * @covers InShore\Bookwhen\ValueObjects\ResourceUri::__construct()
      * @covers InShore\Bookwhen\ValueObjects\ResourceUri::list()
      * @covers InShore\Bookwhen\ValueObjects\ResourceUri::toString()
-     * @dataProvider provideValidApiKeys
+     * @dataProvider provideValidListResource
      */
     public function testValidList($testResource): void
     {

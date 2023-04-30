@@ -128,8 +128,6 @@ final class Payload
     {
         $psr17Factory = new Psr17Factory();
 
-        $body = null;
-
         $uri = $baseUri->toString() . $this->uri->toString();
 
         if (!empty($this->parameters)) {

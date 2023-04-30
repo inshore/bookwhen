@@ -138,7 +138,7 @@ final class Payload
 
         $request = $psr17Factory->createRequest($this->method->value, $uri);
 
-        if ($body !== null) {
+        if (null !== $body) {
             $request = $request->withBody($body);
         }
 

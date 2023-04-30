@@ -54,7 +54,7 @@ final class RetrieveResponse implements ResponseContract
         // location
         $locationId = $attributes['relationships']['location']['data']['id'];
         $location = array_reduce($included, function ($data, $includedData) use ($locationId) {
-            if($locationId === $includedData['id']) {
+            if($includedData['id'] === $locationId) {
                 return  LocationsRetrieveResponse::from($includedData);
             }
             return $data;
@@ -74,7 +74,7 @@ final class RetrieveResponse implements ResponseContract
         if (!empty($included)) {
             foreach ($tickets as $index => $ticket) {
                 foreach ($included as $includedData) {
-                    if ($includedData['type'] === 'ticket' && $includedData['id'] = $ticket->id) {
+                    if ($includedData['type'] && $ticket->id === $includedData['id']) {
                         $tickets[$index] = TicketsRetrieveResponse::from($includedData);
                     }
                 }

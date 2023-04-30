@@ -20,72 +20,6 @@ use Monolog\Handler\StreamHandler;
 
 final class Bookwhen implements BookwhenInterface
 {
-    /**
-     *
-     */
-    private null | Client $client;
-
-    /**
-     *
-     */
-    public Attachment $attachment;
-
-    /**
-     *
-     */
-    public array $attachments = [];
-
-    /**
-     *
-     */
-    public ClassPass $classPass;
-
-    /**
-     *
-     */
-    public array $classPasses = [];
-
-    /**
-     *
-     */
-    public Event $event;
-
-    /**
-     *
-     */
-    public array $events = [];
-
-    /**
-     *
-     */
-    private array $filters = [];
-
-    /**
-     *
-     */
-    public Location $location;
-
-    /**
-     *
-     */
-    private array $includes = [];
-
-    /**
-     *
-     */
-    public Ticket $ticket;
-
-    /**
-     *
-     */
-    public array $tickets = [];
-
-    /**
-     *
-     */
-    public $locations = [];
-
-
     /** @var string The path to the log file */
     private $logFile;
 
@@ -100,14 +34,27 @@ final class Bookwhen implements BookwhenInterface
      * @todo logging
      */
     public function __construct(
-        string $apiKey = null,
+        private string $apiKey = null,
+        public Attachment $attachment,
+        public array $attachments = [],
+        public ClassPass $classPass,
+        public array $classPasses = []
+        public Event $event,
+        public array $events = [],
+        private array $filters = [],
+        public Location $location,
+        public array $includes = [],
+        public Ticket $ticket,
+        public array $tickets = [],
+        public $locations = [],
+        private Client $client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']),
         private $validator = new Validator()
     ) {
         //         $this->logFile = $logFile;
         //         $this->logLevel = $logLevel;
         //         $this->logger = new Logger('inShore Bookwhen API');
         //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
-        $this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
+        //$this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
     }
 
     /**

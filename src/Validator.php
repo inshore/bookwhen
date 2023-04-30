@@ -95,7 +95,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validDetails()
      */
-    public function validDetails($details): bool
+    public function validDetails(string $details): bool
     {
         return v::stringType()->notEmpty()->validate($details);
     }
@@ -109,7 +109,7 @@ class Validator implements ValidatorInterface
      * @param string $eventId
      * @return bool
      */
-    public function validEventId(string $eventId): bool
+    public function validEventId(null | string $eventId): bool
     {
         $exploded = explode('-', $eventId);
 
@@ -134,7 +134,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFileName()
      */
-    public function validFileName($fileName): bool
+    public function validFileName(string $fileName): bool
     {
         return v::stringType()->notEmpty()->validate($fileName);
     }

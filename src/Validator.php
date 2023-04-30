@@ -65,7 +65,7 @@ class Validator implements ValidatorInterface
     {
         $exploded = explode('-', $classPassId);
 
-        if (2 !==count($exploded)) {
+        if (2 !== count($exploded)) {
             return false;
         }
 

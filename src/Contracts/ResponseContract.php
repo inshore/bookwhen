@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace InShore\Bookwhen\Contracts;
 
-use ArrayAccess;
-
 /**
  * @template TArray of array
  *
@@ -13,7 +11,7 @@ use ArrayAccess;
  *
  * @internal
  */
-interface ResponseContract extends ArrayAccess
+interface ResponseContract
 {
 
 }

@@ -31,7 +31,7 @@ final class RetrieveResponseTest extends TestCase
         $this->assertEquals('Address text goes here', $location->addressText);
         $this->assertEquals('w0uh48ad3fm2', $location->id);
         $this->assertEquals(49.1649391, $location->latitude);
-        $this->assertEquals(-2.527250, $location->longitude);
+        $this->assertEquals(-2.5272508, $location->longitude);
         $this->assertEquals('https://cdn.bookwhen.com/blank_map.png?v=20230422143101', $location->mapUrl);
         $this->assertEquals(10, $location->zoom);
         

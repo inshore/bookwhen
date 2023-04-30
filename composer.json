@@ -49,6 +49,7 @@
     }
   },
   "scripts": {
+    "phpcsfixer": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
     "phpunit": "vendor/bin/phpunit"
   }
 }

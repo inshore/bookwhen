@@ -47,8 +47,6 @@ final class Factory
      */
     private array $queryParams = [];
 
-    private ?Closure $streamHandler = null;
-
     /**
      * Sets the API key for the requests.
      */

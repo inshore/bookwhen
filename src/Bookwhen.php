@@ -20,6 +20,67 @@ use Monolog\Handler\StreamHandler;
 
 final class Bookwhen implements BookwhenInterface
 {
+    /**
+     *
+     */
+    public Attachment $attachment;
+
+    /**
+     *
+     */
+    public array $attachments = [];
+
+    /**
+     *
+     */
+    public ClassPass $classPass;
+
+    /**
+     *
+     */
+    public array $classPasses = [];
+
+    /**
+     *
+     */
+    public Event $event;
+
+    /**
+     *
+     */
+    public array $events = [];
+
+    /**
+     *
+     */
+    private array $filters = [];
+
+    /**
+     *
+     */
+    public Location $location;
+
+    /**
+     *
+     */
+    private array $includes = [];
+
+    /**
+     *
+     */
+    public Ticket $ticket;
+
+    /**
+     *
+     */
+    public array $tickets = [];
+
+    /**
+     *
+     */
+    public $locations = [];
+
+
     /** @var string The path to the log file */
     private $logFile;
 
@@ -34,20 +95,8 @@ final class Bookwhen implements BookwhenInterface
      * @todo logging
      */
     public function __construct(
-        private string $apiKey = null,
-        public Attachment $attachment,
-        public array $attachments = [],
-        public ClassPass $classPass,
-        public array $classPasses = [],
-        public Event $event,
-        public array $events = [],
-        private array $filters = [],
-        public Location $location,
-        public array $includes = [],
-        public Ticket $ticket,
-        public array $tickets = [],
-        public $locations = [],
-        private Client $client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']),
+        private null | string $apiKey,
+        private Client $client = BookwhenApi::client(!is_null($this->apiKey) ? $this->apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']),
         private $validator = new Validator()
     ) {
         //         $this->logFile = $logFile;

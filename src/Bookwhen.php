@@ -38,7 +38,7 @@ final class Bookwhen implements BookwhenInterface
         public Attachment $attachment,
         public array $attachments = [],
         public ClassPass $classPass,
-        public array $classPasses = []
+        public array $classPasses = [],
         public Event $event,
         public array $events = [],
         private array $filters = [],

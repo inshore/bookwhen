@@ -34,7 +34,7 @@ final class Bookwhen implements BookwhenInterface
      *
      */
     public Client $client;
-    
+
     /**
      *
      */

@@ -123,7 +123,7 @@ class ValidatorTest extends TestCase
             'classPassId' => [ 'cp-vk3x1brhpsbf', 'classPass' ],
             'default' => ['9v06h1cbv0en', null],
             'eventId' => [ 'ev-sf8b-20200813100000', 'event' ],
-            'locationId' => ['sjm7pskr31t3', 'locationId' ],
+            'locationId' => ['sjm7pskr31t3', 'location' ],
             'ticketId' => ['ti-sboe-20200320100000-tk1m', 'ticket']
         ];
     }
@@ -266,7 +266,14 @@ class ValidatorTest extends TestCase
      */
     public function testValidIdReturnsFalseOnInvalidIds($id, $type)
     {
-       $this->assertFalse($this->validator->validId($id, $type));
+        if (is_string($id) && is_string($type)) {
+            $this->assertFalse($this->validator->validId($id, $type));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validId($id, $type);
+        }
+       
     }
     
     /**
@@ -275,7 +282,13 @@ class ValidatorTest extends TestCase
      */
     public function testValidTagReturnsFalseOnInvalidTags($tag)
     {
-       $this->assertFalse($this->validator->validTag($tag));
+       if (is_string($tag)) {
+           $this->assertFalse($this->validator->validTag($tag));
+       }
+       else {
+           $this->expectException(\TypeError::class);
+           $this->assertFalse($this->validator->validTag($tag));
+       };
     }
     
     /**
@@ -310,7 +323,13 @@ class ValidatorTest extends TestCase
      */
     public function testValidIdReturnsTrueOnValidIds($id, $type)
     {
-        $this->assertTrue($this->validator->validId($id, $type));
+        if (is_string($id) && is_string($type)) {
+            $this->assertTrue($this->validator->validId($id, $type));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validId($id, $type);
+        }
     }
     
     /**

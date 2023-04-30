@@ -33,6 +33,11 @@ final class Bookwhen implements BookwhenInterface
     /**
      *
      */
+    public Client $client;
+    
+    /**
+     *
+     */
     public ClassPass $classPass;
 
     /**
@@ -63,7 +68,7 @@ final class Bookwhen implements BookwhenInterface
     /**
      *
      */
-    private array $includes = [];
+    public array $includes = [];
 
     /**
      *
@@ -95,15 +100,14 @@ final class Bookwhen implements BookwhenInterface
      * @todo logging
      */
     public function __construct(
-        private null | string $apiKey,
-        private Client $client = BookwhenApi::client(!is_null($this->apiKey) ? $this->apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']),
+        string $apiKey = null,
         private $validator = new Validator()
     ) {
         //         $this->logFile = $logFile;
         //         $this->logLevel = $logLevel;
         //         $this->logger = new Logger('inShore Bookwhen API');
         //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
-        //$this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
+        $this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
     }
 
     /**

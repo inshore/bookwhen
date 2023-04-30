@@ -65,7 +65,7 @@ class Validator implements ValidatorInterface
     {
         $exploded = explode('-', $classPassId);
 
-        if (2 !==count($exploded)) {
+        if (2 !== count($exploded)) {
             return false;
         }
 
@@ -113,7 +113,7 @@ class Validator implements ValidatorInterface
     {
         $exploded = explode('-', $eventId);
 
-        if (3 !== count($exploded) ) {
+        if (3 !== count($exploded)) {
             return false;
         }
 
@@ -260,7 +260,7 @@ class Validator implements ValidatorInterface
 
         $exploded = explode('-', $ticketId);
 
-        if (4 !== count($exploded) ) {
+        if (4 !== count($exploded)) {
             return false;
         }
 

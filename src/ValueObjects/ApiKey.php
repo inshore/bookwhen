@@ -21,7 +21,7 @@ final class ApiKey implements StringableContract
 
     public static function from(string $apiKey): self
     {
-        if(empty($apiKey)) {
+        if (empty($apiKey)) {
             throw new \InvalidArgumentException();
         }
         return new self($apiKey);

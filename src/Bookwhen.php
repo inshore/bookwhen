@@ -23,17 +23,17 @@ final class Bookwhen implements BookwhenInterface
     /**
      *
      */
-    private null | Client $client;
-
-    /**
-     *
-     */
     public Attachment $attachment;
 
     /**
      *
      */
     public array $attachments = [];
+
+    /**
+     *
+     */
+    public Client $client;
 
     /**
      *
@@ -68,7 +68,7 @@ final class Bookwhen implements BookwhenInterface
     /**
      *
      */
-    private array $includes = [];
+    public array $includes = [];
 
     /**
      *
@@ -102,12 +102,12 @@ final class Bookwhen implements BookwhenInterface
     public function __construct(
         string $apiKey = null,
         private $validator = new Validator()
-        ) {
-            //         $this->logFile = $logFile;
-            //         $this->logLevel = $logLevel;
-            //         $this->logger = new Logger('inShore Bookwhen API');
-            //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
-            $this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
+    ) {
+        //         $this->logFile = $logFile;
+        //         $this->logLevel = $logLevel;
+        //         $this->logger = new Logger('inShore Bookwhen API');
+        //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
+        $this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
     }
 
     /**
@@ -148,7 +148,7 @@ final class Bookwhen implements BookwhenInterface
         string $fileType = null
     ): array {
         //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
-        
+
         if (!is_null($title)) {
             if ($this->validator->validTitle($title)) {
                 $this->filters['filter[title]'] = $title;
@@ -156,7 +156,7 @@ final class Bookwhen implements BookwhenInterface
                 throw new ValidationException('title', $title);
             }
         }
-        
+
         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
             throw new ValidationException('file name', $fileName);
         } else {

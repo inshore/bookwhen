@@ -24,6 +24,9 @@ final class BaseUri implements StringableContract
      */
     public static function from(string $baseUri): self
     {
+        if (empty($baseUri)) {
+            throw new \InvalidArgumentException();
+        }
         return new self($baseUri);
     }
 

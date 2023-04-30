@@ -52,7 +52,7 @@ https://api.bookwhen.com/v2#tag/Attachment/paths/~1attachments/get
 $attachments = $bookwhen->attachments());
 ```
 
-** Filters **
+**Filters**
 
 The filter parameters can be passed in as function parameters.
 
@@ -85,7 +85,7 @@ Attachment
 $attachment = $bookwhen->attachment('ev-smij-20200530100000' );
 
 ```
-###Class Passes###
+###Class Passes
 
 implements [https://api.bookwhen.com/v2#tag/ClassPass](https://api.bookwhen.com/v2#tag/ClassPass)
 
@@ -101,7 +101,7 @@ $classPasses = $bookwhen->classPasses());
 
 ```
 
-** Filters **
+**Filters**
 
 The filter parameters can be passed in as function parameters
 

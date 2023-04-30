@@ -16,7 +16,6 @@ use InShore\Bookwhen\Responses\Tickets\RetrieveResponse as TicketsRetrieveRespon
  */
 final class RetrieveResponse implements ResponseContract
 {
-
     /**
      * @param  array<array-key, mixed>|null  $statusDetails
      */

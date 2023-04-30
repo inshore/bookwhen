@@ -15,7 +15,6 @@ use InShore\Bookwhen\Responses\Events\RetrieveResponse;
  */
 final class ListResponse implements ResponseContract
 {
-
     /**
      * @param  array<int, RetrieveResponse>  $data
      */

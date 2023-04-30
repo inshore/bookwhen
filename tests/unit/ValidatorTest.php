@@ -8,7 +8,6 @@ use InShore\Bookwhen\Validator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers InShore\Bookwhen\Validator::__construct
  * @uses InShore\Bookwhen\Validator
  */
 class ValidatorTest extends TestCase

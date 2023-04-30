@@ -13,5 +13,4 @@ namespace InShore\Bookwhen\Contracts;
  */
 interface ResponseContract
 {
-
 }

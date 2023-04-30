@@ -109,7 +109,7 @@ class Validator implements ValidatorInterface
      * @param string $eventId
      * @return bool
      */
-    public function validEventId(null | string $eventId): bool
+    public function validEventId(string $eventId): bool
     {
         $exploded = explode('-', $eventId);
 

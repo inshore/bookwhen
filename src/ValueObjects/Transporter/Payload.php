@@ -138,10 +138,6 @@ final class Payload
 
         $request = $psr17Factory->createRequest($this->method->value, $uri);
 
-        if (null !== $body) {
-            $request = $request->withBody($body);
-        }
-
         foreach ($headers->toArray() as $name => $value) {
             $request = $request->withHeader($name, $value);
         }

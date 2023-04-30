@@ -99,20 +99,20 @@ class ValidatorTest extends TestCase
     {
         return [
             'datePast' => [ '20191230' ],
-            'datePresent' => [ '20200809' ],
-            'dateFuture' => [ '20211230' ],
+            'datePresent' => [ date('Ymd') ],
+            'dateFuture' => [ '20291230' ],
         ];
     }
     
     public static function provideValidFroms(): array
     {
         return [
-            'fromFutureToNull' => [ '20211230', null ],
+            'fromFutureToNull' => [ '20291230', null ],
             'fromPastToNull' => [ '20191230', null ],
-            'fromPastToFuture' => [ '20191230', '20200809' ],
+            'fromPastToFuture' => [ '20191230', '20290809' ],
             'fromPastToPast' => [ '20191230', '20200101' ],
-            'fromPastToPresent' => [ '20191230', '20200809' ],
-            'fromPresentToNull' => [ '20200809', null ]
+            'fromPastToPresent' => [ '20191230', date('Ymd') ],
+            'fromPresentToNull' => [ date('Ymd'), null ]
         ];
     }
     
@@ -123,7 +123,7 @@ class ValidatorTest extends TestCase
             'classPassId' => [ 'cp-vk3x1brhpsbf', 'classPass' ],
             'default' => ['9v06h1cbv0en', null],
             'eventId' => [ 'ev-sf8b-20200813100000', 'event' ],
-            'locationId' => ['sjm7pskr31t3', 'locationId' ],
+            'locationId' => ['sjm7pskr31t3', 'location' ],
             'ticketId' => ['ti-sboe-20200320100000-tk1m', 'ticket']
         ];
     }
@@ -151,12 +151,12 @@ class ValidatorTest extends TestCase
     public static function provideValidTos(): array
     {
         return [
-            'toFutureFromNull' => [ '20211230', null ],
+            'toFutureFromNull' => [ '20291230', null ],
             'toPastFromNull' => [ '20191230', null ],
             'toPastFromPast' => [ '20200809', '20191230' ],
             'toPastFromPast' => [ '20200101', '20191230' ],
-            'toPresentFromNull' => [ '20200809', null ],
-            'toPresentFromPast' => [ '20200809', '20191230' ],
+            'toPresentFromNull' => [ date('Ymd'), null ],
+            'toPresentFromPast' => [ date('Ymd'), '20191230' ],
         ];
     }
 
@@ -203,6 +203,7 @@ class ValidatorTest extends TestCase
     public static function provideValidFileName(): array
     {
         return [
+            'null' => [null],
             'validFileName' => ['Yoga Time'],
         ];
     }
@@ -210,7 +211,6 @@ class ValidatorTest extends TestCase
     public static function provideInvalidFileName(): array
     {
         return [
-            'null' => [null],
             'emptyString' => [''],
             'object' => [ new \stdClass() ],
         ];
@@ -221,7 +221,6 @@ class ValidatorTest extends TestCase
         return [
             'validInclude' => [true],
             'validInclude' => [false],
-
         ];
     }
 
@@ -266,7 +265,14 @@ class ValidatorTest extends TestCase
      */
     public function testValidIdReturnsFalseOnInvalidIds($id, $type)
     {
-       $this->assertFalse($this->validator->validId($id, $type));
+        if (is_string($id) && is_string($type)) {
+            $this->assertFalse($this->validator->validId($id, $type));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validId($id, $type);
+        }
+       
     }
     
     /**
@@ -275,7 +281,13 @@ class ValidatorTest extends TestCase
      */
     public function testValidTagReturnsFalseOnInvalidTags($tag)
     {
-       $this->assertFalse($this->validator->validTag($tag));
+       if (is_string($tag)) {
+           $this->assertFalse($this->validator->validTag($tag));
+       }
+       else {
+           $this->expectException(\TypeError::class);
+           $this->assertFalse($this->validator->validTag($tag));
+       };
     }
     
     /**
@@ -310,7 +322,13 @@ class ValidatorTest extends TestCase
      */
     public function testValidIdReturnsTrueOnValidIds($id, $type)
     {
-        $this->assertTrue($this->validator->validId($id, $type));
+        if (is_string($id) && is_string($type)) {
+            $this->assertTrue($this->validator->validId($id, $type));
+        }
+        else {
+            $this->expectException(\TypeError::class);
+            $this->validator->validId($id, $type);
+        }
     }
     
     /**

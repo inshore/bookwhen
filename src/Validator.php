@@ -65,11 +65,11 @@ class Validator implements ValidatorInterface
     {
         $exploded = explode('-', $classPassId);
 
-        if (count($exploded) !== 2) {
+        if (2 !==count($exploded)) {
             return false;
         }
 
-        if ($exploded[0] !== 'cp') {
+        if ('cp' !== $exploded[0]) {
             return false;
         }
 
@@ -95,7 +95,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validDetails()
      */
-    public function validDetails($details): bool
+    public function validDetails(string $details): bool
     {
         return v::stringType()->notEmpty()->validate($details);
     }
@@ -113,11 +113,11 @@ class Validator implements ValidatorInterface
     {
         $exploded = explode('-', $eventId);
 
-        if (count($exploded) !== 3) {
+        if (3 !== count($exploded) ) {
             return false;
         }
 
-        if ($exploded[0] !== 'ev') {
+        if ('ev' !== $exploded[0]) {
             return false;
         }
 
@@ -134,7 +134,7 @@ class Validator implements ValidatorInterface
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ValidatorInterface::validFileName()
      */
-    public function validFileName($fileName): bool
+    public function validFileName(string $fileName): bool
     {
         return v::stringType()->notEmpty()->validate($fileName);
     }
@@ -260,11 +260,11 @@ class Validator implements ValidatorInterface
 
         $exploded = explode('-', $ticketId);
 
-        if (count($exploded) !== 4) {
+        if (4 !== count($exploded) ) {
             return false;
         }
 
-        if ($exploded[0] !== 'ti') {
+        if ('ti' !== $exploded[0]) {
             return false;
         }
 

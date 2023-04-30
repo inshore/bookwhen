@@ -2,7 +2,6 @@
 
 [![Latest Version](https://img.shields.io/github/release/inshore/bookwhen.svg?style=flat-square)](https://github.com/inshore/bookwhen/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/inshore/bookwhen/master.svg?style=flat-square)](https://travis-ci.org/inshore/bookwhen)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/inshore/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore/bookwhen/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/inshore/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore/bookwhen)
 [![Total Downloads](https://img.shields.io/packagist/dt/inshore/bookwhen.svg?style=flat-square)](https://packagist.org/packages/inshore/bookwhen)
@@ -403,15 +402,17 @@ $bookwhen = new Bookwhen()->debug('Debug');
 
 ## Testing
 
+WIP
+
 ``` bash
-$ phpunit
+$ composer phpunit
 ```
 
 ## Contributing
 
-Please see https://github.com/inshore/bookwhen for details.
+Please see [https://github.com/inshore/bookwhen/blob/develop/CONTRIBUTING.md](https://github.com/inshore/bookwhen/blob/develop/CONTRIBUTING.md) for details.
 
-## Support ##
+## Support
 
 If you require assistance with this package or implementing in your own project or business...
 

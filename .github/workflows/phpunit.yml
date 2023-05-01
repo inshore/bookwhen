@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout Code
-	with:
-    	    fetch-depth: 2
         uses: actions/checkout@v3
-
+        with:
+            fetch-depth: 2
+      
       - name: Install composer and dependencies
         uses: php-actions/composer@v6
 

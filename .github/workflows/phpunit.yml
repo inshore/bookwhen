@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - name: Checkout Code
+	with:
+    	    fetch-depth: 2
         uses: actions/checkout@v2
 
       - name: Install composer and dependencies

@@ -17,13 +17,6 @@ use InShore\Bookwhen\Responses\Tickets\RetrieveResponse as TicketsRetrieveRespon
 final class RetrieveResponse implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>
-     */
-    use ArrayAccessible;
-
-    //use Fakeable;
-
-    /**
      * @param  array<array-key, mixed>|null  $statusDetails
      */
     private function __construct(

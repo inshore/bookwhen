@@ -27,6 +27,4 @@ jobs:
           php_extensions: xdebug
           args: tests --coverage-clover coverage.xml
     
-       - name: Scrutinizer
-       run: wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 

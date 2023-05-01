@@ -7,23 +7,28 @@ on:
     branches: [ "develop" ]
 
 jobs:
- build-test:
-   runs-on: ubuntu-latest
+  build-test:
+    runs-on: ubuntu-latest
 
-   steps:
-     - name: Checkout Code
-       uses: actions/checkout@v2
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+            fetch-depth: 2
+      
+      - name: Install composer and dependencies
+        uses: php-actions/composer@v6
 
-     - name: Install composer and dependencies
-       uses: php-actions/composer@v6
+      - name: PHPUnit Tests
+        uses: php-actions/phpunit@v3
+        env:
+          XDEBUG_MODE: coverage
+        with:
+          bootstrap: vendor/autoload.php
+          configuration: phpunit.xml
+          php_extensions: xdebug
+          args: tests --coverage-clover coverage.xml
 
-     - name: PHPUnit Tests
-       uses: php-actions/phpunit@v3
-       env:
-         XDEBUG_MODE: coverage
-       with:
-         bootstrap: vendor/autoload.php
-         configuration: phpunit.xml
-         php_extensions: xdebug
-         args: tests --coverage-clover ./coverage.xml
-
+      - name: Scrutinizer
+        run: ls -la && composer global require scrutinizer/ocular && ~/.composer/vendor/bin/ocular code-coverage:upload --format=php-clover coverage.xml
+        shell: bash

@@ -8,13 +8,6 @@ build:
                 override: true
             tests:
                 override: [php-scrutinizer-run]
-        coverage:
-            tests:
-                override:
-		    - command: ./run-my-tests	
-                    coverage:
-                        file: coverage.xml
-                        format: clover
 filter:
     excluded_paths: [tests/*]
 checks:
@@ -173,4 +166,4 @@ tools:
         standard: "PSR12"
     external_code_coverage:
         timeout: 600
-        runs: 3
+        runs: 1

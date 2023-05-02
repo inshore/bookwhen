@@ -44,6 +44,12 @@ final class RetrieveResponseTest extends TestCase
         $this->assertEquals('ti-s4bs-20230501080000-tp9b', $ticket->id);
         $this->assertFalse($ticket->courseTicket);
         $this->assertEquals('Details go here', $ticket->details);
+        $this->assertTrue($ticket->groupTicket);
+        $this->assertEquals(1, $ticket->groupMin);
+        $this->assertEquals(10, $ticket->groupMax);
+        $this->assertEquals(10, $ticket->numberIssued);
+        $this->assertEquals(5, $ticket->numberTaken);
+        $this->assertEquals('Title goes here', $ticket->title);
     }
     
     /**

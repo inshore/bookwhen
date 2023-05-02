@@ -17,26 +17,33 @@ final class RetrieveResponseTest extends TestCase
     {
         $attributes = [
             'attributes' => [ 
-                'additional_info' => 'Additional info goes here',
-                'address_text' => 'Address text goes here',
-                'latitude' => 49.1649391,
-                'longitude' => -2.5272508,
-                'map_url' => 'https://cdn.bookwhen.com/blank_map.png?v=20230422143101',
-                'zoom' => 10
+                'available' => true,
+                'available_from' => 'Available from goes here',
+                'available_to' => 'Available to goes here',
+                'built_basket_url' => 'Built basket url goes here',
+                'built_basket_iframe_url' => 'Built basket iframe url goes here',
+                'course_ticket' => false,
+                'details' => 'Details go here',
+                'group_ticket' => true,
+                'group_min' => 1,
+                'group_max' => 10,
+                'number_issued' => 10,
+                'number_taken' => 5,
+                'title' => 'Title goes here'
             ],
             'id' => 'ti-s4bs-20230501080000-tp9b',
          ];
         
         $ticket = RetrieveResponse::from($attributes);
         
-        $this->assertEquals('Additional info goes here', $ticket->additionalInfo);
-        $this->assertEquals('Address text goes here', $ticket->addressText);
-        $this->assertEquals('w0uh48ad3fm2', $ticket->id);
-        $this->assertEquals(49.1649391, $ticket->latitude);
-        $this->assertEquals(-2.5272508, $ticket->longitude);
-        $this->assertEquals('https://cdn.bookwhen.com/blank_map.png?v=20230422143101', $ticket->mapUrl);
-        $this->assertEquals(10, $ticket->zoom);
-        
+        $this->assertTrue($ticket->available);
+        $this->assertEquals('Available from goes here', $ticket->availableFrom);
+        $this->assertEquals('Available to goes here', $ticket->availableTo);
+        $this->assertEquals('Built basket url goes here', $ticket->builtBasketUrl);
+        $this->assertEquals('Built basket iframe url goes here', $ticket->builtBasketIframeUrl);
+        $this->assertEquals('ti-s4bs-20230501080000-tp9b', $ticket->id);
+        $this->assertFalse($ticket->courseTicket);
+        $this->assertEquals('Details go here', $ticket->details);
     }
     
     /**

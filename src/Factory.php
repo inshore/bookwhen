@@ -33,13 +33,6 @@ final class Factory
     private ?string $baseUri = null;
 
     /**
-     * The HTTP headers for the requests.
-     *
-     * @var array<string, string>
-     */
-    private array $headers = [];
-
-    /**
      * The query parameters for the requests.
      *
      * @var array<string, string|int>

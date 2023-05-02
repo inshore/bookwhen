@@ -46,7 +46,7 @@ final class RetrieveResponse implements ResponseContract
 
         // location
         $locationId = $attributes['relationships']['location']['data']['id'];
-        $location = array_reduce($included, function ($data, $includedData) use ($locationId) {
+        $location = array_reduce($included, function($data, $includedData) use ($locationId) {
             if ($includedData['id'] === $locationId) {
                 return  LocationsRetrieveResponse::from($includedData);
             }

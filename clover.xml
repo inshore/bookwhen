@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683024123">
-  <project timestamp="1683024123">
+<coverage generated="1683026033">
+  <project timestamp="1683026033">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
         <metrics complexity="106" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="375" coveredstatements="0" elements="387" coveredelements="0"/>

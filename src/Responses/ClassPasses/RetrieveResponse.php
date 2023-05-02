@@ -38,9 +38,9 @@ final class RetrieveResponse implements ResponseContract
         public readonly null | string $details,
         public readonly string $id,
         public readonly int | null $numberAvailable,
-        public readonly string $title,
+        public readonly null | string $title,
         public readonly int | null $usageAllowance,
-        public readonly string $usageType,
+        public readonly null | string $usageType,
         public readonly int | null $useRestrictedForDays,
     ) {
     }

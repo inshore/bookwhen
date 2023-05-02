@@ -14,9 +14,9 @@ final class Locations implements LocationsContract
     use Concerns\Transportable;
 
     /**
-     * Returns a list of files that belong to the user's organization.
+     * Returns a list of locations that belong to the user's organization.
      *
-     * @see https://beta.openai.com/docs/api-reference/files/list
+     * @see https://api.bookwhen.com/v2#tag/Location/paths/~1locations/get
      */
     public function list(array $parameters): ListResponse
     {
@@ -29,9 +29,9 @@ final class Locations implements LocationsContract
     }
 
     /**
-     * Returns information about a specific file.
+     * Returns information about a specific location.
      *
-     * @see https://beta.openai.com/docs/api-reference/files/retrieve
+     * @see https://api.bookwhen.com/v2#tag/Location/paths/~1locations~1%7Blocation_id%7D/get
      */
     public function retrieve(string $eventId): RetrieveResponse
     {

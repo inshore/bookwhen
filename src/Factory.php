@@ -2,7 +2,6 @@
 
 namespace InShore\Bookwhen;
 
-use Closure;
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
 use Http\Discovery\Psr18ClientDiscovery;
@@ -34,13 +33,6 @@ final class Factory
     private ?string $baseUri = null;
 
     /**
-     * The HTTP headers for the requests.
-     *
-     * @var array<string, string>
-     */
-    private array $headers = [];
-
-    /**
      * The query parameters for the requests.
      *
      * @var array<string, string|int>
@@ -64,6 +56,17 @@ final class Factory
     public function withBaseUri(string $baseUri): self
     {
         $this->baseUri = $baseUri;
+
+        return $this;
+    }
+
+    /**
+     * Sets the HTTP client for the requests.
+     * If no client is provided the factory will try to find one using PSR-18 HTTP Client Discovery.
+     */
+    public function withHttpClient(ClientInterface $client): self
+    {
+        $this->httpClient = $client;
 
         return $this;
     }

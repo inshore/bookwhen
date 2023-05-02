@@ -23,16 +23,6 @@ final class RetrieveResponse implements ResponseContract
 
     /**
      * @param  array<array-key, mixed>|null  $statusDetails
-,
-
-
-
-    'cost' =>
-    array (
-      'currency_code' => 'GBP',
-      'net' => 3500,
-      'tax' => 0,
-    ),
      */
     private function __construct(
         public readonly null | string $details,

@@ -74,10 +74,10 @@ final class Factory
     public function withHttpClient(ClientInterface $client): self
     {
         $this->httpClient = $client;
-        
+
         return $this;
     }
-    
+
     /**
      * Adds a custom query parameter to the request url.
      */

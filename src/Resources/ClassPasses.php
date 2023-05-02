@@ -14,9 +14,9 @@ final class ClassPasses implements ClassPassesContract
     use Concerns\Transportable;
 
     /**
-     * Returns a list of files that belong to the user's organization.
+     * Returns a list of class passes that belong to the user's organization.
      *
-     * @see https://beta.openai.com/docs/api-reference/files/list
+     * @see https://api.bookwhen.com/v2#tag/ClassPass/paths/~1class_passes/get
      */
     public function list(array $parameters): ListResponse
     {
@@ -29,9 +29,9 @@ final class ClassPasses implements ClassPassesContract
     }
 
     /**
-     * Returns information about a specific file.
+     * Returns information about a specific class pass.
      *
-     * @see https://beta.openai.com/docs/api-reference/files/retrieve
+     * @see https://api.bookwhen.com/v2#tag/ClassPass/paths/~1class_passes~1%7Bclass_pass_id%7D/get
      */
     public function retrieve(string $classPassId): RetrieveResponse
     {

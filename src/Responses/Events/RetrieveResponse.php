@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace InShore\Bookwhen\Responses\Events;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
-use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
 use InShore\Bookwhen\Responses\Locations\RetrieveResponse as LocationsRetrieveResponse;
 use InShore\Bookwhen\Responses\Tickets\RetrieveResponse as TicketsRetrieveResponse;
-
-//use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
  * @implements ResponseContract<array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>
@@ -46,7 +43,7 @@ final class RetrieveResponse implements ResponseContract
 
         // location
         $locationId = $attributes['relationships']['location']['data']['id'];
-        $location = array_reduce($included, function($data, $includedData) use ($locationId) {
+        $location = array_reduce($included, function ($data, $includedData) use ($locationId) {
             if ($includedData['id'] === $locationId) {
                 return  LocationsRetrieveResponse::from($includedData);
             }

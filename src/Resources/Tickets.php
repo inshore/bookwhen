@@ -14,9 +14,9 @@ final class Tickets implements TicketsContract
     use Concerns\Transportable;
 
     /**
-     * Returns a list of files that belong to the user's organization.
+     * Returns a list of tickets that belong to the user's organization's event.
      *
-     * @see https://beta.openai.com/docs/api-reference/files/list
+     * @see https://api.bookwhen.com/v2#tag/Ticket/paths/~1tickets/get
      */
     public function list(array $parameters): ListResponse // @todo change
     {
@@ -33,9 +33,9 @@ final class Tickets implements TicketsContract
     }
 
     /**
-     * Returns information about a specific file.
+     * Returns information about a specific ticket.
      *
-     * @see https://beta.openai.com/docs/api-reference/files/retrieve
+     * @see https://api.bookwhen.com/v2#tag/Ticket/paths/~1tickets~1%7Bticket_id%7D/get
      */
     public function retrieve(string $ticketId): RetrieveResponse
     {

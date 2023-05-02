@@ -5,23 +5,13 @@ declare(strict_types=1);
 namespace InShore\Bookwhen\Responses\Tickets;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
-use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
 use InShore\Bookwhen\Responses\Tickets\RetrieveResponse;
-
-//use InShore\Bookwhen\Testing\Responses\Concerns\Fakeable;
 
 /**
  * @implements ResponseContract<array{object: string, data: array<int, array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>}>
  */
 final class ListResponse implements ResponseContract
 {
-    /**
-     * @use ArrayAccessible<array{object: string, data: array<int, array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>}>
-     */
-    use ArrayAccessible;
-
-    //     use Fakeable;
-
     /**
      * @param  array<int, RetrieveResponse>  $data
      */

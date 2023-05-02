@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace InShore\Bookwhen\Responses\ClassPasses;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
-use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
 use InShore\Bookwhen\Responses\ClassPasses\RetrieveResponse;
 
 //use InShore\Bookwhen\Testing\Responses\Concerns\Fakeable;

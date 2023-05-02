@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace InShore\Bookwhen\Responses\Tickets;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
-use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
-
-//use OpenAI\Testing\Responses\Concerns\Fakeable;
 
 /**
  * @implements ResponseContract<array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>
@@ -15,24 +12,7 @@ use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
 final class RetrieveResponse implements ResponseContract
 {
     /**
-     * @use ArrayAccessible<array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}>
-     */
-    use ArrayAccessible;
-
-    //use Fakeable;
-
-    /**
      * @param  array<array-key, mixed>|null  $statusDetails
-,
-
-
-
-    'cost' =>
-    array (
-      'currency_code' => 'GBP',
-      'net' => 3500,
-      'tax' => 0,
-    ),
      */
     private function __construct(
         public readonly bool | null $available,
@@ -58,7 +38,7 @@ final class RetrieveResponse implements ResponseContract
      *
      * @param  array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}  $attributes
      */
-    public static function from(array $attributes): self
+    public static function from(array $attributes, $included = []): self
     {
 
         $cost = new \stdClass();

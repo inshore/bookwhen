@@ -110,10 +110,17 @@ final class Bookwhen implements BookwhenInterface
         //         $this->logger = new Logger('inShore Bookwhen API');
         //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
         try {
-            $this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
-        } catch (\Exception $e) {
-        }
-        catch (\TypeError $e) {
+            if (!is_null($apiKey)) {
+                $this->client = BookwhenApi::client($apiKey);
+            } else {
+                if(array_key_exists('INSHORE_BOOKWHEN_API_KEY', $_ENV))
+                {
+                    $this->client = BookwhenApi::client($_ENV['INSHORE_BOOKWHEN_API_KEY']);
+                } else {
+                     throw new ConfigurationException(); // @todo message
+                }
+            }
+        } catch (\TypeError $e) {
             throw new ConfigurationException(); // @todo message
         }
     }

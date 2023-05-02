@@ -7,13 +7,7 @@ build:
             project_setup:
                 override: true
             tests:
-                override: [php-scrutinizer-run]\
-	coverage:
-      	    tests:
-                override:
-            	    coverage:
-              	        file: coverage.xml
-              		format: clover
+                override: [php-scrutinizer-run]
 filter:
     excluded_paths: [tests/*]
 checks:
@@ -172,4 +166,4 @@ tools:
         standard: "PSR12"
     external_code_coverage:
         timeout: 600
-        runs: 3
+        runs: 1

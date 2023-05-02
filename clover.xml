@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683044468">
-  <project timestamp="1683044468">
+<coverage generated="1683045081">
+  <project timestamp="1683045081">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
         <metrics complexity="108" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="376" coveredstatements="7" elements="388" coveredelements="7"/>
@@ -638,20 +638,6 @@
       <line num="43" type="stmt" count="0"/>
       <metrics loc="46" ncloc="34" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
     </file>
-    <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Resources/Concerns/ArrayAccessible.php">
-      <class name="InShore\Bookwhen\Responses\Concerns\ArrayAccessible" namespace="global">
-        <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="8" coveredelements="0"/>
-      </class>
-      <line num="19" type="method" name="offsetExists" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <line num="27" type="method" name="offsetGet" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <line num="35" type="method" name="offsetSet" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="43" type="method" name="offsetUnset" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <metrics loc="48" ncloc="31" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="8" coveredelements="0"/>
-    </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Resources/Concerns/Transportable.php">
       <class name="InShore\Bookwhen\Resources\Concerns\Transportable" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
@@ -1159,6 +1145,6 @@
       <line num="46" type="stmt" count="0"/>
       <metrics loc="49" ncloc="31" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
     </file>
-    <metrics files="57" loc="3924" ncloc="2613" classes="40" methods="126" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="735" coveredstatements="106" elements="861" coveredelements="138"/>
+    <metrics files="56" loc="3876" ncloc="2582" classes="39" methods="122" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="731" coveredstatements="106" elements="853" coveredelements="138"/>
   </project>
 </coverage>

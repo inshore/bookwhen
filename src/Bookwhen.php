@@ -218,7 +218,6 @@ final class Bookwhen implements BookwhenInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getClassPasses()
-     * @todo break params on to multiplper lines..
      */
     public function classPasses(
         $cost = null,
@@ -281,7 +280,6 @@ final class Bookwhen implements BookwhenInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\BookwhenInterface::event()
-     * @todo filters.
      */
     public function event(
         string $eventId,
@@ -383,9 +381,6 @@ final class Bookwhen implements BookwhenInterface
         }
 
         // ticketsClassPasses
-        // @todo
-
-        // ticketsEvents
         // @todo
 
         return $this->event = new Event(

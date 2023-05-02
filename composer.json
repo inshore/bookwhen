@@ -50,6 +50,6 @@
 	},
 	"scripts" : {
 		"phpcsfixer" : "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src",
-		"phpunit" : "vendor/bin/phpunit"
+		"phpunit" : "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover 'clover.xml'"
 	}
 }

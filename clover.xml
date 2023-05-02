@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683045151">
-  <project timestamp="1683045151">
+<coverage generated="1683045680">
+  <project timestamp="1683045680">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
         <metrics complexity="108" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="376" coveredstatements="7" elements="388" coveredelements="7"/>
@@ -886,34 +886,34 @@
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Responses/Tickets/RetrieveResponse.php">
       <class name="InShore\Bookwhen\Responses\Tickets\RetrieveResponse" namespace="global">
-        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="25" coveredelements="0"/>
+        <metrics complexity="3" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="20" elements="25" coveredelements="21"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="2" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="41" type="method" name="from" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="41" type="method" name="from" visibility="public" complexity="2" crap="2.01" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="45" type="stmt" count="2"/>
       <line num="46" type="stmt" count="0"/>
       <line num="47" type="stmt" count="0"/>
       <line num="48" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="53" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="56" type="stmt" count="0"/>
-      <line num="57" type="stmt" count="0"/>
-      <line num="58" type="stmt" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <line num="61" type="stmt" count="0"/>
-      <line num="62" type="stmt" count="0"/>
-      <line num="63" type="stmt" count="0"/>
-      <line num="64" type="stmt" count="0"/>
-      <line num="65" type="stmt" count="0"/>
-      <line num="66" type="stmt" count="0"/>
-      <line num="67" type="stmt" count="0"/>
-      <metrics loc="70" ncloc="59" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="25" coveredelements="0"/>
+      <line num="51" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="2"/>
+      <line num="58" type="stmt" count="2"/>
+      <line num="59" type="stmt" count="2"/>
+      <line num="60" type="stmt" count="2"/>
+      <line num="61" type="stmt" count="2"/>
+      <line num="62" type="stmt" count="2"/>
+      <line num="63" type="stmt" count="2"/>
+      <line num="64" type="stmt" count="2"/>
+      <line num="65" type="stmt" count="2"/>
+      <line num="66" type="stmt" count="2"/>
+      <line num="67" type="stmt" count="2"/>
+      <metrics loc="70" ncloc="59" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="20" elements="25" coveredelements="21"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Transporters/HttpTransporter.php">
       <class name="InShore\Bookwhen\Transporters\HttpTransporter" namespace="global">
@@ -1145,6 +1145,6 @@
       <line num="46" type="stmt" count="0"/>
       <metrics loc="49" ncloc="31" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
     </file>
-    <metrics files="56" loc="3874" ncloc="2580" classes="39" methods="122" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="731" coveredstatements="106" elements="853" coveredelements="138"/>
+    <metrics files="56" loc="3874" ncloc="2580" classes="39" methods="122" coveredmethods="33" conditionals="0" coveredconditionals="0" statements="731" coveredstatements="126" elements="853" coveredelements="159"/>
   </project>
 </coverage>

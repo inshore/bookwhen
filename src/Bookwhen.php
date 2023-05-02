@@ -11,6 +11,7 @@ use InShore\Bookwhen\Domain\ClassPass;
 use InShore\Bookwhen\Domain\Event;
 use InShore\Bookwhen\Domain\Location;
 use InShore\Bookwhen\Domain\Ticket;
+use InShore\Bookwhen\Exceptions\ConfigurationException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use InShore\Bookwhen\Interfaces\BookwhenInterface;
 use InShore\Bookwhen\Validator;
@@ -97,6 +98,7 @@ final class Bookwhen implements BookwhenInterface
 
     /**
      * Creates a new Bookwhen Client with the given API token.
+     * @throws ConfigurationException
      * @todo logging
      */
     public function __construct(
@@ -107,7 +109,15 @@ final class Bookwhen implements BookwhenInterface
         //         $this->logLevel = $logLevel;
         //         $this->logger = new Logger('inShore Bookwhen API');
         //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
-        $this->client = BookwhenApi::client(!is_null($apiKey) ? $apiKey : $_ENV['INSHORE_BOOKWHEN_API_KEY']);
+        try {
+            $this->client = !is_null($apiKey)
+            ? BookwhenApi::client($apiKey)
+            : (array_key_exists('INSHORE_BOOKWHEN_API_KEY', $_ENV)
+                ? BookwhenApi::client($_ENV['INSHORE_BOOKWHEN_API_KEY'])
+                : throw new ConfigurationException());
+        } catch (\TypeError $e) {
+            throw new ConfigurationException(); // @todo message
+        }
     }
 
     /**
@@ -218,7 +228,6 @@ final class Bookwhen implements BookwhenInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::getClassPasses()
-     * @todo break params on to multiplper lines..
      */
     public function classPasses(
         $cost = null,
@@ -281,7 +290,6 @@ final class Bookwhen implements BookwhenInterface
      *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\BookwhenInterface::event()
-     * @todo filters.
      */
     public function event(
         string $eventId,
@@ -383,9 +391,6 @@ final class Bookwhen implements BookwhenInterface
         }
 
         // ticketsClassPasses
-        // @todo
-
-        // ticketsEvents
         // @todo
 
         return $this->event = new Event(

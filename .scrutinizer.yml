@@ -8,7 +8,6 @@ build:
                 override: true
             tests:
                 override: [php-scrutinizer-run]
-
 filter:
     excluded_paths: [tests/*]
 checks:
@@ -167,4 +166,4 @@ tools:
         standard: "PSR12"
     external_code_coverage:
         timeout: 600
-        runs: 3
+        runs: 1

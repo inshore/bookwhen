@@ -38,7 +38,7 @@ final class RetrieveResponse implements ResponseContract
      *
      * @param  array{id: string, object: string, created_at: int, bytes: int, filename: string, purpose: string, status: string, status_details: array<array-key, mixed>|string|null}  $attributes
      */
-    public static function from(array $attributes): self
+    public static function from(array $attributes, $included = []): self
     {
 
         $cost = new \stdClass();

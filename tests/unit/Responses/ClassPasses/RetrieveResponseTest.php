@@ -38,8 +38,7 @@ final class RetrieveResponseTest extends TestCase
     }
     
     /**
-     * @covers InShore\Bookwhen\Responses\
-     * ClassPasses\RetrieveResponse::__construct()
+     * @covers InShore\Bookwhen\Responses\ClassPasses\RetrieveResponse::__construct()
      * @covers InShore\Bookwhen\Responses\ClassPasses\RetrieveResponse::from()
      */
     public function testValidUnhydratedclassPassRetrieveResponse(): void

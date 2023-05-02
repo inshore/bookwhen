@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace InShore\Bookwhen\Responses\Events;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
-use InShore\Bookwhen\Responses\Concerns\ArrayAccessible;
 use InShore\Bookwhen\Responses\Locations\RetrieveResponse as LocationsRetrieveResponse;
 use InShore\Bookwhen\Responses\Tickets\RetrieveResponse as TicketsRetrieveResponse;
 

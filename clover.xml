@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683044325">
-  <project timestamp="1683044325">
+<coverage generated="1683044390">
+  <project timestamp="1683044390">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
         <metrics complexity="108" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="376" coveredstatements="7" elements="388" coveredelements="7"/>
@@ -854,34 +854,34 @@
       <class name="InShore\Bookwhen\Responses\Locations\ListResponse" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
       </class>
-      <line num="28" type="method" name="__construct" visibility="private" complexity="1" crap="2" count="0"/>
+      <line num="18" type="method" name="__construct" visibility="private" complexity="1" crap="2" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="28" type="method" name="from" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="31" type="stmt" count="0"/>
-      <line num="38" type="method" name="from" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <metrics loc="50" ncloc="34" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <metrics loc="40" ncloc="29" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Responses/Locations/RetrieveResponse.php">
       <class name="InShore\Bookwhen\Responses\Locations\RetrieveResponse" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
       </class>
-      <line num="20" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="2"/>
-      <line num="29" type="stmt" count="2"/>
-      <line num="36" type="method" name="from" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="33" type="method" name="from" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
       <line num="38" type="stmt" count="2"/>
       <line num="39" type="stmt" count="2"/>
       <line num="40" type="stmt" count="2"/>
       <line num="41" type="stmt" count="2"/>
       <line num="42" type="stmt" count="2"/>
       <line num="43" type="stmt" count="2"/>
-      <line num="44" type="stmt" count="2"/>
-      <line num="45" type="stmt" count="2"/>
-      <line num="46" type="stmt" count="2"/>
-      <metrics loc="49" ncloc="37" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
+      <metrics loc="46" ncloc="35" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Responses/Tickets/ListResponse.php">
       <class name="InShore\Bookwhen\Responses\Tickets\ListResponse" namespace="global">
@@ -1159,6 +1159,6 @@
       <line num="46" type="stmt" count="0"/>
       <metrics loc="49" ncloc="31" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
     </file>
-    <metrics files="57" loc="3967" ncloc="2630" classes="40" methods="126" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="735" coveredstatements="106" elements="861" coveredelements="138"/>
+    <metrics files="57" loc="3954" ncloc="2623" classes="40" methods="126" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="735" coveredstatements="106" elements="861" coveredelements="138"/>
   </project>
 </coverage>

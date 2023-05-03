@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace InShore\Bookwhen\Responses\Events;
 
 use InShore\Bookwhen\Contracts\ResponseContract;
+use InShore\Bookwhen\Responses\Attachments\RetrieveResponse as AttachmentsRetrieveResponse;
 use InShore\Bookwhen\Responses\Locations\RetrieveResponse as LocationsRetrieveResponse;
 use InShore\Bookwhen\Responses\Tickets\RetrieveResponse as TicketsRetrieveResponse;
 
@@ -41,6 +42,14 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes, $included = []): self
     {
 
+        // attachments
+        $attachments = [];
+        foreach ($attributes['relationships']['attachments']['data'] as $attachment) {
+            array_push($attachments, AttachmentsRetrieveResponse::from([
+                'id' => $attachment['id']
+            ]));
+        }
+
         // location
         $locationId = $attributes['relationships']['location']['data']['id'];
         $location = array_reduce($included, function ($data, $includedData) use ($locationId) {
@@ -51,7 +60,6 @@ final class RetrieveResponse implements ResponseContract
         }, LocationsRetrieveResponse::from([
             'id' => $attributes['relationships']['location']['data']['id']
         ]));
-
 
         // tickets
         $tickets = [];
@@ -73,7 +81,7 @@ final class RetrieveResponse implements ResponseContract
 
         return new self(
             $attributes['attributes']['all_day'],
-            $attributes['relationships']['attachments']['data'],
+            $attachments,
             $attributes['attributes']['attendee_count'],
             $attributes['attributes']['attendee_limit'],
             $attributes['attributes']['details'],

@@ -15,8 +15,8 @@ final class RetrieveResponse implements ResponseContract
      * @param  array<array-key, mixed>|null  $statusDetails
      */
     private function __construct(
-        public readonly null | string $addressText,
         public readonly null | string $additionalInfo,
+        public readonly null | string $addressText,
         public readonly string $id,
         public readonly float | null $latitude,
         public readonly float | null $longitude,
@@ -33,8 +33,8 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes): self
     {
         return new self(
-            $attributes['attributes']['address_text'] ?? null,
             $attributes['attributes']['additional_info'] ?? null,
+            $attributes['attributes']['address_text'] ?? null,
             $attributes['id'],
             $attributes['attributes']['latitude'] ?? null,
             $attributes['attributes']['longitude'] ?? null,

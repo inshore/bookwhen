@@ -34,14 +34,14 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes): self
     {
         return new self(
-            $attributes['attributes']['content_type'],
-            $attributes['attributes']['file_name'],
-            $attributes['attributes']['file_size_bytes'],
-            $attributes['attributes']['file_size_text'],
-            $attributes['attributes']['file_type'],
-            $attributes['attributes']['file_url'],
+            $attributes['attributes']['content_type'] ?? null,
+            $attributes['attributes']['file_name'] ?? null,
+            $attributes['attributes']['file_size_bytes'] ?? null,
+            $attributes['attributes']['file_size_text'] ?? null,
+            $attributes['attributes']['file_type'] ?? null,
+            $attributes['attributes']['file_url'] ?? null,
             $attributes['id'],
-            $attributes['attributes']['title']
+            $attributes['attributes']['title'] ?? null,
         );
     }
 }

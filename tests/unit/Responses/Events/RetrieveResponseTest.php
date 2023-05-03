@@ -10,8 +10,11 @@ final class RetrieveResponseTest extends TestCase
     /**
      * @covers InShore\Bookwhen\Responses\Events\RetrieveResponse::__construct()
      * @covers InShore\Bookwhen\Responses\Events\RetrieveResponse::from()
+     * @covers InShore\Bookwhen\Responses\Attachments\RetrieveResponse
+     * @covers InShore\Bookwhen\Responses\Locations\RetrieveResponse
+     * @covers InShore\Bookwhen\Responses\Tickets\RetrieveResponse
      */
-    public function testValidHydratedEventRetrieveResponse(): void
+    public function testValidEventRetrieveResponse(): void
     {
         $attributes = [
             'attributes' => [ 
@@ -44,10 +47,8 @@ final class RetrieveResponseTest extends TestCase
             ],
             'id' => '9v06h1cbv0en',
         ];
-        
-        
-        $event = RetrieveResponse::from($attributes);
-        
+         
+        $event = RetrieveResponse::from($attributes);  
         $this->assertTrue($event->allDay);
         $this->assertEquals(7, $event->attendeeCount);
         $this->assertEquals(10, $event->attendeeLimit);
@@ -63,35 +64,4 @@ final class RetrieveResponseTest extends TestCase
         $this->assertTrue($event->waitingList);
         
     }
-    
-    /**
-     * @covers InShore\Bookwhen\Responses\Events\RetrieveResponse::__construct()
-     * @covers InShore\Bookwhen\Responses\Events\RetrieveResponse::from()
-     */
-//     public function testValidUnhydratedEventRetrieveResponse(): void
-//     {
-//         $attributes = [
-//             'attributes' => [
-//                 'content_type' => null,
-//                 'file_name' => null,
-//                 'file_size_bytes' => null,
-//                 'file_size_text' => null,
-//                 'file_type' => null,
-//                 'file_url' => null,
-//                 'title' => null,
-//             ],
-//             'id' => '9v06h1cbv0en',
-//         ];
-        
-//         $event = RetrieveResponse::from($attributes);
-        
-//         $this->assertNull($event->contentType);
-//         $this->assertNull($event->fileName);
-//         $this->assertNull($event->fileSizeBytes);
-//         $this->assertNull($event->fileSizeText);
-//         $this->assertNull($event->fileType);
-//         $this->assertNull($event->fileUrl);
-//         $this->assertEquals('9v06h1cbv0en', $event->id);;
-//         $this->assertNull($event->title);
-//     }
 }

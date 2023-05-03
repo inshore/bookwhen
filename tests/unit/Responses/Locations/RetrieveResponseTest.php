@@ -25,7 +25,7 @@ final class RetrieveResponseTest extends TestCase
                 'zoom' => 10
             ],
             'id' => 'w0uh48ad3fm2',
-         ];
+        ];
         
         $location = RetrieveResponse::from($attributes);
         
@@ -36,7 +36,6 @@ final class RetrieveResponseTest extends TestCase
         $this->assertEquals(-2.5272508, $location->longitude);
         $this->assertEquals('https://cdn.bookwhen.com/blank_map.png?v=20230422143101', $location->mapUrl);
         $this->assertEquals(10, $location->zoom);
-        
     }
     
     /**

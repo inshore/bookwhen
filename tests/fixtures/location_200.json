@@ -1,17 +1,17 @@
 {
-  "data": {
-    "id": "sjm7pskr31t3",
-    "type": "location",
-    "attributes": {
-      "address_text": "Buckingham Palace\\nLondon\\nSW1A 1AA",
-      "additional_info": "The London residence of the Queen.",
-      "latitude": 51.501364,
-      "longitude": -0.14189,
-      "zoom": 15,
-      "map_url": "https://bkwn.s3.amazonaws.com/maps/amplt327zhcc/sjm7pskr31t3/staticmap.png"
-    },
-    "links": {
-      "self": "https://api.bookwhen.com/v2/locations/sjm7pskr31t3"
+    "data": {
+        "id": "w0uh48ad3fm2",
+        "type": "location",
+        "attributes": {
+            "address_text": "Zoom",
+            "additional_info": "Online",
+            "latitude": 49.21879,
+            "longitude": -2.12625,
+            "zoom": 10,
+            "map_url": "https://cdn.bookwhen.com/blank_map.png?v=20230422143101"
+        },
+        "links": {
+            "self": "https://api.bookwhen.com/v2/locations/w0uh48ad3fm2"
+        }
     }
-  }
 }

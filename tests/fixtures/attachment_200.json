@@ -1,18 +1,18 @@
 {
-  "data": {
-    "id": "9v06h1cbv0en",
-    "type": "attachment",
-    "attributes": {
-      "title": "My Photo",
-      "file_url": "https://files.bookwhen.com/amplt327zhcc/9v06h1cbv0en/uploaded_file",
-      "file_size_bytes": 47070,
-      "file_size_text": "46 KB",
-      "file_name": "image.jpg",
-      "file_type": "image",
-      "content_type": "image/jpeg"
-    },
-    "links": {
-      "self": "https://api.bookwhen.com/v2/attachments/9v06h1cbv0en"
+    "data": {
+        "id": "3wepl3we3kq9",
+        "type": "attachment",
+        "attributes": {
+            "title": "Cv 2023 Daniel Mullin April",
+            "file_url": "https://files.bookwhen.com/slrddey1fxzq/3wepl3we3kq9/uploaded_file",
+            "file_size_bytes": "75020",
+            "file_size_text": "73.3 KB",
+            "file_name": "CV_2023_daniel_mullin_april.pdf",
+            "file_type": "pdf",
+            "content_type": "application/pdf"
+        },
+        "links": {
+            "self": "https://api.bookwhen.com/v2/attachments/3wepl3we3kq9"
+        }
     }
-  }
 }

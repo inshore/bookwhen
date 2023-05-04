@@ -1,17 +1,22 @@
 {
   "data": {
-    "id": "cp-vk3x1brhpsbf",
-    "type": "class_pass",
-    "attributes": {
-      "title": "Studio pass",
-      "details": null,
-      "usage_allowance": 10,
-      "usage_type": "personal",
-      "number_available": 20,
-      "use_restricted_for_days": 60
-    },
-    "links": {
-      "self": "https://api.bookwhen.com/v2/class_passes/cp-vk3x1brhpsbf"
-    }
+      "id": "cp-qkrrxz0zh8i0",
+      "type": "class_pass",
+      "attributes": {
+          "cost": {
+              "currency_code": "GBP",
+              "net": 288000,
+              "tax": 0
+          },
+          "usage_allowance": 8,
+          "usage_type": "personal",
+          "number_available": null,
+          "use_restricted_for_days": null,
+          "title": "8 x I000 inShore 4 Hour Product Engineer Consultation (15% discount save GBP 320)",
+          "details": ""
+      },
+      "links": {
+          "self": "https://api.bookwhen.com/v2/class_passes/cp-qkrrxz0zh8i0"
+      }
   }
 }

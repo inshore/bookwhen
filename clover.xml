@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683209411">
-  <project timestamp="1683209411">
+<coverage generated="1683210536">
+  <project timestamp="1683210536">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
-        <metrics complexity="109" methods="12" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="181" elements="390" coveredelements="182"/>
+        <metrics complexity="109" methods="12" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="212" elements="390" coveredelements="213"/>
       </class>
-      <line num="104" type="method" name="__construct" visibility="public" complexity="5" crap="5.27" count="17"/>
-      <line num="114" type="stmt" count="17"/>
-      <line num="115" type="stmt" count="8"/>
+      <line num="104" type="method" name="__construct" visibility="public" complexity="5" crap="5.27" count="18"/>
+      <line num="114" type="stmt" count="18"/>
+      <line num="115" type="stmt" count="9"/>
       <line num="117" type="stmt" count="9"/>
       <line num="118" type="stmt" count="9"/>
       <line num="119" type="stmt" count="1"/>
       <line num="120" type="stmt" count="0"/>
-      <line num="121" type="stmt" count="17"/>
+      <line num="121" type="stmt" count="18"/>
       <line num="123" type="stmt" count="1"/>
       <line num="124" type="stmt" count="0"/>
       <line num="134" type="method" name="attachment" visibility="public" complexity="2" crap="2" count="3"/>
@@ -352,50 +352,50 @@
       <line num="772" type="stmt" count="1"/>
       <line num="773" type="stmt" count="1"/>
       <line num="774" type="stmt" count="1"/>
-      <line num="782" type="method" name="tickets" visibility="public" complexity="13" crap="182" count="0"/>
-      <line num="793" type="stmt" count="0"/>
+      <line num="782" type="method" name="tickets" visibility="public" complexity="13" crap="16.04" count="1"/>
+      <line num="793" type="stmt" count="1"/>
       <line num="794" type="stmt" count="0"/>
-      <line num="798" type="stmt" count="0"/>
+      <line num="798" type="stmt" count="1"/>
       <line num="799" type="stmt" count="0"/>
-      <line num="802" type="stmt" count="0"/>
+      <line num="802" type="stmt" count="1"/>
       <line num="803" type="stmt" count="0"/>
-      <line num="807" type="stmt" count="0"/>
+      <line num="807" type="stmt" count="1"/>
       <line num="808" type="stmt" count="0"/>
-      <line num="811" type="stmt" count="0"/>
+      <line num="811" type="stmt" count="1"/>
       <line num="812" type="stmt" count="0"/>
-      <line num="816" type="stmt" count="0"/>
+      <line num="816" type="stmt" count="1"/>
       <line num="817" type="stmt" count="0"/>
-      <line num="820" type="stmt" count="0"/>
+      <line num="820" type="stmt" count="1"/>
       <line num="821" type="stmt" count="0"/>
-      <line num="825" type="stmt" count="0"/>
+      <line num="825" type="stmt" count="1"/>
       <line num="826" type="stmt" count="0"/>
-      <line num="829" type="stmt" count="0"/>
+      <line num="829" type="stmt" count="1"/>
       <line num="830" type="stmt" count="0"/>
-      <line num="834" type="stmt" count="0"/>
+      <line num="834" type="stmt" count="1"/>
       <line num="835" type="stmt" count="0"/>
-      <line num="838" type="stmt" count="0"/>
+      <line num="838" type="stmt" count="1"/>
       <line num="839" type="stmt" count="0"/>
-      <line num="842" type="stmt" count="0"/>
-      <line num="844" type="stmt" count="0"/>
-      <line num="845" type="stmt" count="0"/>
-      <line num="846" type="stmt" count="0"/>
-      <line num="847" type="stmt" count="0"/>
-      <line num="848" type="stmt" count="0"/>
-      <line num="849" type="stmt" count="0"/>
-      <line num="850" type="stmt" count="0"/>
-      <line num="851" type="stmt" count="0"/>
-      <line num="852" type="stmt" count="0"/>
-      <line num="853" type="stmt" count="0"/>
-      <line num="854" type="stmt" count="0"/>
-      <line num="855" type="stmt" count="0"/>
-      <line num="856" type="stmt" count="0"/>
-      <line num="857" type="stmt" count="0"/>
-      <line num="858" type="stmt" count="0"/>
-      <line num="859" type="stmt" count="0"/>
-      <line num="860" type="stmt" count="0"/>
-      <line num="861" type="stmt" count="0"/>
-      <line num="864" type="stmt" count="0"/>
-      <metrics loc="868" ncloc="720" classes="1" methods="12" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="181" elements="390" coveredelements="182"/>
+      <line num="842" type="stmt" count="1"/>
+      <line num="844" type="stmt" count="1"/>
+      <line num="845" type="stmt" count="1"/>
+      <line num="846" type="stmt" count="1"/>
+      <line num="847" type="stmt" count="1"/>
+      <line num="848" type="stmt" count="1"/>
+      <line num="849" type="stmt" count="1"/>
+      <line num="850" type="stmt" count="1"/>
+      <line num="851" type="stmt" count="1"/>
+      <line num="852" type="stmt" count="1"/>
+      <line num="853" type="stmt" count="1"/>
+      <line num="854" type="stmt" count="1"/>
+      <line num="855" type="stmt" count="1"/>
+      <line num="856" type="stmt" count="1"/>
+      <line num="857" type="stmt" count="1"/>
+      <line num="858" type="stmt" count="1"/>
+      <line num="859" type="stmt" count="1"/>
+      <line num="860" type="stmt" count="1"/>
+      <line num="861" type="stmt" count="1"/>
+      <line num="864" type="stmt" count="1"/>
+      <metrics loc="868" ncloc="720" classes="1" methods="12" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="212" elements="390" coveredelements="213"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/BookwhenApi.php">
       <class name="InShore\Bookwhen\BookwhenApi" namespace="global">
@@ -405,16 +405,16 @@
       <line num="17" type="stmt" count="9"/>
       <line num="18" type="stmt" count="9"/>
       <line num="19" type="stmt" count="9"/>
-      <line num="25" type="method" name="factory" visibility="public" complexity="1" crap="1" count="17"/>
-      <line num="27" type="stmt" count="17"/>
+      <line num="25" type="method" name="factory" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="27" type="stmt" count="18"/>
       <metrics loc="31" ncloc="25" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Client.php">
       <class name="InShore\Bookwhen\Client" namespace="global">
         <metrics complexity="6" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="12" coveredelements="12"/>
       </class>
-      <line num="43" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="17"/>
-      <line num="45" type="stmt" count="17"/>
+      <line num="43" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="45" type="stmt" count="18"/>
       <line num="50" type="method" name="attachments" visibility="public" complexity="1" crap="1" count="2"/>
       <line num="52" type="stmt" count="2"/>
       <line num="58" type="method" name="classPasses" visibility="public" complexity="1" crap="1" count="2"/>
@@ -423,8 +423,8 @@
       <line num="67" type="stmt" count="1"/>
       <line num="72" type="method" name="locations" visibility="public" complexity="1" crap="1" count="2"/>
       <line num="74" type="stmt" count="2"/>
-      <line num="79" type="method" name="tickets" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="81" type="stmt" count="1"/>
+      <line num="79" type="method" name="tickets" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="81" type="stmt" count="2"/>
       <metrics loc="86" ncloc="54" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="12" coveredelements="12"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Contracts/ClientContract.php">
@@ -492,8 +492,8 @@
       <class name="InShore\Bookwhen\Domain\Ticket" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="31" type="stmt" count="2"/>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="31" type="stmt" count="3"/>
       <metrics loc="33" ncloc="30" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Enums/Transporter/ContentType.php">
@@ -578,29 +578,29 @@
       <class name="InShore\Bookwhen\Factory" namespace="global">
         <metrics complexity="8" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="23" coveredelements="15"/>
       </class>
-      <line num="45" type="method" name="withApiKey" visibility="public" complexity="1" crap="1" count="17"/>
-      <line num="47" type="stmt" count="17"/>
-      <line num="49" type="stmt" count="17"/>
+      <line num="45" type="method" name="withApiKey" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="47" type="stmt" count="18"/>
+      <line num="49" type="stmt" count="18"/>
       <line num="56" type="method" name="withBaseUri" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="58" type="stmt" count="0"/>
       <line num="60" type="stmt" count="0"/>
-      <line num="67" type="method" name="withHttpClient" visibility="public" complexity="1" crap="1" count="8"/>
-      <line num="69" type="stmt" count="8"/>
-      <line num="71" type="stmt" count="8"/>
+      <line num="67" type="method" name="withHttpClient" visibility="public" complexity="1" crap="1" count="9"/>
+      <line num="69" type="stmt" count="9"/>
+      <line num="71" type="stmt" count="9"/>
       <line num="77" type="method" name="withQueryParam" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="79" type="stmt" count="0"/>
       <line num="81" type="stmt" count="0"/>
-      <line num="87" type="method" name="make" visibility="public" complexity="4" crap="4.02" count="17"/>
-      <line num="89" type="stmt" count="17"/>
-      <line num="91" type="stmt" count="17"/>
-      <line num="92" type="stmt" count="17"/>
-      <line num="95" type="stmt" count="17"/>
-      <line num="97" type="stmt" count="17"/>
-      <line num="98" type="stmt" count="17"/>
+      <line num="87" type="method" name="make" visibility="public" complexity="4" crap="4.02" count="18"/>
+      <line num="89" type="stmt" count="18"/>
+      <line num="91" type="stmt" count="18"/>
+      <line num="92" type="stmt" count="18"/>
+      <line num="95" type="stmt" count="18"/>
+      <line num="97" type="stmt" count="18"/>
+      <line num="98" type="stmt" count="18"/>
       <line num="99" type="stmt" count="0"/>
-      <line num="102" type="stmt" count="17"/>
-      <line num="104" type="stmt" count="17"/>
-      <line num="106" type="stmt" count="17"/>
+      <line num="102" type="stmt" count="18"/>
+      <line num="104" type="stmt" count="18"/>
+      <line num="106" type="stmt" count="18"/>
       <metrics loc="109" ncloc="78" classes="1" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="23" coveredelements="15"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Interfaces/BookwhenInterface.php">
@@ -644,8 +644,8 @@
       <class name="InShore\Bookwhen\Resources\Concerns\Transportable" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="8"/>
-      <line num="17" type="stmt" count="8"/>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="9"/>
+      <line num="17" type="stmt" count="9"/>
       <metrics loc="19" ncloc="15" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Resources/Events.php">
@@ -680,13 +680,13 @@
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Resources/Tickets.php">
       <class name="InShore\Bookwhen\Resources\Tickets" namespace="global">
-        <metrics complexity="4" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="4" elements="12" coveredelements="4"/>
+        <metrics complexity="4" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="8" elements="12" coveredelements="8"/>
       </class>
-      <line num="21" type="method" name="list" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="28" type="stmt" count="0"/>
-      <line num="29" type="stmt" count="0"/>
+      <line num="21" type="method" name="list" visibility="public" complexity="2" crap="2.03" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="1"/>
+      <line num="28" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
       <line num="31" type="stmt" count="0"/>
       <line num="40" type="method" name="retrieve" visibility="public" complexity="2" crap="2.03" count="1"/>
       <line num="42" type="stmt" count="1"/>
@@ -694,7 +694,7 @@
       <line num="47" type="stmt" count="1"/>
       <line num="48" type="stmt" count="1"/>
       <line num="50" type="stmt" count="0"/>
-      <metrics loc="54" ncloc="42" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="4" elements="12" coveredelements="4"/>
+      <metrics loc="54" ncloc="42" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="8" elements="12" coveredelements="8"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Responses/Attachments/ListResponse.php">
       <class name="InShore\Bookwhen\Responses\Attachments\ListResponse" namespace="global">
@@ -878,68 +878,68 @@
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Responses/Tickets/ListResponse.php">
       <class name="InShore\Bookwhen\Responses\Tickets\ListResponse" namespace="global">
-        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
       </class>
-      <line num="18" type="method" name="__construct" visibility="private" complexity="1" crap="2" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <line num="28" type="method" name="from" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <metrics loc="39" ncloc="28" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
+      <line num="18" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="1"/>
+      <line num="21" type="stmt" count="1"/>
+      <line num="28" type="method" name="from" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <metrics loc="39" ncloc="28" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="9" coveredelements="9"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Responses/Tickets/RetrieveResponse.php">
       <class name="InShore\Bookwhen\Responses\Tickets\RetrieveResponse" namespace="global">
         <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="23" elements="25" coveredelements="25"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="5"/>
-      <line num="34" type="stmt" count="5"/>
-      <line num="41" type="method" name="from" visibility="public" complexity="2" crap="2" count="5"/>
-      <line num="44" type="stmt" count="5"/>
-      <line num="45" type="stmt" count="5"/>
-      <line num="46" type="stmt" count="1"/>
-      <line num="47" type="stmt" count="1"/>
-      <line num="48" type="stmt" count="1"/>
-      <line num="51" type="stmt" count="5"/>
-      <line num="52" type="stmt" count="5"/>
-      <line num="53" type="stmt" count="5"/>
-      <line num="54" type="stmt" count="5"/>
-      <line num="55" type="stmt" count="5"/>
-      <line num="56" type="stmt" count="5"/>
-      <line num="57" type="stmt" count="5"/>
-      <line num="58" type="stmt" count="5"/>
-      <line num="59" type="stmt" count="5"/>
-      <line num="60" type="stmt" count="5"/>
-      <line num="61" type="stmt" count="5"/>
-      <line num="62" type="stmt" count="5"/>
-      <line num="63" type="stmt" count="5"/>
-      <line num="64" type="stmt" count="5"/>
-      <line num="65" type="stmt" count="5"/>
-      <line num="66" type="stmt" count="5"/>
-      <line num="67" type="stmt" count="5"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="6"/>
+      <line num="34" type="stmt" count="6"/>
+      <line num="41" type="method" name="from" visibility="public" complexity="2" crap="2" count="6"/>
+      <line num="44" type="stmt" count="6"/>
+      <line num="45" type="stmt" count="6"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="47" type="stmt" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="51" type="stmt" count="6"/>
+      <line num="52" type="stmt" count="6"/>
+      <line num="53" type="stmt" count="6"/>
+      <line num="54" type="stmt" count="6"/>
+      <line num="55" type="stmt" count="6"/>
+      <line num="56" type="stmt" count="6"/>
+      <line num="57" type="stmt" count="6"/>
+      <line num="58" type="stmt" count="6"/>
+      <line num="59" type="stmt" count="6"/>
+      <line num="60" type="stmt" count="6"/>
+      <line num="61" type="stmt" count="6"/>
+      <line num="62" type="stmt" count="6"/>
+      <line num="63" type="stmt" count="6"/>
+      <line num="64" type="stmt" count="6"/>
+      <line num="65" type="stmt" count="6"/>
+      <line num="66" type="stmt" count="6"/>
+      <line num="67" type="stmt" count="6"/>
       <metrics loc="70" ncloc="59" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="23" elements="25" coveredelements="25"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Transporters/HttpTransporter.php">
       <class name="InShore\Bookwhen\Transporters\HttpTransporter" namespace="global">
         <metrics complexity="5" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="7" elements="14" coveredelements="8"/>
       </class>
-      <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="17"/>
-      <line num="35" type="stmt" count="17"/>
-      <line num="40" type="method" name="requestObject" visibility="public" complexity="4" crap="5.50" count="8"/>
-      <line num="42" type="stmt" count="8"/>
-      <line num="45" type="stmt" count="8"/>
+      <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="35" type="stmt" count="18"/>
+      <line num="40" type="method" name="requestObject" visibility="public" complexity="4" crap="5.50" count="9"/>
+      <line num="42" type="stmt" count="9"/>
+      <line num="45" type="stmt" count="9"/>
       <line num="46" type="stmt" count="0"/>
       <line num="47" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="8"/>
-      <line num="58" type="stmt" count="8"/>
+      <line num="50" type="stmt" count="9"/>
+      <line num="58" type="stmt" count="9"/>
       <line num="59" type="stmt" count="0"/>
       <line num="60" type="stmt" count="0"/>
-      <line num="63" type="stmt" count="8"/>
+      <line num="63" type="stmt" count="9"/>
       <line num="64" type="stmt" count="0"/>
-      <line num="67" type="stmt" count="8"/>
+      <line num="67" type="stmt" count="9"/>
       <metrics loc="70" ncloc="56" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="7" elements="14" coveredelements="8"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Validator.php">
@@ -1044,102 +1044,102 @@
       <class name="InShore\Bookwhen\ValueObjects\ApiKey" namespace="global">
         <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="18"/>
-      <line num="20" type="stmt" count="18"/>
-      <line num="22" type="method" name="from" visibility="public" complexity="2" crap="2" count="19"/>
-      <line num="24" type="stmt" count="19"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="19"/>
+      <line num="20" type="stmt" count="19"/>
+      <line num="22" type="method" name="from" visibility="public" complexity="2" crap="2" count="20"/>
+      <line num="24" type="stmt" count="20"/>
       <line num="25" type="stmt" count="1"/>
-      <line num="27" type="stmt" count="18"/>
-      <line num="33" type="method" name="toString" visibility="public" complexity="1" crap="1" count="18"/>
-      <line num="35" type="stmt" count="18"/>
+      <line num="27" type="stmt" count="19"/>
+      <line num="33" type="method" name="toString" visibility="public" complexity="1" crap="1" count="19"/>
+      <line num="35" type="stmt" count="19"/>
       <metrics loc="38" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/ResourceUri.php">
       <class name="InShore\Bookwhen\ValueObjects\ResourceUri" namespace="global">
         <metrics complexity="7" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="10"/>
-      <line num="20" type="stmt" count="10"/>
-      <line num="25" type="method" name="list" visibility="public" complexity="2" crap="2" count="5"/>
-      <line num="27" type="stmt" count="5"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="11"/>
+      <line num="20" type="stmt" count="11"/>
+      <line num="25" type="method" name="list" visibility="public" complexity="2" crap="2" count="6"/>
+      <line num="27" type="stmt" count="6"/>
       <line num="28" type="stmt" count="1"/>
-      <line num="30" type="stmt" count="4"/>
+      <line num="30" type="stmt" count="5"/>
       <line num="36" type="method" name="retrieve" visibility="public" complexity="3" crap="3" count="7"/>
       <line num="38" type="stmt" count="7"/>
       <line num="39" type="stmt" count="1"/>
       <line num="41" type="stmt" count="6"/>
-      <line num="47" type="method" name="toString" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="49" type="stmt" count="10"/>
+      <line num="47" type="method" name="toString" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="49" type="stmt" count="11"/>
       <metrics loc="52" ncloc="36" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/BaseUri.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\BaseUri" namespace="global">
         <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="18"/>
-      <line num="20" type="stmt" count="18"/>
-      <line num="25" type="method" name="from" visibility="public" complexity="2" crap="2" count="19"/>
-      <line num="27" type="stmt" count="19"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="19"/>
+      <line num="20" type="stmt" count="19"/>
+      <line num="25" type="method" name="from" visibility="public" complexity="2" crap="2" count="20"/>
+      <line num="27" type="stmt" count="20"/>
       <line num="28" type="stmt" count="1"/>
-      <line num="30" type="stmt" count="18"/>
-      <line num="36" type="method" name="toString" visibility="public" complexity="1" crap="1" count="9"/>
-      <line num="38" type="stmt" count="9"/>
+      <line num="30" type="stmt" count="19"/>
+      <line num="36" type="method" name="toString" visibility="public" complexity="1" crap="1" count="10"/>
+      <line num="38" type="stmt" count="10"/>
       <metrics loc="41" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/Headers.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\Headers" namespace="global">
         <metrics complexity="5" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="6" elements="15" coveredelements="10"/>
       </class>
-      <line num="19" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="17"/>
-      <line num="22" type="stmt" count="17"/>
-      <line num="27" type="method" name="create" visibility="public" complexity="1" crap="1" count="17"/>
-      <line num="29" type="stmt" count="17"/>
-      <line num="35" type="method" name="withAuthorization" visibility="public" complexity="1" crap="1" count="17"/>
-      <line num="37" type="stmt" count="17"/>
-      <line num="38" type="stmt" count="17"/>
-      <line num="39" type="stmt" count="17"/>
+      <line num="19" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="18"/>
+      <line num="22" type="stmt" count="18"/>
+      <line num="27" type="method" name="create" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="29" type="stmt" count="18"/>
+      <line num="35" type="method" name="withAuthorization" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="37" type="stmt" count="18"/>
+      <line num="38" type="stmt" count="18"/>
+      <line num="39" type="stmt" count="18"/>
       <line num="45" type="method" name="withContentType" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="47" type="stmt" count="0"/>
       <line num="48" type="stmt" count="0"/>
       <line num="49" type="stmt" count="0"/>
       <line num="50" type="stmt" count="0"/>
-      <line num="56" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="8"/>
-      <line num="58" type="stmt" count="8"/>
+      <line num="56" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="9"/>
+      <line num="58" type="stmt" count="9"/>
       <metrics loc="61" ncloc="40" classes="1" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="6" elements="15" coveredelements="10"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/Payload.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\Payload" namespace="global">
         <metrics complexity="6" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="19" coveredelements="19"/>
       </class>
-      <line num="26" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="8"/>
-      <line num="33" type="stmt" count="8"/>
-      <line num="38" type="method" name="list" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="42" type="stmt" count="3"/>
-      <line num="43" type="stmt" count="3"/>
-      <line num="45" type="stmt" count="3"/>
+      <line num="26" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="9"/>
+      <line num="33" type="stmt" count="9"/>
+      <line num="38" type="method" name="list" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="42" type="stmt" count="4"/>
+      <line num="43" type="stmt" count="4"/>
+      <line num="45" type="stmt" count="4"/>
       <line num="51" type="method" name="retrieve" visibility="public" complexity="1" crap="1" count="5"/>
       <line num="54" type="stmt" count="5"/>
       <line num="55" type="stmt" count="5"/>
       <line num="57" type="stmt" count="5"/>
-      <line num="63" type="method" name="toRequest" visibility="public" complexity="3" crap="3" count="8"/>
-      <line num="65" type="stmt" count="8"/>
-      <line num="67" type="stmt" count="8"/>
-      <line num="69" type="stmt" count="8"/>
-      <line num="70" type="stmt" count="3"/>
-      <line num="73" type="stmt" count="8"/>
-      <line num="75" type="stmt" count="8"/>
-      <line num="76" type="stmt" count="8"/>
-      <line num="78" type="stmt" count="8"/>
+      <line num="63" type="method" name="toRequest" visibility="public" complexity="3" crap="3" count="9"/>
+      <line num="65" type="stmt" count="9"/>
+      <line num="67" type="stmt" count="9"/>
+      <line num="69" type="stmt" count="9"/>
+      <line num="70" type="stmt" count="4"/>
+      <line num="73" type="stmt" count="9"/>
+      <line num="75" type="stmt" count="9"/>
+      <line num="76" type="stmt" count="9"/>
+      <line num="78" type="stmt" count="9"/>
       <metrics loc="81" ncloc="59" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="15" elements="19" coveredelements="19"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/QueryParams.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\QueryParams" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="17"/>
-      <line num="20" type="stmt" count="17"/>
-      <line num="25" type="method" name="create" visibility="public" complexity="1" crap="1" count="17"/>
-      <line num="27" type="stmt" count="17"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="18"/>
+      <line num="20" type="stmt" count="18"/>
+      <line num="25" type="method" name="create" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="27" type="stmt" count="18"/>
       <line num="33" type="method" name="withParam" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="35" type="stmt" count="0"/>
       <line num="36" type="stmt" count="0"/>
@@ -1149,6 +1149,6 @@
       <line num="46" type="stmt" count="0"/>
       <metrics loc="49" ncloc="31" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
     </file>
-    <metrics files="56" loc="3881" ncloc="2587" classes="39" methods="122" coveredmethods="67" conditionals="0" coveredconditionals="0" statements="732" coveredstatements="430" elements="854" coveredelements="497"/>
+    <metrics files="56" loc="3881" ncloc="2587" classes="39" methods="122" coveredmethods="69" conditionals="0" coveredconditionals="0" statements="732" coveredstatements="472" elements="854" coveredelements="541"/>
   </project>
 </coverage>

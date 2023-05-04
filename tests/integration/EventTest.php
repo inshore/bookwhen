@@ -71,7 +71,27 @@ class EventTest extends TestCase
         $bookwhen = new Bookwhen(null, $this->client);
         $event = $bookwhen->event('ev-s4bs-20230501080000');
 
-        $this->assertEquals('ev-s4bs-20230501080000', $event->id);
+        $this->assertFalse($event->allDay);
+        // $this->assertEquals(1, $event->attachments);
         $this->assertEquals(1, $event->attendeeAvailable);
+        $this->assertEquals(0, $event->attendeeCount);
+        $this->assertEquals(1, $event->attendeeLimit);
+        //long string for details?
+        // $this->assertEquals('', $event->details);
+        $this->assertEquals('2023-05-01T09:00:00.000Z', $event->endAt);
+        $this->assertFalse($event->finished);
+        $this->assertEquals('ev-s4bs-20230501080000', $event->id);
+        $this->assertEquals('w0uh48ad3fm2', $event->location->id);
+        $this->assertEquals(10, $event->maxTicketsPerBooking);
+        $this->assertEquals('2023-05-01T08:00:00.000Z', $event->startAt);
+        $this->assertFalse($event->soldOut);
+        $this->assertEquals('ti-s4bs-20230501080000-tp9b', $event->tickets[0]->id);
+        $this->assertEquals('I000 inShore 1 Hour Product Engineer Consultation', $event->title);
+        $this->assertTrue($event->waitingList);
+
+
+
+
+
     }
 }

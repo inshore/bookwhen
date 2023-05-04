@@ -103,6 +103,7 @@ final class Bookwhen implements BookwhenInterface
      */
     public function __construct(
         string $apiKey = null,
+        Client $client = null,
         private $validator = new Validator()
     ) {
         //         $this->logFile = $logFile;
@@ -110,11 +111,15 @@ final class Bookwhen implements BookwhenInterface
         //         $this->logger = new Logger('inShore Bookwhen API');
         //         $this->logger->pushHandler(new StreamHandler($this->logFile, $this->logLevel));
         try {
-            $this->client = !is_null($apiKey)
-            ? BookwhenApi::client($apiKey)
-            : (array_key_exists('INSHORE_BOOKWHEN_API_KEY', $_ENV)
-                ? BookwhenApi::client($_ENV['INSHORE_BOOKWHEN_API_KEY'])
-                : throw new ConfigurationException());
+            if(!is_null($client)) {
+                $this->client = $client;
+            } else {
+                $this->client = !is_null($apiKey)
+                ? BookwhenApi::client($apiKey)
+                : (array_key_exists('INSHORE_BOOKWHEN_API_KEY', $_ENV)
+                    ? BookwhenApi::client($_ENV['INSHORE_BOOKWHEN_API_KEY'])
+                    : throw new ConfigurationException());
+            }
         } catch (\TypeError $e) {
             throw new ConfigurationException(); // @todo message
         }
@@ -355,7 +360,7 @@ final class Bookwhen implements BookwhenInterface
         $eventAttachments = [];
 
         foreach ($event->attachments as $eventAttachment) {
-            $attachment = $this->client->attachments()->retrieve($eventAttachment['id']);
+            $attachment = $this->client->attachments()->retrieve($eventAttachment->id);
             array_push($eventAttachments, new Attachment(
                 $attachment->contentType,
                 $attachment->fileUrl,

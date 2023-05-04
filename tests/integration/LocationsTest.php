@@ -19,7 +19,7 @@ use InShore;
 /**
  * @uses InShore\Bookwhen\Validator
  */
-class LocationTest extends TestCase
+class LocationsTest extends TestCase
 {
     
     protected $apiKey;
@@ -51,6 +51,7 @@ class LocationTest extends TestCase
      * @covers InShore\Bookwhen\Factory
      * @covers InShore\Bookwhen\Resources\Concerns\Transportable
      * @covers InShore\Bookwhen\Resources\Locations
+     * @covers InShore\Bookwhen\Responses\Locations\ListResponse
      * @covers InShore\Bookwhen\Responses\Locations\RetrieveResponse
      * @covers InShore\Bookwhen\Responses\Tickets\RetrieveResponse
      * @covers InShore\Bookwhen\Transporters\HttpTransporter
@@ -63,32 +64,22 @@ class LocationTest extends TestCase
      */
     public function testValidLocationId(): void
     {
-        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/location_200.json')));         
+        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/locations_200.json')));         
         $this->client = BookwhenApi::factory()
         ->withApiKey($this->apiKey)
         ->withHttpClient($this->guzzleClient)
         ->make();
 
         $bookwhen = new Bookwhen(null, $this->client);
-        $location = $bookwhen->location('w0uh48ad3fm2');
+        $locations = $bookwhen->locations();
 
-        $this->assertInstanceOf(Location::class, $location);
-        $this->assertEquals('Online', $location->additionalInfo);
-        $this->assertEquals('Zoom', $location->addressText);
-        $this->assertEquals(49.21879, $location->latitude);
-        $this->assertEquals(-2.12625, $location->longitude);
-        $this->assertEquals('w0uh48ad3fm2', $location->id);
-//         $this->assertEquals('w0uh48ad3fm2', $event->location->id);
-//         $this->assertEquals(10, $event->maxTicketsPerBooking);
-//         $this->assertEquals('2023-05-01T08:00:00.000Z', $event->startAt);
-//         $this->assertFalse($event->soldOut);
-//         $this->assertEquals('ti-s4bs-20230501080000-tp9b', $event->tickets[0]->id);
-//         $this->assertEquals('I000 inShore 1 Hour Product Engineer Consultation', $event->title);
-//         $this->assertTrue($event->waitingList);
-
-
-
-
-
+        $this->assertIsArray($locations);
+       
+        $this->assertInstanceOf(Location::class, $locations[2]); // test is an arrsy
+        $this->assertEquals('Online', $locations[2]->additionalInfo);
+        $this->assertEquals('Zoom', $locations[2]->addressText);
+        $this->assertEquals(49.21879, $locations[2]->latitude);
+        $this->assertEquals(-2.12625, $locations[2]->longitude);
+        $this->assertEquals('w0uh48ad3fm2', $locations[2]->id);
     }
 }

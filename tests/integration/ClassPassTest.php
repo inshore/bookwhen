@@ -51,7 +51,6 @@ class ClassPassTest extends TestCase
      * @covers InShore\Bookwhen\Factory
      * @covers InShore\Bookwhen\Resources\Concerns\Transportable
      * @covers InShore\Bookwhen\Resources\ClassPasses
-     * @covers InShore\Bookwhen\Responses\Events\RetrieveResponse
      * @covers InShore\Bookwhen\Responses\ClassPasses\RetrieveResponse
      * @covers InShore\Bookwhen\Responses\ClassPasses\RetrieveResponse
      * @covers InShore\Bookwhen\Transporters\HttpTransporter

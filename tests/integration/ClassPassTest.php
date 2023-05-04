@@ -64,7 +64,7 @@ class ClassPassTest extends TestCase
     
     public function testValidClassPassId(): void
     {
-        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/classPass_200.json')));         
+        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/classpass_200.json')));         
         $this->client = BookwhenApi::factory()
         ->withApiKey($this->apiKey)
         ->withHttpClient($this->guzzleClient)

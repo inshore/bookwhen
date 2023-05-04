@@ -1,0 +1,67 @@
+{
+    "data": [
+        {
+            "id": "cp-qkrrxz0zh8i0",
+            "type": "class_pass",
+            "attributes": {
+                "cost": {
+                    "currency_code": "GBP",
+                    "net": 288000,
+                    "tax": 0
+                },
+                "usage_allowance": 8,
+                "usage_type": "personal",
+                "number_available": null,
+                "use_restricted_for_days": null,
+                "title": "8 x I000 inShore 4 Hour Product Engineer Consultation (15% discount save GBP 320)",
+                "details": ""
+            },
+            "links": {
+                "self": "https://api.bookwhen.com/v2/class_passes/cp-qkrrxz0zh8i0"
+            }
+        },
+        {
+            "id": "cp-13nyd5p7lqx7",
+            "type": "class_pass",
+            "attributes": {
+                "cost": {
+                    "currency_code": "GBP",
+                    "net": 544000,
+                    "tax": 0
+                },
+                "usage_allowance": 16,
+                "usage_type": "personal",
+                "number_available": null,
+                "use_restricted_for_days": null,
+                "title": "16 x I000 inShore 4 Hour Product Engineer Consultation (15% discount save GBP 960)",
+                "details": ""
+            },
+            "links": {
+                "self": "https://api.bookwhen.com/v2/class_passes/cp-13nyd5p7lqx7"
+            }
+        },
+        {
+            "id": "cp-kkphqvnhkyv3",
+            "type": "class_pass",
+            "attributes": {
+                "cost": {
+                    "currency_code": "GBP",
+                    "net": 1024000,
+                    "tax": 0
+                },
+                "usage_allowance": 32,
+                "usage_type": "personal",
+                "number_available": null,
+                "use_restricted_for_days": null,
+                "title": "32 x I000 inShore 4 Hour Product Engineer Consultation ( 20% discount save GBP 2560 )",
+                "details": ""
+            },
+            "links": {
+                "self": "https://api.bookwhen.com/v2/class_passes/cp-kkphqvnhkyv3"
+            }
+        }
+    ],
+    "links": {
+        "self": "https://api.bookwhen.com/v2/class_passes"
+    }
+}

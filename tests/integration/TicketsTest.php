@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use InShore\Bookwhen\Bookwhen;
 use InShore\Bookwhen\BookwhenApi;
 use InShore\Bookwhen\Client;
-use InShore\Bookwhen\Domain\Location;
+use InShore\Bookwhen\Domain\Ticket;
 use InShore\Bookwhen\Factory;
 use InShore\Bookwhen\Exceptions\ConfigurationException;
 use InShore\Bookwhen\Exceptions\ValidationException;
@@ -19,7 +19,7 @@ use InShore;
 /**
  * @uses InShore\Bookwhen\Validator
  */
-class LocationsTest extends TestCase
+class TicketsTest extends TestCase
 {
     
     protected $apiKey;
@@ -46,13 +46,12 @@ class LocationsTest extends TestCase
      * @covers InShore\Bookwhen\BookwhenApi
      * @covers InShore\Bookwhen\Client
      * @covers InShore\Bookwhen\Domain\Event
-     * @covers InShore\Bookwhen\Domain\Location
+     * @covers InShore\Bookwhen\Domain\Ticket
      * @covers InShore\Bookwhen\Domain\Ticket
      * @covers InShore\Bookwhen\Factory
      * @covers InShore\Bookwhen\Resources\Concerns\Transportable
-     * @covers InShore\Bookwhen\Resources\Locations
-     * @covers InShore\Bookwhen\Responses\Locations\ListResponse
-     * @covers InShore\Bookwhen\Responses\Locations\RetrieveResponse
+     * @covers InShore\Bookwhen\Resources\Tickets
+     * @covers InShore\Bookwhen\Responses\Tickets\ListResponse
      * @covers InShore\Bookwhen\Responses\Tickets\RetrieveResponse
      * @covers InShore\Bookwhen\Transporters\HttpTransporter
      * @covers InShore\Bookwhen\ValueObjects\ApiKey
@@ -62,24 +61,35 @@ class LocationsTest extends TestCase
      * @covers InShore\Bookwhen\ValueObjects\Transporter\Payload
      * @covers InShore\Bookwhen\ValueObjects\Transporter\QueryParams
      */
-    public function testValids(): void
+    
+    public function testTickets(): void
     {
-        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/locations_200.json')));         
+        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/tickets_200.json')));         
         $this->client = BookwhenApi::factory()
         ->withApiKey($this->apiKey)
         ->withHttpClient($this->guzzleClient)
         ->make();
 
         $bookwhen = new Bookwhen(null, $this->client);
-        $locations = $bookwhen->locations();
+        $tickets = $bookwhen->tickets('ev-siyg-20230501080000');
 
-        $this->assertIsArray($locations);
-       
-        $this->assertInstanceOf(Location::class, $locations[2]); // test is an arrsy
-        $this->assertEquals('Online', $locations[2]->additionalInfo);
-        $this->assertEquals('Zoom', $locations[2]->addressText);
-        $this->assertEquals(49.21879, $locations[2]->latitude);
-        $this->assertEquals(-2.12625, $locations[2]->longitude);
-        $this->assertEquals('w0uh48ad3fm2', $locations[2]->id);
+        $this->assertIsArray($tickets);
+        
+        $this->assertInstanceOf(Ticket::class, $tickets[0]);
+        $this->assertFalse($tickets[0]->available);
+        $this->assertNull($tickets[0]->availableFrom);
+        $this->assertNull($tickets[0]->availableTo);
+        $this->assertEquals('/inshore/basket_items/apply?basket_item_ids%5Bti-s4bs-20230501080000-tp9b%5D=1', $tickets[0]->builtBasketUrl);
+        $this->assertEquals('/inshore/iframe/basket_items/apply?basket_item_ids%5Bti-s4bs-20230501080000-tp9b%5D=1', $tickets[0]->builtBasketIframeUrl);
+        $this->assertInstanceOf(\stdClass::class, $tickets[0]->cost);
+        $this->assertFalse($tickets[0]->courseTicket);
+        $this->assertEquals('', $tickets[0]->details);
+        $this->assertFalse($tickets[0]->groupTicket);
+        $this->assertEquals(2, $tickets[0]->groupMin);
+        $this->assertEquals(5, $tickets[0]->groupMax);
+        $this->assertEquals('ti-s4bs-20230501080000-tp9b', $tickets[0]->id);
+        $this->assertNull($tickets[0]->numberIssued);
+        $this->assertEquals(0, $tickets[0]->numberTaken);
+        $this->assertEquals('I000 inShore 1 Hour Consultation', $tickets[0]->title);
     }
 }

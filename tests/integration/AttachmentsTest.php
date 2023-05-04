@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Response;
 use InShore\Bookwhen\Bookwhen;
 use InShore\Bookwhen\BookwhenApi;
 use InShore\Bookwhen\Client;
-use InShore\Bookwhen\Domain\Location;
+use InShore\Bookwhen\Domain\Attachment;
 use InShore\Bookwhen\Factory;
 use InShore\Bookwhen\Exceptions\ConfigurationException;
 use InShore\Bookwhen\Exceptions\ValidationException;
@@ -19,7 +19,7 @@ use InShore;
 /**
  * @uses InShore\Bookwhen\Validator
  */
-class LocationsTest extends TestCase
+class AttachmentsTest extends TestCase
 {
     
     protected $apiKey;
@@ -27,6 +27,7 @@ class LocationsTest extends TestCase
     protected $mockHandler;
     
     protected $client;
+
 
     protected $guzzleClient;
     
@@ -45,15 +46,12 @@ class LocationsTest extends TestCase
      * @covers InShore\Bookwhen\Bookwhen
      * @covers InShore\Bookwhen\BookwhenApi
      * @covers InShore\Bookwhen\Client
-     * @covers InShore\Bookwhen\Domain\Event
-     * @covers InShore\Bookwhen\Domain\Location
-     * @covers InShore\Bookwhen\Domain\Ticket
+     * @covers InShore\Bookwhen\Domain\Attachment
      * @covers InShore\Bookwhen\Factory
      * @covers InShore\Bookwhen\Resources\Concerns\Transportable
-     * @covers InShore\Bookwhen\Resources\Locations
-     * @covers InShore\Bookwhen\Responses\Locations\ListResponse
-     * @covers InShore\Bookwhen\Responses\Locations\RetrieveResponse
-     * @covers InShore\Bookwhen\Responses\Tickets\RetrieveResponse
+     * @covers InShore\Bookwhen\Resources\Attachments
+     * @covers InShore\Bookwhen\Responses\Attachments\ListResponse
+     * @covers InShore\Bookwhen\Responses\Attachments\RetrieveResponse
      * @covers InShore\Bookwhen\Transporters\HttpTransporter
      * @covers InShore\Bookwhen\ValueObjects\ApiKey
      * @covers InShore\Bookwhen\ValueObjects\ResourceUri
@@ -62,24 +60,26 @@ class LocationsTest extends TestCase
      * @covers InShore\Bookwhen\ValueObjects\Transporter\Payload
      * @covers InShore\Bookwhen\ValueObjects\Transporter\QueryParams
      */
-    public function testValids(): void
+    public function testAttachments(): void
     {
-        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/locations_200.json')));         
+        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/attachments_200.json')));         
         $this->client = BookwhenApi::factory()
         ->withApiKey($this->apiKey)
         ->withHttpClient($this->guzzleClient)
         ->make();
 
         $bookwhen = new Bookwhen(null, $this->client);
-        $locations = $bookwhen->locations();
+        $attachments = $bookwhen->attachments();
 
-        $this->assertIsArray($locations);
-       
-        $this->assertInstanceOf(Location::class, $locations[2]); // test is an arrsy
-        $this->assertEquals('Online', $locations[2]->additionalInfo);
-        $this->assertEquals('Zoom', $locations[2]->addressText);
-        $this->assertEquals(49.21879, $locations[2]->latitude);
-        $this->assertEquals(-2.12625, $locations[2]->longitude);
-        $this->assertEquals('w0uh48ad3fm2', $locations[2]->id);
+        $this->assertIsArray($attachments);
+        
+        $this->assertInstanceOf(Attachment::class, $attachments[0]);
+        $this->assertEquals('application/pdf', $attachments[0]->contentType);
+        $this->assertEquals('3wepl3we3kq9', $attachments[0]->id);
+        $this->assertEquals('CV_2023_daniel_mullin_april.pdf', $attachments[0]->fileName);
+        $this->assertEquals('pdf', $attachments[0]->fileType);
+        $this->assertEquals(75020, $attachments[0]->fileSizeBytes);
+        $this->assertEquals('73.3 KB', $attachments[0]->fileSizeText);
+        $this->assertEquals('Cv 2023 Daniel Mullin April', $attachments[0]->title);
     }
 }

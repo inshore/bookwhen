@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683190661">
-  <project timestamp="1683190661">
+<coverage generated="1683194521">
+  <project timestamp="1683194521">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
-        <metrics complexity="109" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="65" elements="390" coveredelements="65"/>
+        <metrics complexity="109" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="76" elements="390" coveredelements="76"/>
       </class>
-      <line num="104" type="method" name="__construct" visibility="public" complexity="5" crap="5.27" count="10"/>
-      <line num="114" type="stmt" count="10"/>
-      <line num="115" type="stmt" count="1"/>
+      <line num="104" type="method" name="__construct" visibility="public" complexity="5" crap="5.27" count="11"/>
+      <line num="114" type="stmt" count="11"/>
+      <line num="115" type="stmt" count="2"/>
+      <line num="117" type="stmt" count="9"/>
       <line num="118" type="stmt" count="9"/>
-      <line num="119" type="stmt" count="9"/>
-      <line num="120" type="stmt" count="1"/>
-      <line num="121" type="stmt" count="0"/>
-      <line num="122" type="stmt" count="10"/>
-      <line num="124" type="stmt" count="1"/>
-      <line num="125" type="stmt" count="0"/>
-      <line num="135" type="method" name="attachment" visibility="public" complexity="2" crap="4.42" count="2"/>
+      <line num="119" type="stmt" count="1"/>
+      <line num="120" type="stmt" count="0"/>
+      <line num="121" type="stmt" count="11"/>
+      <line num="123" type="stmt" count="1"/>
+      <line num="124" type="stmt" count="0"/>
+      <line num="134" type="method" name="attachment" visibility="public" complexity="2" crap="4.42" count="2"/>
+      <line num="136" type="stmt" count="2"/>
       <line num="137" type="stmt" count="2"/>
-      <line num="138" type="stmt" count="2"/>
-      <line num="141" type="stmt" count="0"/>
+      <line num="140" type="stmt" count="0"/>
+      <line num="142" type="stmt" count="0"/>
       <line num="143" type="stmt" count="0"/>
       <line num="144" type="stmt" count="0"/>
       <line num="145" type="stmt" count="0"/>
@@ -28,19 +29,19 @@
       <line num="149" type="stmt" count="0"/>
       <line num="150" type="stmt" count="0"/>
       <line num="151" type="stmt" count="0"/>
-      <line num="152" type="stmt" count="0"/>
-      <line num="161" type="method" name="attachments" visibility="public" complexity="8" crap="72" count="0"/>
+      <line num="160" type="method" name="attachments" visibility="public" complexity="8" crap="72" count="0"/>
+      <line num="167" type="stmt" count="0"/>
       <line num="168" type="stmt" count="0"/>
       <line num="169" type="stmt" count="0"/>
-      <line num="170" type="stmt" count="0"/>
-      <line num="172" type="stmt" count="0"/>
+      <line num="171" type="stmt" count="0"/>
+      <line num="175" type="stmt" count="0"/>
       <line num="176" type="stmt" count="0"/>
-      <line num="177" type="stmt" count="0"/>
-      <line num="179" type="stmt" count="0"/>
+      <line num="178" type="stmt" count="0"/>
+      <line num="181" type="stmt" count="0"/>
       <line num="182" type="stmt" count="0"/>
-      <line num="183" type="stmt" count="0"/>
-      <line num="185" type="stmt" count="0"/>
-      <line num="188" type="stmt" count="0"/>
+      <line num="184" type="stmt" count="0"/>
+      <line num="187" type="stmt" count="0"/>
+      <line num="189" type="stmt" count="0"/>
       <line num="190" type="stmt" count="0"/>
       <line num="191" type="stmt" count="0"/>
       <line num="192" type="stmt" count="0"/>
@@ -51,12 +52,12 @@
       <line num="197" type="stmt" count="0"/>
       <line num="198" type="stmt" count="0"/>
       <line num="199" type="stmt" count="0"/>
-      <line num="200" type="stmt" count="0"/>
-      <line num="203" type="stmt" count="0"/>
-      <line num="212" type="method" name="classPass" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="202" type="stmt" count="0"/>
+      <line num="211" type="method" name="classPass" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="215" type="stmt" count="0"/>
       <line num="216" type="stmt" count="0"/>
-      <line num="217" type="stmt" count="0"/>
-      <line num="220" type="stmt" count="0"/>
+      <line num="219" type="stmt" count="0"/>
+      <line num="221" type="stmt" count="0"/>
       <line num="222" type="stmt" count="0"/>
       <line num="223" type="stmt" count="0"/>
       <line num="224" type="stmt" count="0"/>
@@ -65,24 +66,24 @@
       <line num="227" type="stmt" count="0"/>
       <line num="228" type="stmt" count="0"/>
       <line num="229" type="stmt" count="0"/>
-      <line num="230" type="stmt" count="0"/>
-      <line num="238" type="method" name="classPasses" visibility="public" complexity="12" crap="156" count="0"/>
+      <line num="237" type="method" name="classPasses" visibility="public" complexity="12" crap="156" count="0"/>
+      <line num="248" type="stmt" count="0"/>
       <line num="249" type="stmt" count="0"/>
-      <line num="250" type="stmt" count="0"/>
-      <line num="252" type="stmt" count="0"/>
+      <line num="251" type="stmt" count="0"/>
+      <line num="254" type="stmt" count="0"/>
       <line num="255" type="stmt" count="0"/>
-      <line num="256" type="stmt" count="0"/>
-      <line num="258" type="stmt" count="0"/>
+      <line num="257" type="stmt" count="0"/>
+      <line num="260" type="stmt" count="0"/>
       <line num="261" type="stmt" count="0"/>
-      <line num="262" type="stmt" count="0"/>
-      <line num="264" type="stmt" count="0"/>
+      <line num="263" type="stmt" count="0"/>
+      <line num="266" type="stmt" count="0"/>
       <line num="267" type="stmt" count="0"/>
-      <line num="268" type="stmt" count="0"/>
-      <line num="270" type="stmt" count="0"/>
+      <line num="269" type="stmt" count="0"/>
+      <line num="272" type="stmt" count="0"/>
       <line num="273" type="stmt" count="0"/>
-      <line num="274" type="stmt" count="0"/>
-      <line num="276" type="stmt" count="0"/>
-      <line num="279" type="stmt" count="0"/>
+      <line num="275" type="stmt" count="0"/>
+      <line num="278" type="stmt" count="0"/>
+      <line num="280" type="stmt" count="0"/>
       <line num="281" type="stmt" count="0"/>
       <line num="282" type="stmt" count="0"/>
       <line num="283" type="stmt" count="0"/>
@@ -92,34 +93,34 @@
       <line num="287" type="stmt" count="0"/>
       <line num="288" type="stmt" count="0"/>
       <line num="289" type="stmt" count="0"/>
-      <line num="290" type="stmt" count="0"/>
-      <line num="292" type="stmt" count="0"/>
-      <line num="300" type="method" name="event" visibility="public" complexity="14" crap="18.40" count="1"/>
-      <line num="310" type="stmt" count="1"/>
-      <line num="311" type="stmt" count="0"/>
-      <line num="315" type="stmt" count="1"/>
-      <line num="316" type="stmt" count="0"/>
-      <line num="319" type="stmt" count="1"/>
-      <line num="320" type="stmt" count="0"/>
-      <line num="324" type="stmt" count="1"/>
-      <line num="325" type="stmt" count="0"/>
-      <line num="327" type="stmt" count="1"/>
-      <line num="328" type="stmt" count="0"/>
-      <line num="332" type="stmt" count="1"/>
-      <line num="333" type="stmt" count="0"/>
-      <line num="336" type="stmt" count="1"/>
-      <line num="337" type="stmt" count="0"/>
-      <line num="341" type="stmt" count="1"/>
-      <line num="342" type="stmt" count="0"/>
-      <line num="345" type="stmt" count="1"/>
-      <line num="346" type="stmt" count="0"/>
-      <line num="350" type="stmt" count="1"/>
-      <line num="351" type="stmt" count="0"/>
-      <line num="354" type="stmt" count="1"/>
-      <line num="355" type="stmt" count="0"/>
-      <line num="358" type="stmt" count="1"/>
-      <line num="361" type="stmt" count="1"/>
-      <line num="363" type="stmt" count="1"/>
+      <line num="291" type="stmt" count="0"/>
+      <line num="299" type="method" name="event" visibility="public" complexity="14" crap="18.40" count="1"/>
+      <line num="309" type="stmt" count="1"/>
+      <line num="310" type="stmt" count="0"/>
+      <line num="314" type="stmt" count="1"/>
+      <line num="315" type="stmt" count="0"/>
+      <line num="318" type="stmt" count="1"/>
+      <line num="319" type="stmt" count="0"/>
+      <line num="323" type="stmt" count="1"/>
+      <line num="324" type="stmt" count="0"/>
+      <line num="326" type="stmt" count="1"/>
+      <line num="327" type="stmt" count="0"/>
+      <line num="331" type="stmt" count="1"/>
+      <line num="332" type="stmt" count="0"/>
+      <line num="335" type="stmt" count="1"/>
+      <line num="336" type="stmt" count="0"/>
+      <line num="340" type="stmt" count="1"/>
+      <line num="341" type="stmt" count="0"/>
+      <line num="344" type="stmt" count="1"/>
+      <line num="345" type="stmt" count="0"/>
+      <line num="349" type="stmt" count="1"/>
+      <line num="350" type="stmt" count="0"/>
+      <line num="353" type="stmt" count="1"/>
+      <line num="354" type="stmt" count="0"/>
+      <line num="357" type="stmt" count="1"/>
+      <line num="360" type="stmt" count="1"/>
+      <line num="362" type="stmt" count="1"/>
+      <line num="363" type="stmt" count="0"/>
       <line num="364" type="stmt" count="0"/>
       <line num="365" type="stmt" count="0"/>
       <line num="366" type="stmt" count="0"/>
@@ -130,7 +131,7 @@
       <line num="371" type="stmt" count="0"/>
       <line num="372" type="stmt" count="0"/>
       <line num="373" type="stmt" count="0"/>
-      <line num="374" type="stmt" count="0"/>
+      <line num="377" type="stmt" count="1"/>
       <line num="378" type="stmt" count="1"/>
       <line num="379" type="stmt" count="1"/>
       <line num="380" type="stmt" count="1"/>
@@ -149,7 +150,7 @@
       <line num="393" type="stmt" count="1"/>
       <line num="394" type="stmt" count="1"/>
       <line num="395" type="stmt" count="1"/>
-      <line num="396" type="stmt" count="1"/>
+      <line num="401" type="stmt" count="1"/>
       <line num="402" type="stmt" count="1"/>
       <line num="403" type="stmt" count="1"/>
       <line num="404" type="stmt" count="1"/>
@@ -172,66 +173,66 @@
       <line num="421" type="stmt" count="1"/>
       <line num="422" type="stmt" count="1"/>
       <line num="423" type="stmt" count="1"/>
-      <line num="424" type="stmt" count="1"/>
-      <line num="432" type="method" name="events" visibility="public" complexity="32" crap="1056" count="0"/>
+      <line num="431" type="method" name="events" visibility="public" complexity="32" crap="1056" count="0"/>
+      <line num="453" type="stmt" count="0"/>
       <line num="454" type="stmt" count="0"/>
       <line num="455" type="stmt" count="0"/>
-      <line num="456" type="stmt" count="0"/>
+      <line num="457" type="stmt" count="0"/>
       <line num="458" type="stmt" count="0"/>
       <line num="459" type="stmt" count="0"/>
       <line num="460" type="stmt" count="0"/>
-      <line num="461" type="stmt" count="0"/>
-      <line num="464" type="stmt" count="0"/>
+      <line num="463" type="stmt" count="0"/>
+      <line num="471" type="stmt" count="0"/>
       <line num="472" type="stmt" count="0"/>
       <line num="473" type="stmt" count="0"/>
-      <line num="474" type="stmt" count="0"/>
-      <line num="476" type="stmt" count="0"/>
+      <line num="475" type="stmt" count="0"/>
+      <line num="480" type="stmt" count="0"/>
       <line num="481" type="stmt" count="0"/>
       <line num="482" type="stmt" count="0"/>
-      <line num="483" type="stmt" count="0"/>
+      <line num="484" type="stmt" count="0"/>
       <line num="485" type="stmt" count="0"/>
       <line num="486" type="stmt" count="0"/>
       <line num="487" type="stmt" count="0"/>
-      <line num="488" type="stmt" count="0"/>
-      <line num="491" type="stmt" count="0"/>
+      <line num="490" type="stmt" count="0"/>
+      <line num="495" type="stmt" count="0"/>
       <line num="496" type="stmt" count="0"/>
       <line num="497" type="stmt" count="0"/>
-      <line num="498" type="stmt" count="0"/>
+      <line num="499" type="stmt" count="0"/>
       <line num="500" type="stmt" count="0"/>
       <line num="501" type="stmt" count="0"/>
       <line num="502" type="stmt" count="0"/>
-      <line num="503" type="stmt" count="0"/>
-      <line num="507" type="stmt" count="0"/>
+      <line num="506" type="stmt" count="0"/>
+      <line num="510" type="stmt" count="0"/>
       <line num="511" type="stmt" count="0"/>
       <line num="512" type="stmt" count="0"/>
-      <line num="513" type="stmt" count="0"/>
+      <line num="514" type="stmt" count="0"/>
       <line num="515" type="stmt" count="0"/>
       <line num="516" type="stmt" count="0"/>
       <line num="517" type="stmt" count="0"/>
-      <line num="518" type="stmt" count="0"/>
-      <line num="521" type="stmt" count="0"/>
+      <line num="520" type="stmt" count="0"/>
+      <line num="525" type="stmt" count="0"/>
       <line num="526" type="stmt" count="0"/>
       <line num="527" type="stmt" count="0"/>
-      <line num="528" type="stmt" count="0"/>
-      <line num="530" type="stmt" count="0"/>
+      <line num="529" type="stmt" count="0"/>
+      <line num="534" type="stmt" count="0"/>
       <line num="535" type="stmt" count="0"/>
-      <line num="536" type="stmt" count="0"/>
+      <line num="537" type="stmt" count="0"/>
       <line num="538" type="stmt" count="0"/>
-      <line num="539" type="stmt" count="0"/>
+      <line num="542" type="stmt" count="0"/>
       <line num="543" type="stmt" count="0"/>
-      <line num="544" type="stmt" count="0"/>
+      <line num="546" type="stmt" count="0"/>
       <line num="547" type="stmt" count="0"/>
-      <line num="548" type="stmt" count="0"/>
+      <line num="551" type="stmt" count="0"/>
       <line num="552" type="stmt" count="0"/>
-      <line num="553" type="stmt" count="0"/>
+      <line num="555" type="stmt" count="0"/>
       <line num="556" type="stmt" count="0"/>
-      <line num="557" type="stmt" count="0"/>
+      <line num="560" type="stmt" count="0"/>
       <line num="561" type="stmt" count="0"/>
-      <line num="562" type="stmt" count="0"/>
+      <line num="564" type="stmt" count="0"/>
       <line num="565" type="stmt" count="0"/>
-      <line num="566" type="stmt" count="0"/>
-      <line num="569" type="stmt" count="0"/>
-      <line num="571" type="stmt" count="0"/>
+      <line num="568" type="stmt" count="0"/>
+      <line num="570" type="stmt" count="0"/>
+      <line num="572" type="stmt" count="0"/>
       <line num="573" type="stmt" count="0"/>
       <line num="574" type="stmt" count="0"/>
       <line num="575" type="stmt" count="0"/>
@@ -250,7 +251,7 @@
       <line num="588" type="stmt" count="0"/>
       <line num="589" type="stmt" count="0"/>
       <line num="590" type="stmt" count="0"/>
-      <line num="591" type="stmt" count="0"/>
+      <line num="593" type="stmt" count="0"/>
       <line num="594" type="stmt" count="0"/>
       <line num="595" type="stmt" count="0"/>
       <line num="596" type="stmt" count="0"/>
@@ -273,31 +274,31 @@
       <line num="613" type="stmt" count="0"/>
       <line num="614" type="stmt" count="0"/>
       <line num="615" type="stmt" count="0"/>
-      <line num="616" type="stmt" count="0"/>
-      <line num="619" type="stmt" count="0"/>
-      <line num="627" type="method" name="location" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="618" type="stmt" count="0"/>
+      <line num="626" type="method" name="location" visibility="public" complexity="2" crap="2.00" count="1"/>
+      <line num="629" type="stmt" count="1"/>
       <line num="630" type="stmt" count="0"/>
-      <line num="631" type="stmt" count="0"/>
-      <line num="634" type="stmt" count="0"/>
-      <line num="636" type="stmt" count="0"/>
-      <line num="637" type="stmt" count="0"/>
-      <line num="638" type="stmt" count="0"/>
-      <line num="639" type="stmt" count="0"/>
-      <line num="640" type="stmt" count="0"/>
-      <line num="641" type="stmt" count="0"/>
-      <line num="642" type="stmt" count="0"/>
-      <line num="643" type="stmt" count="0"/>
-      <line num="644" type="stmt" count="0"/>
-      <line num="650" type="method" name="locations" visibility="public" complexity="6" crap="42" count="0"/>
+      <line num="633" type="stmt" count="1"/>
+      <line num="635" type="stmt" count="1"/>
+      <line num="636" type="stmt" count="1"/>
+      <line num="637" type="stmt" count="1"/>
+      <line num="638" type="stmt" count="1"/>
+      <line num="639" type="stmt" count="1"/>
+      <line num="640" type="stmt" count="1"/>
+      <line num="641" type="stmt" count="1"/>
+      <line num="642" type="stmt" count="1"/>
+      <line num="643" type="stmt" count="1"/>
+      <line num="649" type="method" name="locations" visibility="public" complexity="6" crap="42" count="0"/>
+      <line num="656" type="stmt" count="0"/>
       <line num="657" type="stmt" count="0"/>
       <line num="658" type="stmt" count="0"/>
-      <line num="659" type="stmt" count="0"/>
-      <line num="661" type="stmt" count="0"/>
+      <line num="660" type="stmt" count="0"/>
+      <line num="663" type="stmt" count="0"/>
       <line num="664" type="stmt" count="0"/>
       <line num="665" type="stmt" count="0"/>
-      <line num="666" type="stmt" count="0"/>
-      <line num="668" type="stmt" count="0"/>
-      <line num="671" type="stmt" count="0"/>
+      <line num="667" type="stmt" count="0"/>
+      <line num="670" type="stmt" count="0"/>
+      <line num="672" type="stmt" count="0"/>
       <line num="673" type="stmt" count="0"/>
       <line num="674" type="stmt" count="0"/>
       <line num="675" type="stmt" count="0"/>
@@ -307,33 +308,33 @@
       <line num="679" type="stmt" count="0"/>
       <line num="680" type="stmt" count="0"/>
       <line num="681" type="stmt" count="0"/>
-      <line num="682" type="stmt" count="0"/>
-      <line num="685" type="stmt" count="0"/>
-      <line num="693" type="method" name="setLogging" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="695" type="stmt" count="0"/>
-      <line num="703" type="method" name="ticket" visibility="public" complexity="12" crap="156" count="0"/>
+      <line num="684" type="stmt" count="0"/>
+      <line num="692" type="method" name="setLogging" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="694" type="stmt" count="0"/>
+      <line num="702" type="method" name="ticket" visibility="public" complexity="12" crap="156" count="0"/>
+      <line num="712" type="stmt" count="0"/>
       <line num="713" type="stmt" count="0"/>
-      <line num="714" type="stmt" count="0"/>
+      <line num="717" type="stmt" count="0"/>
       <line num="718" type="stmt" count="0"/>
-      <line num="719" type="stmt" count="0"/>
+      <line num="721" type="stmt" count="0"/>
       <line num="722" type="stmt" count="0"/>
-      <line num="723" type="stmt" count="0"/>
+      <line num="726" type="stmt" count="0"/>
       <line num="727" type="stmt" count="0"/>
-      <line num="728" type="stmt" count="0"/>
+      <line num="729" type="stmt" count="0"/>
       <line num="730" type="stmt" count="0"/>
-      <line num="731" type="stmt" count="0"/>
+      <line num="734" type="stmt" count="0"/>
       <line num="735" type="stmt" count="0"/>
-      <line num="736" type="stmt" count="0"/>
+      <line num="737" type="stmt" count="0"/>
       <line num="738" type="stmt" count="0"/>
-      <line num="739" type="stmt" count="0"/>
+      <line num="742" type="stmt" count="0"/>
       <line num="743" type="stmt" count="0"/>
-      <line num="744" type="stmt" count="0"/>
+      <line num="745" type="stmt" count="0"/>
       <line num="746" type="stmt" count="0"/>
-      <line num="747" type="stmt" count="0"/>
+      <line num="750" type="stmt" count="0"/>
       <line num="751" type="stmt" count="0"/>
-      <line num="752" type="stmt" count="0"/>
+      <line num="753" type="stmt" count="0"/>
       <line num="754" type="stmt" count="0"/>
-      <line num="755" type="stmt" count="0"/>
+      <line num="757" type="stmt" count="0"/>
       <line num="758" type="stmt" count="0"/>
       <line num="759" type="stmt" count="0"/>
       <line num="760" type="stmt" count="0"/>
@@ -351,31 +352,31 @@
       <line num="772" type="stmt" count="0"/>
       <line num="773" type="stmt" count="0"/>
       <line num="774" type="stmt" count="0"/>
-      <line num="775" type="stmt" count="0"/>
-      <line num="783" type="method" name="tickets" visibility="public" complexity="13" crap="182" count="0"/>
+      <line num="782" type="method" name="tickets" visibility="public" complexity="13" crap="182" count="0"/>
+      <line num="793" type="stmt" count="0"/>
       <line num="794" type="stmt" count="0"/>
-      <line num="795" type="stmt" count="0"/>
+      <line num="798" type="stmt" count="0"/>
       <line num="799" type="stmt" count="0"/>
-      <line num="800" type="stmt" count="0"/>
+      <line num="802" type="stmt" count="0"/>
       <line num="803" type="stmt" count="0"/>
-      <line num="804" type="stmt" count="0"/>
+      <line num="807" type="stmt" count="0"/>
       <line num="808" type="stmt" count="0"/>
-      <line num="809" type="stmt" count="0"/>
+      <line num="811" type="stmt" count="0"/>
       <line num="812" type="stmt" count="0"/>
-      <line num="813" type="stmt" count="0"/>
+      <line num="816" type="stmt" count="0"/>
       <line num="817" type="stmt" count="0"/>
-      <line num="818" type="stmt" count="0"/>
+      <line num="820" type="stmt" count="0"/>
       <line num="821" type="stmt" count="0"/>
-      <line num="822" type="stmt" count="0"/>
+      <line num="825" type="stmt" count="0"/>
       <line num="826" type="stmt" count="0"/>
-      <line num="827" type="stmt" count="0"/>
+      <line num="829" type="stmt" count="0"/>
       <line num="830" type="stmt" count="0"/>
-      <line num="831" type="stmt" count="0"/>
+      <line num="834" type="stmt" count="0"/>
       <line num="835" type="stmt" count="0"/>
-      <line num="836" type="stmt" count="0"/>
+      <line num="838" type="stmt" count="0"/>
       <line num="839" type="stmt" count="0"/>
-      <line num="840" type="stmt" count="0"/>
-      <line num="843" type="stmt" count="0"/>
+      <line num="842" type="stmt" count="0"/>
+      <line num="844" type="stmt" count="0"/>
       <line num="845" type="stmt" count="0"/>
       <line num="846" type="stmt" count="0"/>
       <line num="847" type="stmt" count="0"/>
@@ -393,9 +394,8 @@
       <line num="859" type="stmt" count="0"/>
       <line num="860" type="stmt" count="0"/>
       <line num="861" type="stmt" count="0"/>
-      <line num="862" type="stmt" count="0"/>
-      <line num="865" type="stmt" count="0"/>
-      <metrics loc="869" ncloc="721" classes="1" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="65" elements="390" coveredelements="65"/>
+      <line num="864" type="stmt" count="0"/>
+      <metrics loc="868" ncloc="720" classes="1" methods="12" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="76" elements="390" coveredelements="76"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/BookwhenApi.php">
       <class name="InShore\Bookwhen\BookwhenApi" namespace="global">
@@ -405,27 +405,27 @@
       <line num="17" type="stmt" count="9"/>
       <line num="18" type="stmt" count="9"/>
       <line num="19" type="stmt" count="9"/>
-      <line num="25" type="method" name="factory" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="27" type="stmt" count="10"/>
+      <line num="25" type="method" name="factory" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="27" type="stmt" count="11"/>
       <metrics loc="31" ncloc="25" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Client.php">
       <class name="InShore\Bookwhen\Client" namespace="global">
-        <metrics complexity="6" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="2" elements="12" coveredelements="4"/>
+        <metrics complexity="6" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="12" coveredelements="6"/>
       </class>
-      <line num="43" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="45" type="stmt" count="10"/>
+      <line num="43" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="45" type="stmt" count="11"/>
       <line num="50" type="method" name="attachments" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="52" type="stmt" count="0"/>
       <line num="58" type="method" name="classPasses" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="60" type="stmt" count="0"/>
       <line num="65" type="method" name="events" visibility="public" complexity="1" crap="1" count="1"/>
       <line num="67" type="stmt" count="1"/>
-      <line num="72" type="method" name="locations" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="74" type="stmt" count="0"/>
+      <line num="72" type="method" name="locations" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="74" type="stmt" count="1"/>
       <line num="79" type="method" name="tickets" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="81" type="stmt" count="0"/>
-      <metrics loc="86" ncloc="54" classes="1" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="2" elements="12" coveredelements="4"/>
+      <metrics loc="86" ncloc="54" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="12" coveredelements="6"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Contracts/ClientContract.php">
       <metrics loc="38" ncloc="23" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
@@ -484,8 +484,8 @@
       <class name="InShore\Bookwhen\Domain\Location" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="21" type="stmt" count="1"/>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="21" type="stmt" count="2"/>
       <metrics loc="23" ncloc="20" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Domain/Ticket.php">
@@ -578,29 +578,29 @@
       <class name="InShore\Bookwhen\Factory" namespace="global">
         <metrics complexity="8" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="23" coveredelements="15"/>
       </class>
-      <line num="45" type="method" name="withApiKey" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="47" type="stmt" count="10"/>
-      <line num="49" type="stmt" count="10"/>
+      <line num="45" type="method" name="withApiKey" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="47" type="stmt" count="11"/>
+      <line num="49" type="stmt" count="11"/>
       <line num="56" type="method" name="withBaseUri" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="58" type="stmt" count="0"/>
       <line num="60" type="stmt" count="0"/>
-      <line num="67" type="method" name="withHttpClient" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="69" type="stmt" count="1"/>
-      <line num="71" type="stmt" count="1"/>
+      <line num="67" type="method" name="withHttpClient" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="69" type="stmt" count="2"/>
+      <line num="71" type="stmt" count="2"/>
       <line num="77" type="method" name="withQueryParam" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="79" type="stmt" count="0"/>
       <line num="81" type="stmt" count="0"/>
-      <line num="87" type="method" name="make" visibility="public" complexity="4" crap="4.02" count="10"/>
-      <line num="89" type="stmt" count="10"/>
-      <line num="91" type="stmt" count="10"/>
-      <line num="92" type="stmt" count="10"/>
-      <line num="95" type="stmt" count="10"/>
-      <line num="97" type="stmt" count="10"/>
-      <line num="98" type="stmt" count="10"/>
+      <line num="87" type="method" name="make" visibility="public" complexity="4" crap="4.02" count="11"/>
+      <line num="89" type="stmt" count="11"/>
+      <line num="91" type="stmt" count="11"/>
+      <line num="92" type="stmt" count="11"/>
+      <line num="95" type="stmt" count="11"/>
+      <line num="97" type="stmt" count="11"/>
+      <line num="98" type="stmt" count="11"/>
       <line num="99" type="stmt" count="0"/>
-      <line num="102" type="stmt" count="10"/>
-      <line num="104" type="stmt" count="10"/>
-      <line num="106" type="stmt" count="10"/>
+      <line num="102" type="stmt" count="11"/>
+      <line num="104" type="stmt" count="11"/>
+      <line num="106" type="stmt" count="11"/>
       <metrics loc="109" ncloc="78" classes="1" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="13" elements="23" coveredelements="15"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Interfaces/BookwhenInterface.php">
@@ -644,8 +644,8 @@
       <class name="InShore\Bookwhen\Resources\Concerns\Transportable" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="17" type="stmt" count="1"/>
+      <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="17" type="stmt" count="2"/>
       <metrics loc="19" ncloc="15" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Resources/Events.php">
@@ -666,17 +666,17 @@
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Resources/Locations.php">
       <class name="InShore\Bookwhen\Resources\Locations" namespace="global">
-        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+        <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="8" coveredelements="4"/>
       </class>
       <line num="21" type="method" name="list" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="23" type="stmt" count="0"/>
       <line num="26" type="stmt" count="0"/>
       <line num="28" type="stmt" count="0"/>
-      <line num="36" type="method" name="retrieve" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <metrics loc="46" ncloc="34" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="8" coveredelements="0"/>
+      <line num="36" type="method" name="retrieve" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <metrics loc="46" ncloc="34" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="8" coveredelements="4"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Resources/Tickets.php">
       <class name="InShore\Bookwhen\Resources\Tickets" namespace="global">
@@ -862,18 +862,18 @@
       <class name="InShore\Bookwhen\Responses\Locations\RetrieveResponse" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="4"/>
-      <line num="26" type="stmt" count="4"/>
-      <line num="33" type="method" name="from" visibility="public" complexity="1" crap="1" count="4"/>
-      <line num="35" type="stmt" count="4"/>
-      <line num="36" type="stmt" count="4"/>
-      <line num="37" type="stmt" count="4"/>
-      <line num="38" type="stmt" count="4"/>
-      <line num="39" type="stmt" count="4"/>
-      <line num="40" type="stmt" count="4"/>
-      <line num="41" type="stmt" count="4"/>
-      <line num="42" type="stmt" count="4"/>
-      <line num="43" type="stmt" count="4"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="5"/>
+      <line num="26" type="stmt" count="5"/>
+      <line num="33" type="method" name="from" visibility="public" complexity="1" crap="1" count="5"/>
+      <line num="35" type="stmt" count="5"/>
+      <line num="36" type="stmt" count="5"/>
+      <line num="37" type="stmt" count="5"/>
+      <line num="38" type="stmt" count="5"/>
+      <line num="39" type="stmt" count="5"/>
+      <line num="40" type="stmt" count="5"/>
+      <line num="41" type="stmt" count="5"/>
+      <line num="42" type="stmt" count="5"/>
+      <line num="43" type="stmt" count="5"/>
       <metrics loc="46" ncloc="35" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Responses/Tickets/ListResponse.php">
@@ -926,20 +926,20 @@
       <class name="InShore\Bookwhen\Transporters\HttpTransporter" namespace="global">
         <metrics complexity="5" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="7" elements="14" coveredelements="8"/>
       </class>
-      <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="35" type="stmt" count="10"/>
-      <line num="40" type="method" name="requestObject" visibility="public" complexity="4" crap="5.50" count="1"/>
-      <line num="42" type="stmt" count="1"/>
-      <line num="45" type="stmt" count="1"/>
+      <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="35" type="stmt" count="11"/>
+      <line num="40" type="method" name="requestObject" visibility="public" complexity="4" crap="5.50" count="2"/>
+      <line num="42" type="stmt" count="2"/>
+      <line num="45" type="stmt" count="2"/>
       <line num="46" type="stmt" count="0"/>
       <line num="47" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="1"/>
-      <line num="58" type="stmt" count="1"/>
+      <line num="50" type="stmt" count="2"/>
+      <line num="58" type="stmt" count="2"/>
       <line num="59" type="stmt" count="0"/>
       <line num="60" type="stmt" count="0"/>
-      <line num="63" type="stmt" count="1"/>
+      <line num="63" type="stmt" count="2"/>
       <line num="64" type="stmt" count="0"/>
-      <line num="67" type="stmt" count="1"/>
+      <line num="67" type="stmt" count="2"/>
       <metrics loc="70" ncloc="56" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="7" elements="14" coveredelements="8"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Validator.php">
@@ -1044,102 +1044,102 @@
       <class name="InShore\Bookwhen\ValueObjects\ApiKey" namespace="global">
         <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="11"/>
-      <line num="20" type="stmt" count="11"/>
-      <line num="22" type="method" name="from" visibility="public" complexity="2" crap="2" count="12"/>
-      <line num="24" type="stmt" count="12"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="12"/>
+      <line num="20" type="stmt" count="12"/>
+      <line num="22" type="method" name="from" visibility="public" complexity="2" crap="2" count="13"/>
+      <line num="24" type="stmt" count="13"/>
       <line num="25" type="stmt" count="1"/>
-      <line num="27" type="stmt" count="11"/>
-      <line num="33" type="method" name="toString" visibility="public" complexity="1" crap="1" count="11"/>
-      <line num="35" type="stmt" count="11"/>
+      <line num="27" type="stmt" count="12"/>
+      <line num="33" type="method" name="toString" visibility="public" complexity="1" crap="1" count="12"/>
+      <line num="35" type="stmt" count="12"/>
       <metrics loc="38" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/ResourceUri.php">
       <class name="InShore\Bookwhen\ValueObjects\ResourceUri" namespace="global">
         <metrics complexity="7" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="3"/>
-      <line num="20" type="stmt" count="3"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="4"/>
+      <line num="20" type="stmt" count="4"/>
       <line num="25" type="method" name="list" visibility="public" complexity="2" crap="2" count="2"/>
       <line num="27" type="stmt" count="2"/>
       <line num="28" type="stmt" count="1"/>
       <line num="30" type="stmt" count="1"/>
-      <line num="36" type="method" name="retrieve" visibility="public" complexity="3" crap="3" count="3"/>
-      <line num="38" type="stmt" count="3"/>
+      <line num="36" type="method" name="retrieve" visibility="public" complexity="3" crap="3" count="4"/>
+      <line num="38" type="stmt" count="4"/>
       <line num="39" type="stmt" count="1"/>
-      <line num="41" type="stmt" count="2"/>
-      <line num="47" type="method" name="toString" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="49" type="stmt" count="3"/>
+      <line num="41" type="stmt" count="3"/>
+      <line num="47" type="method" name="toString" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="49" type="stmt" count="4"/>
       <metrics loc="52" ncloc="36" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/BaseUri.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\BaseUri" namespace="global">
         <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="11"/>
-      <line num="20" type="stmt" count="11"/>
-      <line num="25" type="method" name="from" visibility="public" complexity="2" crap="2" count="12"/>
-      <line num="27" type="stmt" count="12"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="12"/>
+      <line num="20" type="stmt" count="12"/>
+      <line num="25" type="method" name="from" visibility="public" complexity="2" crap="2" count="13"/>
+      <line num="27" type="stmt" count="13"/>
       <line num="28" type="stmt" count="1"/>
-      <line num="30" type="stmt" count="11"/>
-      <line num="36" type="method" name="toString" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="38" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="12"/>
+      <line num="36" type="method" name="toString" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="38" type="stmt" count="3"/>
       <metrics loc="41" ncloc="28" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="8" coveredelements="8"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/Headers.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\Headers" namespace="global">
         <metrics complexity="5" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="6" elements="15" coveredelements="10"/>
       </class>
-      <line num="19" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="10"/>
-      <line num="22" type="stmt" count="10"/>
-      <line num="27" type="method" name="create" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="29" type="stmt" count="10"/>
-      <line num="35" type="method" name="withAuthorization" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="37" type="stmt" count="10"/>
-      <line num="38" type="stmt" count="10"/>
-      <line num="39" type="stmt" count="10"/>
+      <line num="19" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="11"/>
+      <line num="22" type="stmt" count="11"/>
+      <line num="27" type="method" name="create" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="29" type="stmt" count="11"/>
+      <line num="35" type="method" name="withAuthorization" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="37" type="stmt" count="11"/>
+      <line num="38" type="stmt" count="11"/>
+      <line num="39" type="stmt" count="11"/>
       <line num="45" type="method" name="withContentType" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="47" type="stmt" count="0"/>
       <line num="48" type="stmt" count="0"/>
       <line num="49" type="stmt" count="0"/>
       <line num="50" type="stmt" count="0"/>
-      <line num="56" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="58" type="stmt" count="1"/>
+      <line num="56" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="58" type="stmt" count="2"/>
       <metrics loc="61" ncloc="40" classes="1" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="6" elements="15" coveredelements="10"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/Payload.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\Payload" namespace="global">
         <metrics complexity="6" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="12" elements="19" coveredelements="15"/>
       </class>
-      <line num="26" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="1"/>
-      <line num="33" type="stmt" count="1"/>
+      <line num="26" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="2"/>
+      <line num="33" type="stmt" count="2"/>
       <line num="38" type="method" name="list" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="42" type="stmt" count="0"/>
       <line num="43" type="stmt" count="0"/>
       <line num="45" type="stmt" count="0"/>
-      <line num="51" type="method" name="retrieve" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="54" type="stmt" count="1"/>
-      <line num="55" type="stmt" count="1"/>
-      <line num="57" type="stmt" count="1"/>
-      <line num="63" type="method" name="toRequest" visibility="public" complexity="3" crap="3" count="1"/>
-      <line num="65" type="stmt" count="1"/>
-      <line num="67" type="stmt" count="1"/>
-      <line num="69" type="stmt" count="1"/>
+      <line num="51" type="method" name="retrieve" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="2"/>
+      <line num="63" type="method" name="toRequest" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="65" type="stmt" count="2"/>
+      <line num="67" type="stmt" count="2"/>
+      <line num="69" type="stmt" count="2"/>
       <line num="70" type="stmt" count="1"/>
-      <line num="73" type="stmt" count="1"/>
-      <line num="75" type="stmt" count="1"/>
-      <line num="76" type="stmt" count="1"/>
-      <line num="78" type="stmt" count="1"/>
+      <line num="73" type="stmt" count="2"/>
+      <line num="75" type="stmt" count="2"/>
+      <line num="76" type="stmt" count="2"/>
+      <line num="78" type="stmt" count="2"/>
       <metrics loc="81" ncloc="59" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="12" elements="19" coveredelements="15"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/ValueObjects/Transporter/QueryParams.php">
       <class name="InShore\Bookwhen\ValueObjects\Transporter\QueryParams" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
       </class>
-      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="10"/>
-      <line num="20" type="stmt" count="10"/>
-      <line num="25" type="method" name="create" visibility="public" complexity="1" crap="1" count="10"/>
-      <line num="27" type="stmt" count="10"/>
+      <line num="17" type="method" name="__construct" visibility="private" complexity="1" crap="1" count="11"/>
+      <line num="20" type="stmt" count="11"/>
+      <line num="25" type="method" name="create" visibility="public" complexity="1" crap="1" count="11"/>
+      <line num="27" type="stmt" count="11"/>
       <line num="33" type="method" name="withParam" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="35" type="stmt" count="0"/>
       <line num="36" type="stmt" count="0"/>
@@ -1149,6 +1149,6 @@
       <line num="46" type="stmt" count="0"/>
       <metrics loc="49" ncloc="31" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
     </file>
-    <metrics files="56" loc="3882" ncloc="2588" classes="39" methods="122" coveredmethods="46" conditionals="0" coveredconditionals="0" statements="732" coveredstatements="259" elements="854" coveredelements="305"/>
+    <metrics files="56" loc="3881" ncloc="2587" classes="39" methods="122" coveredmethods="48" conditionals="0" coveredconditionals="0" statements="732" coveredstatements="274" elements="854" coveredelements="322"/>
   </project>
 </coverage>

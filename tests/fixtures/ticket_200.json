@@ -1,66 +1,50 @@
 {
-  "data": [
-    {
-      "id": "ti-sboe-20200320100000-tk1m",
+  "data": {
+      "id": "ti-s4bs-20230501080000-tp9b",
       "type": "ticket",
       "attributes": {
-        "title": "Single ticket",
-        "details": "More details about the ticket etc.",
-        "number_issued": 10,
-        "number_taken": 7,
-        "course_ticket": false,
-        "group_ticket": false,
-        "group_min": 3,
-        "group_max": 5,
-        "available": true,
-        "available_from": "2020-08-22T11:53:10.180Z",
-        "available_to": "2020-08-22T11:53:10.180Z",
-        "cost": {
-          "currency_code": "USD",
-          "net": 1000,
-          "tax": 0
-        },
-        "built_basket_iframe_url": "/pagecode/iframe/basket_items/apply?basket_item_ids%5Bti-sboe-20200320100000-tk1m%5D=1",
-        "built_basket_url": "/pagecode/basket_items/apply?basket_item_ids%5Bti-sboe-20200320100000-tk1m%5D=1"
+          "title": "I000 inShore 1 Hour Consultation",
+          "details": "",
+          "number_issued": null,
+          "number_taken": 0,
+          "group_ticket": false,
+          "course_ticket": false,
+          "group_min": 2,
+          "group_max": 5,
+          "available": false,
+          "available_from": null,
+          "available_to": null,
+          "cost": {
+              "currency_code": "GBP",
+              "net": 10000,
+              "tax": 0
+          },
+          "built_basket_iframe_url": "/inshore/iframe/basket_items/apply?basket_item_ids%5Bti-s4bs-20230501080000-tp9b%5D=1",
+          "built_basket_url": "/inshore/basket_items/apply?basket_item_ids%5Bti-s4bs-20230501080000-tp9b%5D=1"
       },
       "relationships": {
-        "events": {
-          "data": [
-            {
-              "id": "ev-sboe-20200320100000",
-              "type": "event"
-            }
-          ],
-          "links": {
-            "related": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/events",
-            "self": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/relationships/events"
+          "events": {
+              "data": [
+                  {
+                      "id": "ev-s4bs-20230501080000",
+                      "type": "event"
+                  }
+              ],
+              "links": {
+                  "related": "https://api.bookwhen.com/v2/tickets/ti-s4bs-20230501080000-tp9b/events",
+                  "self": "https://api.bookwhen.com/v2/tickets/ti-s4bs-20230501080000-tp9b/relationships/events"
+              }
+          },
+          "class_passes": {
+              "data": [],
+              "links": {
+                  "related": "https://api.bookwhen.com/v2/tickets/ti-s4bs-20230501080000-tp9b/class_passes",
+                  "self": "https://api.bookwhen.com/v2/tickets/ti-s4bs-20230501080000-tp9b/relationships/class_passes"
+              }
           }
-        },
-        "class_passes": {
-          "data": [
-            {
-              "id": "cp-vk3x1brhpsbf",
-              "type": "class_pass"
-            }
-          ],
-          "links": {
-            "related": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/class_passes",
-            "self": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m/relationships/class_passes"
-          }
-        }
       },
       "links": {
-        "self": "https://api.bookwhen.com/v2/tickets/ti-sboe-20200320100000-tk1m"
-      },
-      "included": [
-        {}
-      ]
-    }
-  ],
-  "links": {
-    "self": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=40",
-    "first": "https://api.bookwhen.com/v2/{resource_plural}",
-    "prev": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=20",
-    "next": "https://api.bookwhen.com/v2/{resource_plural}?page[offset]=60"
+          "self": "https://api.bookwhen.com/v2/tickets/ti-s4bs-20230501080000-tp9b"
+      }
   }
 }

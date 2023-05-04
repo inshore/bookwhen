@@ -124,15 +124,4 @@ class BookwhenTest extends TestCase
         }
         $this->bookwhen->attachment($testAttachmentId);
     }
-    
-    /**
-     * @covers InShore\Bookwhen\ValueObjects\ResourceUri::__construct()
-     * @covers InShore\Bookwhen\ValueObjects\ResourceUri::retrieve()
-     * @dataProvider provideInvalidRetrieveResources
-     */
-//     public function testAtachmentValidattachmentId($testResource, $testId): void
-//     {
-
-//     }
-
 }

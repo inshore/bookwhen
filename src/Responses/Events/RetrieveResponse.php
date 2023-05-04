@@ -42,7 +42,7 @@ final class RetrieveResponse implements ResponseContract
     public static function from(array $attributes, $included = []): self
     {
 
-//var_export($attributes);die();
+        //var_export($attributes);die();
         // attachments
         $attachments = [];
         foreach ($attributes['relationships']['attachments']['data'] as $attachment) {

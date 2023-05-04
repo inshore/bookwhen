@@ -72,5 +72,6 @@ class EventTest extends TestCase
         $event = $bookwhen->event('ev-s4bs-20230501080000');
 
         $this->assertEquals('ev-s4bs-20230501080000', $event->id);
+        $this->assertEquals(1, $event->attendeeAvailable);
     }
 }

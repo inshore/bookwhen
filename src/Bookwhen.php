@@ -113,8 +113,7 @@ final class Bookwhen implements BookwhenInterface
         try {
             if(!is_null($client)) {
                 $this->client = $client;
-            }
-            else {                
+            } else {
                 $this->client = !is_null($apiKey)
                 ? BookwhenApi::client($apiKey)
                 : (array_key_exists('INSHORE_BOOKWHEN_API_KEY', $_ENV)

@@ -685,14 +685,14 @@ final class Bookwhen implements BookwhenInterface
 
     }
 
-    /**
-     * Set Debug.
-     * @deprecated
-     */
-    public function setLogging($level)
-    {
-        $this->logLevel = $level;
-    }
+//     /**
+//      * Set Debug.
+//      * @deprecated
+//      */
+//     public function setLogging($level)
+//     {
+//         $this->logLevel = $level;
+//     }
 
     /**
      * {@inheritDoc}

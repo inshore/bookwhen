@@ -2,11 +2,11 @@
 
 namespace InShore\Bookwhen\Contracts;
 
-use InShore\Bookwhen\ContractsResources\AttachmentsContract;
-use InShore\Bookwhen\ContractsResources\ClassPassesContract;
-use InShore\Bookwhen\ContractsResources\EventsContract;
-use InShore\Bookwhen\ContractsResources\LocationContract;
-use InShore\Bookwhen\ContractsResources\TicketssContract;
+use InShore\Bookwhen\Contracts\Resources\AttachmentsContract;
+use InShore\Bookwhen\Contracts\Resources\ClassPassesContract;
+use InShore\Bookwhen\Contracts\Resources\EventsContract;
+use InShore\Bookwhen\Contracts\Resources\LocationsContract;
+use InShore\Bookwhen\Contracts\Resources\TicketsContract;
 
 interface ClientContract
 {

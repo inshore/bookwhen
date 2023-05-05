@@ -88,13 +88,13 @@ final class Bookwhen implements BookwhenInterface
 
 
     /** @var string The path to the log file */
-    private $logFile;
+    //private $logFile;
 
     /** @var object loging object. */
-    private $logger;
+    //private $logger;
 
     /** @var string the logging level. */
-    private string $logLevel;
+    //private string $logLevel;
 
     /**
      * Creates a new Bookwhen Client with the given API token.
@@ -685,14 +685,14 @@ final class Bookwhen implements BookwhenInterface
 
     }
 
-    /**
-     * Set Debug.
-     * @deprecated
-     */
-    public function setLogging($level)
-    {
-        $this->logLevel = $level;
-    }
+//     /**
+//      * Set Debug.
+//      * @deprecated
+//      */
+//     public function setLogging($level)
+//     {
+//         $this->logLevel = $level;
+//     }
 
     /**
      * {@inheritDoc}

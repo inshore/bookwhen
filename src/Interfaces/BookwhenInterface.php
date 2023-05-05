@@ -8,6 +8,7 @@ use InShore\Bookwhen\Domain\Event;
 use InShore\Bookwhen\Domain\Location;
 use InShore\Bookwhen\Domain\Ticket;
 use InShore\Bookwhen\Exceptions\RestException;
+use InShore\Bookwhen\Exceptions\ValidationException;
 
 interface BookwhenInterface
 {

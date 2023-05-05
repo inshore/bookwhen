@@ -7,19 +7,18 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use InShore\Bookwhen\Bookwhen;
 use InShore\Bookwhen\BookwhenApi;
+use InShore\Bookwhen\Domain\Event;
 use InShore\Bookwhen\Client;
-use InShore\Bookwhen\Domain\Location;
 use InShore\Bookwhen\Factory;
 use InShore\Bookwhen\Exceptions\ConfigurationException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientInterface;
-use InShore;
 
 /**
  * @uses InShore\Bookwhen\Validator
  */
-class LocationsTest extends TestCase
+class EventsTest extends TestCase
 {
     
     protected $apiKey;
@@ -50,8 +49,10 @@ class LocationsTest extends TestCase
      * @covers InShore\Bookwhen\Domain\Ticket
      * @covers InShore\Bookwhen\Factory
      * @covers InShore\Bookwhen\Resources\Concerns\Transportable
-     * @covers InShore\Bookwhen\Resources\Locations
-     * @covers InShore\Bookwhen\Responses\Locations\ListResponse
+     * @covers InShore\Bookwhen\Resources\Events
+     * @covers InShore\Bookwhen\Responses\Attachments\RetrieveResponse
+     * @covers InShore\Bookwhen\Responses\Events\ListResponse
+     * @covers InShore\Bookwhen\Responses\Events\RetrieveResponse
      * @covers InShore\Bookwhen\Responses\Locations\RetrieveResponse
      * @covers InShore\Bookwhen\Responses\Tickets\RetrieveResponse
      * @covers InShore\Bookwhen\Transporters\HttpTransporter
@@ -62,23 +63,42 @@ class LocationsTest extends TestCase
      * @covers InShore\Bookwhen\ValueObjects\Transporter\Payload
      * @covers InShore\Bookwhen\ValueObjects\Transporter\QueryParams
      */
-    public function testValids(): void
+    public function testEvents(): void
     {
-        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/locations_200.json')));         
+        $this->mockHandler->append(new Response(200, [], file_get_contents(__DIR__ . '/../fixtures/events_200.json')));         
         $this->client = BookwhenApi::factory()
         ->withApiKey($this->apiKey)
         ->withHttpClient($this->guzzleClient)
         ->make();
 
         $bookwhen = new Bookwhen(null, $this->client);
-        $locations = $bookwhen->locations();
+        $events = $bookwhen->events();
 
-        $this->assertIsArray($locations);   
-        $this->assertInstanceOf(Location::class, $locations[2]);
-        $this->assertEquals('Online', $locations[2]->additionalInfo);
-        $this->assertEquals('Zoom', $locations[2]->addressText);
-        $this->assertEquals(49.21879, $locations[2]->latitude);
-        $this->assertEquals(-2.12625, $locations[2]->longitude);
-        $this->assertEquals('w0uh48ad3fm2', $locations[2]->id);
+        $this->assertIsArray($events);
+        
+        $this->assertInstanceOf(Event::class, $events[9]);
+        
+        $this->assertFalse($events[9]->allDay);
+        // $this->assertEquals(1, $events[9]->attachments);
+        $this->assertEquals(1, $events[9]->attendeeAvailable);
+        $this->assertEquals(0, $events[9]->attendeeCount);
+        $this->assertEquals(1, $events[9]->attendeeLimit);
+        //long string for details?
+        // $this->assertEquals('', $events[9]->details);
+        $this->assertEquals('2023-05-08T17:00:00.000Z', $events[9]->endAt);
+        $this->assertFalse($events[9]->finished);
+        $this->assertEquals('ev-sjdo-20230508160000', $events[9]->id);
+        $this->assertEquals('7e173fxqy8x8', $events[9]->location->id);
+        $this->assertEquals(10, $events[9]->maxTicketsPerBooking);
+        $this->assertEquals('2023-05-08T16:00:00.000Z', $events[9]->startAt);
+        $this->assertFalse($events[9]->soldOut);
+        $this->assertEquals('ti-sjdo-20230508160000-tyi9', $events[9]->tickets[0]->id);
+        $this->assertEquals('I000 inShore 1 Hour Product Engineer Consultation', $events[9]->title);
+        $this->assertTrue($events[9]->waitingList);
+
+
+
+
+
     }
 }

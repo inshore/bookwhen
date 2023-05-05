@@ -88,13 +88,13 @@ final class Bookwhen implements BookwhenInterface
 
 
     /** @var string The path to the log file */
-    private $logFile;
+    //private $logFile;
 
     /** @var object loging object. */
-    private $logger;
+    //private $logger;
 
     /** @var string the logging level. */
-    private string $logLevel;
+    //private string $logLevel;
 
     /**
      * Creates a new Bookwhen Client with the given API token.

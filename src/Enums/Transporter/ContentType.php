@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAI\Enums\Transporter;
+namespace InShore\Bookwhen\Enums\Enums\Transporter;
 
 /**
  * @internal

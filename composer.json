@@ -23,7 +23,8 @@
 		"psr/http-client" : "1.0.x-dev",
 		"psr/http-client-implementation" : "*",
 		"psr/http-message" : "2.0.x-dev",
-		"psr/http-factory-implementation" : "*"
+		"psr/http-factory-implementation" : "*",
+		"symfony/http-client": "^6.2"
 	},
 	"require-dev" : {
 		"phpunit/phpunit" : "^10.0"

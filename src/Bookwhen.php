@@ -154,15 +154,14 @@ final class Bookwhen implements BookwhenInterface
     /**
      *
      * {@inheritDoc}
+     * 
      * @see \InShore\Bookwhen\Interfaces\BookwhenInterface::attachment()
-     * @todo
      */
     public function attachments(
         string $title = null,
         string $fileName = null,
         string $fileType = null
     ): array {
-        //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
         if (!is_null($title)) {
             if ($this->validator->validTitle($title)) {
@@ -210,7 +209,6 @@ final class Bookwhen implements BookwhenInterface
      */
     public function classPass(string $classPassId): ClassPass
     {
-        //         $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
         if (!$this->validator->validId($classPassId, 'classPass')) {
             throw new ValidationException('classPassId', $classPassId);
@@ -242,8 +240,6 @@ final class Bookwhen implements BookwhenInterface
         $usageType = null,
         $useRestrictedForDays = null
     ): array {
-
-        //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
         if (!is_null($detail) && !$this->validator->validDetails($detail)) {
             throw new ValidationException('detail', $detail);
@@ -304,7 +300,6 @@ final class Bookwhen implements BookwhenInterface
         bool $includeTicketsClassPasses = false,
         bool $includeTicketsEvents = false
     ): Event {
-        //$this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
 
         if (!$this->validator->validId($eventId, 'event')) {
             throw new ValidationException('eventId', $eventId);
@@ -315,16 +310,9 @@ final class Bookwhen implements BookwhenInterface
             throw new ValidationException('includeAttachments', $includeAttachments);
         }
 
-        if ($includeAttachments) {
-            array_push($this->includes, 'attachments');
-        }
-
         // Validate $includeTickets;
         if (!$this->validator->validInclude($includeLocation)) {
             throw new ValidationException('includeLocation', $includeLocation);
-        }
-        if ($includeLocation) {
-            array_push($this->includes, 'location');
         }
 
         // Validate $includeTickets;
@@ -332,28 +320,59 @@ final class Bookwhen implements BookwhenInterface
             throw new ValidationException('includeTickets', $includeTickets);
         }
 
-        if ($includeTickets) {
-            array_push($this->includes, 'tickets');
-        }
-
         // Validate $includeTicketsEvents;
         if (!$this->validator->validInclude($includeTicketsEvents)) {
             throw new ValidationException('includeTicketsEvents', $includeTicketsEvents);
-        }
-
-        if ($includeTicketsEvents) {
-            array_push($this->includes, 'tickets.events');
         }
 
         // Validate $includeTicketsClassPasses;
         if (!$this->validator->validInclude($includeTicketsClassPasses)) {
             throw new ValidationException('includeTicketsClassPasses', $includeTicketsClassPasses);
         }
+        
+        
+//         if ($includeAttachments) {
+//             array_push($this->includes, 'attachments');
+//         }
+        
+//         if ($includeLocation) {
+//             array_push($this->includes, 'location');
+//         }
+        
+//         if ($includeTickets) {
+//             array_push($this->includes, 'tickets');
+//         }
+        
+//         if ($includeTicketsEvents) {
+//             array_push($this->includes, 'tickets.events');
+//         }
 
-        if ($includeTicketsClassPasses) {
-            array_push($this->includes, 'tickets.class_passes');
-        }
+//         if ($includeTicketsClassPasses) {
+//             array_push($this->includes, 'tickets.class_passes');
+//         }
 
+        $includesMapping = [
+            'attachments' => $includeAttachments,
+            'location' => $includeLocation,
+            'tickets' => $includeTickets,
+            'tickets.events' => $includeTicketsEvents,
+            'tickets.class_passes' => $includeTicketsClassPasses,
+        ];
+        
+//         foreach ($includesMapping as $key => $value) {
+//             if ($value) {
+//                 $this->includes[] = $key;
+//             }
+//         }
+
+        $this->includes = array_keys(array_filter($includesMapping, function ($value) {
+            return $value;
+        }));
+        
+        var_export($this->includes);
+        
+        die();
+        
         $event = $this->client->events()->retrieve($eventId, ['include' => implode(',', $this->includes)]);
 
         // attachments

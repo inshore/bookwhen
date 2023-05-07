@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace InShore\Bookwhen\ValueObjects\Transporter;
 
 use Http\Discovery\Psr17Factory;
-use Http\Message\MultipartStream\MultipartStreamBuilder;
 use InShore\Bookwhen\Contracts\Request;
 use InShore\Bookwhen\Enums\Transporter\ContentType;
 use InShore\Bookwhen\Enums\Transporter\Method;
 use InShore\Bookwhen\ValueObjects\ResourceUri;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * @internal

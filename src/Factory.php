@@ -2,8 +2,6 @@
 
 namespace InShore\Bookwhen;
 
-use Exception;
-use GuzzleHttp\Client as GuzzleClient;
 use Http\Discovery\Psr18ClientDiscovery;
 use InShore\Bookwhen\Transporters\HttpTransporter;
 use InShore\Bookwhen\ValueObjects\ApiKey;
@@ -11,8 +9,6 @@ use InShore\Bookwhen\ValueObjects\Transporter\BaseUri;
 use InShore\Bookwhen\ValueObjects\Transporter\Headers;
 use InShore\Bookwhen\ValueObjects\Transporter\QueryParams;
 use Psr\Http\Client\ClientInterface;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\HttpClient\Psr18Client;
 
 final class Factory

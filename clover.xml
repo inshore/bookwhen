@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683457670">
-  <project timestamp="1683457670">
+<coverage generated="1683536637">
+  <project timestamp="1683536637">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
-        <metrics complexity="94" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="286" elements="389" coveredelements="287"/>
+        <metrics complexity="89" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="291" elements="389" coveredelements="292"/>
       </class>
       <line num="104" type="method" name="__construct" visibility="public" complexity="5" crap="5.27" count="20"/>
       <line num="114" type="stmt" count="20"/>
@@ -351,30 +351,38 @@
       <line num="752" type="stmt" count="1"/>
       <line num="753" type="stmt" count="1"/>
       <line num="754" type="stmt" count="1"/>
-      <line num="762" type="method" name="tickets" visibility="public" complexity="13" crap="16.04" count="1"/>
+      <line num="762" type="method" name="tickets" visibility="public" complexity="8" crap="8.19" count="1"/>
       <line num="773" type="stmt" count="1"/>
       <line num="774" type="stmt" count="0"/>
       <line num="778" type="stmt" count="1"/>
       <line num="779" type="stmt" count="0"/>
-      <line num="782" type="stmt" count="1"/>
-      <line num="783" type="stmt" count="0"/>
-      <line num="787" type="stmt" count="1"/>
-      <line num="788" type="stmt" count="0"/>
-      <line num="791" type="stmt" count="1"/>
-      <line num="792" type="stmt" count="0"/>
-      <line num="796" type="stmt" count="1"/>
-      <line num="797" type="stmt" count="0"/>
-      <line num="800" type="stmt" count="1"/>
-      <line num="801" type="stmt" count="0"/>
+      <line num="783" type="stmt" count="1"/>
+      <line num="784" type="stmt" count="0"/>
+      <line num="788" type="stmt" count="1"/>
+      <line num="789" type="stmt" count="0"/>
+      <line num="793" type="stmt" count="1"/>
+      <line num="794" type="stmt" count="0"/>
+      <line num="798" type="stmt" count="1"/>
+      <line num="799" type="stmt" count="0"/>
+      <line num="802" type="stmt" count="1"/>
+      <line num="803" type="stmt" count="1"/>
+      <line num="804" type="stmt" count="1"/>
       <line num="805" type="stmt" count="1"/>
-      <line num="806" type="stmt" count="0"/>
-      <line num="809" type="stmt" count="1"/>
-      <line num="810" type="stmt" count="0"/>
+      <line num="806" type="stmt" count="1"/>
+      <line num="807" type="stmt" count="1"/>
+      <line num="808" type="stmt" count="1"/>
+      <line num="810" type="stmt" count="1"/>
+      <line num="811" type="stmt" count="1"/>
+      <line num="812" type="stmt" count="1"/>
       <line num="814" type="stmt" count="1"/>
-      <line num="815" type="stmt" count="0"/>
+      <line num="816" type="stmt" count="1"/>
+      <line num="817" type="stmt" count="1"/>
       <line num="818" type="stmt" count="1"/>
-      <line num="819" type="stmt" count="0"/>
+      <line num="819" type="stmt" count="1"/>
+      <line num="820" type="stmt" count="1"/>
+      <line num="821" type="stmt" count="1"/>
       <line num="822" type="stmt" count="1"/>
+      <line num="823" type="stmt" count="1"/>
       <line num="824" type="stmt" count="1"/>
       <line num="825" type="stmt" count="1"/>
       <line num="826" type="stmt" count="1"/>
@@ -385,16 +393,8 @@
       <line num="831" type="stmt" count="1"/>
       <line num="832" type="stmt" count="1"/>
       <line num="833" type="stmt" count="1"/>
-      <line num="834" type="stmt" count="1"/>
-      <line num="835" type="stmt" count="1"/>
       <line num="836" type="stmt" count="1"/>
-      <line num="837" type="stmt" count="1"/>
-      <line num="838" type="stmt" count="1"/>
-      <line num="839" type="stmt" count="1"/>
-      <line num="840" type="stmt" count="1"/>
-      <line num="841" type="stmt" count="1"/>
-      <line num="844" type="stmt" count="1"/>
-      <metrics loc="848" ncloc="697" classes="1" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="286" elements="389" coveredelements="287"/>
+      <metrics loc="840" ncloc="689" classes="1" methods="11" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="378" coveredstatements="291" elements="389" coveredelements="292"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/BookwhenApi.php">
       <class name="InShore\Bookwhen\BookwhenApi" namespace="global">
@@ -1148,6 +1148,6 @@
       <line num="46" type="stmt" count="0"/>
       <metrics loc="49" ncloc="31" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
     </file>
-    <metrics files="56" loc="3856" ncloc="2559" classes="39" methods="121" coveredmethods="72" conditionals="0" coveredconditionals="0" statements="732" coveredstatements="565" elements="853" coveredelements="637"/>
+    <metrics files="56" loc="3848" ncloc="2551" classes="39" methods="121" coveredmethods="72" conditionals="0" coveredconditionals="0" statements="732" coveredstatements="570" elements="853" coveredelements="642"/>
   </project>
 </coverage>

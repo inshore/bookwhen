@@ -779,17 +779,9 @@ final class Bookwhen implements BookwhenInterface
             throw new ValidationException('includeClassPasses', $includeClassPasses);
         }
 
-        if ($includeClassPasses) {
-            array_push($this->includes, 'class_passes');
-        }
-
         // Validate $includeEvents;
         if (!$this->validator->validInclude($includeEvents)) {
             throw new ValidationException('includeEvents', $includeEvents);
-        }
-
-        if ($includeEvents) {
-            array_push($this->includes, 'events');
         }
 
         // Validate $includeAttachments;
@@ -797,17 +789,9 @@ final class Bookwhen implements BookwhenInterface
             throw new ValidationException('includeEventssAttachments', $includeEventsAttachments);
         }
 
-        if ($includeEventsAttachments) {
-            array_push($this->includes, 'events.attachments');
-        }
-
         // Validate $includeEventsLocation;
         if (!$this->validator->validInclude($includeEventsLocation)) {
             throw new ValidationException('includeEventsLocation', $includeEventsLocation);
-        }
-
-        if ($includeEventsLocation) {
-            array_push($this->includes, 'events.location');
         }
 
         // Validate $includeEventsTickets;
@@ -815,9 +799,17 @@ final class Bookwhen implements BookwhenInterface
             throw new ValidationException('includeEventsTickets', $includeEventsTickets);
         }
 
-        if ($includeEventsTickets) {
-            array_push($this->includes, 'events.tickets');
-        }
+        $includesMapping = [
+            'class_passes' => $includeClassPasses,
+            'events' => $includeEvents,
+            'events.attachments' => $includeEventsAttachments,
+            'events.location' => $includeEventsLocation,
+            'events.tickets' => $includeEventsTickets,
+        ];
+
+        $this->includes = array_keys(array_filter($includesMapping, function ($value) {
+            return $value;
+        }));
 
         $tickets = $this->client->tickets()->list(array_merge(['event_id' => $eventId], ['include' => implode(',', $this->includes)]));
 

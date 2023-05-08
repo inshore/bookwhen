@@ -127,6 +127,23 @@ final class Bookwhen implements BookwhenInterface
 
     /**
      *
+     * @param string $filter
+     * @param string $value
+     * @param string $validator
+     * @throws ValidationException
+     */
+    public function addFilter(string $filter, null | string $value, string $validator): void
+    {
+
+        if (!is_null($value) && !$this->validator->$validator($value)) {
+            throw new ValidationException($filter, $value);
+        } else {
+            $this->filters['filter[' . $filter . ']'] = $value;
+        }
+    }
+
+    /**
+     *
      * {@inheritDoc}
      * @see \InShore\Bookwhen\Interfaces\ClientInterface::attachment()
      * @todo all attachment properties
@@ -164,30 +181,10 @@ final class Bookwhen implements BookwhenInterface
     ): array {
 
         $this->addFilter('title', $title, 'validTitle');
-        
-        $this->addFilter('file_name', $fileName, 'validFileName');
-        
-        $this->addFilter('file_type', $fileType, 'validFileType');
 
-//         if (!is_null($title)) {
-//             if ($this->validator->validTitle($title)) {
-//                 $this->filters['filter[title]'] = $title;
-//             } else {
-//                 throw new ValidationException('title', $title);
-//             }
-//         }
-        
-//         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
-//             throw new ValidationException('file name', $fileName);
-//         } else {
-//             $this->filters['filter[file_name]'] = $fileName;
-//         }
-        
-//         if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
-//             throw new ValidationException('file type', $fileType);
-//         } else {
-//             $this->filters['filter[file_type]'] = $fileType;
-//         }
+        $this->addFilter('file_name', $fileName, 'validFileName');
+
+        $this->addFilter('file_type', $fileType, 'validFileType');
 
         $attachments = $this->client->attachments()->list($this->filters);
 
@@ -247,35 +244,15 @@ final class Bookwhen implements BookwhenInterface
         $useRestrictedForDays = null
     ): array {
 
-        if (!is_null($detail) && !$this->validator->validDetails($detail)) {
-            throw new ValidationException('detail', $detail);
-        } else {
-            $this->filters['filter[detail]'] = $detail;
-        }
+        $this->addFilter('detail', $detail, 'validDetails');
 
-        if (!is_null($title) && !$this->validator->validTitle($title)) {
-            throw new ValidationException('title', $title);
-        } else {
-            $this->filters['filter[title]'] = $title;
-        }
+        $this->addFilter('title', $title, 'validTitle');
 
-        if (!is_null($usageAllowance) && !$this->validator->validUsageAllowance($usageAllowance)) {
-            throw new ValidationException('usageAllowance', $usageAllowance);
-        } else {
-            $this->filters['filter[usage_allowance]'] = $usageAllowance;
-        }
+        $this->addFilter('usage_allowance', $usageAllowance, 'validUsageAllowance');
 
-        if (!is_null($usageType) && !$this->validator->validUsageType($usageType)) {
-            throw new ValidationException('usageType', $usageType);
-        } else {
-            $this->filters['filter[usage_type]'] = $usageType;
-        }
+        $this->addFilter('usage_type', $usageType, 'validUsageType');
 
-        if (!is_null($useRestrictedForDays) && !$this->validator->validUseRestrictedForDays($useRestrictedForDays)) {
-            throw new ValidationException('useRestrictedForDays', $useRestrictedForDays);
-        } else {
-            $this->filters['filter[use_restricted_for_days]'] = $useRestrictedForDays;
-        }
+        $this->addFilter('use_restricted_for_days', $useRestrictedForDays, 'validUseRestrictedForDays');
 
         $classPasses = $this->client->classPasses()->list($this->filters);
 
@@ -641,21 +618,23 @@ final class Bookwhen implements BookwhenInterface
         null | string $additionalInfo = null
     ): array {
 
-        // $this->logger->debug(__METHOD__ . '(' . var_export(func_get_args(), true) . ')');
+        $this->addFilter('additional_info', $additionalInfo, 'validAdditionalInfo');
 
-        if (!empty($additionalInfo)) {
-            if (!$this->validator->validAdditionalInfo($additionalInfo, 'additionalInfo')) {
-                throw new ValidationException('additionalInfo', $additionalInfo);
-            }
-            $this->filters['filter[additional_info]'] = $additionalInfo;
-        }
+        $this->addFilter('address_text', $addressText, 'validAddressText');
 
-        if (!empty($addressText)) {
-            if (!$this->validator->validAddressText($addressText, 'addressText')) {
-                throw new ValidationException('addressText', $addressText);
-            }
-            $this->filters['filter[address_text]'] = $addressText;
-        }
+        //         if (!empty($additionalInfo)) {
+        //             if (!$this->validator->validAdditionalInfo($additionalInfo, 'additionalInfo')) {
+        //                 throw new ValidationException('additionalInfo', $additionalInfo);
+        //             }
+        //             $this->filters['filter[additional_info]'] = $additionalInfo;
+        //         }
+
+        //         if (!empty($addressText)) {
+        //             if (!$this->validator->validAddressText($addressText, 'addressText')) {
+        //                 throw new ValidationException('addressText', $addressText);
+        //             }
+        //             $this->filters['filter[address_text]'] = $addressText;
+        //         }
 
         $locations = $this->client->locations()->list($this->filters);
 
@@ -842,22 +821,5 @@ final class Bookwhen implements BookwhenInterface
         return $this->tickets;
 
     }
-    
-    /**
-     * 
-     * @param string $filter
-     * @param string $value
-     * @param string $validator
-     * @throws ValidationException
-     */
-    protected function addFilter(string $filter, null | string $value, string $validator): void
-    {
-        
-        if (!is_null($value) && !$this->validator->$validator($value)) {
-            throw new ValidationException($filter, $value);
-        } else {
-            $this->filters['filter[' . $filter . ']'] = $value;
-        }
-    }
-    
+
 }

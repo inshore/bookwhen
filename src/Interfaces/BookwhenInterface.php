@@ -19,6 +19,17 @@ interface BookwhenInterface
     //public function __construct(string $token, string $logFile, string $logLevel);
 
     /**
+     *
+     * @author Daniel Mullin daniel@inshore.je
+     * @author Brandon Lubbehusen brandon@inshore.je
+     *
+     * @access protected
+     *
+     * @throws ValidationException if the supplied value is invalid.
+     */
+    public function addFilter(string $filter, null | string $value, string $validator): void;
+
+    /**
      * API wrapper to get an Attachment.
      *
      * @author Daniel Mullin daniel@inshore.je

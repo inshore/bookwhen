@@ -163,25 +163,31 @@ final class Bookwhen implements BookwhenInterface
         string $fileType = null
     ): array {
 
-        if (!is_null($title)) {
-            if ($this->validator->validTitle($title)) {
-                $this->filters['filter[title]'] = $title;
-            } else {
-                throw new ValidationException('title', $title);
-            }
-        }
+        $this->addFilter('title', $title, 'validTitle');
+        
+        $this->addFilter('file_name', $fileName, 'validFileName');
+        
+        $this->addFilter('file_type', $fileType, 'validFileType');
 
-        if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
-            throw new ValidationException('file name', $fileName);
-        } else {
-            $this->filters['filter[file_name]'] = $fileName;
-        }
-
-        if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
-            throw new ValidationException('file type', $fileType);
-        } else {
-            $this->filters['filter[file_type]'] = $fileType;
-        }
+//         if (!is_null($title)) {
+//             if ($this->validator->validTitle($title)) {
+//                 $this->filters['filter[title]'] = $title;
+//             } else {
+//                 throw new ValidationException('title', $title);
+//             }
+//         }
+        
+//         if (!is_null($fileName) && !$this->validator->validFileName($fileName)) {
+//             throw new ValidationException('file name', $fileName);
+//         } else {
+//             $this->filters['filter[file_name]'] = $fileName;
+//         }
+        
+//         if (!is_null($fileType) && !$this->validator->validFileType($fileType)) {
+//             throw new ValidationException('file type', $fileType);
+//         } else {
+//             $this->filters['filter[file_type]'] = $fileType;
+//         }
 
         $attachments = $this->client->attachments()->list($this->filters);
 
@@ -836,4 +842,22 @@ final class Bookwhen implements BookwhenInterface
         return $this->tickets;
 
     }
+    
+    /**
+     * 
+     * @param string $filter
+     * @param string $value
+     * @param string $validator
+     * @throws ValidationException
+     */
+    protected function addFilter(string $filter, null | string $value, string $validator): void
+    {
+        
+        if (!is_null($value) && !$this->validator->$validator($value)) {
+            throw new ValidationException($filter, $value);
+        } else {
+            $this->filters['filter[' . $filter . ']'] = $value;
+        }
+    }
+    
 }

@@ -549,7 +549,7 @@ final class Bookwhen implements BookwhenInterface
                     $attachment->title
                 ));
             }
-            
+
             $eventTickets = [];
             foreach ($event->tickets as $ticket) {
                 array_push($eventTickets, new Ticket(

@@ -44,6 +44,7 @@ class EventsTest extends TestCase
      * @covers InShore\Bookwhen\Bookwhen
      * @covers InShore\Bookwhen\BookwhenApi
      * @covers InShore\Bookwhen\Client
+     * @covers InShore\Bookwhen\Domain\Attachment
      * @covers InShore\Bookwhen\Domain\Event
      * @covers InShore\Bookwhen\Domain\Location
      * @covers InShore\Bookwhen\Domain\Ticket

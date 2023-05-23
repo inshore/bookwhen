@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1683539284">
-  <project timestamp="1683539284">
+<coverage generated="1684830700">
+  <project timestamp="1684830700">
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Bookwhen.php">
       <class name="InShore\Bookwhen\Bookwhen" namespace="global">
-        <metrics complexity="72" methods="12" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="358" coveredstatements="286" elements="370" coveredelements="290"/>
+        <metrics complexity="73" methods="12" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="370" coveredstatements="298" elements="382" coveredelements="302"/>
       </class>
       <line num="104" type="method" name="__construct" visibility="public" complexity="5" crap="5.27" count="20"/>
       <line num="114" type="stmt" count="20"/>
@@ -160,7 +160,7 @@
       <line num="392" type="stmt" count="2"/>
       <line num="393" type="stmt" count="2"/>
       <line num="394" type="stmt" count="2"/>
-      <line num="402" type="method" name="events" visibility="public" complexity="28" crap="68.54" count="1"/>
+      <line num="402" type="method" name="events" visibility="public" complexity="29" crap="60.15" count="1"/>
       <line num="424" type="stmt" count="1"/>
       <line num="425" type="stmt" count="0"/>
       <line num="426" type="stmt" count="0"/>
@@ -232,13 +232,13 @@
       <line num="548" type="stmt" count="1"/>
       <line num="549" type="stmt" count="1"/>
       <line num="550" type="stmt" count="1"/>
-      <line num="551" type="stmt" count="1"/>
-      <line num="552" type="stmt" count="1"/>
       <line num="553" type="stmt" count="1"/>
       <line num="554" type="stmt" count="1"/>
       <line num="555" type="stmt" count="1"/>
       <line num="556" type="stmt" count="1"/>
       <line num="557" type="stmt" count="1"/>
+      <line num="558" type="stmt" count="1"/>
+      <line num="559" type="stmt" count="1"/>
       <line num="560" type="stmt" count="1"/>
       <line num="561" type="stmt" count="1"/>
       <line num="562" type="stmt" count="1"/>
@@ -251,8 +251,6 @@
       <line num="569" type="stmt" count="1"/>
       <line num="570" type="stmt" count="1"/>
       <line num="571" type="stmt" count="1"/>
-      <line num="572" type="stmt" count="1"/>
-      <line num="573" type="stmt" count="1"/>
       <line num="574" type="stmt" count="1"/>
       <line num="575" type="stmt" count="1"/>
       <line num="576" type="stmt" count="1"/>
@@ -262,23 +260,37 @@
       <line num="580" type="stmt" count="1"/>
       <line num="581" type="stmt" count="1"/>
       <line num="582" type="stmt" count="1"/>
+      <line num="583" type="stmt" count="1"/>
+      <line num="584" type="stmt" count="1"/>
       <line num="585" type="stmt" count="1"/>
-      <line num="593" type="method" name="location" visibility="public" complexity="2" crap="2.00" count="1"/>
+      <line num="586" type="stmt" count="1"/>
+      <line num="587" type="stmt" count="1"/>
+      <line num="588" type="stmt" count="1"/>
+      <line num="589" type="stmt" count="1"/>
+      <line num="590" type="stmt" count="1"/>
+      <line num="591" type="stmt" count="1"/>
+      <line num="592" type="stmt" count="1"/>
+      <line num="593" type="stmt" count="1"/>
+      <line num="594" type="stmt" count="1"/>
+      <line num="595" type="stmt" count="1"/>
       <line num="596" type="stmt" count="1"/>
-      <line num="597" type="stmt" count="0"/>
-      <line num="600" type="stmt" count="1"/>
-      <line num="602" type="stmt" count="1"/>
-      <line num="603" type="stmt" count="1"/>
-      <line num="604" type="stmt" count="1"/>
-      <line num="605" type="stmt" count="1"/>
-      <line num="606" type="stmt" count="1"/>
-      <line num="607" type="stmt" count="1"/>
-      <line num="608" type="stmt" count="1"/>
-      <line num="609" type="stmt" count="1"/>
+      <line num="599" type="stmt" count="1"/>
+      <line num="607" type="method" name="location" visibility="public" complexity="2" crap="2.00" count="1"/>
       <line num="610" type="stmt" count="1"/>
-      <line num="616" type="method" name="locations" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="611" type="stmt" count="0"/>
+      <line num="614" type="stmt" count="1"/>
+      <line num="616" type="stmt" count="1"/>
+      <line num="617" type="stmt" count="1"/>
+      <line num="618" type="stmt" count="1"/>
+      <line num="619" type="stmt" count="1"/>
+      <line num="620" type="stmt" count="1"/>
       <line num="621" type="stmt" count="1"/>
+      <line num="622" type="stmt" count="1"/>
       <line num="623" type="stmt" count="1"/>
+      <line num="624" type="stmt" count="1"/>
+      <line num="630" type="method" name="locations" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="635" type="stmt" count="1"/>
+      <line num="637" type="stmt" count="1"/>
       <line num="639" type="stmt" count="1"/>
       <line num="641" type="stmt" count="1"/>
       <line num="642" type="stmt" count="1"/>
@@ -375,7 +387,7 @@
       <line num="817" type="stmt" count="1"/>
       <line num="818" type="stmt" count="1"/>
       <line num="821" type="stmt" count="1"/>
-      <metrics loc="826" ncloc="657" classes="1" methods="12" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="358" coveredstatements="286" elements="370" coveredelements="290"/>
+      <metrics loc="826" ncloc="669" classes="1" methods="12" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="370" coveredstatements="298" elements="382" coveredelements="302"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/BookwhenApi.php">
       <class name="InShore\Bookwhen\BookwhenApi" namespace="global">
@@ -438,8 +450,8 @@
       <class name="InShore\Bookwhen\Domain\Attachment" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="15" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
-      <line num="25" type="stmt" count="2"/>
+      <line num="15" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="25" type="stmt" count="3"/>
       <metrics loc="27" ncloc="23" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/danielmullin/inShore/I000/bookwhen/src/Domain/ClassPass.php">
@@ -1129,6 +1141,6 @@
       <line num="46" type="stmt" count="0"/>
       <metrics loc="49" ncloc="31" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="11" coveredelements="4"/>
     </file>
-    <metrics files="56" loc="3845" ncloc="2521" classes="39" methods="122" coveredmethods="75" conditionals="0" coveredconditionals="0" statements="712" coveredstatements="565" elements="834" coveredelements="640"/>
+    <metrics files="56" loc="3845" ncloc="2533" classes="39" methods="122" coveredmethods="75" conditionals="0" coveredconditionals="0" statements="724" coveredstatements="577" elements="846" coveredelements="652"/>
   </project>
 </coverage>

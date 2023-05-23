@@ -536,6 +536,20 @@ final class Bookwhen implements BookwhenInterface
 
         foreach ($events->data as $event) {
 
+            $eventAttachments = [];
+            foreach ($event->attachments as $attachment) {
+                array_push($eventAttachments, new Attachment(
+                    $attachment->contentType,
+                    $attachment->fileUrl,
+                    $attachment->fileSizeBytes,
+                    $attachment->fileSizeText,
+                    $attachment->fileName,
+                    $attachment->fileType,
+                    $attachment->id,
+                    $attachment->title
+                ));
+            }
+
             $eventTickets = [];
             foreach ($event->tickets as $ticket) {
                 array_push($eventTickets, new Ticket(
@@ -559,7 +573,7 @@ final class Bookwhen implements BookwhenInterface
 
             array_push($this->events, new Event(
                 $event->allDay,
-                $event->attachments,
+                $eventAttachments,
                 $event->attendeeCount,
                 $event->attendeeLimit,
                 $event->details,

@@ -22,7 +22,7 @@
 		"php-http/discovery" : "1.x-dev",
 		"psr/http-client" : "1.0.x-dev",
 		"psr/http-client-implementation" : "*",
-		"psr/http-message" : "2.0.x-dev",
+		"psr/http-message" : "^2.0",
 		"psr/http-factory-implementation" : "*",
 		"symfony/http-client": "^6.2"
 	},

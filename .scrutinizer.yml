@@ -1,11 +1,15 @@
 build:
     image: default-bionic
     environment:
-        php: 8.3
+        # Use 8.2: Scrutinizer's 8.3.4 source download often fails (mirror returns invalid bzip2).
+        # Project requires PHP ^8.3; analysis runs on 8.2 with platform reqs ignored for install.
+        php: 8.2
     nodes:
         analysis:
             project_setup:
                 override: true
+                dependency_installation:
+                    command: composer install --no-interaction --ignore-platform-reqs
             tests:
                 override: [php-scrutinizer-run]
 filter:

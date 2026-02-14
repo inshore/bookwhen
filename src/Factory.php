@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace InShore\Bookwhen;
 
 use Http\Discovery\Psr18ClientDiscovery;
@@ -9,34 +11,29 @@ use InShore\Bookwhen\ValueObjects\Transporter\BaseUri;
 use InShore\Bookwhen\ValueObjects\Transporter\Headers;
 use InShore\Bookwhen\ValueObjects\Transporter\QueryParams;
 use Psr\Http\Client\ClientInterface;
-use Symfony\Component\HttpClient\Psr18Client;
 
+/**
+ * Fluent factory to build a configured Bookwhen Client.
+ */
 final class Factory
 {
-    /**
-     * The API key for the requests.
-     */
     private ?string $apiKey = null;
 
-    /**
-     * The HTTP client for the requests.
-     */
     private ?ClientInterface $httpClient = null;
 
-    /**
-     * The base URI for the requests.
-     */
     private ?string $baseUri = null;
 
     /**
-     * The query parameters for the requests.
+     * Custom query parameters for requests.
      *
      * @var array<string, string|int>
      */
     private array $queryParams = [];
 
     /**
-     * Sets the API key for the requests.
+     * Set the API key for requests.
+     *
+     * @return $this
      */
     public function withApiKey(string $apiKey): self
     {
@@ -46,8 +43,9 @@ final class Factory
     }
 
     /**
-     * Sets the base URI for the requests.
-     * If no URI is provided the factory will use the default OpenAI API URI.
+     * Set the base URI. If not set, the default Bookwhen API v2 base is used.
+     *
+     * @return $this
      */
     public function withBaseUri(string $baseUri): self
     {
@@ -57,8 +55,9 @@ final class Factory
     }
 
     /**
-     * Sets the HTTP client for the requests.
-     * If no client is provided the factory will try to find one using PSR-18 HTTP Client Discovery.
+     * Set the PSR-18 HTTP client. If not set, one is discovered via php-http/discovery.
+     *
+     * @return $this
      */
     public function withHttpClient(ClientInterface $client): self
     {
@@ -68,7 +67,9 @@ final class Factory
     }
 
     /**
-     * Adds a custom query parameter to the request url.
+     * Add a query parameter to request URLs.
+     *
+     * @return $this
      */
     public function withQueryParam(string $name, string $value): self
     {
@@ -78,7 +79,9 @@ final class Factory
     }
 
     /**
-     * Creates a new Open AI Client.
+     * Build and return a Bookwhen Client.
+     *
+     * @return Client
      */
     public function make(): Client
     {
@@ -88,7 +91,7 @@ final class Factory
             $headers = Headers::withAuthorization(ApiKey::from($this->apiKey));
         }
 
-        $baseUri = BaseUri::from($this->baseUri ?: 'api.bookwhen.com/v2');
+        $baseUri = BaseUri::from($this->baseUri ?? 'api.bookwhen.com/v2');
 
         $queryParams = QueryParams::create();
         foreach ($this->queryParams as $name => $value) {

@@ -15,76 +15,50 @@ use InShore\Bookwhen\Exceptions\ConfigurationException;
 use InShore\Bookwhen\Exceptions\ValidationException;
 use InShore\Bookwhen\Interfaces\BookwhenInterface;
 use InShore\Bookwhen\Validator;
-use Monolog\Level;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
+/**
+ * High-level facade for the Bookwhen API (attachments, class passes, events, locations, tickets).
+ */
 final class Bookwhen implements BookwhenInterface
 {
-    /**
-     *
-     */
+    /** Last single attachment from attachment(). */
     public Attachment $attachment;
 
-    /**
-     *
-     */
+    /** List from attachments(). */
     public array $attachments = [];
 
-    /**
-     *
-     */
+    /** Low-level client (injected or from BookwhenApi). */
     public Client $client;
 
-    /**
-     *
-     */
+    /** Last single class pass from classPass(). */
     public ClassPass $classPass;
 
-    /**
-     *
-     */
+    /** List from classPasses(). */
     public array $classPasses = [];
 
-    /**
-     *
-     */
+    /** Last single event from event(). */
     public Event $event;
 
-    /**
-     *
-     */
+    /** List from events(). */
     public array $events = [];
 
-    /**
-     *
-     */
+    /** Accumulated filter params for list calls. */
     private array $filters = [];
 
-    /**
-     *
-     */
+    /** Last single location from location(). */
     public Location $location;
 
-    /**
-     *
-     */
+    /** Include flags used for last request. */
     public array $includes = [];
 
-    /**
-     *
-     */
+    /** Last single ticket from ticket(). */
     public Ticket $ticket;
 
-    /**
-     *
-     */
+    /** List from tickets(). */
     public array $tickets = [];
 
-    /**
-     *
-     */
-    public $locations = [];
+    /** List from locations(). */
+    public array $locations = [];
 
 
     /** @var string The path to the log file */
@@ -378,13 +352,13 @@ final class Bookwhen implements BookwhenInterface
             $event->endAt,
             $event->id,
             new Location(
-                $event->location->additionalInfo,
-                $event->location->addressText,
-                $event->location->id,
-                $event->location->latitude,
-                $event->location->longitude,
-                $event->location->mapUrl,
-                $event->location->zoom
+                id: $event->location->id,
+                additionalInfo: $event->location->additionalInfo,
+                addressText: $event->location->addressText,
+                latitude: $event->location->latitude,
+                longitude: $event->location->longitude,
+                mapUrl: $event->location->mapUrl,
+                zoom: $event->location->zoom
             ),
             $event->maxTicketsPerBooking,
             $event->startAt,
@@ -580,13 +554,13 @@ final class Bookwhen implements BookwhenInterface
                 $event->endAt,
                 $event->id,
                 new Location(
-                    $event->location->additionalInfo,
-                    $event->location->addressText,
-                    $event->location->id,
-                    $event->location->latitude,
-                    $event->location->longitude,
-                    $event->location->mapUrl,
-                    $event->location->zoom
+                    id: $event->location->id,
+                    additionalInfo: $event->location->additionalInfo,
+                    addressText: $event->location->addressText,
+                    latitude: $event->location->latitude,
+                    longitude: $event->location->longitude,
+                    mapUrl: $event->location->mapUrl,
+                    zoom: $event->location->zoom
                 ),
                 $event->maxTicketsPerBooking,
                 $event->startAt,
@@ -614,13 +588,13 @@ final class Bookwhen implements BookwhenInterface
         $location = $this->client->locations()->retrieve($locationId);
 
         return $this->location = new Location(
-            $location->additionalInfo,
-            $location->addressText,
-            $location->id,
-            $location->latitude,
-            $location->longitude,
-            $location->mapUrl,
-            $location->zoom
+            id: $location->id,
+            additionalInfo: $location->additionalInfo,
+            addressText: $location->addressText,
+            latitude: $location->latitude,
+            longitude: $location->longitude,
+            mapUrl: $location->mapUrl,
+            zoom: $location->zoom
         );
     }
 
@@ -640,13 +614,13 @@ final class Bookwhen implements BookwhenInterface
 
         foreach ($locations->data as $location) {
             array_push($this->locations, new Location(
-                $location->additionalInfo,
-                $location->addressText,
-                $location->id,
-                $location->latitude,
-                $location->longitude,
-                $location->mapUrl,
-                $location->zoom
+                id: $location->id,
+                additionalInfo: $location->additionalInfo,
+                addressText: $location->addressText,
+                latitude: $location->latitude,
+                longitude: $location->longitude,
+                mapUrl: $location->mapUrl,
+                zoom: $location->zoom
             ));
         }
 
@@ -694,7 +668,7 @@ final class Bookwhen implements BookwhenInterface
 
         // Validate $includeAttachments;
         if (!$this->validator->validInclude($includeEventsAttachments)) {
-            throw new ValidationException('includeEventssAttachments', $includeEventsAttachments);
+            throw new ValidationException('includeEventsAttachments', $includeEventsAttachments);
         }
 
         // Validate $includeEventsLocation;
@@ -771,7 +745,7 @@ final class Bookwhen implements BookwhenInterface
 
         // Validate $includeAttachments;
         if (!$this->validator->validInclude($includeEventsAttachments)) {
-            throw new ValidationException('includeEventssAttachments', $includeEventsAttachments);
+            throw new ValidationException('includeEventsAttachments', $includeEventsAttachments);
         }
 
         // Validate $includeEventsLocation;

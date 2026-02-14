@@ -6,17 +6,16 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/inshore/bookwhen.svg?style=flat-square)](https://scrutinizer-ci.com/g/inshore/bookwhen)
 [![Total Downloads](https://img.shields.io/packagist/dt/inshore/bookwhen.svg?style=flat-square)](https://packagist.org/packages/inshore/bookwhen)
 
-SDK kit for the Bookwhen API.
+SDK for the [Bookwhen API](https://api.bookwhen.com/v2). Requires PHP 8.3+.
 
-https://www.bookwhen.com
-
-https://api.bookwhen.com/v2
+- [Bookwhen](https://www.bookwhen.com) · [API v2](https://api.bookwhen.com/v2)
+- **[Changelog](CHANGELOG.md)** — upgrade notes and breaking changes (e.g. v1.0.0)
 
 ## Install
 
 ### Requirements
 
-PHP 8.1 and later.
+PHP 8.3 and later.
 
 **Composer**
 
@@ -49,7 +48,7 @@ https://api.bookwhen.com/v2#tag/Attachment/paths/~1attachments/get
 
 // Fetch attachments accessible by the API token.
 
-$attachments = $bookwhen->attachments());
+$attachments = $bookwhen->attachments();
 ```
 
 **Filters**
@@ -97,7 +96,7 @@ https://api.bookwhen.com/v2#tag/ClassPass/paths/~1class_passes/get
 
 // Fetch class passes accessible by the API token.
 
-$classPasses = $bookwhen->classPasses());
+$classPasses = $bookwhen->classPasses();
 
 ```
 
@@ -131,7 +130,7 @@ The filter parameters can be passed in as function parameters
 
 // Fetch class passes accessible by the API token.
 
-$classPasses = $bookwhen->classPasses());
+$classPasses = $bookwhen->classPasses();
 
 $classPasses = $bookwhen->classPasses(title: 'Title to filter by'));
 ```
@@ -203,7 +202,7 @@ for example to retrieve the event with its location and tickets.
 
 // Returns the event for the provided event ID.
 
-$event = $bookwhen->events(title: 'Title to filter by'));
+$event = $bookwhen->events(title: ['Title to filter by']);
 
 ```
 
@@ -234,7 +233,7 @@ $event = $bookwhen->event(eventId: 'ev-smij-20200530100000', includeLocation: tr
 
 // Fetch events accessible by the API token.
 
-$events = $bookwhen->events());
+$events = $bookwhen->events();
 
 ```
 
@@ -262,7 +261,7 @@ for example to retrieve the event with its location and tickets.
 
 // Fetch events accessible by the API token.
 
-$events = $bookwhen->events(location: true, includeTickets: true);));
+$events = $bookwhen->events(includeLocation: true, includeTickets: true);
 
 ```
 
@@ -280,7 +279,7 @@ Locations
 
 // Fetch events accessible by the API token.
 
-$locations = $bookwhen->locations());
+$locations = $bookwhen->locations();
 
 // Returns the location for the provided location ID.
 
@@ -380,7 +379,7 @@ simply pass boolean true for the relationship that is required.
 ``` php
 // Retrieve a single ticket.
 
-$client->ticket('ti-sboe-20200320100000-tk1m', includeAttachments: true););
+$client->ticket('ti-sboe-20200320100000-tk1m', includeEventsAttachments: true);
 
 ```
 

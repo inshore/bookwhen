@@ -8,8 +8,8 @@ build:
         analysis:
             project_setup:
                 override: true
-                dependency_installation:
-                    command: composer install --no-interaction --ignore-platform-reqs
+                before:
+                    - composer install --no-interaction --ignore-platform-reqs
             tests:
                 override: [php-scrutinizer-run]
 filter:

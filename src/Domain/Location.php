@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace InShore\Bookwhen\Domain;
 
+/**
+ * Immutable value object for a Bookwhen location.
+ */
 final class Location
 {
-    /**
-     *
-     */
     public function __construct(
-        public readonly null | string $additionalInfo = null,
-        public readonly null | string $addressText = null,
         public readonly string $id,
-        public readonly float | null $latitude = null,
-        public readonly float | null $longitude = null,
-        public readonly null | string $mapUrl = null,
-        public readonly int | null $zoom = null
+        public readonly ?string $additionalInfo = null,
+        public readonly ?string $addressText = null,
+        public readonly ?float $latitude = null,
+        public readonly ?float $longitude = null,
+        public readonly ?string $mapUrl = null,
+        public readonly ?int $zoom = null
     ) {
     }
 }

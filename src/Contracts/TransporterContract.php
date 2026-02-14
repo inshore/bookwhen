@@ -17,7 +17,7 @@ interface TransporterContract
 {
     /**
      * Sends a request to a server.
-     **
+     *
      * @return array<array-key, mixed>
      *
      * @throws ErrorException|UnserializableResponse|TransporterException
